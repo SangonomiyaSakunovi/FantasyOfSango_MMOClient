@@ -122,7 +122,7 @@ Material:
     - _BlinnPhongSpecularGloss: 5
     - _BlinnPhongSpecularIntensity: 1
     - _BloomFactor: 1
-    - _BrightIntensity: 0.784
+    - _BrightIntensity: 0.9
     - _BumpScale: 1
     - _CharacterIntensity: 1.1
     - _ClearCoatMask: 0
@@ -130,7 +130,7 @@ Material:
     - _ClipScale: 0.5
     - _Cull: 2
     - _Cutoff: 0.5
-    - _DarkIntensity: 0.816
+    - _DarkIntensity: 0.85
     - _DarkShadowArea: 0.5
     - _DarkShadowSmooth: 0.05
     - _DarkSideRimPow: 1
@@ -156,7 +156,7 @@ Material:
     - _EnableRims: 1
     - _EnableSpecular: 1
     - _EnvironmentReflections: 1
-    - _FaceDarkIntensity: 0.79
+    - _FaceDarkIntensity: 0.8
     - _FaceShadowMapPow: 0.2
     - _FaceShadowOffset: 0
     - _FixDarkShadow: 1

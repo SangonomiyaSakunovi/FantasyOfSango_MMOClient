@@ -154,7 +154,7 @@ Material:
     - _EnableRims: 1
     - _EnableSpecular: 0
     - _EnvironmentReflections: 1
-    - _FaceDarkIntensity: 0.8
+    - _FaceDarkIntensity: 0.7
     - _FaceShadowMapPow: 0.2
     - _FaceShadowOffset: 0
     - _FixDarkShadow: 1
