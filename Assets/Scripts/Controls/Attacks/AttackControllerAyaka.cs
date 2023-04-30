@@ -1,6 +1,5 @@
-using SangoCommon.ComBatCode;
-using SangoCommon.DataCache.AttackCache;
-using SangoCommon.GameObjectCode;
+using SangoCommon.Classs;
+using SangoCommon.Enums;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -199,7 +198,7 @@ public class AttackControllerAyaka : MonoBehaviour
         Invoke("SetSangonomiyaKokomiE", 0.2f);
     }
 
-    public void SetDamaged(AttackResultCache attackResultCache)
+    public void SetDamaged(AttackResult attackResultCache)
     {
         animator.SetTrigger("DamagedTriger");
         AudioService.Instance.PlayUIAudio(AudioConstant.DamagedAudio);

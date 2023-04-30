@@ -1,7 +1,7 @@
-using SangoCommon.DataCache.AttackCache;
-using SangoCommon.ServerCode;
-using SangoCommon.Tools;
 using ExitGames.Client.Photon;
+using SangoCommon.Classs;
+using SangoCommon.Enums;
+using SangoCommon.Tools;
 
 //Developer : SangonomiyaSakunovi
 //Discription:
@@ -17,7 +17,7 @@ public class AttackCommandEvent : BaseEvent
         string attackCommandJson = DictTools.GetStringValue(eventData.Parameters, (byte)ParameterCode.AttackCommand);
         if (attackCommandJson != null && IslandOnlineAccountSystem.Instance != null)
         {
-            AttackCommandCache attackCommandCache = DeJsonString<AttackCommandCache>(attackCommandJson);
+            AttackCommand attackCommandCache = DeJsonString<AttackCommand>(attackCommandJson);
             IslandOnlineAccountSystem.Instance.SetOnlineAvaterAttack(attackCommandCache);
         }
     }

@@ -1,4 +1,4 @@
-using SangoCommon.ServerCode;
+using SangoCommon.Enums;
 
 //Developer : SangonomiyaSakunovi
 //Discription:

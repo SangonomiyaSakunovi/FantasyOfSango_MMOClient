@@ -1,7 +1,5 @@
-using SangoCommon.ComBatCode;
-using SangoCommon.DataCache.AttackCache;
-using SangoCommon.GameObjectCode;
-using System;
+using SangoCommon.Classs;
+using SangoCommon.Enums;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -158,7 +156,7 @@ public class AttackControllerSangonomiyaKokomi : MonoBehaviour
                     if (item.CompareTag("Player") && !item.gameObject.GetComponent<MovePlayerAniController>().isLocalPlayer)
                     {
                         //CacheSystem.Instance.attackDamageRequest.SetAttackDamage(item.gameObject.GetComponent<MoveController>().OnlineAccount,
-                            //skillCode, wandPoint.position, item.gameObject.transform.position, DateTime.Now.ToUniversalTime());
+                        //skillCode, wandPoint.position, item.gameObject.transform.position, DateTime.Now.ToUniversalTime());
                         //CacheSystem.Instance.attackDamageRequest.DefaultRequest();
                     }
                     if (item.CompareTag("Enemy"))
@@ -178,7 +176,7 @@ public class AttackControllerSangonomiyaKokomi : MonoBehaviour
                 {
                     animator.SetBool("ElementAttackBool", true);
                     //CacheSystem.Instance.attackDamageRequest.SetAttackDamage(hit.collider.gameObject.GetComponent<MoveController>().OnlineAccount,
-                            //skillCode, wandPoint.position, hit.collider.gameObject.transform.position, DateTime.Now.ToUniversalTime());
+                    //skillCode, wandPoint.position, hit.collider.gameObject.transform.position, DateTime.Now.ToUniversalTime());
                     //CacheSystem.Instance.attackDamageRequest.DefaultRequest();
                     SetCureFlare(hit.collider.gameObject.transform.position);
                 }
@@ -203,7 +201,7 @@ public class AttackControllerSangonomiyaKokomi : MonoBehaviour
         Invoke("SetSangonomiyaKokomiE", 0.2f);
     }
 
-    public void SetDamaged(AttackResultCache attackResultCache)
+    public void SetDamaged(AttackResult attackResultCache)
     {
         animator.SetTrigger("DamagedTriger");
         AudioService.Instance.PlayUIAudio(AudioConstant.DamagedAudio);
@@ -219,6 +217,6 @@ public class AttackControllerSangonomiyaKokomi : MonoBehaviour
     //Just for Test ElementSystem!!!
     private void TestElementAttack(Collider collider)
     {
-        collider.gameObject.GetComponent<TestHilichurl>().SetDamaged(AvaterCode.SangonomiyaKokomi,SkillCode.ElementAttack,transform.position);
+        collider.gameObject.GetComponent<TestHilichurl>().SetDamaged(AvaterCode.SangonomiyaKokomi, SkillCode.ElementAttack, transform.position);
     }
 }

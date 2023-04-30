@@ -1,9 +1,7 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
-using static SangoCommon.Struct.CommonStruct;
 
 public class AStarGraphGenerator : MonoBehaviour
 {
@@ -52,7 +50,7 @@ public class AStarGraphGenerator : MonoBehaviour
             Debug.Log("“—æ≠ºÏ≤‚ÕÍ±œ");
             writer.Close();
             fileStream.Close();
-        }        
+        }
     }
 
     private void ScanGridGraph(int startX, int startZ, int endX, int endZ)

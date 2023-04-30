@@ -1,4 +1,4 @@
-using SangoCommon.ElementCode;
+using SangoCommon.Enums;
 using TMPro;
 using UnityEngine;
 

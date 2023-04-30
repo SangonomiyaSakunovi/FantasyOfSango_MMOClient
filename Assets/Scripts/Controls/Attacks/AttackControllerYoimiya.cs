@@ -1,7 +1,5 @@
-using SangoCommon.ComBatCode;
-using SangoCommon.DataCache.AttackCache;
-using SangoCommon.GameObjectCode;
-using System;
+using SangoCommon.Classs;
+using SangoCommon.Enums;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,11 +9,11 @@ using UnityEngine;
 public class AttackControllerYoimiya : MonoBehaviour
 {
     private Transform playerLeftHandBone;
-    private Animator animator; 
+    private Animator animator;
     private Transform wandPoint;
 
     public bool isLocalPlayer = true;
-    
+
     private bool isAttacking = false;
     private List<Flare> flareList = new List<Flare>();
 
@@ -60,7 +58,7 @@ public class AttackControllerYoimiya : MonoBehaviour
             //if (Input.GetButtonDown("E"))
             //{
             //    isAttacking = true;
- 
+
             //}
         }
     }
@@ -100,7 +98,7 @@ public class AttackControllerYoimiya : MonoBehaviour
     private class Flare
     {
         public GameObject flare = (GameObject)Instantiate(Resources.Load(WeaponConstant.Flare01Path));
-        public float endTime;        
+        public float endTime;
     }
 
     public void SetOnlineAccount()
@@ -130,7 +128,7 @@ public class AttackControllerYoimiya : MonoBehaviour
                 {
                     Debug.Log(item.gameObject.GetComponent<MovePlayerAniController>().OnlineAccount);
                     //CacheSystem.Instance.attackDamageRequest.SetAttackDamage(item.gameObject.GetComponent<MoveController>().OnlineAccount,
-                        //skillCode,wandPoint.position,item.gameObject.transform.position,DateTime.Now.ToUniversalTime());
+                    //skillCode,wandPoint.position,item.gameObject.transform.position,DateTime.Now.ToUniversalTime());
                     //CacheSystem.Instance.attackDamageRequest.DefaultRequest();
                 }
                 if (item.CompareTag("Enemy"))
@@ -141,7 +139,7 @@ public class AttackControllerYoimiya : MonoBehaviour
         }
     }
 
-    public void SetDamaged(AttackResultCache attackResultCache)
+    public void SetDamaged(AttackResult attackResultCache)
     {
         animator.SetTrigger("DamagedTriger");
         AudioService.Instance.PlayUIAudio(AudioConstant.DamagedAudio);

@@ -1,6 +1,4 @@
-using SangoCommon.DataCache.PlayerDataCache;
-using System.Collections.Generic;
-using UnityEngine;
+using SangoCommon.Classs;
 
 //Developer : SangonomiyaSakunovi
 //Discription:
@@ -9,7 +7,7 @@ public class OnlineAccountCache : BaseCache
 {
     public static OnlineAccountCache Instance = null;
 
-    public PlayerCache PlayerCache { get; private set; }
+    public AvaterInfo AvaterInfo { get; private set; }
 
     public override void InitCache()
     {
@@ -17,9 +15,9 @@ public class OnlineAccountCache : BaseCache
         Instance = this;
     }
 
-    public void SetPlayerCache(PlayerCache playerCache)
+    public void SetPlayerCache(AvaterInfo playerCache)
     {
-        PlayerCache = playerCache;
+        AvaterInfo = playerCache;
     }
-    
+
 }

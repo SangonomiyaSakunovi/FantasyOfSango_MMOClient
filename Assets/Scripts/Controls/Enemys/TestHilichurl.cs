@@ -1,8 +1,6 @@
 using Assets.Scripts.Common.Constant;
-using SangoCommon.ComBatCode;
-using SangoCommon.DataCache.ElementCache;
-using SangoCommon.ElementCode;
-using SangoCommon.GameObjectCode;
+using SangoCommon.Classs;
+using SangoCommon.Enums;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -41,8 +39,8 @@ public class TestHilichurl : MonoBehaviour
     {
         List<Vector3> pathList = new List<Vector3> { path1, path2, path3 };
         fSMSystem = new FSMSystem();
-        FSMState patrolState = new PatrolState(fSMSystem, pathList, EnemyConstant.HilichurlPatrolSpeed,10);        
-        FSMState chaseState = new ChaseState(fSMSystem,EnemyConstant.HilichurlChaseSpeed,20,3);
+        FSMState patrolState = new PatrolState(fSMSystem, pathList, EnemyConstant.HilichurlPatrolSpeed, 10);
+        FSMState chaseState = new ChaseState(fSMSystem, EnemyConstant.HilichurlChaseSpeed, 20, 3);
         FSMState hilichurlAttackState = new HilichurlAttackState(fSMSystem, 3);
         fSMSystem.AddFSMState(patrolState);
         fSMSystem.AddFSMState(chaseState);
@@ -61,7 +59,7 @@ public class TestHilichurl : MonoBehaviour
 
     public void SetDamaged(AvaterCode avater, SkillCode skill, Vector3 attakerPos)
     {
-        AudioService.Instance.PlayBGAudio(AudioConstant.NormalFightBG,true);
+        AudioService.Instance.PlayBGAudio(AudioConstant.NormalFightBG, true);
         if (!IsAttacking)
         {
             PlayEnemyHpUIItem();
@@ -69,18 +67,18 @@ public class TestHilichurl : MonoBehaviour
         //Just for test!!!
         if (skill == SkillCode.ElementAttack)
         {
-            ElementApplicationCache elementApplicationCache = null;
+            ElementApplication elementApplicationCache = null;
             if (avater == AvaterCode.SangonomiyaKokomi)   //KokomiAttack with Hydro
             {
-                elementApplicationCache = new ElementApplicationCache(ElementTypeCode.Hydro, 2);
+                elementApplicationCache = new ElementApplication(ElementTypeCode.Hydro, 2);
             }
             else if (avater == AvaterCode.Yoimiya)   //YoimiyaAttack with Pyro
             {
-                elementApplicationCache = new ElementApplicationCache(ElementTypeCode.Pyro, 2);
+                elementApplicationCache = new ElementApplication(ElementTypeCode.Pyro, 2);
             }
             else if (avater == AvaterCode.Ayaka)
             {
-                elementApplicationCache = new ElementApplicationCache(ElementTypeCode.Cryo, 2);               
+                elementApplicationCache = new ElementApplication(ElementTypeCode.Cryo, 2);
             }
             gameObject.GetComponent<ElementSystem>().ElementReaction(FightTypeCode.PVE, skill, elementApplicationCache, attakerPos, gameObject.name);
         }

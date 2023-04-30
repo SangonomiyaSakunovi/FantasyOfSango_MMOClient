@@ -1,7 +1,7 @@
-using SangoCommon.DataCache.PositionCache;
-using SangoCommon.ServerCode;
-using SangoCommon.Tools;
 using ExitGames.Client.Photon;
+using SangoCommon.Classs;
+using SangoCommon.Enums;
+using SangoCommon.Tools;
 using System.Collections.Generic;
 
 //Developer : SangonomiyaSakunovi
@@ -18,7 +18,7 @@ public class SyncPlayerTransformEvent : BaseEvent
         string playerTransformCacheJson = DictTools.GetStringValue(eventData.Parameters, (byte)ParameterCode.PlayerTransformCacheList);
         if (playerTransformCacheJson != null && IslandOnlineAccountSystem.Instance != null)
         {
-            List<TransformCache> playerTransformCacheList = DeJsonString<List<TransformCache>>(playerTransformCacheJson);
+            List<TransformOnline> playerTransformCacheList = DeJsonString<List<TransformOnline>>(playerTransformCacheJson);
             IslandOnlineAccountSystem.Instance.SetOnlineAvaterTransform(playerTransformCacheList);
         }
     }

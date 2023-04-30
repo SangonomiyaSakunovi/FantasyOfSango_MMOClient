@@ -1,7 +1,5 @@
-using SangoCommon.Constant;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using SangoCommon.Constants;
 
 public class MovePlayerCapsuleController : MonoBehaviour
 {

@@ -1,10 +1,9 @@
-using SangoCommon.ComBatCode;
-using SangoCommon.Constant;
-using SangoCommon.DataCache.ElementCache;
-using SangoCommon.ElementCode;
+using SangoCommon.Classs;
+using SangoCommon.Enums;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using SangoCommon.Constants;
 
 //Developer : SangonomiyaSakunovi
 //Discription:
@@ -17,7 +16,7 @@ public class ElementSystem : MonoBehaviour
     private float frozenOriginalRate;
     private string DamagerAccount;
 
-    public Dictionary<ElementTypeCode, ElementApplicationCache> elementApplicationDict = new Dictionary<ElementTypeCode, ElementApplicationCache>();
+    public Dictionary<ElementTypeCode, ElementApplication> elementApplicationDict = new Dictionary<ElementTypeCode, ElementApplication>();
 
     private void Start()
     {
@@ -25,7 +24,7 @@ public class ElementSystem : MonoBehaviour
         frozenOriginalRate = ElementConstant.FrozenOriginalRate;
     }
 
-    public void ElementReaction(FightTypeCode fightType, SkillCode skill, ElementApplicationCache elementApplicationCache, Vector3 attakerPos, string damagerAccount)
+    public void ElementReaction(FightTypeCode fightType, SkillCode skill, ElementApplication elementApplicationCache, Vector3 attakerPos, string damagerAccount)
     {
         DamagerAccount = damagerAccount;
         switch (elementApplicationCache.Type)
@@ -98,8 +97,8 @@ public class ElementSystem : MonoBehaviour
         }
     }
 
-    private void TrigerHydro(FightTypeCode fightType, ElementApplicationCache hydroApplicationCache, SkillCode skill, Vector3 attakerPos, string damagerAccount)
-    {       
+    private void TrigerHydro(FightTypeCode fightType, ElementApplication hydroApplicationCache, SkillCode skill, Vector3 attakerPos, string damagerAccount)
+    {
         if (elementApplicationDict.ContainsKey(ElementTypeCode.Hydro))
         {
             elementApplicationDict[ElementTypeCode.Hydro].Gauge = hydroApplicationCache.Gauge;
@@ -120,7 +119,7 @@ public class ElementSystem : MonoBehaviour
         }
     }
 
-    private void TrigerPyro(FightTypeCode fightType, ElementApplicationCache pyroApplicationCache, SkillCode skill, Vector3 attakerPos, string damagerAccount)
+    private void TrigerPyro(FightTypeCode fightType, ElementApplication pyroApplicationCache, SkillCode skill, Vector3 attakerPos, string damagerAccount)
     {
         if (elementApplicationDict.ContainsKey(ElementTypeCode.Pyro))
         {
@@ -146,7 +145,7 @@ public class ElementSystem : MonoBehaviour
         }
     }
 
-    private void TrigerCryo(FightTypeCode fightType, ElementApplicationCache cryoApplicationCache, SkillCode skill, Vector3 attakerPos, string damagerAccount)
+    private void TrigerCryo(FightTypeCode fightType, ElementApplication cryoApplicationCache, SkillCode skill, Vector3 attakerPos, string damagerAccount)
     {
         if (elementApplicationDict.ContainsKey(ElementTypeCode.Cryo))
         {
@@ -168,7 +167,7 @@ public class ElementSystem : MonoBehaviour
         }
     }
 
-    private void ReactionVaporize(FightTypeCode fightType, ElementApplicationCache elementHydro, ElementApplicationCache elementPyro, SkillCode skill, Vector3 attakerPos, string damagerAccount)
+    private void ReactionVaporize(FightTypeCode fightType, ElementApplication elementHydro, ElementApplication elementPyro, SkillCode skill, Vector3 attakerPos, string damagerAccount)
     {
         if (elementHydro.Gauge < 0 || elementPyro.Gauge < 0)
         {
@@ -188,7 +187,7 @@ public class ElementSystem : MonoBehaviour
         SangoRoot.Instance.dynamicWindow.PlayElementReactionName(ElementReactionCode.Vaporize, transform.position);
     }
 
-    private void ReactionMelt(FightTypeCode fightType, ElementApplicationCache elementPyro, ElementApplicationCache elementCryo, SkillCode skill, Vector3 attakerPos, string damagerAccount)
+    private void ReactionMelt(FightTypeCode fightType, ElementApplication elementPyro, ElementApplication elementCryo, SkillCode skill, Vector3 attakerPos, string damagerAccount)
     {
         if (elementPyro.Gauge < 0 || elementCryo.Gauge < 0)
         {
@@ -208,7 +207,7 @@ public class ElementSystem : MonoBehaviour
         SangoRoot.Instance.dynamicWindow.PlayElementReactionName(ElementReactionCode.Melt, transform.position);
     }
 
-    private void ReactionFrozen(FightTypeCode fightType, ElementApplicationCache elementHydro, ElementApplicationCache elementCryo, SkillCode skill, Vector3 attakerPos, string damagerAccount)
+    private void ReactionFrozen(FightTypeCode fightType, ElementApplication elementHydro, ElementApplication elementCryo, SkillCode skill, Vector3 attakerPos, string damagerAccount)
     {
         if (elementHydro.Gauge < 0 || elementCryo.Gauge < 0)
         {
@@ -233,7 +232,7 @@ public class ElementSystem : MonoBehaviour
         }
         else
         {
-            elementApplicationDict.Add(ElementTypeCode.Cryoing, new ElementApplicationCache(ElementTypeCode.Cryoing, reactionFrozenGauge));
+            elementApplicationDict.Add(ElementTypeCode.Cryoing, new ElementApplication(ElementTypeCode.Cryoing, reactionFrozenGauge));
             frozenRate = frozenOriginalRate;
         }
         CacheSystem.Instance.attackDamageRequest.SetAttackDamage(fightType, damagerAccount, skill, ElementReactionCode.Frozen, attakerPos, transform.position);

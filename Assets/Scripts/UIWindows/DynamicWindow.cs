@@ -1,5 +1,5 @@
 using Assets.Scripts.Common.Constant;
-using SangoCommon.ElementCode;
+using SangoCommon.Enums;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -86,11 +86,11 @@ public class DynamicWindow : BaseWindow
         }
     }
 
-    public void PlayElementReactionName(ElementReactionCode reactionCode,Vector3 position)
+    public void PlayElementReactionName(ElementReactionCode reactionCode, Vector3 position)
     {
         ElementReactionNameShows elementReactionNameShows = GameObjectPools<ElementReactionNameShows>.GetObject();
         Vector3 screenPos = Camera.main.WorldToScreenPoint(position);
-        elementReactionNameShows.nameUI.transform.position = new Vector3(UnityEngine.Random.Range(screenPos.x - 100, screenPos.x + 100), UnityEngine.Random.Range(screenPos.y-50, screenPos.y+50), 0);
+        elementReactionNameShows.nameUI.transform.position = new Vector3(UnityEngine.Random.Range(screenPos.x - 100, screenPos.x + 100), UnityEngine.Random.Range(screenPos.y - 50, screenPos.y + 50), 0);
         elementReactionNameShows.nameUI.transform.SetParent(uiItemRoot);
         elementReactionNameShows.nameUI.SetActive(true);
         elementReactionNameShows.nameUI.GetComponent<ElementReactionNameUIItem>().PlayElementReactionName(reactionCode);

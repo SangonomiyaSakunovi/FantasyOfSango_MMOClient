@@ -1,7 +1,6 @@
-using SangoCommon.GameObjectCode;
-using SangoCommon.ServerCode;
-using SangoCommon.Tools;
 using ExitGames.Client.Photon;
+using SangoCommon.Enums;
+using SangoCommon.Tools;
 
 //Developer : SangonomiyaSakunovi
 //Discription:

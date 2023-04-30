@@ -1,4 +1,4 @@
-using SangoCommon.ElementCode;
+using SangoCommon.Enums;
 using TMPro;
 using UnityEngine;
 
@@ -8,7 +8,7 @@ public class AttackNumUIItem : BaseWindow
     public Animation attackNumAni;
 
     public void PlayAttackNum(ElementReactionCode elementReaction, int attackNum, Vector3 attackPosition)
-    {        
+    {
         SetColor(attackNumText, elementReaction);
         SetText(attackNumText, attackNum);
         Vector3 pos = new Vector3(1600, 500, 0);

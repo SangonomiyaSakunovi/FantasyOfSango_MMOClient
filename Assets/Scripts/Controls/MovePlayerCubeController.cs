@@ -1,7 +1,5 @@
-using SangoCommon.Constant;
-using SangoCommon.GameObjectCode;
-using System.Collections;
-using System.Collections.Generic;
+using SangoCommon.Constants;
+using SangoCommon.Enums;
 using UnityEngine;
 
 public class MovePlayerCubeController : MonoBehaviour

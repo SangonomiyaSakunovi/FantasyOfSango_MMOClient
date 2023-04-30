@@ -1,4 +1,4 @@
-using SangoCommon.ServerCode;
+using SangoCommon.Enums;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -58,7 +58,7 @@ public class LoginSystem : BaseSystem
                 }
             }
         });
-        audioService.PlayBGAudio(AudioConstant.LoginAudioBG, true);        
+        audioService.PlayBGAudio(AudioConstant.LoginAudioBG, true);
     }
 
     public void SendLoginRequest()
@@ -76,7 +76,7 @@ public class LoginSystem : BaseSystem
             //Load the MainGame
             netService.AsyncLoadPlayerData(() =>
             {
-                OnlineAccountCache.Instance.SetPlayerCache(CacheSystem.Instance.syncPlayerDataRequest.PlayerCache);
+                OnlineAccountCache.Instance.SetPlayerCache(CacheSystem.Instance.syncPlayerDataRequest.AvaterInfo);
                 MainGameSystem.Instance.EnterMainGame();
                 loginWindow.SetWindowState(false);
             });

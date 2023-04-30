@@ -1,7 +1,6 @@
 using Assets.Scripts.Common.Constant;
-using SangoCommon.DataCache.AttackCache;
-using SangoCommon.DataCache.PlayerDataCache;
-using SangoCommon.GameObjectCode;
+using SangoCommon.Classs;
+using SangoCommon.Enums;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -39,7 +38,7 @@ public class MainGameSystem : BaseSystem
     public Image hpFG;
     public Image elementBurstFG;
 
-    private PlayerCache playerCache = null;
+    private AvaterInfo avaterInfo = null;
 
     public override void InitSystem()
     {
@@ -61,9 +60,9 @@ public class MainGameSystem : BaseSystem
             CameraController.Instance.InitCamera();
             //Load UI
             mainGameWindow.SetWindowState();
-            playerCache = OnlineAccountCache.Instance.PlayerCache;
-            RefreshMainGameUI(playerCache.AttributeInfoList[0].HP, playerCache.AttributeInfoList[0].HPFull,
-            playerCache.AttributeInfoList[0].MP, playerCache.AttributeInfoList[0].MPFull);
+            avaterInfo = OnlineAccountCache.Instance.AvaterInfo;
+            RefreshMainGameUI(avaterInfo.AttributeInfoList[0].HP, avaterInfo.AttributeInfoList[0].HPFull,
+            avaterInfo.AttributeInfoList[0].MP, avaterInfo.AttributeInfoList[0].MPFull);
             //LoadMusic
             audioService.LoadAudio(AudioConstant.NormalFightBG);
             //PlayMusic
@@ -113,7 +112,7 @@ public class MainGameSystem : BaseSystem
 
     }
 
-    public void SetLocalAvaterAttackResult(AttackResultCache attackResultCache)
+    public void SetLocalAvaterAttackResult(AttackResult attackResultCache)
     {
         if (attackResultCache.DamageNumber > 0)
         {
@@ -126,7 +125,7 @@ public class MainGameSystem : BaseSystem
                 playerCube.transform.Find(AvaterConstant.YoimiyaName).GetComponent<AttackControllerYoimiya>().SetDamaged(attackResultCache);
             }
             SangoRoot.AddMessage("你被玩家" + attackResultCache.AttackerAccount + "攻击了，受到伤害-" + attackResultCache.DamageNumber + "HP");
-            AttributeInfoCache tempAttribute = attackResultCache.DamagerPlayerCache.AttributeInfoList[0];
+            AvaterAttributeInfo tempAttribute = attackResultCache.DamagerPlayerCache.AttributeInfoList[0];
             Instance.RefreshMainGameUI(tempAttribute.HP, tempAttribute.HPFull, tempAttribute.MP, tempAttribute.MPFull);
         }
         else    //in this kind, the avater has been cured
@@ -138,7 +137,7 @@ public class MainGameSystem : BaseSystem
                 healerGameobject.GetComponent<AttackControllerSangonomiyaKokomi>().SetCureResult(playerCube.transform.position);
             }
             SangoRoot.AddMessage("你被玩家" + attackResultCache.AttackerAccount + "治疗了，治疗量为" + -attackResultCache.DamageNumber + "HP");
-            AttributeInfoCache tempAttribute = attackResultCache.DamagerPlayerCache.AttributeInfoList[0];
+            AvaterAttributeInfo tempAttribute = attackResultCache.DamagerPlayerCache.AttributeInfoList[0];
             Instance.RefreshMainGameUI(tempAttribute.HP, tempAttribute.HPFull, tempAttribute.MP, tempAttribute.MPFull);
         }
     }

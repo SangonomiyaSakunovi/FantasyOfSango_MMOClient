@@ -1,16 +1,11 @@
-using SangoCommon.ComBatCode;
-using SangoCommon.DataCache.AttackCache;
-using SangoCommon.DataCache.PlayerDataCache;
-using SangoCommon.DataCache.PositionCache;
-using SangoCommon.GameObjectCode;
-using SangoCommon.ServerCode;
-using SangoCommon.Tools;
 using ExitGames.Client.Photon;
+using SangoCommon.Classs;
+using SangoCommon.Enums;
+using SangoCommon.Structs;
+using SangoCommon.Tools;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using SangoCommon.ElementCode;
-using static SangoCommon.Struct.CommonStruct;
 
 //Developer : SangonomiyaSakunovi
 //Discription:
@@ -19,15 +14,15 @@ public class AttackDamageRequest : BaseRequest
 {
     public string Account { get; private set; }
     public string DamagerAccount { get; private set; }
-    private AttackDamageCache attackDamageCache;
+    private AttackDamage attackDamageCache;
     public override void InitRequset()
     {
         base.InitRequset();
     }
 
-    public void SetAttackDamage(FightTypeCode fightType,string damager, SkillCode skillCode, ElementReactionCode elementReaction, Vector3 attakerPos, Vector3 damagerPos)
+    public void SetAttackDamage(FightTypeCode fightType, string damager, SkillCode skillCode, ElementReactionCode elementReaction, Vector3 attakerPos, Vector3 damagerPos)
     {
-        attackDamageCache = new AttackDamageCache
+        attackDamageCache = new AttackDamage
         {
             FightTypeCode = fightType,
             AttackerAccount = Account,
@@ -64,19 +59,19 @@ public class AttackDamageRequest : BaseRequest
         string attackResultJson = DictTools.GetStringValue(operationResponse.Parameters, (byte)ParameterCode.AttackResult);
         if (attackResultJson != null)
         {
-            AttackResultCache attackResultCache = DeJsonString<AttackResultCache>(attackResultJson);
+            AttackResult attackResultCache = DeJsonString<AttackResult>(attackResultJson);
             if (attackResultCache.DamageNumber > 0)
-            {               
+            {
                 IslandOnlineAccountSystem.Instance.SetOnlineAvaterAttackResult(attackResultCache);
                 SangoRoot.AddMessage("你攻击了玩家" + attackResultCache.DamagerAccount + "本次伤害为" + attackResultCache.DamageNumber + "HP");
             }
             else    //in this kind, the avater has been cured
-            {                
+            {
                 IslandOnlineAccountSystem.Instance.SetOnlineAvaterAttackResult(attackResultCache);
                 SangoRoot.AddMessage("你治疗了玩家" + attackResultCache.DamagerAccount + "本次治疗量为" + -attackResultCache.DamageNumber + "HP");
             }
 
-            
+
         }
     }
 

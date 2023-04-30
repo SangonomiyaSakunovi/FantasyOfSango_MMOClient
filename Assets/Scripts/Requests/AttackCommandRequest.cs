@@ -1,12 +1,10 @@
-using SangoCommon.ComBatCode;
-using SangoCommon.DataCache.AttackCache;
-using SangoCommon.DataCache.PositionCache;
-using SangoCommon.ServerCode;
 using ExitGames.Client.Photon;
+using SangoCommon.Classs;
+using SangoCommon.Enums;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using static SangoCommon.Struct.CommonStruct;
+using SangoCommon.Structs;
 
 //Developer : SangonomiyaSakunovi
 //Discription:
@@ -14,7 +12,7 @@ using static SangoCommon.Struct.CommonStruct;
 public class AttackCommandRequest : BaseRequest
 {
     public string Account { get; private set; }
-    private AttackCommandCache attackCommandCache;
+    private AttackCommand attackCommandCache;
     public override void InitRequset()
     {
         base.InitRequset();
@@ -22,7 +20,7 @@ public class AttackCommandRequest : BaseRequest
 
     public void SetAttackCommand(SkillCode skillCode, Vector3 position, Quaternion rotation)
     {
-        attackCommandCache = new AttackCommandCache
+        attackCommandCache = new AttackCommand
         {
             Account = this.Account,
             SkillCode = skillCode,

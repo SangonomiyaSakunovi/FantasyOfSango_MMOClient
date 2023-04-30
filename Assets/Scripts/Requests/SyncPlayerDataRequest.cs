@@ -1,7 +1,7 @@
-using SangoCommon.DataCache.PlayerDataCache;
-using SangoCommon.ServerCode;
-using SangoCommon.Tools;
 using ExitGames.Client.Photon;
+using SangoCommon.Classs;
+using SangoCommon.Enums;
+using SangoCommon.Tools;
 
 //Developer : SangonomiyaSakunovi
 //Discription:
@@ -9,7 +9,7 @@ using ExitGames.Client.Photon;
 public class SyncPlayerDataRequest : BaseRequest
 {
     public string Account { get; private set; }
-    public PlayerCache PlayerCache { get; private set; }
+    public AvaterInfo AvaterInfo { get; private set; }
     public bool IsGetResponse { get; private set; }
 
     public override void InitRequset()
@@ -26,7 +26,7 @@ public class SyncPlayerDataRequest : BaseRequest
     public override void OnOperationResponse(OperationResponse operationResponse)
     {
         string playerCacheJson = DictTools.GetStringValue(operationResponse.Parameters, (byte)ParameterCode.PlayerCache);
-        PlayerCache = DeJsonString<PlayerCache>(playerCacheJson);
+        AvaterInfo = DeJsonString<AvaterInfo>(playerCacheJson);
         IsGetResponse = true;
     }
 
@@ -40,8 +40,8 @@ public class SyncPlayerDataRequest : BaseRequest
         IsGetResponse = isGetResponse;
     }
 
-    public void SetPlayerCache(PlayerCache playerCache)
+    public void SetPlayerCache(AvaterInfo playerCache)
     {
-        PlayerCache = playerCache;
+        AvaterInfo = playerCache;
     }
 }

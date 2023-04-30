@@ -1,4 +1,4 @@
-using SangoCommon.ElementCode;
+using SangoCommon.Enums;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -58,7 +58,7 @@ public class EnemyHpUIItem : BaseWindow
             SetActive(element1Pyro, false);
         }
         else if (elementType == ElementTypeCode.Cryo)
-        {            
+        {
             SetActive(element1Cryo, false);
         }
     }

@@ -1,10 +1,10 @@
-using SangoCommon.DataCache.PositionCache;
-using SangoCommon.ServerCode;
 using ExitGames.Client.Photon;
+using SangoCommon.Classs;
+using SangoCommon.Enums;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using static SangoCommon.Struct.CommonStruct;
+using SangoCommon.Structs;
 
 //Developer : SangonomiyaSakunovi
 //Discription:
@@ -12,7 +12,7 @@ using static SangoCommon.Struct.CommonStruct;
 public class SyncPlayerTransformRequest : BaseRequest
 {
     public string Account { get; private set; }
-    private TransformCache playerTransformCache;
+    private TransformOnline playerTransformCache;
 
     public override void InitRequset()
     {
@@ -21,7 +21,7 @@ public class SyncPlayerTransformRequest : BaseRequest
 
     public void SetPlayerTransform(Vector3 position, Quaternion rotation)
     {
-        playerTransformCache = new TransformCache
+        playerTransformCache = new TransformOnline
         {
             Account = this.Account,
             Vector3Position = new Vector3Position

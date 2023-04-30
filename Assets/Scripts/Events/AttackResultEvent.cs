@@ -1,8 +1,7 @@
-using SangoCommon.DataCache.AttackCache;
-using SangoCommon.DataCache.PlayerDataCache;
-using SangoCommon.ServerCode;
-using SangoCommon.Tools;
 using ExitGames.Client.Photon;
+using SangoCommon.Classs;
+using SangoCommon.Enums;
+using SangoCommon.Tools;
 
 //Developer : SangonomiyaSakunovi
 //Discription:
@@ -19,10 +18,10 @@ public class AttackResultEvent : BaseEvent
         {
             if (attackResultJson != null && IslandOnlineAccountSystem.Instance != null)
             {
-                AttackResultCache attackResultCache = DeJsonString<AttackResultCache>(attackResultJson);
+                AttackResult attackResultCache = DeJsonString<AttackResult>(attackResultJson);
                 if (attackResultCache.DamagerAccount == NetService.Instance.Account)
-                { 
-                    MainGameSystem.Instance.SetLocalAvaterAttackResult(attackResultCache);                   
+                {
+                    MainGameSystem.Instance.SetLocalAvaterAttackResult(attackResultCache);
                 }
                 else
                 {

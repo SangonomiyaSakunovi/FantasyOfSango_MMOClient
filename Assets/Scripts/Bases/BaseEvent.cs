@@ -1,6 +1,5 @@
-using SangoCommon.ServerCode;
 using ExitGames.Client.Photon;
-using System.Collections.Generic;
+using SangoCommon.Enums;
 using System.Text.Json;
 using UnityEngine;
 

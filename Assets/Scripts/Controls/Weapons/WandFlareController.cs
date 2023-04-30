@@ -1,12 +1,11 @@
-using SangoCommon.Constant;
-using TMPro;
 using UnityEngine;
+using SangoCommon.Constants;
 
 //Developer : SangonomiyaSakunovi
 //Discription:
 
 public class WandFlareController : MonoBehaviour
-{        
+{
     private float speed = WeaponConstant.WandFlareSpeed;
     private float smoothLerpTime = TimeConstant.SmoothLerpTime;
     private Rigidbody rb;
@@ -30,7 +29,7 @@ public class WandFlareController : MonoBehaviour
         {
             transform.position = Vector3.Lerp(transform.position, targetPosition, 2 * smoothLerpTime * Time.deltaTime);
         }
-    }    
+    }
 
     public void SetIsReady(bool bo = false)
     {

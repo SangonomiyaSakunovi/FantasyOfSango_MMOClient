@@ -1,4 +1,4 @@
-using SangoCommon.ServerCode;
+using SangoCommon.Enums;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -27,7 +27,7 @@ public class SangoRoot : MonoBehaviour
         Transform canvas = transform.Find("Canvas");
         for (int i = 0; i < canvas.childCount; i++)
         {
-            canvas.GetChild(i).gameObject.SetActive(false); 
+            canvas.GetChild(i).gameObject.SetActive(false);
         }
         dynamicWindow.SetWindowState();
     }
@@ -63,7 +63,7 @@ public class SangoRoot : MonoBehaviour
         attackDamageRequest.InitRequset();
         ChooseAvaterRequest chooseAvaterRequest = GetComponent<ChooseAvaterRequest>();
         chooseAvaterRequest.InitRequset();
-        
+
 
         //Init the Event
         NewAccountJoinEvent newAccountJoinEvent = GetComponent<NewAccountJoinEvent>();

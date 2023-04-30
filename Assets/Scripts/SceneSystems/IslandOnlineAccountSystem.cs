@@ -1,11 +1,8 @@
-using SangoCommon.ComBatCode;
-using SangoCommon.DataCache.AttackCache;
-using SangoCommon.DataCache.PositionCache;
-using SangoCommon.GameObjectCode;
+using SangoCommon.Classs;
+using SangoCommon.Enums;
 using SangoCommon.Tools;
 using System.Collections.Generic;
 using UnityEngine;
-using static SangoCommon.Struct.CommonStruct;
 
 //Developer : SangonomiyaSakunovi
 //Discription:
@@ -14,13 +11,13 @@ public class IslandOnlineAccountSystem : MonoBehaviour
 {
     public static IslandOnlineAccountSystem Instance = null;
 
-    private Dictionary<string,TransformCache> onlineAccountAvaterTransformDict = null;
-    private Dictionary<string,GameObject> onlineAccountPlayerCubeDict = null;
+    private Dictionary<string, TransformOnline> onlineAccountAvaterTransformDict = null;
+    private Dictionary<string, GameObject> onlineAccountPlayerCubeDict = null;
 
     private void Start()
     {
         Instance = this;
-        onlineAccountAvaterTransformDict = new Dictionary<string, TransformCache>();
+        onlineAccountAvaterTransformDict = new Dictionary<string, TransformOnline>();
         onlineAccountPlayerCubeDict = new Dictionary<string, GameObject>();
         CacheSystem.Instance.syncPlayerAccountRequest.DefaultRequest();
     }
@@ -56,7 +53,7 @@ public class IslandOnlineAccountSystem : MonoBehaviour
             tempAyaka.GetComponent<AttackControllerAyaka>().SetOnlineAccount();
             if (onlineAccountAvaterTransformDict.ContainsKey(onlineAccount))
             {
-                TransformCache transformCache = onlineAccountAvaterTransformDict[onlineAccount];
+                TransformOnline transformCache = onlineAccountAvaterTransformDict[onlineAccount];
                 Vector3 targetPosition = new Vector3(transformCache.Vector3Position.X, transformCache.Vector3Position.Y, transformCache.Vector3Position.Z);
                 Quaternion targetRotation = new Quaternion(transformCache.QuaternionRotation.X, transformCache.QuaternionRotation.Y, transformCache.QuaternionRotation.Z, transformCache.QuaternionRotation.W);
                 playerCube.GetComponent<MovePlayerCubeController>().SetTransform(targetPosition, targetRotation);
@@ -72,9 +69,9 @@ public class IslandOnlineAccountSystem : MonoBehaviour
         childObject.transform.localRotation = Quaternion.Euler(0, 0, 0);
     }
 
-    public void SetOnlineAvaterTransform(List<TransformCache> playerTransList)
-    {        
-        for (int i = 0; i< playerTransList.Count; i++)
+    public void SetOnlineAvaterTransform(List<TransformOnline> playerTransList)
+    {
+        for (int i = 0; i < playerTransList.Count; i++)
         {
             if (playerTransList[i].Account != "")
             {
@@ -92,13 +89,13 @@ public class IslandOnlineAccountSystem : MonoBehaviour
                     Vector3 targetPosition = new Vector3(playerTransList[i].Vector3Position.X, playerTransList[i].Vector3Position.Y, playerTransList[i].Vector3Position.Z);
                     Quaternion targetRotation = new Quaternion(playerTransList[i].QuaternionRotation.X, playerTransList[i].QuaternionRotation.Y, playerTransList[i].QuaternionRotation.Z, playerTransList[i].QuaternionRotation.W);
                     gameObject.GetComponent<MovePlayerCubeController>().SetTransform(targetPosition, targetRotation);
-                    Debug.Log("其他客户端位置为:"+targetPosition);
+                    Debug.Log("其他客户端位置为:" + targetPosition);
                 }
             }
         }
     }
 
-    public void SetOnlineAvaterAttack(AttackCommandCache attackCommandCache)
+    public void SetOnlineAvaterAttack(AttackCommand attackCommandCache)
     {
         if (attackCommandCache != null)
         {
@@ -108,7 +105,7 @@ public class IslandOnlineAccountSystem : MonoBehaviour
                 AvaterCode avaterCurrent = gameObject.GetComponent<MovePlayerCubeController>().AvaterName;
                 SkillCode skillCode = attackCommandCache.SkillCode;
                 Vector3 attackPosition = new Vector3(attackCommandCache.Vector3Position.X, attackCommandCache.Vector3Position.Y, attackCommandCache.Vector3Position.Z);
-                Quaternion attackRotation = new Quaternion(attackCommandCache.QuaternionRotation.X, attackCommandCache.QuaternionRotation.Y, attackCommandCache.QuaternionRotation.Z, attackCommandCache.QuaternionRotation.W);                
+                Quaternion attackRotation = new Quaternion(attackCommandCache.QuaternionRotation.X, attackCommandCache.QuaternionRotation.Y, attackCommandCache.QuaternionRotation.Z, attackCommandCache.QuaternionRotation.W);
                 if (avaterCurrent == AvaterCode.SangonomiyaKokomi)
                 {
                     gameObject.GetComponent<MovePlayerCubeController>().AvaterNow.GetComponent<AttackControllerSangonomiyaKokomi>().SetAttackCommand(skillCode, attackPosition, attackRotation);
@@ -121,12 +118,12 @@ public class IslandOnlineAccountSystem : MonoBehaviour
         }
     }
 
-    public void SetOnlineAvaterAttackResult(AttackResultCache attackResultCache)
+    public void SetOnlineAvaterAttackResult(AttackResult attackResultCache)
     {
         if (attackResultCache != null)
         {
             if (attackResultCache.DamageNumber > 0)
-            {              
+            {
                 GameObject gameObject = DictTools.GetDictValue<string, GameObject>(onlineAccountPlayerCubeDict, attackResultCache.DamagerAccount);
                 if (gameObject != null)
                 {
@@ -144,12 +141,12 @@ public class IslandOnlineAccountSystem : MonoBehaviour
             else    //in this kind, the online avater has been cured by other client!!! Attention!!!
             {
 
-            }            
+            }
         }
     }
 
     public void SetChoosedAvater(string account, AvaterCode avater)
-    {        
+    {
         GameObject gameObject = DictTools.GetDictValue<string, GameObject>(onlineAccountPlayerCubeDict, account);
         gameObject.GetComponent<MovePlayerCubeController>().AvaterNow.SetActive(false);
         gameObject.GetComponent<MovePlayerCubeController>().SetAvaterNow(avater);

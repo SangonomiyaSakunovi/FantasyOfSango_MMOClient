@@ -1,9 +1,7 @@
-using SangoCommon.Constant;
-using SangoCommon.GameObjectCode;
 using UnityEngine;
 
 public class MovePlayerAniController : MonoBehaviour
-{   
+{
     private Animator animator;
 
     private float BlendChangeSpeed = 5.0f;
@@ -14,7 +12,7 @@ public class MovePlayerAniController : MonoBehaviour
     public bool isLocalPlayer = true;
 
     private void Awake()
-    {        
+    {
         animator = GetComponent<Animator>();
     }
 
@@ -46,7 +44,7 @@ public class MovePlayerAniController : MonoBehaviour
             currentBlend += BlendChangeSpeed * Time.deltaTime;
         }
         animator.SetFloat("MoveBlend", currentBlend);
-    }    
+    }
 
     public void SetOnlineAccount(string onlineAccount)
     {
