@@ -4,7 +4,7 @@
 public class AudioConstant
 {
     //Background
-    public const string LoginAudioBG = "Moonlike Smile";
+    public const string LoginAudioBG = "VillageRoad01";
     public const string MainGameBG = "In Stories of Fading Light";
     public const string NormalFightBG = "Rite of Battle";    
 
