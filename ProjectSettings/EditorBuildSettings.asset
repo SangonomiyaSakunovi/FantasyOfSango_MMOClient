@@ -9,8 +9,8 @@ EditorBuildSettings:
     path: Assets/Resources/ResScenes/GameRoot.unity
     guid: 4f6c75b533b208d4199a42192f213a50
   - enabled: 1
-    path: Assets/Resources/ResScenes/LoginScene.unity
-    guid: bb5a0a04ba647a34a8d7737bc4e6ff24
+    path: Assets/Resources/ResScenes/WindVillage.unity
+    guid: e1427579d6b4e4243ab98e20af1985ee
   - enabled: 1
     path: Assets/Resources/ResScenes/IslandScene.unity
     guid: 6c2b98058ad08d7429dc125f9a1ed201
