@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
+//Developer : SangonomiyaSakunovi
+//Discription: A Grid Generator.
+
 public class AStarGraphGenerator : MonoBehaviour
 {
     //Attention! In this Graph, all the grid is 10*float to use int for avoid the float.epsilon effect.

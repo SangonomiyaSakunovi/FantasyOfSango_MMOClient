@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 //Developer : SangonomiyaSakunovi
-//Discription:
+//Discription: The MainGame Sytem.
 
 public class MainGameSystem : BaseSystem
 {
@@ -112,32 +112,32 @@ public class MainGameSystem : BaseSystem
 
     }
 
-    public void SetLocalAvaterAttackResult(AttackResult attackResultCache)
+    public void SetLocalAvaterAttackResult(AttackResult attackResult)
     {
-        if (attackResultCache.DamageNumber > 0)
+        if (attackResult.DamageNumber > 0)
         {
             if (LocalAvaterCurrent == AvaterCode.SangonomiyaKokomi)
             {
-                playerCube.transform.Find(AvaterConstant.SangonomiyaKokomiName).GetComponent<AttackControllerSangonomiyaKokomi>().SetDamaged(attackResultCache);
+                playerCube.transform.Find(AvaterConstant.SangonomiyaKokomiName).GetComponent<AttackControllerSangonomiyaKokomi>().SetDamaged(attackResult);
             }
             else if (LocalAvaterCurrent == AvaterCode.Yoimiya)
             {
-                playerCube.transform.Find(AvaterConstant.YoimiyaName).GetComponent<AttackControllerYoimiya>().SetDamaged(attackResultCache);
+                playerCube.transform.Find(AvaterConstant.YoimiyaName).GetComponent<AttackControllerYoimiya>().SetDamaged(attackResult);
             }
-            SangoRoot.AddMessage("你被玩家" + attackResultCache.AttackerAccount + "攻击了，受到伤害-" + attackResultCache.DamageNumber + "HP");
-            AvaterAttributeInfo tempAttribute = attackResultCache.DamagerPlayerCache.AttributeInfoList[0];
+            SangoRoot.AddMessage("你被玩家" + attackResult.AttackerAccount + "攻击了，受到伤害-" + attackResult.DamageNumber + "HP");
+            AvaterAttributeInfo tempAttribute = attackResult.DamagerAvaterInfo.AttributeInfoList[0];
             Instance.RefreshMainGameUI(tempAttribute.HP, tempAttribute.HPFull, tempAttribute.MP, tempAttribute.MPFull);
         }
         else    //in this kind, the avater has been cured
         {
-            GameObject healerGameobject = IslandOnlineAccountSystem.Instance.GetOnlineCurrentGameobject(attackResultCache.AttackerAccount);
-            AvaterCode healerAvater = IslandOnlineAccountSystem.Instance.GetOnlineCurrentAvater(attackResultCache.AttackerAccount);
+            GameObject healerGameobject = IslandOnlineAccountSystem.Instance.GetOnlineCurrentGameobject(attackResult.AttackerAccount);
+            AvaterCode healerAvater = IslandOnlineAccountSystem.Instance.GetOnlineCurrentAvater(attackResult.AttackerAccount);
             if (healerAvater == AvaterCode.SangonomiyaKokomi)
             {
                 healerGameobject.GetComponent<AttackControllerSangonomiyaKokomi>().SetCureResult(playerCube.transform.position);
             }
-            SangoRoot.AddMessage("你被玩家" + attackResultCache.AttackerAccount + "治疗了，治疗量为" + -attackResultCache.DamageNumber + "HP");
-            AvaterAttributeInfo tempAttribute = attackResultCache.DamagerPlayerCache.AttributeInfoList[0];
+            SangoRoot.AddMessage("你被玩家" + attackResult.AttackerAccount + "治疗了，治疗量为" + -attackResult.DamageNumber + "HP");
+            AvaterAttributeInfo tempAttribute = attackResult.DamagerAvaterInfo.AttributeInfoList[0];
             Instance.RefreshMainGameUI(tempAttribute.HP, tempAttribute.HPFull, tempAttribute.MP, tempAttribute.MPFull);
         }
     }

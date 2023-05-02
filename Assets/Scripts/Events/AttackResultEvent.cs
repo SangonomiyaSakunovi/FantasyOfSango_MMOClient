@@ -4,7 +4,7 @@ using SangoCommon.Enums;
 using SangoCommon.Tools;
 
 //Developer : SangonomiyaSakunovi
-//Discription:
+//Discription: Attack Result Event.
 
 public class AttackResultEvent : BaseEvent
 {
@@ -18,14 +18,14 @@ public class AttackResultEvent : BaseEvent
         {
             if (attackResultJson != null && IslandOnlineAccountSystem.Instance != null)
             {
-                AttackResult attackResultCache = DeJsonString<AttackResult>(attackResultJson);
-                if (attackResultCache.DamagerAccount == NetService.Instance.Account)
+                AttackResult attackResult = DeJsonString<AttackResult>(attackResultJson);
+                if (attackResult.DamagerAccount == NetService.Instance.Account)
                 {
-                    MainGameSystem.Instance.SetLocalAvaterAttackResult(attackResultCache);
+                    MainGameSystem.Instance.SetLocalAvaterAttackResult(attackResult);
                 }
                 else
                 {
-                    IslandOnlineAccountSystem.Instance.SetOnlineAvaterAttackResult(attackResultCache);
+                    IslandOnlineAccountSystem.Instance.SetOnlineAvaterAttackResult(attackResult);
                 }
             }
         }

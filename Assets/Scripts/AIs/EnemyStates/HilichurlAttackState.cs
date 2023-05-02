@@ -1,5 +1,8 @@
 using UnityEngine;
 
+//Developer : SangonomiyaSakunovi
+//Discription: The HilichurlAttackState, it controlls the Hilichur behaviour.
+
 public class HilichurlAttackState : FSMState
 {
     private Transform playerTrans;

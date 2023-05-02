@@ -4,7 +4,7 @@ using SangoCommon.Tools;
 using System.Collections.Generic;
 
 //Developer : SangonomiyaSakunovi
-//Discription:
+//Discription: The Sync Account Request.
 
 public class SyncPlayerAccountRequest : BaseRequest
 {

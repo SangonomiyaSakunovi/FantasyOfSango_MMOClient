@@ -7,7 +7,7 @@ using TMPro;
 using UnityEngine;
 
 //Developer : SangonomiyaSakunovi
-//Discription:
+//Discription: The Dynamic Window.
 
 public class DynamicWindow : BaseWindow
 {

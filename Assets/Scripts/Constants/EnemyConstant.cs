@@ -1,4 +1,7 @@
-﻿namespace Assets.Scripts.Common.Constant
+﻿//Developer : SangonomiyaSakunovi
+//Discription: The Enemy Constant.
+
+namespace Assets.Scripts.Common.Constant
 {
     public class EnemyConstant
     {

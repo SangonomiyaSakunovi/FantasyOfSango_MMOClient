@@ -3,6 +3,9 @@ using SangoCommon.Enums;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Developer : SangonomiyaSakunovi
+//Discription: The Ayaka Attack.
+
 public class AttackControllerAyaka : MonoBehaviour
 {
     private Transform playerLeftHandBone;
@@ -198,7 +201,7 @@ public class AttackControllerAyaka : MonoBehaviour
         Invoke("SetSangonomiyaKokomiE", 0.2f);
     }
 
-    public void SetDamaged(AttackResult attackResultCache)
+    public void SetDamaged(AttackResult attackResult)
     {
         animator.SetTrigger("DamagedTriger");
         AudioService.Instance.PlayUIAudio(AudioConstant.DamagedAudio);

@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 //Developer : SangonomiyaSakunovi
-//Discription:
+//Discription: The Loading Window.
 
 public class LoadingWindow : BaseWindow
 {

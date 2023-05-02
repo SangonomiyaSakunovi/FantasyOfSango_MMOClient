@@ -2,6 +2,9 @@ using SangoCommon.Constants;
 using SangoCommon.Enums;
 using UnityEngine;
 
+//Developer : SangonomiyaSakunovi
+//Discription: Player cube.
+
 public class MovePlayerCubeController : MonoBehaviour
 {
     public string OnlineAccount { get; private set; }
@@ -17,11 +20,6 @@ public class MovePlayerCubeController : MonoBehaviour
 
     private Vector3 targetPosition;
     private Quaternion targetRotation;
-
-    private void Awake()
-    {
-
-    }
 
     private void FixedUpdate()
     {

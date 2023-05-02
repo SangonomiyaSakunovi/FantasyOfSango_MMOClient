@@ -4,7 +4,7 @@ using SangoCommon.Enums;
 using SangoCommon.Tools;
 
 //Developer : SangonomiyaSakunovi
-//Discription:
+//Discription: The Sync Data Request.
 
 public class SyncPlayerDataRequest : BaseRequest
 {
@@ -25,8 +25,8 @@ public class SyncPlayerDataRequest : BaseRequest
 
     public override void OnOperationResponse(OperationResponse operationResponse)
     {
-        string playerCacheJson = DictTools.GetStringValue(operationResponse.Parameters, (byte)ParameterCode.PlayerCache);
-        AvaterInfo = DeJsonString<AvaterInfo>(playerCacheJson);
+        string avaterInfoJson = DictTools.GetStringValue(operationResponse.Parameters, (byte)ParameterCode.AvaterInfo);
+        AvaterInfo = DeJsonString<AvaterInfo>(avaterInfoJson);
         IsGetResponse = true;
     }
 
@@ -40,8 +40,8 @@ public class SyncPlayerDataRequest : BaseRequest
         IsGetResponse = isGetResponse;
     }
 
-    public void SetPlayerCache(AvaterInfo playerCache)
+    public void SetPlayerCache(AvaterInfo avaterInfo)
     {
-        AvaterInfo = playerCache;
+        AvaterInfo = avaterInfo;
     }
 }

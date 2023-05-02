@@ -1,7 +1,7 @@
 using UnityEngine;
 
 //Developer : SangonomiyaSakunovi
-//Discription:
+//Discription: The base Cache, use for define base method.
 
 public class BaseCache : MonoBehaviour
 {

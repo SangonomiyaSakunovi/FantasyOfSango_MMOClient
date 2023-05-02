@@ -1,6 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+
+//Developer : SangonomiyaSakunovi
+//Discription: The ChaseState, you can define what to do here.
 
 public class ChaseState : FSMState
 {
@@ -8,7 +9,7 @@ public class ChaseState : FSMState
     private float chaseSpeed;
     private float chaseToPatrolDis;
     private float chaseToAttackDis;
-    public ChaseState(FSMSystem fSMSystem, float speed,float chaseToPatrolDistance,float chaseToAttackDistance): base(fSMSystem)
+    public ChaseState(FSMSystem fSMSystem, float speed, float chaseToPatrolDistance, float chaseToAttackDistance) : base(fSMSystem)
     {
         stateCode = FSMStateCode.Chase;
         chaseSpeed = speed;

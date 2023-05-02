@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 //Developer : SangonomiyaSakunovi
-//Discription:
+//Discription: Base window, need define UI method.
 
 public class BaseWindow : MonoBehaviour
 {

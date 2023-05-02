@@ -1,7 +1,8 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+
+//Developer : SangonomiyaSakunovi
+//Discription: The Binary method.
 
 public class CRC32 : MonoBehaviour
 {

@@ -2,6 +2,9 @@ using SangoCommon.Enums;
 using TMPro;
 using UnityEngine;
 
+//Developer : SangonomiyaSakunovi
+//Discription: The ElementReaction Item.
+
 public class ElementReactionNameUIItem : BaseWindow
 {
     public TMP_Text elementReactionNameText;

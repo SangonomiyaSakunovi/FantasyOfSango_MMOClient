@@ -1,6 +1,9 @@
 using UnityEngine;
 using SangoCommon.Constants;
 
+//Developer : SangonomiyaSakunovi
+//Discription: Player Capsulr.
+
 public class MovePlayerCapsuleController : MonoBehaviour
 {
     private float movementSpeed = 8f;

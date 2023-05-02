@@ -4,7 +4,7 @@ using SangoCommon.Enums;
 using SangoCommon.Tools;
 
 //Developer : SangonomiyaSakunovi
-//Discription:
+//Discription: Attack Commond Event.
 
 public class AttackCommandEvent : BaseEvent
 {
@@ -17,8 +17,8 @@ public class AttackCommandEvent : BaseEvent
         string attackCommandJson = DictTools.GetStringValue(eventData.Parameters, (byte)ParameterCode.AttackCommand);
         if (attackCommandJson != null && IslandOnlineAccountSystem.Instance != null)
         {
-            AttackCommand attackCommandCache = DeJsonString<AttackCommand>(attackCommandJson);
-            IslandOnlineAccountSystem.Instance.SetOnlineAvaterAttack(attackCommandCache);
+            AttackCommand attackCommand = DeJsonString<AttackCommand>(attackCommandJson);
+            IslandOnlineAccountSystem.Instance.SetOnlineAvaterAttack(attackCommand);
         }
     }
 }

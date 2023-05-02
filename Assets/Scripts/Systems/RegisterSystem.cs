@@ -1,7 +1,7 @@
 using SangoCommon.Enums;
 
 //Developer : SangonomiyaSakunovi
-//Discription:
+//Discription: The Regist System.
 
 public class RegisterSystem : BaseSystem
 {
@@ -29,7 +29,7 @@ public class RegisterSystem : BaseSystem
 
     public void SendRegisterRequest()
     {
-        registerRequest.SetAccount(this.Account, this.Password, this.Nickname);
+        registerRequest.SetAccount(Account, Password, Nickname);
         registerRequest.DefaultRequest();
     }
 

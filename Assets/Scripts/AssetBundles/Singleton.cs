@@ -1,3 +1,7 @@
+
+//Developer : SangonomiyaSakunovi
+//Discription: The singleton.
+
 public class Singleton<T> where T : new()
 {
     private static T m_Instance;

@@ -5,7 +5,7 @@ using SangoCommon.Tools;
 using System.Collections.Generic;
 
 //Developer : SangonomiyaSakunovi
-//Discription:
+//Discription: Sync Player Transform Event.
 
 public class SyncPlayerTransformEvent : BaseEvent
 {
@@ -15,11 +15,11 @@ public class SyncPlayerTransformEvent : BaseEvent
     }
     public override void OnEvent(EventData eventData)
     {
-        string playerTransformCacheJson = DictTools.GetStringValue(eventData.Parameters, (byte)ParameterCode.PlayerTransformCacheList);
-        if (playerTransformCacheJson != null && IslandOnlineAccountSystem.Instance != null)
+        string playerTransformJson = DictTools.GetStringValue(eventData.Parameters, (byte)ParameterCode.PlayerTransformList);
+        if (playerTransformJson != null && IslandOnlineAccountSystem.Instance != null)
         {
-            List<TransformOnline> playerTransformCacheList = DeJsonString<List<TransformOnline>>(playerTransformCacheJson);
-            IslandOnlineAccountSystem.Instance.SetOnlineAvaterTransform(playerTransformCacheList);
+            List<TransformOnline> playerTransformList = DeJsonString<List<TransformOnline>>(playerTransformJson);
+            IslandOnlineAccountSystem.Instance.SetOnlineAvaterTransform(playerTransformList);
         }
     }
 }

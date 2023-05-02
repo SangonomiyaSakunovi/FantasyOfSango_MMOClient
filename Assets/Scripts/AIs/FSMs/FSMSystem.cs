@@ -1,6 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Developer : SangonomiyaSakunovi
+//Discription: The TransitionSystem, all transition can define here.
+
 public class FSMSystem
 {
     private Dictionary<FSMStateCode, FSMState> fSMStateDict = new Dictionary<FSMStateCode, FSMState>();

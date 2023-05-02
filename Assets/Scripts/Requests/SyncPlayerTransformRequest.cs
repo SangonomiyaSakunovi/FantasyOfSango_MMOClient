@@ -7,12 +7,12 @@ using UnityEngine;
 using SangoCommon.Structs;
 
 //Developer : SangonomiyaSakunovi
-//Discription:
+//Discription: The Synv Transform Request.
 
 public class SyncPlayerTransformRequest : BaseRequest
 {
     public string Account { get; private set; }
-    private TransformOnline playerTransformCache;
+    private TransformOnline playerTransform;
 
     public override void InitRequset()
     {
@@ -21,7 +21,7 @@ public class SyncPlayerTransformRequest : BaseRequest
 
     public void SetPlayerTransform(Vector3 position, Quaternion rotation)
     {
-        playerTransformCache = new TransformOnline
+        playerTransform = new TransformOnline
         {
             Account = this.Account,
             Vector3Position = new Vector3Position
@@ -43,9 +43,9 @@ public class SyncPlayerTransformRequest : BaseRequest
 
     public override void DefaultRequest()
     {
-        string playerTransformJson = SetJsonString(playerTransformCache);
+        string playerTransformJson = SetJsonString(playerTransform);
         Dictionary<byte, object> dict = new Dictionary<byte, object>();
-        dict.Add((byte)ParameterCode.PlayerTransformCache, playerTransformJson);
+        dict.Add((byte)ParameterCode.PlayerTransform, playerTransformJson);
         NetService.Peer.OpCustom((byte)OpCode, dict, true);
     }
 

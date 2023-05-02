@@ -2,6 +2,9 @@ using SangoCommon.Enums;
 using TMPro;
 using UnityEngine;
 
+//Developer : SangonomiyaSakunovi
+//Discription: The Attack Num Item.
+
 public class AttackNumUIItem : BaseWindow
 {
     public TMP_Text attackNumText;

@@ -3,6 +3,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+//Developer : SangonomiyaSakunovi
+//Discription: The Enemy Hp Item.
+
 public class EnemyHpUIItem : BaseWindow
 {
     private int HPFull;

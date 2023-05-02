@@ -6,7 +6,7 @@ using UnityEngine;
 using SangoCommon.Constants;
 
 //Developer : SangonomiyaSakunovi
-//Discription:
+//Discription: The ElementSystem.
 
 public class ElementSystem : MonoBehaviour
 {

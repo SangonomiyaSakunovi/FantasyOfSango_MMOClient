@@ -1,5 +1,5 @@
 //Developer : SangonomiyaSakunovi
-//Discription:
+//Discription: The Avater constant.
 
 public class AvaterConstant
 {

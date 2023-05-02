@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //Developer : SangonomiyaSakunovi
-//Discription:
+//Discription: The Yoimiya Attack.
 
 public class AttackControllerYoimiya : MonoBehaviour
 {
@@ -139,7 +139,7 @@ public class AttackControllerYoimiya : MonoBehaviour
         }
     }
 
-    public void SetDamaged(AttackResult attackResultCache)
+    public void SetDamaged(AttackResult attackResult)
     {
         animator.SetTrigger("DamagedTriger");
         AudioService.Instance.PlayUIAudio(AudioConstant.DamagedAudio);

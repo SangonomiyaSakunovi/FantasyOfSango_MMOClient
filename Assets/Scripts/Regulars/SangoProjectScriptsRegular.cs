@@ -2,7 +2,9 @@
 {
     public class SangoProjectScriptsRegular
     {
-        //这是一个特殊的脚本，无法运行，仅用于说明书写规范
+        //Developer : SangonomiyaSakunovi
+        //Discription: 这是一个特殊的脚本，无法运行，仅用于说明书写规范
+
         #region 变量定义规则
         //变量命名时，具备get/set权限的public变量均要首字母大写，注意以下两种写法等价，但都不推荐
         public string AccountTest1;     //改写法会导致无法确定工程中正在访问该变量的脚本，会导致重构困难
