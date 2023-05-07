@@ -70,7 +70,10 @@ public class MovePlayerCubeController : MonoBehaviour
         {
             transform.position = Vector3.Lerp(transform.position, targetPosition, smoothLerpTime * Time.deltaTime);
             AvaterNow.GetComponent<MovePlayerAniController>().AsyncMoveAni(true);
-            MainGameSystem.Instance.SetMiniMapTransPosition(transform);
+            if (isLocalPlayer)
+            {
+                MainGameSystem.Instance.SetMiniMapTransPosition(transform);
+            }           
         }
         else
         {
