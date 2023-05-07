@@ -174,7 +174,7 @@ Material:
     - _IndirectLightMultiplier: 1
     - _IsFace: 0
     - _IsNight: 1
-    - _LightThreshold: 0.6
+    - _LightThreshold: 0.7
     - _MainLightIgnoreCelShade: 0
     - _MetalSpecularGloss: 0.5
     - _MetalSpecularIntensity: 1
@@ -193,7 +193,7 @@ Material:
     - _QueueOffset: 0
     - _RampAOLerp: 1
     - _RampIntensity: 1
-    - _RampShadowRange: 0.8
+    - _RampShadowRange: 0.725
     - _RangeAO: 1
     - _ReceiveShadowMappingAmount: 0.75
     - _ReceiveShadowMappingPosOffset: 0

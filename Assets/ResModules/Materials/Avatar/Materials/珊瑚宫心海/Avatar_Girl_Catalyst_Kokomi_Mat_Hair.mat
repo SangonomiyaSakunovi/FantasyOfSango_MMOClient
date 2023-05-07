@@ -183,7 +183,7 @@ Material:
     - _QueueOffset: 0
     - _RampAOLerp: 1
     - _RampIntensity: 1
-    - _RampShadowRange: 0.8
+    - _RampShadowRange: 0.73
     - _RangeAO: 1
     - _ReceiveShadowMappingAmount: 0.75
     - _ReceiveShadowMappingPosOffset: 0
