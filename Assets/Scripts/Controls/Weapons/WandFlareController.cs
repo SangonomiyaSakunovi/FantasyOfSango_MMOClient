@@ -2,7 +2,7 @@ using UnityEngine;
 using SangoCommon.Constants;
 
 //Developer : SangonomiyaSakunovi
-//Discription:
+//Discription: The Flare hehaviour.
 
 public class WandFlareController : MonoBehaviour
 {

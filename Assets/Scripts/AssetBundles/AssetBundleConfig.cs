@@ -1,13 +1,14 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using System.Xml.Serialization;
+
+//Developer : SangonomiyaSakunovi
+//Discription: The ABConfig, not done.
 
 [System.Serializable]
 public class AssetBundleConfig
 {
     [XmlElement("ABList")]
-    public List<ABBase> ABList {  get; set; }
+    public List<ABBase> ABList { get; set; }
 }
 
 [System.Serializable]

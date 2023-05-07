@@ -1,16 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+//Developer : SangonomiyaSakunovi
+//Discription: The Game manager.
 
 public class GameManager : BaseManager
 {
     public static GameManager Instance;
-
-    public enum GameModeCode
-    {
-        GamePlayMode,
-        DialogueMode,
-    }
 
     public GameModeCode GameMode;
 

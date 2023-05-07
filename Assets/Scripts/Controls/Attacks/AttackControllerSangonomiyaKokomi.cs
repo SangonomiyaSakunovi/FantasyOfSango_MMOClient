@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //Developer : SangonomiyaSakunovi
-//Discription:
+//Discription: The Kokomi Attack.
 
 public class AttackControllerSangonomiyaKokomi : MonoBehaviour
 {
@@ -201,7 +201,7 @@ public class AttackControllerSangonomiyaKokomi : MonoBehaviour
         Invoke("SetSangonomiyaKokomiE", 0.2f);
     }
 
-    public void SetDamaged(AttackResult attackResultCache)
+    public void SetDamaged(AttackResult attackResult)
     {
         animator.SetTrigger("DamagedTriger");
         AudioService.Instance.PlayUIAudio(AudioConstant.DamagedAudio);

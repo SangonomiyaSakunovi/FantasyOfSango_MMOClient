@@ -4,7 +4,7 @@ using System.Text.Json;
 using UnityEngine;
 
 //Developer : SangonomiyaSakunovi
-//Discription:
+//Discription: The EventBase, Json method need define here.
 
 public abstract class BaseEvent : MonoBehaviour
 {

@@ -1,7 +1,7 @@
 using UnityEngine;
 
 //Developer : SangonomiyaSakunovi
-//Discription:
+//Discription: The Audio Service.
 
 public class AudioService : MonoBehaviour
 {

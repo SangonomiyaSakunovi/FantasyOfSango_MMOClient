@@ -1,6 +1,9 @@
 using UnityEngine;
 using SangoCommon.Constants;
 
+//Developer : SangonomiyaSakunovi
+//Discription: Player Capsulr.
+
 public class MovePlayerCapsuleController : MonoBehaviour
 {
     private float movementSpeed = 8f;
@@ -34,13 +37,9 @@ public class MovePlayerCapsuleController : MonoBehaviour
     {
         if (currentTime > TimeConstant.SyncPlayerTransformTime)
         {
-            if (Vector3.Distance(transform.position, lastPosition) > moveOffsetLimit || Quaternion.Angle(transform.rotation, lastRotation) > angleLimit)
-            {
-                lastPosition = transform.position;
-                lastRotation = transform.rotation;
-                CacheSystem.Instance.syncPlayerTransformRequest.SetPlayerTransform(transform.position, transform.rotation);
-                MainGameSystem.Instance.playerCube.GetComponent<MovePlayerCubeController>().SetTransform(transform.position, transform.rotation);
-            }
+            lastPosition = transform.position;
+            lastRotation = transform.rotation;
+            CacheSystem.Instance.syncPlayerTransformRequest.SetPlayerTransform(transform.position, transform.rotation);            
             currentTime = 0;
         }
         currentTime += Time.deltaTime;

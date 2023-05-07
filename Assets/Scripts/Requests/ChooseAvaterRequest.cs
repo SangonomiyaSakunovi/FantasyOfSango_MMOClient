@@ -3,7 +3,7 @@ using SangoCommon.Enums;
 using System.Collections.Generic;
 
 //Developer : SangonomiyaSakunovi
-//Discription:
+//Discription: The Choose Avater Request.
 
 public class ChooseAvaterRequest : BaseRequest
 {

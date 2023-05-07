@@ -1,5 +1,5 @@
 //Developer : SangonomiyaSakunovi
-//Discription:
+//Discription: The Main Game Window.
 
 public class MainGameWindow : BaseWindow
 {
@@ -7,6 +7,4 @@ public class MainGameWindow : BaseWindow
     {
         base.InitWindow();
     }
-
-
 }

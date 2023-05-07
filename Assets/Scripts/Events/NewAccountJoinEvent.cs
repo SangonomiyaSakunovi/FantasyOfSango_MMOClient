@@ -4,7 +4,7 @@ using SangoCommon.Tools;
 using System.Collections.Generic;
 
 //Developer : SangonomiyaSakunovi
-//Discription:
+//Discription: New Account Join Event.
 
 public class NewAccountJoinEvent : BaseEvent
 {

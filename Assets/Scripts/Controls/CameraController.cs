@@ -1,8 +1,7 @@
-using TMPro;
 using UnityEngine;
 
 //Developer : SangonomiyaSakunovi
-//Discription:
+//Discription: The Camera.
 
 public class CameraController : MonoBehaviour
 {
@@ -24,7 +23,7 @@ public class CameraController : MonoBehaviour
     }
 
     private void Update()
-    {        
+    {
         if (player != null)
         {
             transform.position = offsetPosition + player.position;
@@ -34,8 +33,8 @@ public class CameraController : MonoBehaviour
         }
         else
         {
-            return;       
-        }        
+            return;
+        }
     }
 
     public void InitCamera()

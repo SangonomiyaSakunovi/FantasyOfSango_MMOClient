@@ -4,6 +4,9 @@ using SangoCommon.Enums;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Developer : SangonomiyaSakunovi
+//Discription: Just test the hilichurl behaviour.
+
 public class TestHilichurl : MonoBehaviour
 {
     public Transform EnemyHpUIRoot;

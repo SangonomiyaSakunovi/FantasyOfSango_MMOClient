@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //Developer : SangonomiyaSakunovi
-//Discription:
+//Discription: The online account System.
 
 public class IslandOnlineAccountSystem : MonoBehaviour
 {
@@ -95,17 +95,17 @@ public class IslandOnlineAccountSystem : MonoBehaviour
         }
     }
 
-    public void SetOnlineAvaterAttack(AttackCommand attackCommandCache)
+    public void SetOnlineAvaterAttack(AttackCommand attackCommand)
     {
-        if (attackCommandCache != null)
+        if (attackCommand != null)
         {
-            GameObject gameObject = DictTools.GetDictValue<string, GameObject>(onlineAccountPlayerCubeDict, attackCommandCache.Account);
+            GameObject gameObject = DictTools.GetDictValue<string, GameObject>(onlineAccountPlayerCubeDict, attackCommand.Account);
             if (gameObject != null)
             {
                 AvaterCode avaterCurrent = gameObject.GetComponent<MovePlayerCubeController>().AvaterName;
-                SkillCode skillCode = attackCommandCache.SkillCode;
-                Vector3 attackPosition = new Vector3(attackCommandCache.Vector3Position.X, attackCommandCache.Vector3Position.Y, attackCommandCache.Vector3Position.Z);
-                Quaternion attackRotation = new Quaternion(attackCommandCache.QuaternionRotation.X, attackCommandCache.QuaternionRotation.Y, attackCommandCache.QuaternionRotation.Z, attackCommandCache.QuaternionRotation.W);
+                SkillCode skillCode = attackCommand.SkillCode;
+                Vector3 attackPosition = new Vector3(attackCommand.Vector3Position.X, attackCommand.Vector3Position.Y, attackCommand.Vector3Position.Z);
+                Quaternion attackRotation = new Quaternion(attackCommand.QuaternionRotation.X, attackCommand.QuaternionRotation.Y, attackCommand.QuaternionRotation.Z, attackCommand.QuaternionRotation.W);
                 if (avaterCurrent == AvaterCode.SangonomiyaKokomi)
                 {
                     gameObject.GetComponent<MovePlayerCubeController>().AvaterNow.GetComponent<AttackControllerSangonomiyaKokomi>().SetAttackCommand(skillCode, attackPosition, attackRotation);
@@ -118,23 +118,23 @@ public class IslandOnlineAccountSystem : MonoBehaviour
         }
     }
 
-    public void SetOnlineAvaterAttackResult(AttackResult attackResultCache)
+    public void SetOnlineAvaterAttackResult(AttackResult attackResult)
     {
-        if (attackResultCache != null)
+        if (attackResult != null)
         {
-            if (attackResultCache.DamageNumber > 0)
+            if (attackResult.DamageNumber > 0)
             {
-                GameObject gameObject = DictTools.GetDictValue<string, GameObject>(onlineAccountPlayerCubeDict, attackResultCache.DamagerAccount);
+                GameObject gameObject = DictTools.GetDictValue<string, GameObject>(onlineAccountPlayerCubeDict, attackResult.DamagerAccount);
                 if (gameObject != null)
                 {
                     AvaterCode avaterCurrent = gameObject.GetComponent<MovePlayerCubeController>().AvaterName;
                     if (avaterCurrent == AvaterCode.SangonomiyaKokomi)
                     {
-                        gameObject.GetComponent<MovePlayerCubeController>().AvaterNow.GetComponent<AttackControllerSangonomiyaKokomi>().SetDamaged(attackResultCache);
+                        gameObject.GetComponent<MovePlayerCubeController>().AvaterNow.GetComponent<AttackControllerSangonomiyaKokomi>().SetDamaged(attackResult);
                     }
                     else if (avaterCurrent == AvaterCode.Yoimiya)
                     {
-                        gameObject.GetComponent<MovePlayerCubeController>().AvaterNow.GetComponent<AttackControllerYoimiya>().SetDamaged(attackResultCache);
+                        gameObject.GetComponent<MovePlayerCubeController>().AvaterNow.GetComponent<AttackControllerYoimiya>().SetDamaged(attackResult);
                     }
                 }
             }

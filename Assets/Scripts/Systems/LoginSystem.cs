@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 //Developer : SangonomiyaSakunovi
-//Discription:
+//Discription: The Login System.
 
 public class LoginSystem : BaseSystem
 {
@@ -38,23 +38,23 @@ public class LoginSystem : BaseSystem
         resourceService.AsyncLoadScene(SceneConstant.LoginScene, () =>
         {
             loginWindow.SetWindowState();
-            if (this.Account != null)
+            if (Account != null)
             {
-                if (this.Password != null)
+                if (Password != null)
                 {
                     SendLoginRequest();
-                    Debug.Log(this.Account);
-                    Debug.Log(this.Password);
+                    Debug.Log(Account);
+                    Debug.Log(Password);
                     SetActive(autoLoginButtonPress);
                     SetActive(autoLoginButton, false);
-                    accountInput.text = this.Account;
-                    passwordInput.text = this.Password;
+                    accountInput.text = Account;
+                    passwordInput.text = Password;
                 }
                 else
                 {
                     SetActive(rememberAccountButtonPress);
                     SetActive(rememberAccountButton, false);
-                    accountInput.text = this.Account;
+                    accountInput.text = Account;
                 }
             }
         });
@@ -63,7 +63,7 @@ public class LoginSystem : BaseSystem
 
     public void SendLoginRequest()
     {
-        loginRequest.SetAccount(this.Account, this.Password);
+        loginRequest.SetAccount(Account, Password);
         loginRequest.DefaultRequest();
     }
 
@@ -95,23 +95,23 @@ public class LoginSystem : BaseSystem
     {
         if (PlayerPrefs.HasKey("Account"))
         {
-            this.Account = PlayerPrefs.GetString("Account");
+            Account = PlayerPrefs.GetString("Account");
         }
         if (PlayerPrefs.HasKey("Password"))
         {
-            this.Password = PlayerPrefs.GetString("Password");
+            Password = PlayerPrefs.GetString("Password");
         }
     }
 
     private void SetOtherAccount()
     {
-        netService.SetAccount(this.Account);
-        CacheSystem.Instance.syncPlayerDataRequest.SetAccoount(this.Account);
-        CacheSystem.Instance.syncPlayerTransformRequest.SetAccount(this.Account);
-        CacheSystem.Instance.syncPlayerAccountRequest.SetAccount(this.Account);
-        CacheSystem.Instance.attackCommandRequest.SetAccount(this.Account);
-        CacheSystem.Instance.attackDamageRequest.SetAccount(this.Account);
-        CacheSystem.Instance.chooseAvaterRequest.SetAccount(this.Account);
+        netService.SetAccount(Account);
+        CacheSystem.Instance.syncPlayerDataRequest.SetAccoount(Account);
+        CacheSystem.Instance.syncPlayerTransformRequest.SetAccount(Account);
+        CacheSystem.Instance.syncPlayerAccountRequest.SetAccount(Account);
+        CacheSystem.Instance.attackCommandRequest.SetAccount(Account);
+        CacheSystem.Instance.attackDamageRequest.SetAccount(Account);
+        CacheSystem.Instance.chooseAvaterRequest.SetAccount(Account);
     }
 
     public void SetAccount(string account, string password)

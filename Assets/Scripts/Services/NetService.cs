@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //Developer : SangonomiyaSakunovi
-//Discription:
+//Discription: The NetService.
 
 public class NetService : MonoBehaviour, IPhotonPeerListener
 {

@@ -4,7 +4,7 @@ using System.Text.Json;
 using UnityEngine;
 
 //Developer : SangonomiyaSakunovi
-//Discription:
+//Discription: Base request, need define json method.
 
 public abstract class BaseRequest : MonoBehaviour
 {

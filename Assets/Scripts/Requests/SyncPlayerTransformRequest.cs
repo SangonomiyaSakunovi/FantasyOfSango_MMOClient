@@ -5,14 +5,15 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using SangoCommon.Structs;
+using SangoCommon.Tools;
 
 //Developer : SangonomiyaSakunovi
-//Discription:
+//Discription: The Synv Transform Request.
 
 public class SyncPlayerTransformRequest : BaseRequest
 {
     public string Account { get; private set; }
-    private TransformOnline playerTransformCache;
+    private TransformOnline PlayerTransform;
 
     public override void InitRequset()
     {
@@ -21,7 +22,7 @@ public class SyncPlayerTransformRequest : BaseRequest
 
     public void SetPlayerTransform(Vector3 position, Quaternion rotation)
     {
-        playerTransformCache = new TransformOnline
+        PlayerTransform = new TransformOnline
         {
             Account = this.Account,
             Vector3Position = new Vector3Position
@@ -43,15 +44,28 @@ public class SyncPlayerTransformRequest : BaseRequest
 
     public override void DefaultRequest()
     {
-        string playerTransformJson = SetJsonString(playerTransformCache);
+        string playerTransformJson = SetJsonString(PlayerTransform);
         Dictionary<byte, object> dict = new Dictionary<byte, object>();
-        dict.Add((byte)ParameterCode.PlayerTransformCache, playerTransformJson);
+        dict.Add((byte)ParameterCode.PlayerTransform, playerTransformJson);
         NetService.Peer.OpCustom((byte)OpCode, dict, true);
     }
 
     public override void OnOperationResponse(OperationResponse operationResponse)
     {
-        throw new System.NotImplementedException();
+        TransformOnline targetTransform = null;
+        bool syncTransformResult = (bool)DictTools.GetDictValue<byte, object>(operationResponse.Parameters, (byte)ParameterCode.SyncPlayerTransformResult);
+        if (syncTransformResult)
+        {
+            targetTransform = PlayerTransform;
+        }
+        else
+        {
+            string predictTransformJson = DictTools.GetStringValue(operationResponse.Parameters, (byte)ParameterCode.PredictPlayerTransform);
+            targetTransform = DeJsonString<TransformOnline>(predictTransformJson);
+        }
+        Vector3 targetPosition = new Vector3(targetTransform.Vector3Position.X, targetTransform.Vector3Position.Y, targetTransform.Vector3Position.Z);
+        Quaternion targetRotation = new Quaternion(targetTransform.QuaternionRotation.X, targetTransform.QuaternionRotation.Y, targetTransform.QuaternionRotation.Z, targetTransform.QuaternionRotation.W);
+        MainGameSystem.Instance.playerCube.GetComponent<MovePlayerCubeController>().SetTransform(targetPosition, targetRotation);
     }
 
     public void SetAccount(string account)

@@ -3,7 +3,7 @@ using SangoCommon.Enums;
 using SangoCommon.Tools;
 
 //Developer : SangonomiyaSakunovi
-//Discription:
+//Discription: ChooseAvater Event.
 
 public class ChooseAvaterEvent : BaseEvent
 {

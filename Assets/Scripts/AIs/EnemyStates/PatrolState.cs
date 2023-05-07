@@ -2,6 +2,9 @@ using Assets.Scripts.Common.Constant;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Developer : SangonomiyaSakunovi
+//Discription: The PatrolState, the enemy should in this state if no triger or in idle.
+
 public class PatrolState : FSMState
 {
     private List<Vector3> pathList = new List<Vector3>();

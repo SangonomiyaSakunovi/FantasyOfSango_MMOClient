@@ -7,12 +7,12 @@ using UnityEngine;
 using SangoCommon.Structs;
 
 //Developer : SangonomiyaSakunovi
-//Discription:
+//Discription: The Attack Command Request.
 
 public class AttackCommandRequest : BaseRequest
 {
     public string Account { get; private set; }
-    private AttackCommand attackCommandCache;
+    private AttackCommand attackCommand;
     public override void InitRequset()
     {
         base.InitRequset();
@@ -20,7 +20,7 @@ public class AttackCommandRequest : BaseRequest
 
     public void SetAttackCommand(SkillCode skillCode, Vector3 position, Quaternion rotation)
     {
-        attackCommandCache = new AttackCommand
+        attackCommand = new AttackCommand
         {
             Account = this.Account,
             SkillCode = skillCode,
@@ -42,7 +42,7 @@ public class AttackCommandRequest : BaseRequest
 
     public override void DefaultRequest()
     {
-        string attackCommandJson = SetJsonString(attackCommandCache);
+        string attackCommandJson = SetJsonString(attackCommand);
         Dictionary<byte, object> dict = new Dictionary<byte, object>();
         dict.Add((byte)ParameterCode.AttackCommand, attackCommandJson);
         NetService.Peer.OpCustom((byte)OpCode, dict, true);
