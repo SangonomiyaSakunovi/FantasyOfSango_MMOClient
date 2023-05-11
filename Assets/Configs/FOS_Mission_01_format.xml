@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<item _id="">
+		<npcID></npcID>
+		<dialogArray></dialogArray>
+		<dialogAudio></dialogAudio>
+		<actionID></actionID>
+	</item>
+	<item _id="">
+		<npcID></npcID>
+		<dialogArray></dialogArray>
+		<dialogAudio></dialogAudio>
+		<actionID></actionID>
+	</item>
+</root>

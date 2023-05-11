@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<item _id="Island_Mission_Main_01_01">
+		<npcID>Island_NPC_Object_Test_01</npcID>
+		<dialogArray>#1|旅行者你好。
+#0|我叫$name，你忘记了？
+#1|我好像确实忘记了</dialogArray>
+		<dialogAudio>Island_Dialog_Audio_01
+Island_Dialog_Audio_02
+Island_Dialog_Audio_03</dialogAudio>
+		<actionID>Island_Mission_Main_01_01</actionID>
+	</item>
+	<item _id="Island_Mission_Main_01_02">
+		<npcID>Island_NPC_Object_Test_02</npcID>
+		<dialogArray>#0|心海你还记得我吗？
+#1|你好像是$name？
+#0|看来你还记得这个名字</dialogArray>
+		<dialogAudio>Island_Dialog_Audio_04
+Island_Dialog_Audio_05
+Island_Dialog_Audio_06</dialogAudio>
+		<actionID>Island_Mission_Main_01_02</actionID>
+	</item>
+</root>

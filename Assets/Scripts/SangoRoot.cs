@@ -34,19 +34,33 @@ public class SangoRoot : MonoBehaviour
 
     private void InitRoot()
     {
-        //Init the ServiceModule
+        InitService();
+        InitManager();
+        InitRequest();
+        InitEvent();
+        InitSystem();
+        InitCache();
+        LoginSystem.Instance.EnterLogin();
+    }
+
+    private void InitService()
+    {
         NetService netService = GetComponent<NetService>();
         netService.InitService();
         ResourceService resourceService = GetComponent<ResourceService>();
         resourceService.InitService();
         AudioService audioService = GetComponent<AudioService>();
         audioService.InitServive();
+    }
 
-        //Init the Manager
+    private void InitManager()
+    {
         GameManager gameManager = GetComponent<GameManager>();
         gameManager.InitManager();
+    }
 
-        //Init the Request
+    private void InitRequest()
+    {
         LoginRequest loginRequest = GetComponent<LoginRequest>();
         loginRequest.InitRequset();
         RegisterRequest registerRequest = GetComponent<RegisterRequest>();
@@ -63,9 +77,10 @@ public class SangoRoot : MonoBehaviour
         attackDamageRequest.InitRequset();
         ChooseAvaterRequest chooseAvaterRequest = GetComponent<ChooseAvaterRequest>();
         chooseAvaterRequest.InitRequset();
+    }
 
-
-        //Init the Event
+    private void InitEvent()
+    {
         NewAccountJoinEvent newAccountJoinEvent = GetComponent<NewAccountJoinEvent>();
         newAccountJoinEvent.InitEvent();
         SyncPlayerTransformEvent syncPlayerTransformEvent = GetComponent<SyncPlayerTransformEvent>();
@@ -76,8 +91,16 @@ public class SangoRoot : MonoBehaviour
         attackResultEvent.InitEvent();
         ChooseAvaterEvent chooseAvaterEvent = GetComponent<ChooseAvaterEvent>();
         chooseAvaterEvent.InitEvent();
+    }
 
-        //Init the System
+    private void InitCache()
+    {
+        OnlineAccountCache onlineAccountCache = GetComponent<OnlineAccountCache>();
+        onlineAccountCache.InitCache();
+    }
+
+    private void InitSystem()
+    {
         CacheSystem cacheSystem = GetComponent<CacheSystem>();
         cacheSystem.InitSystem();
         LoginSystem loginSystem = GetComponent<LoginSystem>();
@@ -86,13 +109,6 @@ public class SangoRoot : MonoBehaviour
         registerSystem.InitSystem();
         MainGameSystem mainGameSystem = GetComponent<MainGameSystem>();
         mainGameSystem.InitSystem();
-
-        //Init the Cache
-        OnlineAccountCache onlineAccountCache = GetComponent<OnlineAccountCache>();
-        onlineAccountCache.InitCache();
-
-        //Enter LoginWindow
-        loginSystem.EnterLogin();
     }
 
     public static void AddMessage(string message)
