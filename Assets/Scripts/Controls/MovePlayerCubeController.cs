@@ -8,8 +8,8 @@ using UnityEngine;
 public class MovePlayerCubeController : MonoBehaviour
 {
     public string OnlineAccount { get; private set; }
-    public GameObject AvaterNow { get; private set; }
-    public AvaterCode AvaterName { get; private set; }
+    public GameObject AvaterObject { get; private set; }
+    public AvaterCode OnlinePlayerAvater { get; private set; }
     public bool isLocalPlayer = true;
 
     private float smoothLerpTime = TimeConstant.SmoothLerpTime;
@@ -35,25 +35,25 @@ public class MovePlayerCubeController : MonoBehaviour
     {
         if (Input.GetKeyUp("1"))
         {
-            AvaterNow.SetActive(false);
-            SetAvaterNow(AvaterCode.SangonomiyaKokomi);
-            AvaterNow.SetActive(true);
+            AvaterObject.SetActive(false);
+            SetAvaterObject(AvaterCode.SangonomiyaKokomi);
+            AvaterObject.SetActive(true);
             CacheSystem.Instance.chooseAvaterRequest.SetAvater(AvaterCode.SangonomiyaKokomi);
             CacheSystem.Instance.chooseAvaterRequest.DefaultRequest();
         }
         if (Input.GetKeyUp("2"))
         {
-            AvaterNow.SetActive(false);
-            SetAvaterNow(AvaterCode.Yoimiya);
-            AvaterNow.SetActive(true);
+            AvaterObject.SetActive(false);
+            SetAvaterObject(AvaterCode.Yoimiya);
+            AvaterObject.SetActive(true);
             CacheSystem.Instance.chooseAvaterRequest.SetAvater(AvaterCode.Yoimiya);
             CacheSystem.Instance.chooseAvaterRequest.DefaultRequest();
         }
         if (Input.GetKeyUp("3"))
         {
-            AvaterNow.SetActive(false);
-            SetAvaterNow(AvaterCode.Ayaka);
-            AvaterNow.SetActive(true);
+            AvaterObject.SetActive(false);
+            SetAvaterObject(AvaterCode.Ayaka);
+            AvaterObject.SetActive(true);
             CacheSystem.Instance.chooseAvaterRequest.SetAvater(AvaterCode.Ayaka);
             CacheSystem.Instance.chooseAvaterRequest.DefaultRequest();
         }
@@ -69,7 +69,7 @@ public class MovePlayerCubeController : MonoBehaviour
         if (Vector3.Distance(transform.position, targetPosition) > moveOffsetLimit)
         {
             transform.position = Vector3.Lerp(transform.position, targetPosition, smoothLerpTime * Time.deltaTime);
-            AvaterNow.GetComponent<MovePlayerAniController>().AsyncMoveAni(true);
+            AvaterObject.GetComponent<MovePlayerAniController>().AsyncMoveAni(true);
             if (isLocalPlayer)
             {
                 MainGameSystem.Instance.SetMiniMapTransPosition(transform);
@@ -77,7 +77,7 @@ public class MovePlayerCubeController : MonoBehaviour
         }
         else
         {
-            AvaterNow.GetComponent<MovePlayerAniController>().AsyncMoveAni(false);
+            AvaterObject.GetComponent<MovePlayerAniController>().AsyncMoveAni(false);
         }
     }
 
@@ -93,33 +93,40 @@ public class MovePlayerCubeController : MonoBehaviour
         targetRotation = rotation;
     }
 
-    public void SetAvaterNow(AvaterCode avaterCode)
+    public void SetAvaterObject(AvaterCode avaterCode)
     {
         switch (avaterCode)
         {
             case AvaterCode.SangonomiyaKokomi:
                 {
-                    AvaterNow = transform.Find(AvaterConstant.SangonomiyaKokomiName).gameObject;
+                    AvaterObject = transform.Find(AvaterConstant.SangonomiyaKokomiName).gameObject;
                     break;
                 }
             case AvaterCode.Yoimiya:
                 {
-                    AvaterNow = transform.Find(AvaterConstant.YoimiyaName).gameObject;
+                    AvaterObject = transform.Find(AvaterConstant.YoimiyaName).gameObject;
                     break;
                 }
             case AvaterCode.Ayaka:
                 {
-                    AvaterNow = transform.Find(AvaterConstant.AyakaName).gameObject;
+                    AvaterObject = transform.Find(AvaterConstant.AyakaName).gameObject;
                     break;
                 }
         }
-        AvaterName = avaterCode;
+        if (isLocalPlayer)
+        {
+            OnlineAccountCache.Instance.SetLocalAvater(avaterCode);
+        }
+        else
+        {
+            OnlinePlayerAvater = avaterCode;
+        }
         InitAvaterNowPosition();
     }
 
     private void InitAvaterNowPosition()
     {
-        AvaterNow.transform.localPosition = new Vector3(0, 0, 0);
-        AvaterNow.transform.localRotation = Quaternion.Euler(0, 0, 0);
+        AvaterObject.transform.localPosition = new Vector3(0, 0, 0);
+        AvaterObject.transform.localRotation = Quaternion.Euler(0, 0, 0);
     }
 }

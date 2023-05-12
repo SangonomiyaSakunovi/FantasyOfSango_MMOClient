@@ -30,7 +30,7 @@ public class IslandOnlineAccountSystem : MonoBehaviour
 
     public AvaterCode GetOnlineCurrentAvater(string account)
     {
-        AvaterCode avaterCurrent = DictTools.GetDictValue<string, GameObject>(onlineAccountPlayerCubeDict, account).GetComponent<MovePlayerCubeController>().AvaterName;
+        AvaterCode avaterCurrent = DictTools.GetDictValue<string, GameObject>(onlineAccountPlayerCubeDict, account).GetComponent<MovePlayerCubeController>().OnlinePlayerAvater;
         return avaterCurrent;
     }
 
@@ -38,16 +38,16 @@ public class IslandOnlineAccountSystem : MonoBehaviour
     {
         if (!onlineAccountPlayerCubeDict.ContainsKey(onlineAccount))
         {
-            GameObject playerCube = (GameObject)GameObject.Instantiate(Resources.Load(AvaterConstant.PlayerCube));
-            GameObject tempKokomi = (GameObject)GameObject.Instantiate(Resources.Load(AvaterConstant.SangonomiyaKokomiPath));
-            GameObject tempYoimiya = (GameObject)GameObject.Instantiate(Resources.Load(AvaterConstant.YoimiyaPath));
-            GameObject tempAyaka = (GameObject)GameObject.Instantiate(Resources.Load(AvaterConstant.AyakaPath));
+            GameObject playerCube = (GameObject)Instantiate(Resources.Load(AvaterConstant.PlayerCube));
+            GameObject tempKokomi = (GameObject)Instantiate(Resources.Load(AvaterConstant.SangonomiyaKokomiPath));
+            GameObject tempYoimiya = (GameObject)Instantiate(Resources.Load(AvaterConstant.YoimiyaPath));
+            GameObject tempAyaka = (GameObject)Instantiate(Resources.Load(AvaterConstant.AyakaPath));
             tempKokomi.SetActive(true);
             SetChildAvater(tempKokomi, playerCube);
             SetChildAvater(tempYoimiya, playerCube);
             SetChildAvater(tempAyaka, playerCube);
             playerCube.GetComponent<MovePlayerCubeController>().SetOnlineAccount(onlineAccount);
-            playerCube.GetComponent<MovePlayerCubeController>().SetAvaterNow(AvaterCode.SangonomiyaKokomi);
+            playerCube.GetComponent<MovePlayerCubeController>().SetAvaterObject(AvaterCode.SangonomiyaKokomi);
             tempKokomi.GetComponent<AttackControllerSangonomiyaKokomi>().SetOnlineAccount();
             tempYoimiya.GetComponent<AttackControllerYoimiya>().SetOnlineAccount();
             tempAyaka.GetComponent<AttackControllerAyaka>().SetOnlineAccount();
@@ -102,17 +102,17 @@ public class IslandOnlineAccountSystem : MonoBehaviour
             GameObject gameObject = DictTools.GetDictValue<string, GameObject>(onlineAccountPlayerCubeDict, attackCommand.Account);
             if (gameObject != null)
             {
-                AvaterCode avaterCurrent = gameObject.GetComponent<MovePlayerCubeController>().AvaterName;
+                AvaterCode avaterCurrent = gameObject.GetComponent<MovePlayerCubeController>().OnlinePlayerAvater;
                 SkillCode skillCode = attackCommand.SkillCode;
                 Vector3 attackPosition = new Vector3(attackCommand.Vector3Position.X, attackCommand.Vector3Position.Y, attackCommand.Vector3Position.Z);
                 Quaternion attackRotation = new Quaternion(attackCommand.QuaternionRotation.X, attackCommand.QuaternionRotation.Y, attackCommand.QuaternionRotation.Z, attackCommand.QuaternionRotation.W);
                 if (avaterCurrent == AvaterCode.SangonomiyaKokomi)
                 {
-                    gameObject.GetComponent<MovePlayerCubeController>().AvaterNow.GetComponent<AttackControllerSangonomiyaKokomi>().SetAttackCommand(skillCode, attackPosition, attackRotation);
+                    gameObject.GetComponent<MovePlayerCubeController>().AvaterObject.GetComponent<AttackControllerSangonomiyaKokomi>().SetAttackCommand(skillCode, attackPosition, attackRotation);
                 }
                 else if (avaterCurrent == AvaterCode.Yoimiya)
                 {
-                    gameObject.GetComponent<MovePlayerCubeController>().AvaterNow.GetComponent<AttackControllerYoimiya>().SetAttackCommand(skillCode, attackPosition, attackRotation);
+                    gameObject.GetComponent<MovePlayerCubeController>().AvaterObject.GetComponent<AttackControllerYoimiya>().SetAttackCommand(skillCode, attackPosition, attackRotation);
                 }
             }
         }
@@ -127,14 +127,14 @@ public class IslandOnlineAccountSystem : MonoBehaviour
                 GameObject gameObject = DictTools.GetDictValue<string, GameObject>(onlineAccountPlayerCubeDict, attackResult.DamagerAccount);
                 if (gameObject != null)
                 {
-                    AvaterCode avaterCurrent = gameObject.GetComponent<MovePlayerCubeController>().AvaterName;
+                    AvaterCode avaterCurrent = gameObject.GetComponent<MovePlayerCubeController>().OnlinePlayerAvater;
                     if (avaterCurrent == AvaterCode.SangonomiyaKokomi)
                     {
-                        gameObject.GetComponent<MovePlayerCubeController>().AvaterNow.GetComponent<AttackControllerSangonomiyaKokomi>().SetDamaged(attackResult);
+                        gameObject.GetComponent<MovePlayerCubeController>().AvaterObject.GetComponent<AttackControllerSangonomiyaKokomi>().SetDamaged(attackResult);
                     }
                     else if (avaterCurrent == AvaterCode.Yoimiya)
                     {
-                        gameObject.GetComponent<MovePlayerCubeController>().AvaterNow.GetComponent<AttackControllerYoimiya>().SetDamaged(attackResult);
+                        gameObject.GetComponent<MovePlayerCubeController>().AvaterObject.GetComponent<AttackControllerYoimiya>().SetDamaged(attackResult);
                     }
                 }
             }
@@ -148,8 +148,8 @@ public class IslandOnlineAccountSystem : MonoBehaviour
     public void SetChoosedAvater(string account, AvaterCode avater)
     {
         GameObject gameObject = DictTools.GetDictValue<string, GameObject>(onlineAccountPlayerCubeDict, account);
-        gameObject.GetComponent<MovePlayerCubeController>().AvaterNow.SetActive(false);
-        gameObject.GetComponent<MovePlayerCubeController>().SetAvaterNow(avater);
-        gameObject.GetComponent<MovePlayerCubeController>().AvaterNow.SetActive(true);
+        gameObject.GetComponent<MovePlayerCubeController>().AvaterObject.SetActive(false);
+        gameObject.GetComponent<MovePlayerCubeController>().SetAvaterObject(avater);
+        gameObject.GetComponent<MovePlayerCubeController>().AvaterObject.SetActive(true);
     }
 }

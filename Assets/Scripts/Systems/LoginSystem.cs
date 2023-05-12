@@ -76,8 +76,9 @@ public class LoginSystem : BaseSystem
             //Load the MainGame
             netService.AsyncLoadPlayerData(() =>
             {
-                OnlineAccountCache.Instance.SetPlayerCache(CacheSystem.Instance.syncPlayerDataRequest.AvaterInfo);
-                MainGameSystem.Instance.EnterMainGame();
+                OnlineAccountCache.Instance.SetAvaterInfo(CacheSystem.Instance.syncPlayerDataRequest.AvaterInfo);
+                OnlineAccountCache.Instance.SetMissionInfo(CacheSystem.Instance.syncPlayerDataRequest.MissionInfo);
+                MainGameSystem.Instance.EnterIslandScene();
                 loginWindow.SetWindowState(false);
             });
         }

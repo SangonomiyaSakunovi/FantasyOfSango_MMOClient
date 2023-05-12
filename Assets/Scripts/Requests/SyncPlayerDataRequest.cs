@@ -10,6 +10,7 @@ public class SyncPlayerDataRequest : BaseRequest
 {
     public string Account { get; private set; }
     public AvaterInfo AvaterInfo { get; private set; }
+    public MissionInfo MissionInfo { get; private set; }
     public bool IsGetResponse { get; private set; }
 
     public override void InitRequset()
@@ -26,7 +27,9 @@ public class SyncPlayerDataRequest : BaseRequest
     public override void OnOperationResponse(OperationResponse operationResponse)
     {
         string avaterInfoJson = DictTools.GetStringValue(operationResponse.Parameters, (byte)ParameterCode.AvaterInfo);
+        string missionInfoJson = DictTools.GetStringValue(operationResponse.Parameters,(byte)ParameterCode.MissionInfo);
         AvaterInfo = DeJsonString<AvaterInfo>(avaterInfoJson);
+        MissionInfo = DeJsonString<MissionInfo>(missionInfoJson);
         IsGetResponse = true;
     }
 

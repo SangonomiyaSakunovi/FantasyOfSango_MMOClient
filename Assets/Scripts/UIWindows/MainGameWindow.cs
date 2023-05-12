@@ -1,10 +1,62 @@
+using SangoCommon.Classs;
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
+
 //Developer : SangonomiyaSakunovi
 //Discription: The Main Game Window.
 
 public class MainGameWindow : BaseWindow
 {
+    public GameObject miniMapBaseLocation;
+    public GameObject miniMapLocals;
+
+    private float miniMapScaling = 10;
+    private Vector3 HomePos = new Vector3(5.568432f, 0, -21.45944f);
+    private Vector3 HillPos = new Vector3(88.04138f, 0, 678.8067f);
+    private Vector3 miniHomePos = new Vector3(-8, 198, 0);
+    private Vector3 miniHillPos = new Vector3(-115.7629f, -693.5677f, 0);
+    private float xChange = 265;
+    private float yChange = 930;
+
+    public TMP_Text mainHpText;
+    public TMP_Text mainLevelText;
+    public Image mainHpFG;
+    public Image mainElementBurstFG;
+
+    public TMP_Text guidMissionText;
+    public Image guidMissionImage;
+
     protected override void InitWindow()
     {
         base.InitWindow();
+        miniMapScaling = Vector3.Distance(HomePos, HillPos) / Vector3.Distance(miniHomePos, miniHillPos);
+    }
+
+    public void SetMiniMapTransPosition(Transform playerTrans)
+    {
+        float moveX = (playerTrans.position.x - HomePos.x) / miniMapScaling;
+        float moveY = (playerTrans.position.z - HomePos.z) / miniMapScaling;
+        miniMapBaseLocation.transform.position = new Vector3(miniHomePos.x - moveX + xChange, miniHomePos.y - moveY + yChange, 0);
+        Vector3 rotations = playerTrans.rotation.eulerAngles;
+        miniMapLocals.transform.rotation = Quaternion.Euler(0, 0, -rotations.y);
+    }
+
+
+    public void RefreshMissionUI()
+    {
+
+    }
+
+    public void RefreshMainAvaterUI(AvaterAttributeInfo info)
+    {
+        SetText(mainHpText, info.HP + " / " + info.HPFull);
+        mainHpFG.fillAmount = (float)info.HP / info.HPFull;
+        mainElementBurstFG.fillAmount = (float)info.MP / info.MPFull;
+    }
+
+    public void RefreshBackAvaterUI()
+    {
+
     }
 }
