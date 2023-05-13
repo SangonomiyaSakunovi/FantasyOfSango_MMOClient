@@ -1,47 +1,60 @@
 # Overview
-A Unity URP shader that supports Genshin Impact style character facial shading.
+A Unity URP shader for Genshin Impact style character facial shading.
 
 ### Key Features ###
  - Supports Genshin facial shadow gradient texture
- - Custom face shadow colour
- - Supports single directional light
+    - All angles
+    - Adjustable light direction offset
+    - Shadow color
+    
  - Outlines with configurable thickness, color, offset
+
+ ### Limitations that probably need to be fixed ###
+ - Only supports one directional light
+
+ - Does not receive external shadows
+
+ - Unnatural shadow color when main light intensity > 1
+
+ [Demo Video (Bilibili)](https://www.bilibili.com/video/BV15t4y1V76U)
+ 
+ <img src="https://i.ibb.co/DfHh14Y/thumbnail1-l-JPG.png" width="50%">
  
  ### Usage (URP) ###
- 1. Prepare Genshin facial shadow gradient texture. Set Texture Type to Directional Lightmap.
- 2. Assign shader to face material.
- 3. Assign Genshin facial shadow gradient texture to the `_LightMap` field, and enable `_UseLightMap`.
 
-### Note ###
-- Main light intensity must be within 1 for correct results (fix soon).
+Facial shadow gradient textures for Genshin Impact character models can be found under `./Textures/`.
 
- - For smooth shadow edges, set shadow gradient texture's compression quality to high.
+ 1. Prepare facial shadow gradient texture. Disable *sRGB (Color Texture)* or set Texture Type to *Directional Lightmap*.
 
- - If shadow coverage doesn't change when the character is turning their head, try setting character's head bone as the character's skinned mesh root.
+ 2. Assign shader `SimpleGenshinFacial` to face material. (reset material to get pre-configured settings)
 
-- You can get preconfigured outline, shadow colour, emission colour settings on material reset.
+ 3. Assign facial shadow gradient texture to the `_LightMap` field, and enable `_UseLightMap`.
 
- ## How It Works ##
+### FAQ ###
 
- Genshin Impact's facial shadow texture stores shadow coverage information for left-side lighting at angles 0° ~ 180° on the xz plane. All we have to do is take the shadow texture, flip it if light is coming from the right, and compare its colour value with `FdotL` (i.e. forward xz direction • light xz direction) to apply the correct shadow coverage.
+- Shadows are blurry - For smooth shadow edges, set shadow gradient texture's compression quality to high.
 
- Since `FdotL` is in the range [-1,1], we map it to [0,1] to match lightmap value range.
+- Shadow coverage doesn't change based on the head facing - The shader might not be reading the correct object direction. Try setting the character's head bone as the character head mesh's skinned mesh root. Alternatively, you could modify the shader to use a direction that can be updated by script.
 
- ```glsl
-// Choose original lightmap L (light from left) or flipped lightmap R (light from right).
-float LightMap = lerp(surfaceData._lightMapR.r, surfaceData._lightMapL.r, step(RdotL, 0));
+- Recommended material property settings - You can get preconfigured outline, shadow color, emission color settings on material reset (click the three vertical dots on the top right corner in the material inspector).
 
-// Calculate result.
+## How It Works ##
+
+Genshin Impact's facial shadow texture stores shadow coverage information for left-side lighting at angles 0° ~ 180° on the xz plane. All we have to do is take the shadow texture, flip it if light is coming from the right, and compare its colour value with `FdotL` (i.e. forward xz direction • light xz direction) to apply the correct shadow coverage.
+
+Since `FdotL` is in the range [-1,1], we map it to [0,1] to match lightmap value range.
+
+```glsl
+float LightMap = RdotL > 0 ? surfaceData._lightMapR.r : surfaceData._lightMapL.r;
 float litOrShadow = step((-FdotL + 1) / 2, LightMap);
 ```
 
-
- ## Environment ##
+## Environment ##
+Tested in Unity 2022.2.1f1, URP14.0.4
  
-Tested on Unity 2021.3.6f1 URP12.1.7.
-
 ---
 ### Based on URP toon shader example by ColinLeung-NiloCat. ###
+
 # Unity URP Simplified Toon Lit Shader Example (for you to learn writing custom lit shader in URP)
 
 This repository is NOT the full version shader, the full version shader is still WIP and not yet released.
