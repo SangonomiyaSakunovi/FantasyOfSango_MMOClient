@@ -9,7 +9,7 @@ public class DataConfig<T>
     public string _id;
 }
 
-public class IslandMissionConfig : DataConfig<IslandMissionConfig>
+public class MissionConfig : DataConfig<MissionConfig>
 {
     public string npcID;
     public string dialogArray;

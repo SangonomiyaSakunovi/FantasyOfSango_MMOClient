@@ -120,4 +120,9 @@ public class LoginSystem : BaseSystem
         Account = account;
         Password = password;
     }
+
+    private void SetActive(Button button, bool isActive = true)
+    {
+        button.transform.gameObject.SetActive(isActive);
+    }
 }

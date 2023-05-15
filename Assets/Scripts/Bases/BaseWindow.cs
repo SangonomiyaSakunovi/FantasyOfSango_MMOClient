@@ -85,4 +85,12 @@ public class BaseWindow : MonoBehaviour
         button.transform.gameObject.SetActive(isActive);
     }
     #endregion
+
+    #region SetSprite Tools
+    protected void SetSprite(Image image, string path, bool isCache = false)
+    {
+        Sprite sprite = resourceService.LoadSprite(path, isCache);
+        image.sprite = sprite;
+    }
+    #endregion
 }

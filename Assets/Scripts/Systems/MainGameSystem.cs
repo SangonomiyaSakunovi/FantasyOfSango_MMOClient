@@ -16,6 +16,8 @@ public class MainGameSystem : BaseSystem
     [HideInInspector]
     public GameObject playerCube = null;
 
+    private Transform[] npcTransformArray;
+
     public override void InitSystem()
     {
         base.InitSystem();
@@ -44,6 +46,10 @@ public class MainGameSystem : BaseSystem
             audioService.PlayBGAudio(AudioConstant.MainGameBG, true);
             //MiniMap
             SetMiniMapTransPosition(playerCube.transform);
+            //LoadPos
+            GameObject map = GameObject.FindGameObjectWithTag("MapRoot");
+            MainGameMap mainGameMap = map.GetComponent<MainGameMap>();
+            npcTransformArray = mainGameMap.NpcTransformArray;
             //LoadEnemy
             InitiateEnemy();
         });
@@ -109,5 +115,10 @@ public class MainGameSystem : BaseSystem
     public void SetMiniMapTransPosition(Transform playerTrans)
     {
         mainGameWindow.SetMiniMapTransPosition(playerTrans);
+    }
+
+    public void OpenMissionWindow()
+    {
+
     }
 }

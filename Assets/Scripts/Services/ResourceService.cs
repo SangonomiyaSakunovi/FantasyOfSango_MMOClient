@@ -13,7 +13,8 @@ public class ResourceService : MonoBehaviour
     public static ResourceService Instance = null;
 
     private Dictionary<string, AudioClip> audioClipDict = new Dictionary<string, AudioClip>();
-    private Dictionary<string, IslandMissionConfig> islandMissionConfigDict = new Dictionary<string, IslandMissionConfig>();
+    private Dictionary<string, Sprite> spriteDict = new Dictionary<string, Sprite>();
+    private Dictionary<string, MissionConfig> missionConfigDict = new Dictionary<string, MissionConfig>();
 
     public void InitService()
     {
@@ -53,20 +54,6 @@ public class ResourceService : MonoBehaviour
         }
     }
 
-    public AudioClip LoadAudioClip(string audioPath, bool isCache)
-    {
-        AudioClip audioClip = DictTools.GetDictValue<string, AudioClip>(audioClipDict, audioPath);
-        if (audioClip == null)
-        {
-            audioClip = Resources.Load<AudioClip>(audioPath);
-            if (isCache)
-            {
-                audioClipDict.Add(audioPath, audioClip);
-            }
-        }
-        return audioClip;
-    }
-
     #region MissionConfig
     private void InitIslandMissionConfig(string path)
     {
@@ -81,10 +68,10 @@ public class ResourceService : MonoBehaviour
             {
                 continue;
             }
-            string id = xmlElement.GetAttributeNode("_id").InnerText;
-            IslandMissionConfig config = new IslandMissionConfig
+            string missionId = xmlElement.GetAttributeNode("_id").InnerText;
+            MissionConfig config = new MissionConfig
             {
-                _id = id
+                _id = missionId
             };
             foreach (XmlElement element in xmlNodeList[i].ChildNodes)
             {
@@ -104,13 +91,40 @@ public class ResourceService : MonoBehaviour
                         break;
                 }
             }
-            islandMissionConfigDict.Add(id, config);
+            missionConfigDict.Add(missionId, config);
         }
     }
-    public IslandMissionConfig GetIslandMissionConfig(string id)
+    public MissionConfig GetMissionConfig(string missionId)
     {
-        return DictTools.GetDictValue<string, IslandMissionConfig>(islandMissionConfigDict, id);
+        return DictTools.GetDictValue<string, MissionConfig>(missionConfigDict, missionId);
     }
 
+    public AudioClip LoadAudioClip(string audioPath, bool isCache)
+    {
+        AudioClip audioClip = DictTools.GetDictValue<string, AudioClip>(audioClipDict, audioPath);
+        if (audioClip == null)
+        {
+            audioClip = Resources.Load<AudioClip>(audioPath);
+            if (isCache)
+            {
+                audioClipDict.Add(audioPath, audioClip);
+            }
+        }
+        return audioClip;
+    }
+
+    public Sprite LoadSprite(string spritePath, bool isCache = false)
+    {
+        Sprite sprite = DictTools.GetDictValue<string, Sprite>(spriteDict, spritePath);
+        if (sprite == null) 
+        { 
+            sprite = Resources.Load<Sprite>(spritePath);
+            if (isCache)
+            {
+                spriteDict.Add(spritePath, sprite);
+            }
+        }
+        return sprite;
+    }
     #endregion
 }
