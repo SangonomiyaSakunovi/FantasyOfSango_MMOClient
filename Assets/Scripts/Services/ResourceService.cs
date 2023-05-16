@@ -19,7 +19,7 @@ public class ResourceService : MonoBehaviour
     public void InitService()
     {
         Instance = this;
-        InitIslandMissionConfig(ConfigConstant.IslandMissionConfigPath);
+        InitMissionConfig(ConfigConstant.MissionConfigPath_01);
     }
 
     private Action loadingProgressCallBack = null;
@@ -55,7 +55,7 @@ public class ResourceService : MonoBehaviour
     }
 
     #region MissionConfig
-    private void InitIslandMissionConfig(string path)
+    private void InitMissionConfig(string path)
     {
         TextAsset xml = Resources.Load<TextAsset>(path);
         XmlDocument document = new XmlDocument();
@@ -77,17 +77,26 @@ public class ResourceService : MonoBehaviour
             {
                 switch (element.Name)
                 {
+                    case "missionName":
+                        config.missionName = element.InnerText; 
+                        break;
                     case "npcID":
                         config.npcID = element.InnerText;
                         break;
-                    case "dialogArray":
-                        config.dialogArray = element.InnerText;
+                    case "dialogAvaterImageArray":
+                        config.dialogAvaterImageArray = element.InnerText;
                         break;
-                    case "dialogAudio":
-                        config.dialogAudio = element.InnerText;
+                    case "dialogTextArray":
+                        config.dialogTextArray = element.InnerText;
+                        break;
+                    case "dialogAudioArray":
+                        config.dialogAudioArray = element.InnerText;
                         break;
                     case "actionID":
                         config.actionID = element.InnerText;
+                        break;
+                    case "guidText":
+                        config.guidText = element.InnerText;
                         break;
                 }
             }

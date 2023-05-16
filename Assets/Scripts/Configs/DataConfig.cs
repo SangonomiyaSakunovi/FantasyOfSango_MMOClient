@@ -11,10 +11,13 @@ public class DataConfig<T>
 
 public class MissionConfig : DataConfig<MissionConfig>
 {
+    public string missionName;
     public string npcID;
-    public string dialogArray;
-    public string dialogAudio;
+    public string dialogAvaterImageArray;
+    public string dialogTextArray;
+    public string dialogAudioArray;
     public string actionID;
+    public string guidText;
 }
 
 public class IslandSceneConfig : DataConfig<IslandSceneConfig>

@@ -28,6 +28,8 @@ public class MainGameSystem : BaseSystem
     {
         resourceService.AsyncLoadScene(SceneConstant.MainGameScene, () =>
         {
+            //SetGameMode
+            GameManager.Instance.SetGameMode(GameModeCode.GamePlayMode);
             //Load Avater
             InitiateLocalAvater();
             playerCube.GetComponent<MovePlayerCubeController>().SetAvaterObject(AvaterCode.SangonomiyaKokomi);
@@ -115,10 +117,5 @@ public class MainGameSystem : BaseSystem
     public void SetMiniMapTransPosition(Transform playerTrans)
     {
         mainGameWindow.SetMiniMapTransPosition(playerTrans);
-    }
-
-    public void OpenMissionWindow()
-    {
-
     }
 }

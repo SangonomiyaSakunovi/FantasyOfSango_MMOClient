@@ -24,7 +24,7 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
-        if (player != null)
+        if (player != null && GameManager.Instance.GameMode == GameModeCode.GamePlayMode)
         {
             transform.position = offsetPosition + player.position;
             SetRotate();
@@ -45,14 +45,17 @@ public class CameraController : MonoBehaviour
 
     private void SetShowCursor()
     {
-        if (Input.GetKey("z"))
+        if (GameManager.Instance.GameMode == GameModeCode.GamePlayMode)
         {
-            LockCursor(false);
-        }
-        else
-        {
-            LockCursor();
-        }
+            if (Input.GetKey("z"))
+            {
+                LockCursor(false);
+            }
+            else
+            {
+                LockCursor();
+            }
+        }    
     }
 
     private void SetScroll()

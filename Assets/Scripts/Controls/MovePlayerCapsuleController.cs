@@ -28,9 +28,12 @@ public class MovePlayerCapsuleController : MonoBehaviour
 
     private void Update()
     {
-        SetMove();
-        SetJump();
-        SyncPlayerPosition();
+        if (GameManager.Instance.GameMode == GameModeCode.GamePlayMode)
+        {
+            SetMove();
+            SetJump();
+            SyncPlayerPosition();
+        }        
     }
 
     private void SyncPlayerPosition()

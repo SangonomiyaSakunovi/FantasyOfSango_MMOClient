@@ -27,15 +27,19 @@ public class MainGameWindow : BaseWindow
 
     public TMP_Text guidMissionText;
 
-    public Image dialogNPCAvaterImage;
-    public TMP_Text dialogNPCText;
-
-    private MissionConfig currentMissionConfig = null;
-
     protected override void InitWindow()
     {
         base.InitWindow();
         miniMapScaling = Vector3.Distance(HomePos, HillPos) / Vector3.Distance(miniHomePos, miniHillPos);
+        SetCurrentMission("Main_Pre_01");
+    }
+
+    private void Update()
+    {
+        if (Input.GetButtonDown("SetMission"))
+        {           
+            OnGetMissionButtonClick();
+        }
     }
 
     public void SetMiniMapTransPosition(Transform playerTrans)
@@ -65,42 +69,24 @@ public class MainGameWindow : BaseWindow
 
     }
 
-    public void SetDialogNPCAvaterImage(string npcID)
+    public void SetGuidMissionText()
     {
-        string imagePath = "";
-        Image image = dialogNPCAvaterImage.GetComponent<Image>();
-        switch (npcID)
-        {
-            case NPCConstant.AetherNpcId:
-                imagePath = NPCConstant.AetherAvaterImageIdle;
-                break;
-            case NPCConstant.PaimonNpcId:
-                imagePath = NPCConstant.PaimonAvaterImageIdle;
-                break;
-        }
-        SetSprite(image, imagePath);
-    }
-
-    public void SetGuidMissionText(string guidMissionTest)
-    {
-        SetText(guidMissionText, guidMissionTest);
-        //TODO
-        //When we open the MissionListWindow, then to set this text, it can be cancel
+        string text = MissionSystem.Instance.GetGuidMissionText();
+        SetText(guidMissionText, text);
     }
 
     public void OnAutoFindPathButtonClick()
     {
         audioService.PlayUIAudio(AudioConstant.ClickButtonUI);
-        //TODO
-        //is that A* pathFinder the best proper way?
+        MissionSystem.Instance.AutoFindMissionPath();
     }
 
     public void OnGetMissionButtonClick()
     {
         audioService.PlayUIAudio(AudioConstant.ClickButtonUI);
-        if (currentMissionConfig != null)
+        if (MissionSystem.Instance.CurrentMissionConfig != null)
         {
-            MissionSystem.Instance.RunMission(currentMissionConfig);
+            MissionSystem.Instance.RunMission();
         }
         else
         {
@@ -108,8 +94,8 @@ public class MainGameWindow : BaseWindow
         }
     }
 
-    public void GetCurrentMission(string missionId)
+    public void SetCurrentMission(string id)
     {
-        currentMissionConfig = resourceService.GetMissionConfig(missionId);
+        MissionSystem.Instance.SetCurrentMission(id);
     }
 }

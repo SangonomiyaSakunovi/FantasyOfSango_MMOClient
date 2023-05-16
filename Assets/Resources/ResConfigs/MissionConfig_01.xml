@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<item _id="Main_Pre_01">
+		<missionName>序章 · 子夜落梦</missionName>
+		<npcID>-1</npcID>
+		<dialogAvaterImageArray>#PaimonAvaterImageIdle#AetherAvaterImageIdle#PaimonAvaterImageIdle#PaimonAvaterImageIdle#PaimonAvaterImageIdle#PaimonAvaterImageIdle#PaimonAvaterImageIdle#PaimonAvaterImageIdle#PaimonAvaterImageIdle#PaimonAvaterImageIdle#AetherAvaterImageIdle#PaimonAvaterImageIdle#AetherAvaterImageIdle#AetherAvaterImageIdle#PaimonAvaterImageIdle#AetherAvaterImageIdle#AetherAvaterImageIdle#PaimonAvaterImageIdle#AetherAvaterImageIdle#UnknownAvaterImageIdle#AetherAvaterImageIdle#AetherAvaterImageIdle#AetherAvaterImageIdle#AetherAvaterImageIdle</dialogAvaterImageArray>
+		<dialogTextArray>#派蒙|总觉得少了点感觉？
+#空|是“噼咔”的感觉吗？
+#派蒙|对
+#派蒙|对个头啦，这和“噼啪”有什么关系啊
+#派蒙|用小卷婆婆的话来说，愿望已经逸散了，没有办法让海渊仙草焕发生机
+#派蒙|看到婆婆不开心，即使派蒙吃再多好吃的派蒙也不会开心的
+#派蒙|如果只是「愿望」……
+#派蒙|哼哼，派蒙有办法了
+#派蒙|派蒙希望他能早日和妹妹重聚，希望能和他一起旅行下去，希望有吃不完的好吃的
+#派蒙|嘿嘿，现在水里就有愿望啦
+#空|那么我也许个愿望吧……
+#派蒙|是什么愿望呢，嘿嘿
+#空|我希望……
+#空|（为什么…无法开口）
+#派蒙|你怎么了，脸色看上去不太好
+#空|（好晕）
+#空|（水落声，这里不应当有这种声音）
+#派蒙|喂，喂，别吓我啊
+#空|（好冷…）
+#空灵的声音|再见了，泡沫中的园丁……
+#空|（泡沫中的园丁……）
+#空|（是什么时候…这里不应该存在珊瑚）
+#空|（荧光植物……和海渊灵草很像）
+#空|（火堆还亮着，应该没有走远，四处看看吧）</dialogTextArray>
+		<dialogAudioArray>#Main_Pre_01_01
+#Main_Pre_01_02
+#Main_Pre_01_03
+#Main_Pre_01_04
+#Main_Pre_01_05
+#Main_Pre_01_06
+#Main_Pre_01_07
+#Main_Pre_01_08
+#Main_Pre_01_09
+#Main_Pre_01_10
+#Main_Pre_01_11
+#Main_Pre_01_12
+#Main_Pre_01_13
+#Main_Pre_01_14
+#Main_Pre_01_15
+#Main_Pre_01_16
+#Main_Pre_01_17
+#Main_Pre_01_18
+#Main_Pre_01_19
+#Main_Pre_01_20
+#Main_Pre_01_21
+#Main_Pre_01_22
+#Main_Pre_01_23
+#Main_Pre_01_24</dialogAudioArray>
+		<actionID>Main_Pre_02</actionID>
+		<guidText>-1</guidText>
+	</item>
+	<item _id="Main_Pre_02">
+		<missionName>子夜落梦 · 一</missionName>
+		<npcID>-1</npcID>
+		<dialogAvaterImageArray>-1</dialogAvaterImageArray>
+		<dialogTextArray>-1</dialogTextArray>
+		<dialogAudioArray>-1</dialogAudioArray>
+		<actionID>Main_Pre_03</actionID>
+		<guidText>四处看看，寻找声音踪迹</guidText>
+	</item>
+</root>

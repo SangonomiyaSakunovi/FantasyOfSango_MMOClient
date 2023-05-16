@@ -34,7 +34,7 @@ public class AttackControllerYoimiya : MonoBehaviour
     }
     private void Update()
     {
-        if (isLocalPlayer)
+        if (isLocalPlayer && GameManager.Instance.GameMode == GameModeCode.GamePlayMode)
         {
             SetAttack();
         }

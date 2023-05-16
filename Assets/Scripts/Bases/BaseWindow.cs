@@ -90,7 +90,8 @@ public class BaseWindow : MonoBehaviour
     protected void SetSprite(Image image, string path, bool isCache = false)
     {
         Sprite sprite = resourceService.LoadSprite(path, isCache);
-        image.sprite = sprite;
+        Image imageComponent = image.GetComponent<Image>();
+        imageComponent.sprite = sprite;
     }
     #endregion
 }

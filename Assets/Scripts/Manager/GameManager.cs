@@ -5,7 +5,7 @@ public class GameManager : BaseManager
 {
     public static GameManager Instance;
 
-    public GameModeCode GameMode;
+    public GameModeCode GameMode { get; private set; }
 
     public override void InitManager()
     {
@@ -13,4 +13,8 @@ public class GameManager : BaseManager
         Instance = this;
     }
 
+    public void SetGameMode(GameModeCode gameMode)
+    {
+        GameMode = gameMode;
+    }
 }

@@ -3,5 +3,5 @@
 
 public class ConfigConstant
 {
-    public const string IslandMissionConfigPath = "ResConfigs/MissionConfig";
+    public const string MissionConfigPath_01 = "ResConfigs/MissionConfig_01";
 }

@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <root>
 	<item _id="">
+		<missionName></missionName>
 		<npcID></npcID>
-		<dialogArray></dialogArray>
-		<dialogAudio></dialogAudio>
+		<dialogAvaterImageArray></dialogAvaterImageArray>
+		<dialogTextArray></dialogTextArray>
+		<dialogAudioArray></dialogAudioArray>
 		<actionID></actionID>
+		<guidText></guidText>
 	</item>
 	<item _id="">
+		<missionName></missionName>
 		<npcID></npcID>
-		<dialogArray></dialogArray>
-		<dialogAudio></dialogAudio>
+		<dialogAvaterImageArray></dialogAvaterImageArray>
+		<dialogTextArray></dialogTextArray>
+		<dialogAudioArray></dialogAudioArray>
 		<actionID></actionID>
+		<guidText></guidText>
 	</item>
 </root>
