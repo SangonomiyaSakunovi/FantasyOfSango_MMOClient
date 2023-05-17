@@ -10,7 +10,7 @@ public class AStarGraphGenerator : MonoBehaviour
 {
     //Attention! In this Graph, all the grid is 10*float to use int for avoid the float.epsilon effect.
     //The list should load into Dict, that can give you O(1) speed to use AStarPathFinder.
-    //This two method must have same gridRegulation. So you also need give 10*float change the enemy and player position.
+    //This two method must have same gridRegulation. So you also need give 10*float change the enemy and playerTrans position.
 
     //Attention! Int gridLenth = 1, means the real map grid is 0.1f.
     private int GridLength = 1;

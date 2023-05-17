@@ -35,7 +35,7 @@ public class MainGameSystem : BaseSystem
             playerCube.GetComponent<MovePlayerCubeController>().SetAvaterObject(AvaterCode.SangonomiyaKokomi);
             playerCube.GetComponent<MovePlayerCubeController>().AvaterObject.SetActive(true);
             OnlineAccountCache.Instance.SetLocalAvater(AvaterCode.SangonomiyaKokomi);
-            CameraController.Instance.player = playerCube.transform;
+            CameraController.Instance.SetPlayerTrans(playerCube.transform);
             CameraController.Instance.InitCamera();
             //Load UI
             mainGameWindow.SetWindowState();
@@ -54,6 +54,10 @@ public class MainGameSystem : BaseSystem
             npcTransformArray = mainGameMap.NpcTransformArray;
             //LoadEnemy
             InitiateEnemy();
+            //LoadAvaterCamera
+            AvaterInfoSystem.Instance.SetPlayerTrans(playerCube.transform);
+            AvaterInfoSystem.Instance.SetAvaterShowCameraTrans(GameObject.FindGameObjectWithTag("AvaterShowCamera").transform);
+            AvaterInfoSystem.Instance.InitAvaterShowCamera();
         });
     }
 

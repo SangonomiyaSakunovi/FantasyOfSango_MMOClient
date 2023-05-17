@@ -111,6 +111,8 @@ public class SangoRoot : MonoBehaviour
         mainGameSystem.InitSystem();
         MissionSystem missionSystem = GetComponent<MissionSystem>();
         missionSystem.InitSystem();
+        AvaterInfoSystem avaterInfoSystem = GetComponent<AvaterInfoSystem>();
+        avaterInfoSystem.InitSystem();
     }
 
     public static void AddMessage(string message)

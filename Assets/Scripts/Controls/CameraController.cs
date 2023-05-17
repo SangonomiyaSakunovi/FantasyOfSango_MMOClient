@@ -5,8 +5,7 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    [HideInInspector]
-    public Transform player = null;
+    private Transform playerTrans;
     private Vector3 offsetPosition;
     private bool mouse1Down;
 
@@ -24,9 +23,9 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
-        if (player != null && GameManager.Instance.GameMode == GameModeCode.GamePlayMode)
+        if (playerTrans != null && GameManager.Instance.GameMode == GameModeCode.GamePlayMode)
         {
-            transform.position = offsetPosition + player.position;
+            transform.position = offsetPosition + playerTrans.position;
             SetRotate();
             SetScroll();
             SetShowCursor();
@@ -39,8 +38,8 @@ public class CameraController : MonoBehaviour
 
     public void InitCamera()
     {
-        transform.LookAt(player.position);
-        offsetPosition = transform.position - (player.position - new Vector3(0, 2, 0));
+        transform.LookAt(playerTrans.position);
+        offsetPosition = transform.position - (playerTrans.position - new Vector3(0, 2, 0));
     }
 
     private void SetShowCursor()
@@ -78,11 +77,11 @@ public class CameraController : MonoBehaviour
         }
         if (mouse1Down)
         {
-            transform.RotateAround(player.position, player.up, RotateSpeed * Input.GetAxis("Mouse X"));
+            transform.RotateAround(playerTrans.position, playerTrans.up, RotateSpeed * Input.GetAxis("Mouse X"));
 
             Vector3 originalPos = transform.position;
             Quaternion originalRotation = transform.rotation;
-            transform.RotateAround(player.position, transform.right, -RotateSpeed * Input.GetAxis("Mouse Y"));
+            transform.RotateAround(playerTrans.position, transform.right, -RotateSpeed * Input.GetAxis("Mouse Y"));
             float x = transform.eulerAngles.x;
 
             if (x < 0 || x > 80)
@@ -91,7 +90,7 @@ public class CameraController : MonoBehaviour
                 transform.rotation = originalRotation;
             }
         }
-        offsetPosition = transform.position - player.position;
+        offsetPosition = transform.position - playerTrans.position;
     }
     public void LockCursor(bool bo = true)
     {
@@ -103,5 +102,10 @@ public class CameraController : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.Confined;
         }
+    }
+
+    public void SetPlayerTrans(Transform transform)
+    {
+        playerTrans = transform;
     }
 }

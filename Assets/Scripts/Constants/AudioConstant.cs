@@ -9,7 +9,8 @@ public class AudioConstant
     public const string NormalFightBG = "Rite of Battle";    
 
     //UI
-    public const string LoginAudioUI = "SPECIAL POP 1";
-    public const string ClickButtonUI = "MENU_SOUND_1";
-    public const string DamagedAudio = "ClickSound 1";
+    public const string LoginAudioUI = "Genshin Impact [Teleport]";
+    public const string ClickButtonUI = "Genshin Impact [ItemClick]";
+    public const string DamagedAudio = "Genshin Impact [OfDrinkADreaming]";
+    public const string AttributeAudio = "Genshin Impact [CharacterAttributes]";
 }

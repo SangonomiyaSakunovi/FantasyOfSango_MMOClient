@@ -117,7 +117,7 @@ public class DynamicBone : MonoBehaviour
     public FreezeAxis m_FreezeAxis = FreezeAxis.None;
 
 #if UNITY_5_3_OR_NEWER
-    [Tooltip("Disable physics simulation automatically if character is far from camera or player.")]
+    [Tooltip("Disable physics simulation automatically if character is far from camera or playerTrans.")]
 #endif
     public bool m_DistantDisable = false;
     public Transform m_ReferenceObject = null;

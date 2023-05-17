@@ -36,9 +36,13 @@ public class MainGameWindow : BaseWindow
 
     private void Update()
     {
-        if (Input.GetButtonDown("SetMission"))
+        if (Input.GetButtonDown("OpenDialogWindow"))
         {           
             OnGetMissionButtonClick();
+        }
+        if (Input.GetButtonDown("OpenAvaterInfoWindow"))
+        {
+            AvaterInfoSystem.Instance.OpenAvaterInfoWindow();
         }
     }
 

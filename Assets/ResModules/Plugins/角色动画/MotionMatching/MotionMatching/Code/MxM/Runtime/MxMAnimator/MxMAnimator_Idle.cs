@@ -265,7 +265,7 @@ namespace MxM
             if (!m_enableIdle)
                 return false;
             
-            //If the player has no input and the current velocity is very low then transition to idle
+            //If the playerTrans has no input and the current velocity is very low then transition to idle
             if (!p_trajectoryGenerator.HasMovementInput())
             {
                 if (m_curInterpolatedPose.LocalVelocity.sqrMagnitude < 0.05f)

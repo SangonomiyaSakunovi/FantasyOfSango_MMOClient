@@ -140,7 +140,7 @@ namespace MxM
 
             if(CurrentTurnProfileId > -1) //A turn-in-place event is already playing
             {
-                //Cancel the turn-in-place immediately if the player wants to move
+                //Cancel the turn-in-place immediately if the playerTrans wants to move
                 if (m_trajectoryGenerator.InputVector.sqrMagnitude > 0.0001f) 
                 {
                     m_mxmAnimator.ForceExitEvent();
