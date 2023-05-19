@@ -67,7 +67,7 @@ namespace MxMExamples
 
             //For this particular movement control I've decided that the rotation of the capsule will always be the same as the model rotation
             //rotation is not particularly important for the controller itself so its relatively trivial. Best to keep it in line with what
-            //the playerTrans is seeing.
+            //the player is seeing.
             //m_charController.Rotate(Quaternion.AngleAxis(motion.angleDelta, Vector3.up));
 
             //transform.rotation = m_trajectoryGenerator.transform.rotation;

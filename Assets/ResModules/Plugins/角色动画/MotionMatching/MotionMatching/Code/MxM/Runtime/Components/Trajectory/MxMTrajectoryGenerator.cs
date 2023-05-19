@@ -31,7 +31,7 @@ namespace MxM
     *  
     *  The second role of this component is to predict a future trajectory based on user input. The
     *  future trajectory is also transformed by the camera rotation so the trajectory input is always
-    *  relative to the view of the playerTrans. Additionally it allows for an InputProfile to shape the
+    *  relative to the view of the player. Additionally it allows for an InputProfile to shape the
     *  trajectory so that it is Digital in nature (rather than Analog). This is important to match
     *  the viable trajectory speeds to that of viable movement speeds in the animation.
     *  
