@@ -1,5 +1,7 @@
+using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 //Developer : SangonomiyaSakunovi
@@ -38,6 +40,16 @@ public class BaseWindow : MonoBehaviour
         netService = null;
         resourceService = null;
         audioService = null;
+    }
+
+    protected T GetOrAddComponent<T>(GameObject gameObject) where T : Component
+    {
+        T t = gameObject.GetComponent<T>();
+        if (t == null)
+        {
+            t = gameObject.AddComponent<T>();
+        }
+        return t;
     }
 
     #region SetText Tools
@@ -92,6 +104,26 @@ public class BaseWindow : MonoBehaviour
         Sprite sprite = resourceService.LoadSprite(path, isCache);
         Image imageComponent = image.GetComponent<Image>();
         imageComponent.sprite = sprite;
+    }
+    #endregion
+
+    #region ClickEvents
+    protected void OnClickDown(GameObject gameObject,Action<PointerEventData> pointerEvent)
+    {
+        ClickListener clickListener = GetOrAddComponent<ClickListener>(gameObject);
+        clickListener.onClickDown = pointerEvent;
+    }
+
+    protected void OnClickUp(GameObject gameObject, Action<PointerEventData> pointerEvent)
+    {
+        ClickListener clickListener = GetOrAddComponent<ClickListener>(gameObject);
+        clickListener.onClickUp = pointerEvent;
+    }
+
+    protected void OnDrag(GameObject gameObject, Action<PointerEventData> pointerEvent)
+    {
+        ClickListener clickListener = GetOrAddComponent<ClickListener>(gameObject);
+        clickListener.onDrag = pointerEvent;
     }
     #endregion
 }

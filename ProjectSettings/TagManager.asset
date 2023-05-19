@@ -8,7 +8,7 @@ TagManager:
   - MainLight
   - Enemy
   - MapRoot
-  - AvaterShowCamera
+  - AvaterShowTablet
   layers:
   - Default
   - TransparentFX

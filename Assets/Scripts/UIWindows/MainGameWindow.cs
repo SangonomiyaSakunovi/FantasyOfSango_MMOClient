@@ -1,4 +1,3 @@
-using AmplifyShaderEditor;
 using SangoCommon.Classs;
 using TMPro;
 using UnityEngine;
@@ -37,7 +36,7 @@ public class MainGameWindow : BaseWindow
     private void Update()
     {
         if (Input.GetButtonDown("OpenDialogWindow"))
-        {           
+        {
             OnGetMissionButtonClick();
         }
         if (Input.GetButtonDown("OpenAvaterInfoWindow"))

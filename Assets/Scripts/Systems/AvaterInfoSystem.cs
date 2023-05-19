@@ -1,19 +1,19 @@
+using UnityEngine;
+
 //Developer : SangonomiyaSakunovi
 //Discription: The AvaterInfo Sytem.
-
-using UnityEngine;
 
 public class AvaterInfoSystem : BaseSystem
 {
     public AvaterInfoWindow avaterInfoWindow;
     public MainGameWindow mainGameWindow;
 
-    private Transform avaterShowCameraTrans;
-
-    private Transform playerTrans;
-    private Vector3 offsetPosition;
+    private GameObject avaterShowTablet;
+    private GameObject avaterShowCube;
 
     public static AvaterInfoSystem Instance;
+
+    private float avaterShowCubeCurrentRotation;
 
     public override void InitSystem()
     {
@@ -23,11 +23,9 @@ public class AvaterInfoSystem : BaseSystem
 
     public void OpenAvaterInfoWindow()
     {
-        audioService.PlayUIAudio(AudioConstant.AttributeAudio);        
-        avaterShowCameraTrans.position = offsetPosition + playerTrans.position;
-        avaterShowCameraTrans.LookAt(playerTrans.position);
-        avaterShowCameraTrans.gameObject.SetActive(true);
-
+        audioService.PlayUIAudio(AudioConstant.AttributeAudio);
+        ResetAvaterShowRotation();
+        avaterShowTablet.SetActive(true);
         mainGameWindow.SetWindowState(false);
         avaterInfoWindow.SetWindowState();
     }
@@ -37,21 +35,28 @@ public class AvaterInfoSystem : BaseSystem
         audioService.PlayUIAudio(AudioConstant.ClickButtonUI);
         avaterInfoWindow.SetWindowState(false);
         mainGameWindow.SetWindowState();
+        avaterShowTablet.SetActive(false);
     }
 
-    public void SetPlayerTrans(Transform transform)
+    public void InitAvaterShowTablet()
     {
-        playerTrans = transform;
+        avaterShowTablet = GameObject.FindGameObjectWithTag("AvaterShowTablet");
+        avaterShowCube = avaterShowTablet.transform.Find("PlayerCube").gameObject;
+        avaterShowTablet.SetActive(false);
     }
 
-    public void SetAvaterShowCameraTrans(Transform transform)
+    public void SetAvaterShowCubeCurrentRotation()
     {
-        avaterShowCameraTrans = transform;
+        avaterShowCubeCurrentRotation = avaterShowCube.transform.localEulerAngles.y;
     }
 
-    public void InitAvaterShowCamera()
+    public void SetAvaterShowRotation(float rotation)
     {
-        offsetPosition = playerTrans.forward * 3;
-        avaterShowCameraTrans.gameObject.SetActive(false);
+        avaterShowCube.transform.localEulerAngles = new Vector3(0, avaterShowCubeCurrentRotation + rotation, 0);
+    }
+
+    private void ResetAvaterShowRotation()
+    {
+        avaterShowCube.transform.localEulerAngles = new Vector3(0, 0, 0);
     }
 }

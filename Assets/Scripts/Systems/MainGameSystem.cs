@@ -54,10 +54,8 @@ public class MainGameSystem : BaseSystem
             npcTransformArray = mainGameMap.NpcTransformArray;
             //LoadEnemy
             InitiateEnemy();
-            //LoadAvaterCamera
-            AvaterInfoSystem.Instance.SetPlayerTrans(playerCube.transform);
-            AvaterInfoSystem.Instance.SetAvaterShowCameraTrans(GameObject.FindGameObjectWithTag("AvaterShowCamera").transform);
-            AvaterInfoSystem.Instance.InitAvaterShowCamera();
+            //InitAvaterShowTablet
+            AvaterInfoSystem.Instance.InitAvaterShowTablet();
         });
     }
 
