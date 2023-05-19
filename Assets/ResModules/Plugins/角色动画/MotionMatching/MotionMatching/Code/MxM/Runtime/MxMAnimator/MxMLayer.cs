@@ -162,7 +162,7 @@ namespace MxM
         *  @param [int] a_maxClips - the maximum number of clips that can be blended on this layer
         *  @param [ref AnimationLayerMixerPlayable] a_layerMixer - the layer mixer for the MxMLayer stack
         *  @param [AnimationClip] a_clip - the starting animation clip to use for this layer.
-        *  @param [AvatarMask] a_mask - the mask to use with this playerTrans (Default null)
+        *  @param [AvatarMask] a_mask - the mask to use with this player (Default null)
         *  @param [float] a_weight - the starting weight of this layer (Default 0)
         *  @param [bool] a_additive - whether the layer is additive or not (Default false)
         *  @param [float] a_playbackSpeed - a playback speed multiplier for the layer
@@ -218,7 +218,7 @@ namespace MxM
         *  @param [int] a_maxClips - the maximum number of clips that can be blended on this layer
         *  @param [ref PlayableGraph] a_playableGraph - the playable graph that this layer lives on
         *  @param [Playable] a_playable - the playable to use for this layer
-        *  @param [AvatarMask] a_mask - the mask to use with this playerTrans (Default null)
+        *  @param [AvatarMask] a_mask - the mask to use with this player (Default null)
         *  @param [float] a_weight - the starting weight of this layer (Default 0)
         *  @param [bool] a_additive - whether the layer is additive or not (Default false)
         *  @param [float] a_playbackSpeed - a playback speed multiplier for the layer
@@ -269,7 +269,7 @@ namespace MxM
         *  @param [int] a_maxClips - the maximum number of clips that can be blended on this layer
         *  @param [ref PlayableGraph] a_playableGraph - the playable graph that this layer lives on
         *  @param [Playable] a_playable - the playable to use for this layer
-        *  @param [AvatarMask] a_mask - the mask to use with this playerTrans (Default null)
+        *  @param [AvatarMask] a_mask - the mask to use with this player (Default null)
         *  @param [float] a_weight - the starting weight of this layer (Default 0)
         *  @param [bool] a_additive - whether the layer is additive or not (Default false)
         *  @param [float] a_playbackSpeed - a playback speed multiplier for the layer 

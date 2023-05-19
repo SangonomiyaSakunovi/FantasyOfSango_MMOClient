@@ -1639,7 +1639,7 @@ namespace MxM
         *  Firstly, if 'Transform Goal' is check in the MxManimator inspector, it will set the goal relative
         *  to the animation root (or the character). 
         *  
-        *  The second purpose, if 'Apply Trajectory Blending' is checked, to blend the goal provided by playerTrans 
+        *  The second purpose, if 'Apply Trajectory Blending' is checked, to blend the goal provided by player 
         *  input with that of the current animation with a falloff over the time horizon of the trajectory. 
         *  This allows for a much more realistic trajectory (but it can be un-responsive).
         *  
