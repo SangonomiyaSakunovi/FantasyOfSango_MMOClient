@@ -35,6 +35,12 @@ namespace MagicaCloth2
             dataLength = length;
         }
 
+        public DataChunk(int sindex)
+        {
+            startIndex = sindex;
+            dataLength = 1;
+        }
+
         public void Clear()
         {
             startIndex = 0;

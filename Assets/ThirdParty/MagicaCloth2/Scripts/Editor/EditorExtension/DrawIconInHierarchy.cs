@@ -35,6 +35,7 @@ namespace MagicaCloth2
                     || component is MagicaCapsuleCollider
                     || component is MagicaPlaneCollider
                     || component is MagicaCloth
+                    || component is MagicaWindZone
                     )
                 {
                     var icon = AssetPreview.GetMiniThumbnail(component);

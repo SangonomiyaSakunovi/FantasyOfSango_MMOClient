@@ -28,6 +28,7 @@ namespace MagicaCloth2
         public const int Flag_StepRunning = 8; // ステップ実行中
         public const int Flag_NormalAdjustment = 9; // 法線調整
         public const int Flag_Exit = 10; // 存在消滅時
+        //public const int Flag_Wind = 11; // 風の影響あり
 
         // 以下セルフコリジョン
         // !これ以降の順番を変えないこと
@@ -395,9 +396,9 @@ namespace MagicaCloth2
         public ExNativeArray<TeamData> teamDataArray;
 
         /// <summary>
-        /// 登録されているチーム数
+        /// チームごとの風の影響情報
         /// </summary>
-        public int TeamCount => teamDataArray?.Count ?? 0;
+        public ExNativeArray<TeamWindData> teamWindArray;
 
         /// <summary>
         /// マッピングメッシュデータ
@@ -483,6 +484,8 @@ namespace MagicaCloth2
         Dictionary<int, ClothProcess> clothProcessDict = new Dictionary<int, ClothProcess>();
 
         //=========================================================================================
+        bool isValid;
+
         /// <summary>
         /// グローバルタイムスケール(0.0 ~ 1.0)
         /// </summary>
@@ -493,13 +496,26 @@ namespace MagicaCloth2
         /// </summary>
         int fixedUpdateCount = 0;
 
-        bool isValid;
-
-        //=========================================================================================
         /// <summary>
         /// エッジコライダーコリジョンのエッジ数合計
         /// </summary>
         internal int edgeColliderCollisionCount;
+
+        //=========================================================================================
+        /// <summary>
+        /// 登録されているチーム数（グローバルチームを含む。そのため０にはならない）
+        /// </summary>
+        public int TeamCount => teamDataArray?.Count ?? 0;
+
+        /// <summary>
+        /// 登録されている有効なチーム数（グローバルチームを含まない）
+        /// </summary>
+        public int TrueTeamCount => clothProcessDict.Count;
+
+        /// <summary>
+        /// 実行状態にあるチーム数
+        /// </summary>
+        public int ActiveTeamCount => enableTeamSet.Count;
 
         //=========================================================================================
         public void Dispose()
@@ -507,11 +523,13 @@ namespace MagicaCloth2
             isValid = false;
 
             teamDataArray?.Dispose();
+            teamWindArray?.Dispose();
             mappingDataArray?.Dispose();
             parameterArray?.Dispose();
             centerDataArray?.Dispose();
 
             teamDataArray = null;
+            teamWindArray = null;
             mappingDataArray = null;
             parameterArray = null;
             centerDataArray = null;
@@ -540,6 +558,7 @@ namespace MagicaCloth2
 
             const int capacity = 32;
             teamDataArray = new ExNativeArray<TeamData>(capacity);
+            teamWindArray = new ExNativeArray<TeamWindData>(capacity);
             mappingDataArray = new ExNativeArray<MappingData>(capacity);
             parameterArray = new ExNativeArray<ClothParameters>(capacity);
             centerDataArray = new ExNativeArray<InertiaConstraint.CenterData>(capacity);
@@ -547,6 +566,7 @@ namespace MagicaCloth2
             // グローバルチーム[0]を追加する
             var gteam = new TeamData();
             teamDataArray.Add(gteam);
+            teamWindArray.Add(new TeamWindData());
             parameterArray.Add(new ClothParameters());
             centerDataArray.Add(new InertiaConstraint.CenterData());
 
@@ -610,6 +630,10 @@ namespace MagicaCloth2
             var c = teamDataArray.Add(team);
             int teamId = c.startIndex;
 
+            var wind = new TeamWindData();
+            wind.movingWind.time = -Define.System.WindMaxTime;
+            teamWindArray.Add(wind);
+
             // パラメータ
             parameterArray.Add(clothParams);
 
@@ -648,8 +672,9 @@ namespace MagicaCloth2
             // 制約データなど解除
 
             // チームデータを破棄する
-            var c = new DataChunk(teamId, 1);
+            var c = new DataChunk(teamId);
             teamDataArray.RemoveAndFill(c);
+            teamWindArray.RemoveAndFill(c);
             parameterArray.Remove(c);
             centerDataArray.Remove(c);
 
@@ -667,6 +692,7 @@ namespace MagicaCloth2
                 return;
             var team = teamDataArray[teamId];
             team.flag.SetBits(Flag_Enable, sw);
+            team.flag.SetBits(Flag_Reset, sw);
             teamDataArray[teamId] = team;
 
             if (sw)
@@ -903,26 +929,29 @@ namespace MagicaCloth2
                 }
             }
 
-            // フレーム更新時間
-            float deltaTime = Time.deltaTime;
-            float fixedDeltaTime = fixedUpdateCount * Time.fixedDeltaTime;
-            float unscaledDeltaTime = Time.unscaledDeltaTime;
-            //Debug.Log($"DeltaTime:{deltaTime}, FixedDeltaTime:{fixedDeltaTime}, fixedUpdateCount:{fixedUpdateCount}");
-
-            // このJobは即時実行させる
-            var job = new AlwaysTeamUpdateJob()
+            if (ActiveTeamCount > 0)
             {
-                teamCount = TeamCount,
-                frameDeltaTime = deltaTime,
-                frameFixedDeltaTime = fixedDeltaTime,
-                frameUnscaledDeltaTime = unscaledDeltaTime,
-                globalTimeScale = globalTimeScale,
+                // フレーム更新時間
+                float deltaTime = Time.deltaTime;
+                float fixedDeltaTime = fixedUpdateCount * Time.fixedDeltaTime;
+                float unscaledDeltaTime = Time.unscaledDeltaTime;
+                //Debug.Log($"DeltaTime:{deltaTime}, FixedDeltaTime:{fixedDeltaTime}, fixedUpdateCount:{fixedUpdateCount}");
 
-                maxUpdateCount = maxUpdateCount,
-                teamDataArray = teamDataArray.GetNativeArray(),
-                parameterArray = parameterArray.GetNativeArray(),
-            };
-            job.Run();
+                // このJobは即時実行させる
+                var job = new AlwaysTeamUpdateJob()
+                {
+                    teamCount = TeamCount,
+                    frameDeltaTime = deltaTime,
+                    frameFixedDeltaTime = fixedDeltaTime,
+                    frameUnscaledDeltaTime = unscaledDeltaTime,
+                    globalTimeScale = globalTimeScale,
+
+                    maxUpdateCount = maxUpdateCount,
+                    teamDataArray = teamDataArray.GetNativeArray(),
+                    parameterArray = parameterArray.GetNativeArray(),
+                };
+                job.Run();
+            }
         }
 
         [BurstCompile]
@@ -955,6 +984,7 @@ namespace MagicaCloth2
                     if (tdata.IsProcess == false)
                         continue;
 
+                    var param = parameterArray[teamId];
 
                     //Debug.Log($"Team Enable:{i}");
 
@@ -962,7 +992,6 @@ namespace MagicaCloth2
                     if (tdata.flag.IsSet(Flag_TimeReset))
                     {
                         //Debug.Log($"Team time Reset:{i}");
-                        var param = parameterArray[teamId];
 
                         tdata.time = 0;
                         tdata.oldTime = 0;
@@ -970,6 +999,10 @@ namespace MagicaCloth2
                         tdata.oldUpdateTime = 0;
                         tdata.frameUpdateTime = 0;
                         tdata.frameOldTime = 0;
+                    }
+                    if (tdata.flag.IsSet(Flag_Reset) || tdata.flag.IsSet(Flag_TimeReset))
+                    {
+                        // 速度安定化
                         tdata.velocityWeight = param.stablizationTimeAfterReset > 1e-06f ? 0.0f : 1.0f;
                         tdata.blendWeight = tdata.velocityWeight;
                     }
@@ -1029,9 +1062,7 @@ namespace MagicaCloth2
                     // 全体の最大実行回数
                     maxCount = math.max(maxCount, tdata.updateCount);
 
-                    //int mode = (int)tdata.updateMode;
-                    //Debug.Log($"[{i}] updateCount:{tdata.updateCount}, addtime:{addTime}, mode:{mode}");
-                    //Debug.Log($"[{i}] updateCount:{tdata.updateCount}, addtime:{addTime}, t.time:{tdata.time}, t.oldtime:{tdata.oldTime}");
+                    //Debug.Log($"[{teamId}] updateCount:{tdata.updateCount}, addtime:{addTime}, t.time:{tdata.time}, t.oldtime:{tdata.oldTime}");
                 }
 
                 maxUpdateCount.Value = maxCount;
@@ -1059,18 +1090,22 @@ namespace MagicaCloth2
         //=========================================================================================
         /// <summary>
         /// チームごとのセンター姿勢の決定と慣性用の移動量計算
+        /// および風の影響を計算
         /// </summary>
         /// <param name="jobHandle"></param>
         /// <returns></returns>
-        internal JobHandle CalcCenterAndInertia(JobHandle jobHandle)
+        internal JobHandle CalcCenterAndInertiaAndWind(JobHandle jobHandle)
         {
             var bm = MagicaManager.Bone;
             var vm = MagicaManager.VMesh;
+            var wm = MagicaManager.Wind;
 
-            var job = new CalcCenterAndInertiaJob()
+            var job = new CalcCenterAndInertiaAndWindJob()
             {
                 teamDataArray = teamDataArray.GetNativeArray(),
                 centerDataArray = MagicaManager.Team.centerDataArray.GetNativeArray(),
+                teamWindArray = teamWindArray.GetNativeArray(),
+                parameterArray = parameterArray.GetNativeArray(),
 
                 positions = vm.positions.GetNativeArray(),
                 rotations = vm.rotations.GetNativeArray(),
@@ -1082,6 +1117,8 @@ namespace MagicaCloth2
                 transformRotationArray = bm.rotationArray.GetNativeArray(),
                 transformScaleArray = bm.scaleArray.GetNativeArray(),
 
+                windZoneCount = wm.WindCount,
+                windDataArray = wm.windDataArray.GetNativeArray(),
             };
             jobHandle = job.Schedule(TeamCount, 1, jobHandle);
 
@@ -1089,11 +1126,14 @@ namespace MagicaCloth2
         }
 
         [BurstCompile]
-        struct CalcCenterAndInertiaJob : IJobParallelFor
+        struct CalcCenterAndInertiaAndWindJob : IJobParallelFor
         {
             // team
             public NativeArray<TeamData> teamDataArray;
             public NativeArray<InertiaConstraint.CenterData> centerDataArray;
+            public NativeArray<TeamWindData> teamWindArray;
+            [Unity.Collections.ReadOnly]
+            public NativeArray<ClothParameters> parameterArray;
 
             // vmesh
             [Unity.Collections.ReadOnly]
@@ -1115,6 +1155,11 @@ namespace MagicaCloth2
             [Unity.Collections.ReadOnly]
             public NativeArray<float3> transformScaleArray;
 
+            // wind
+            public int windZoneCount;
+            [Unity.Collections.ReadOnly]
+            public NativeArray<WindManager.WindData> windDataArray;
+
             // チームごと
             public void Execute(int teamId)
             {
@@ -1123,6 +1168,8 @@ namespace MagicaCloth2
                 var tdata = teamDataArray[teamId];
                 if (tdata.IsProcess == false)
                     return;
+
+                var param = parameterArray[teamId];
 
                 // ■センター
                 var cdata = centerDataArray[teamId];
@@ -1204,8 +1251,126 @@ namespace MagicaCloth2
                 cdata.frameVector = frameVector;
                 cdata.frameRotation = frameRotation;
 
+                // 風の影響を計算
+                Wind(teamId, param, centerWorldPos);
+
                 centerDataArray[teamId] = cdata;
                 teamDataArray[teamId] = tdata;
+            }
+
+            /// <summary>
+            /// チームが受ける風ゾーンのリストを作成する
+            /// ゾーンが追加タイプでない場合はチームが接触する最も体積が小さいゾーンが１つ有効になる。
+            /// ゾーンが追加タイプの場合は最大３つまでが有効になる。
+            /// </summary>
+            /// <param name="teamId"></param>
+            /// <param name="param"></param>
+            /// <param name="centerWorldPos"></param>
+            void Wind(int teamId, in ClothParameters param, in float3 centerWorldPos)
+            {
+                var oldTeamWindData = teamWindArray[teamId];
+                var newTeamWindData = new TeamWindData();
+                if (windZoneCount > 0 && param.wind.IsValid())
+                {
+                    float minVolume = float.MaxValue;
+                    int addWindCount = 0;
+                    int latestWindId = -1;
+
+                    for (int windId = 0; windId < windZoneCount; windId++)
+                    {
+                        var wdata = windDataArray[windId];
+                        if (wdata.IsValid() == false || wdata.IsEnable() == false)
+                            continue;
+
+                        // チームが風エリアに入っているか判定する
+                        // 加算風は最大３つまで
+                        bool isAdditin = wdata.IsAddition();
+                        if (isAdditin && addWindCount >= 3)
+                            continue;
+
+                        // 風ゾーンのローカル位置
+                        float3 lpos = math.transform(wdata.worldToLocalMatrix, centerWorldPos);
+                        float llen = math.length(lpos);
+
+                        // エリア判定
+                        switch (wdata.mode)
+                        {
+                            case MagicaWindZone.Mode.BoxDirection:
+                                var lv = math.abs(lpos) * 2;
+                                if (lv.x > wdata.size.x || lv.y > wdata.size.y || lv.z > wdata.size.z)
+                                    continue;
+                                break;
+                            case MagicaWindZone.Mode.SphereDirection:
+                            case MagicaWindZone.Mode.SphereRadial:
+                                if (llen > wdata.size.x)
+                                    continue;
+                                break;
+                        }
+
+                        // エリア風の場合はボリューム判定（体積が小さいものが優先）
+                        if (isAdditin == false && wdata.zoneVolume > minVolume)
+                            continue;
+
+                        // 風の方向(world)
+                        float3 mainDirection = wdata.worldWindDirection;
+                        switch (wdata.mode)
+                        {
+                            case MagicaWindZone.Mode.SphereRadial:
+                                if (llen <= 1e-06f)
+                                    continue;
+                                var v = centerWorldPos - wdata.worldPositin;
+                                mainDirection = math.normalize(v);
+                                break;
+                        }
+                        //Debug.Log($"wdir:{mainDirection}");
+
+                        // 風力
+                        float windMain = wdata.main;
+                        switch (wdata.mode)
+                        {
+                            case MagicaWindZone.Mode.SphereRadial:
+                                // 減衰
+                                if (llen <= 1e-06f)
+                                    continue;
+                                float depth = math.saturate(llen / wdata.size.x);
+                                float attenuation = wdata.attenuation.EvaluateCurveClamp01(depth);
+                                windMain *= attenuation;
+                                break;
+                        }
+                        if (windMain < 0.01f)
+                            continue;
+
+                        // 計算する風として登録する
+                        var windInfo = new TeamWindInfo()
+                        {
+                            windId = windId,
+                            time = -Define.System.WindMaxTime, // マイナス値からスタート
+                            main = windMain,
+                            direction = mainDirection
+                        };
+                        if (isAdditin)
+                        {
+                            newTeamWindData.AddOrReplaceWindZone(windInfo, oldTeamWindData);
+                            addWindCount++;
+                        }
+                        else
+                        {
+                            newTeamWindData.RemoveWindZone(latestWindId);
+                            newTeamWindData.AddOrReplaceWindZone(windInfo, oldTeamWindData);
+                            minVolume = wdata.zoneVolume;
+                            latestWindId = windId;
+                        }
+                    }
+                }
+
+                // 移動風移植
+                newTeamWindData.movingWind = oldTeamWindData.movingWind;
+                teamWindArray[teamId] = newTeamWindData;
+
+                // debug
+                //newTeamWindData.DebugLog(teamId);
+
+                //Debug.Log($"[{teamId}] wind:{tdata.flag.IsSet(Flag_Wind)}, windCnt:{windInfo.windCount}, zone:{windInfo.windIdList}, dir:{windInfo.windDirectionList.c0},{windInfo.windDirectionList.c1},{windInfo.windDirectionList.c2},{windInfo.windDirectionList.c3}, main:{windInfo.windMainList}");
             }
         }
 
@@ -1225,6 +1390,7 @@ namespace MagicaCloth2
                 teamDataArray = teamDataArray.GetNativeArray(),
                 parameterArray = parameterArray.GetNativeArray(),
                 centerDataArray = centerDataArray.GetNativeArray(),
+                teamWindArray = teamWindArray.GetNativeArray(),
             };
             jobHandle = job.Schedule(TeamCount, 1, jobHandle);
 
@@ -1241,6 +1407,7 @@ namespace MagicaCloth2
             [Unity.Collections.ReadOnly]
             public NativeArray<ClothParameters> parameterArray;
             public NativeArray<InertiaConstraint.CenterData> centerDataArray;
+            public NativeArray<TeamWindData> teamWindArray;
 
             // チームごと
             public void Execute(int teamId)
@@ -1324,6 +1491,13 @@ namespace MagicaCloth2
                 cdata.inertiaRotation = math.slerp(quaternion.identity, cdata.stepRotation, rotationInertiaRatio);
                 //Debug.Log($"Team[{teamId}] stepSpeed:{stepSpeed}, moveInertiaRatio:{moveInertiaRatio}, inertiaVector:{cdata.inertiaVector}, rotationInertiaRatio:{rotationInertiaRatio}");
 
+                // 慣性削減後の移動速度と方向
+                var stepMovingVector = cdata.stepVector - cdata.inertiaVector;
+                var stepMovingLength = math.length(stepMovingVector);
+                cdata.stepMovingSpeed = stepMovingLength / tdata.SimulationDeltaTime;
+                cdata.stepMovingDirection = stepMovingLength > 1e-06f ? stepMovingVector / stepMovingLength : 0;
+                //Debug.Log($"Team[{teamId}] stepMovingSpeed:{cdata.stepMovingSpeed}, stepMovingDirection:{cdata.stepMovingDirection}");
+
                 // ■遠心力用パラメータ算出
                 // 今回ステップでの回転速度と回転軸
                 cdata.angularVelocity = stepAngle / tdata.SimulationDeltaTime; // 回転速度(rad/s)
@@ -1376,10 +1550,64 @@ namespace MagicaCloth2
                 tdata.blendWeight = math.saturate(tdata.velocityWeight * param.blendWeight);
                 //Debug.Log($"{tdata.blendWeight}");
 
+                // 風の時間更新
+                UpdateWind(teamId, tdata, param.wind, cdata);
+
                 // データ格納
                 teamDataArray[teamId] = tdata;
                 centerDataArray[teamId] = cdata;
                 //Debug.Log($"[{updateIndex}/{updateCount}] frameRatio:{data.frameInterpolation}, inertiaPosition:{idata.inertiaPosition}");
+            }
+
+            // 各風ゾーンの時間更新
+            void UpdateWind(int teamId, in TeamData tdata, in WindParams windParams, in InertiaConstraint.CenterData cdata)
+            {
+                if (windParams.IsValid() == false)
+                    return;
+
+                var teamWindData = teamWindArray[teamId];
+
+                // ゾーン風
+                int cnt = teamWindData.ZoneCount;
+                for (int i = 0; i < cnt; i++)
+                {
+                    var windInfo = teamWindData.windZoneList[i];
+                    UpdateWindTime(ref windInfo, windParams.frequency, tdata.SimulationDeltaTime);
+                    teamWindData.windZoneList[i] = windInfo;
+                }
+
+                // 移動風
+                var movingWindInfo = teamWindData.movingWind;
+                movingWindInfo.main = 0;
+                if (windParams.movingWind > 0.01f)
+                {
+                    movingWindInfo.main = cdata.stepMovingSpeed * windParams.movingWind;
+                    movingWindInfo.direction = -cdata.stepMovingDirection;
+                    UpdateWindTime(ref movingWindInfo, windParams.frequency, tdata.SimulationDeltaTime);
+                }
+                teamWindData.movingWind = movingWindInfo;
+
+                // 格納
+                teamWindArray[teamId] = teamWindData;
+            }
+
+            void UpdateWindTime(ref TeamWindInfo windInfo, float frequency, float simulationDeltaTime)
+            {
+                // 風速係数
+                float mainRatio = windInfo.main / Define.System.WindBaseSpeed; // 0.0 ~ 
+
+                // 基本周期
+                float freq = 0.2f + mainRatio * 0.5f;
+                freq *= frequency; // 0.0 ~ 2.0f;
+                freq = math.min(freq, 1.5f); // max 1.5
+                freq *= simulationDeltaTime;
+
+                // 時間加算
+                windInfo.time = windInfo.time + freq;
+
+                // timeオーバーフロー対策
+                if (windInfo.time > Define.System.WindMaxTime) // 約6時間
+                    windInfo.time -= Define.System.WindMaxTime * 2; // マイナス側から再スタート
             }
         }
 
@@ -1432,7 +1660,7 @@ namespace MagicaCloth2
                 tdata.flag.SetBits(Flag_StepRunning, false);
 
                 // 時間調整（floatの精度問題への対処）
-                const float limitTime = 30.0f;
+                const float limitTime = 86400.0f; // 30.0
                 if (tdata.time > limitTime * 2)
                 {
                     tdata.time -= limitTime;

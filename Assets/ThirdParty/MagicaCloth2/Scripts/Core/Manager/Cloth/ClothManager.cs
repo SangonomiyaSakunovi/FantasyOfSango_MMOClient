@@ -114,9 +114,12 @@ namespace MagicaCloth2
         /// </summary>
         void TransformRestoreUpdate()
         {
-            ClearMasterJob();
-            masterJob = MagicaManager.Bone.RestoreTransform(masterJob);
-            CompleteMasterJob();
+            if (MagicaManager.Team.ActiveTeamCount > 0)
+            {
+                ClearMasterJob();
+                masterJob = MagicaManager.Bone.RestoreTransform(masterJob);
+                CompleteMasterJob();
+            }
         }
 
 
@@ -130,28 +133,40 @@ namespace MagicaCloth2
                 return;
 
             //-----------------------------------------------------------------
+            // シミュレーション開始イベント
+            MagicaManager.OnPreSimulation?.Invoke();
+
+            //-----------------------------------------------------------------
             var tm = MagicaManager.Team;
             var vm = MagicaManager.VMesh;
             var sm = MagicaManager.Simulation;
             var bm = MagicaManager.Bone;
+            var wm = MagicaManager.Wind;
 
             //Debug.Log($"afterLateUpdateDelegate. F:{Time.frameCount}");
             //Develop.DebugLog($"StartClothUpdate. F:{Time.frameCount}, dtime:{Time.deltaTime}, stime:{Time.smoothDeltaTime}");
 
-            // マスタージョブ初期化
-            ClearMasterJob();
-
             //-----------------------------------------------------------------
             // ■常に実行するチーム更新
             tm.AlwaysTeamUpdate();
+
+            // ■ここで実行チーム数が０ならば終了
+            if (tm.ActiveTeamCount == 0)
+                return;
+
             int maxUpdateCount = tm.maxUpdateCount.Value;
             //Debug.Log($"maxUpdateCount:{maxUpdateCount}");
 
-            //-----------------------------------------------------------------
+            // ■常に実行する風ゾーン更新
+            wm.AlwaysWindUpdate();
+
             // ■作業バッファ更新
             sm.WorkBufferUpdate();
 
             //-----------------------------------------------------------------
+            // マスタージョブ初期化
+            ClearMasterJob();
+
             // ■トランスフォーム情報の読み込み
             masterJob = bm.ReadTransform(masterJob);
 
@@ -160,7 +175,7 @@ namespace MagicaCloth2
 
             //-----------------------------------------------------------------
             // チームのセンター姿勢の決定と慣性用の移動量計算
-            masterJob = tm.CalcCenterAndInertia(masterJob);
+            masterJob = tm.CalcCenterAndInertiaAndWind(masterJob);
 
             // パーティクルリセットの適用
             masterJob = sm.PreSimulationUpdate(masterJob);
@@ -192,6 +207,7 @@ namespace MagicaCloth2
             if (mappingCount > 0)
             {
                 // マッピングメッシュ頂点姿勢をプロキシメッシュからスキニングし求める
+                // マッピングメッシュのローカル空間に座標変換する
                 masterJob = vm.PostMappingMeshUpdate(masterJob);
 
                 // レンダーデータへ反映する
@@ -231,11 +247,7 @@ namespace MagicaCloth2
 
             //-----------------------------------------------------------------
             // ジョブを即実行
-            JobHandle.ScheduleBatchedJobs();
-
-            //-----------------------------------------------------------------
-            // シミュレーション開始イベント
-            MagicaManager.OnPreSimulation?.Invoke();
+            //JobHandle.ScheduleBatchedJobs();
 
             //-----------------------------------------------------------------
             // ■現在は即時実行のためここでジョブの完了待ちを行う

@@ -14,6 +14,9 @@ namespace MagicaCloth2
     /// 頂点の属性情報(移動/固定/無効)データ
     /// このデータはシリアライズされる
     /// 座標はクロスコンポーネントのローカル空間で格納される
+    /// Vertex attribute information (move/fix/disable) data.
+    /// This data is serialized.
+    /// Coordinates are stored in the cloth component's local space.
     /// </summary>
     [System.Serializable]
     public class SelectionData : IValid
@@ -21,22 +24,28 @@ namespace MagicaCloth2
         /// <summary>
         /// 属性のローカル座標
         /// これはクロスコンポーネント空間
+        /// Attribute local coordinates.
+        /// This is the cloth component space.
         /// </summary>
         public float3[] positions;
 
         /// <summary>
         /// 上記の属性値
         /// サイズはpositionsと同じでなくてはならない
+        /// Attribute value above.
+        /// size must be the same as positions.
         /// </summary>
         public VertexAttribute[] attributes;
 
         /// <summary>
         /// セレクションデータ構築時のVirtualMeshの最大頂点接続距離
+        /// Maximum vertex connection distance of VirtualMesh when constructing selection data.
         /// </summary>
         public float maxConnectionDistance;
 
         /// <summary>
         /// ユーザーが編集したデータかどうか
+        /// Is the data edited by the user?
         /// </summary>
         public bool userEdit = false;
 

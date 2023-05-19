@@ -11,5 +11,13 @@ namespace MagicaCloth2
     /// </summary>
     public abstract class ClothBehaviour : MonoBehaviour
     {
+        /// <summary>
+        /// Hash code for checking changes when editing.
+        /// </summary>
+        /// <returns></returns>
+        public virtual int GetMagicaHashCode()
+        {
+            return 0;
+        }
     }
 }

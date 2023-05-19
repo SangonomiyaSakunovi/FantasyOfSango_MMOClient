@@ -55,6 +55,7 @@ MonoBehaviour:
     connectionMode: 0
     rotationalInterpolation: 1
     rootRotation: 0.5
+    updateMode: 0
     animationPoseRatio: 0
     reductionSetting:
       simpleDistance: 0
@@ -72,6 +73,7 @@ MonoBehaviour:
       y: -1
       z: 0
     gravityFalloff: 0
+    stablizationTimeAfterReset: 0.1
     damping:
       value: 0.1
       useCurve: 0
@@ -327,6 +329,15 @@ MonoBehaviour:
           m_RotationOrder: 4
       syncMode: 0
       syncPartner: {fileID: 0}
+      clothMass: 0
+    wind:
+      influence: 1
+      frequency: 0.661
+      turbulence: 1.111
+      blend: 0.502
+      synchronization: 0.7
+      depthWeight: 0
+      movingWind: 0
   serializeData2:
     selectionData:
       positions:
@@ -490,6 +501,7 @@ MonoBehaviour:
     connectionMode: 0
     rotationalInterpolation: 1
     rootRotation: 1
+    updateMode: 0
     animationPoseRatio: 0
     reductionSetting:
       simpleDistance: 0
@@ -507,6 +519,7 @@ MonoBehaviour:
       y: -1
       z: 0
     gravityFalloff: 0
+    stablizationTimeAfterReset: 0.1
     damping:
       value: 0.1
       useCurve: 0
@@ -762,6 +775,15 @@ MonoBehaviour:
           m_RotationOrder: 4
       syncMode: 0
       syncPartner: {fileID: 0}
+      clothMass: 0
+    wind:
+      influence: 1
+      frequency: 1.346
+      turbulence: 1
+      blend: 0.505
+      synchronization: 0.7
+      depthWeight: 0
+      movingWind: 0
   serializeData2:
     selectionData:
       positions:
@@ -935,8 +957,9 @@ MonoBehaviour:
     - {fileID: 5102316048750115861}
     - {fileID: 5102316049532742716}
     connectionMode: 0
-    rotationalInterpolation: 0.5
-    rootRotation: 0.5
+    rotationalInterpolation: 1
+    rootRotation: 1
+    updateMode: 0
     animationPoseRatio: 0
     reductionSetting:
       simpleDistance: 0
@@ -954,6 +977,7 @@ MonoBehaviour:
       y: -1
       z: 0
     gravityFalloff: 0
+    stablizationTimeAfterReset: 0.1
     damping:
       value: 0.1
       useCurve: 0
@@ -1114,7 +1138,7 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
-      stiffness: 1
+      stiffness: 0.199
     motionConstraint:
       useMaxDistance: 0
       maxDistance:
@@ -1209,6 +1233,15 @@ MonoBehaviour:
           m_RotationOrder: 4
       syncMode: 0
       syncPartner: {fileID: 0}
+      clothMass: 0
+    wind:
+      influence: 1
+      frequency: 1.326
+      turbulence: 1
+      blend: 0.724
+      synchronization: 0.7
+      depthWeight: 0
+      movingWind: 0
   serializeData2:
     selectionData:
       positions:
@@ -1419,6 +1452,7 @@ MonoBehaviour:
     connectionMode: 0
     rotationalInterpolation: 0.5
     rootRotation: 0.5
+    updateMode: 0
     animationPoseRatio: 0
     reductionSetting:
       simpleDistance: 0.0699
@@ -1436,6 +1470,7 @@ MonoBehaviour:
       y: -1
       z: 0
     gravityFalloff: 0
+    stablizationTimeAfterReset: 0.1
     damping:
       value: 0.06
       useCurve: 0
@@ -1577,26 +1612,26 @@ MonoBehaviour:
           m_Curve:
           - serializedVersion: 3
             time: 0
-            value: 0.2
-            inSlope: 0
-            outSlope: 0.8
+            value: 0.0647461
+            inSlope: 1.845832
+            outSlope: 1.845832
             tangentMode: 0
             weightedMode: 0
             inWeight: 0
-            outWeight: 0
+            outWeight: 0.04982915
           - serializedVersion: 3
             time: 1
             value: 1
-            inSlope: 0.8
-            outSlope: 0
+            inSlope: 0.23128739
+            outSlope: 0.23128739
             tangentMode: 0
             weightedMode: 0
-            inWeight: 0
+            inWeight: 0.085991025
             outWeight: 0
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
-      stiffness: 0.5
+      stiffness: 0.811
     motionConstraint:
       useMaxDistance: 0
       maxDistance:
@@ -1626,23 +1661,23 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
-      useBackstop: 0
+      useBackstop: 1
       backstopRadius: 10
       backstopDistance:
-        value: 0
-        useCurve: 0
+        value: 0.1
+        useCurve: 1
         curve:
           serializedVersion: 2
           m_Curve:
           - serializedVersion: 3
             time: 0
-            value: 1
-            inSlope: 0
-            outSlope: 0
+            value: 0.11694336
+            inSlope: 1.5673699
+            outSlope: 1.5673699
             tangentMode: 0
             weightedMode: 0
             inWeight: 0
-            outWeight: 0
+            outWeight: 0.05837129
           - serializedVersion: 3
             time: 1
             value: 1
@@ -1655,7 +1690,7 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
-      stiffness: 1
+      stiffness: 0.502
     colliderCollisionConstraint:
       mode: 1
       friction: 0.05
@@ -1664,6 +1699,8 @@ MonoBehaviour:
       - {fileID: 708306342}
       - {fileID: 1154845053}
       - {fileID: 1165620513}
+      - {fileID: 1199536172}
+      - {fileID: 1826467132}
     selfCollisionConstraint:
       selfMode: 0
       surfaceThickness:
@@ -1695,6 +1732,15 @@ MonoBehaviour:
           m_RotationOrder: 4
       syncMode: 0
       syncPartner: {fileID: 0}
+      clothMass: 0.5
+    wind:
+      influence: 1
+      frequency: 1
+      turbulence: 1
+      blend: 0.7
+      synchronization: 0.7
+      depthWeight: 0.834
+      movingWind: 0
   serializeData2:
     selectionData:
       positions:
@@ -2366,6 +2412,7 @@ MonoBehaviour:
     connectionMode: 1
     rotationalInterpolation: 0.5
     rootRotation: 0.5
+    updateMode: 0
     animationPoseRatio: 0
     reductionSetting:
       simpleDistance: 0
@@ -2383,6 +2430,7 @@ MonoBehaviour:
       y: -1
       z: 0
     gravityFalloff: 0
+    stablizationTimeAfterReset: 0.1
     damping:
       value: 0.1
       useCurve: 0
@@ -2638,6 +2686,15 @@ MonoBehaviour:
           m_RotationOrder: 4
       syncMode: 2
       syncPartner: {fileID: 404118675}
+      clothMass: 0
+    wind:
+      influence: 0.6
+      frequency: 1
+      turbulence: 1
+      blend: 0.643
+      synchronization: 0.7
+      depthWeight: 0
+      movingWind: 0
   serializeData2:
     selectionData:
       positions:
@@ -2737,6 +2794,7 @@ MonoBehaviour:
     connectionMode: 0
     rotationalInterpolation: 0.5
     rootRotation: 0.5
+    updateMode: 0
     animationPoseRatio: 0
     reductionSetting:
       simpleDistance: 0.0414
@@ -2754,6 +2812,7 @@ MonoBehaviour:
       y: -1
       z: 0
     gravityFalloff: 0
+    stablizationTimeAfterReset: 0.1
     damping:
       value: 0.1
       useCurve: 0
@@ -2886,7 +2945,7 @@ MonoBehaviour:
       velocityAttenuation: 0.7
       gravityFalloff: 0
     angleLimitConstraint:
-      useAngleLimit: 0
+      useAngleLimit: 1
       limitAngle:
         value: 45
         useCurve: 1
@@ -2918,20 +2977,20 @@ MonoBehaviour:
     motionConstraint:
       useMaxDistance: 0
       maxDistance:
-        value: 0.3
-        useCurve: 0
+        value: 0.4
+        useCurve: 1
         curve:
           serializedVersion: 2
           m_Curve:
           - serializedVersion: 3
             time: 0
-            value: 1
-            inSlope: 0
-            outSlope: 0
+            value: 0
+            inSlope: 1.9208069
+            outSlope: 1.9208069
             tangentMode: 0
             weightedMode: 0
             inWeight: 0
-            outWeight: 0
+            outWeight: 0.04555808
           - serializedVersion: 3
             time: 1
             value: 1
@@ -2979,18 +3038,18 @@ MonoBehaviour:
       friction: 0.05
       colliderList: []
     selfCollisionConstraint:
-      selfMode: 2
+      selfMode: 0
       surfaceThickness:
-        value: 0.006
+        value: 0.01
         useCurve: 1
         curve:
           serializedVersion: 2
           m_Curve:
           - serializedVersion: 3
             time: 0
-            value: 0.5
+            value: 0.39657593
             inSlope: 0
-            outSlope: 0.5
+            outSlope: 0
             tangentMode: 0
             weightedMode: 0
             inWeight: 0
@@ -2999,7 +3058,7 @@ MonoBehaviour:
             time: 1
             value: 1
             inSlope: 0.5
-            outSlope: 0
+            outSlope: 0.5
             tangentMode: 0
             weightedMode: 0
             inWeight: 0
@@ -3009,6 +3068,15 @@ MonoBehaviour:
           m_RotationOrder: 4
       syncMode: 2
       syncPartner: {fileID: 404118675}
+      clothMass: 0
+    wind:
+      influence: 1
+      frequency: 1
+      turbulence: 1
+      blend: 0.818
+      synchronization: 0.7
+      depthWeight: 0.455
+      movingWind: 0
   serializeData2:
     selectionData:
       positions:
@@ -3534,7 +3602,7 @@ MonoBehaviour:
       ztest: 0
       position: 1
       axis: 0
-      shape: 0
+      shape: 1
       baseLine: 0
       depth: 0
       collider: 1
@@ -3642,8 +3710,9 @@ MonoBehaviour:
     - {fileID: 5102316048700657304}
     - {fileID: 5102316049181322265}
     connectionMode: 0
-    rotationalInterpolation: 0.5
-    rootRotation: 0.5
+    rotationalInterpolation: 1
+    rootRotation: 1
+    updateMode: 0
     animationPoseRatio: 0
     reductionSetting:
       simpleDistance: 0
@@ -3661,6 +3730,7 @@ MonoBehaviour:
       y: -1
       z: 0
     gravityFalloff: 0
+    stablizationTimeAfterReset: 0.1
     damping:
       value: 0.1
       useCurve: 0
@@ -3821,7 +3891,7 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
-      stiffness: 1
+      stiffness: 0.186
     motionConstraint:
       useMaxDistance: 0
       maxDistance:
@@ -3916,6 +3986,15 @@ MonoBehaviour:
           m_RotationOrder: 4
       syncMode: 0
       syncPartner: {fileID: 0}
+      clothMass: 0
+    wind:
+      influence: 1
+      frequency: 1.148
+      turbulence: 1
+      blend: 0.737
+      synchronization: 0.7
+      depthWeight: 0
+      movingWind: 0
   serializeData2:
     selectionData:
       positions:
@@ -4097,6 +4176,52 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   center: {x: 0, y: 0, z: 0}
   size: {x: 0.091, y: 0.1, z: 0.1}
+--- !u!1 &1199536170
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1199536171}
+  - component: {fileID: 1199536172}
+  m_Layer: 0
+  m_Name: Magica Sphere Collider (CH_Hips)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1199536171
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1199536170}
+  m_LocalRotation: {x: 0.013204711, y: 5.1564386e-12, z: -0.0000000083063645, w: 0.99991286}
+  m_LocalPosition: {x: 0, y: 0.14742807, z: 0.0068412386}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5102316049798164432}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1199536172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1199536170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2b68b2c7953ebb479b78627f19a6ccb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  center: {x: 0, y: 0, z: 0}
+  size: {x: 0.08, y: 0.1, z: 0.1}
 --- !u!1 &1275891364
 GameObject:
   m_ObjectHideFlags: 0
@@ -4151,6 +4276,7 @@ MonoBehaviour:
     connectionMode: 0
     rotationalInterpolation: 1
     rootRotation: 1
+    updateMode: 0
     animationPoseRatio: 0
     reductionSetting:
       simpleDistance: 0
@@ -4168,6 +4294,7 @@ MonoBehaviour:
       y: -1
       z: 0
     gravityFalloff: 0
+    stablizationTimeAfterReset: 0.1
     damping:
       value: 0.1
       useCurve: 0
@@ -4423,6 +4550,15 @@ MonoBehaviour:
           m_RotationOrder: 4
       syncMode: 0
       syncPartner: {fileID: 0}
+      clothMass: 0
+    wind:
+      influence: 1
+      frequency: 1.332
+      turbulence: 1
+      blend: 0.518
+      synchronization: 0.7
+      depthWeight: 0
+      movingWind: 0
   serializeData2:
     selectionData:
       positions:
@@ -4606,6 +4742,7 @@ MonoBehaviour:
     connectionMode: 0
     rotationalInterpolation: 0.5
     rootRotation: 0.5
+    updateMode: 0
     animationPoseRatio: 0
     reductionSetting:
       simpleDistance: 0
@@ -4623,6 +4760,7 @@ MonoBehaviour:
       y: -1
       z: 0
     gravityFalloff: 0
+    stablizationTimeAfterReset: 0.1
     damping:
       value: 0.1
       useCurve: 0
@@ -4878,6 +5016,15 @@ MonoBehaviour:
           m_RotationOrder: 4
       syncMode: 0
       syncPartner: {fileID: 0}
+      clothMass: 0
+    wind:
+      influence: 1
+      frequency: 1
+      turbulence: 1
+      blend: 0.59
+      synchronization: 0.922
+      depthWeight: 0
+      movingWind: 0
   serializeData2:
     selectionData:
       positions:
@@ -5063,6 +5210,7 @@ MonoBehaviour:
     connectionMode: 0
     rotationalInterpolation: 1
     rootRotation: 1
+    updateMode: 0
     animationPoseRatio: 0
     reductionSetting:
       simpleDistance: 0
@@ -5080,6 +5228,7 @@ MonoBehaviour:
       y: -1
       z: 0
     gravityFalloff: 0
+    stablizationTimeAfterReset: 0.1
     damping:
       value: 0.1
       useCurve: 0
@@ -5335,6 +5484,15 @@ MonoBehaviour:
           m_RotationOrder: 4
       syncMode: 0
       syncPartner: {fileID: 0}
+      clothMass: 0
+    wind:
+      influence: 1
+      frequency: 1.352
+      turbulence: 1
+      blend: 0.512
+      synchronization: 0.7
+      depthWeight: 0
+      movingWind: 0
   serializeData2:
     selectionData:
       positions:
@@ -5469,6 +5627,7 @@ MonoBehaviour:
     connectionMode: 0
     rotationalInterpolation: 1
     rootRotation: 1
+    updateMode: 0
     animationPoseRatio: 0
     reductionSetting:
       simpleDistance: 0
@@ -5486,6 +5645,7 @@ MonoBehaviour:
       y: -1
       z: 0
     gravityFalloff: 0
+    stablizationTimeAfterReset: 0.1
     damping:
       value: 0.1
       useCurve: 0
@@ -5741,6 +5901,15 @@ MonoBehaviour:
           m_RotationOrder: 4
       syncMode: 0
       syncPartner: {fileID: 0}
+      clothMass: 0
+    wind:
+      influence: 1
+      frequency: 1
+      turbulence: 1
+      blend: 0.643
+      synchronization: 0.7
+      depthWeight: 0
+      movingWind: 0
   serializeData2:
     selectionData:
       positions:
@@ -5826,6 +5995,7 @@ MonoBehaviour:
     connectionMode: 0
     rotationalInterpolation: 1
     rootRotation: 1
+    updateMode: 0
     animationPoseRatio: 0
     reductionSetting:
       simpleDistance: 0
@@ -5843,6 +6013,7 @@ MonoBehaviour:
       y: -1
       z: 0
     gravityFalloff: 0
+    stablizationTimeAfterReset: 0.1
     damping:
       value: 0.1
       useCurve: 0
@@ -6098,6 +6269,15 @@ MonoBehaviour:
           m_RotationOrder: 4
       syncMode: 0
       syncPartner: {fileID: 0}
+      clothMass: 0
+    wind:
+      influence: 1
+      frequency: 1.366
+      turbulence: 1
+      blend: 0.504
+      synchronization: 0.7
+      depthWeight: 0
+      movingWind: 0
   serializeData2:
     selectionData:
       positions:
@@ -6166,6 +6346,52 @@ MonoBehaviour:
       animatedPosition: 0
       animatedAxis: 0
       animatedShape: 0
+--- !u!1 &1826467130
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1826467131}
+  - component: {fileID: 1826467132}
+  m_Layer: 0
+  m_Name: Magica Sphere Collider (CH_Spine)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1826467131
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1826467130}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: 0.1604, z: 0}
+  m_LocalScale: {x: 1.0000001, y: 1.0000002, z: 1.0000004}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5102316048885329994}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1826467132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1826467130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2b68b2c7953ebb479b78627f19a6ccb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  center: {x: 0, y: 0, z: 0}
+  size: {x: 0.1, y: 0.1, z: 0.1}
 --- !u!1 &1839954822
 GameObject:
   m_ObjectHideFlags: 0
@@ -6220,6 +6446,7 @@ MonoBehaviour:
     connectionMode: 0
     rotationalInterpolation: 0.5
     rootRotation: 0.5
+    updateMode: 0
     animationPoseRatio: 0
     reductionSetting:
       simpleDistance: 0
@@ -6237,6 +6464,7 @@ MonoBehaviour:
       y: -1
       z: 0
     gravityFalloff: 0
+    stablizationTimeAfterReset: 0.1
     damping:
       value: 0.1
       useCurve: 0
@@ -6509,6 +6737,15 @@ MonoBehaviour:
           m_RotationOrder: 4
       syncMode: 0
       syncPartner: {fileID: 0}
+      clothMass: 0
+    wind:
+      influence: 1
+      frequency: 1
+      turbulence: 1
+      blend: 0.4
+      synchronization: 0.35
+      depthWeight: 0
+      movingWind: 0
   serializeData2:
     selectionData:
       positions:
@@ -6850,6 +7087,7 @@ MonoBehaviour:
     connectionMode: 0
     rotationalInterpolation: 0.5
     rootRotation: 0.5
+    updateMode: 0
     animationPoseRatio: 0
     reductionSetting:
       simpleDistance: 0
@@ -6867,6 +7105,7 @@ MonoBehaviour:
       y: -1
       z: 0
     gravityFalloff: 0
+    stablizationTimeAfterReset: 0.1
     damping:
       value: 0.1
       useCurve: 0
@@ -7122,6 +7361,15 @@ MonoBehaviour:
           m_RotationOrder: 4
       syncMode: 0
       syncPartner: {fileID: 0}
+      clothMass: 0
+    wind:
+      influence: 1
+      frequency: 1
+      turbulence: 1
+      blend: 0.784
+      synchronization: 0.7
+      depthWeight: 0
+      movingWind: 0
   serializeData2:
     selectionData:
       positions:
@@ -7330,7 +7578,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5102316047659314819}
-  m_LocalRotation: {x: -0.000000007257256, y: 0.0000019455329, z: 0.00000013692186, w: 1}
+  m_LocalRotation: {x: -0.000000007257256, y: 0.0000019455329, z: 0.00000013692186,
+    w: 1}
   m_LocalPosition: {x: -0.19330136, y: -1.0618351e-11, z: 0.0000008250285}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -8670,7 +8919,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5102316047826063127}
-  m_LocalRotation: {x: -0.0000025832887, y: 0.0000015817075, z: 0.00000028815703, w: 1}
+  m_LocalRotation: {x: -0.0000025832887, y: 0.0000015817075, z: 0.00000028815703,
+    w: 1}
   m_LocalPosition: {x: -0.20536436, y: -0.000000020861625, z: 0.0000002304108}
   m_LocalScale: {x: 1, y: 0.99999994, z: 0.9999998}
   m_ConstrainProportionsScale: 0
@@ -9082,7 +9332,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5102316047918011514}
-  m_LocalRotation: {x: 0.00000057740147, y: -0.00000048672365, z: 0.00000019854585, w: 1}
+  m_LocalRotation: {x: 0.00000057740147, y: -0.00000048672365, z: 0.00000019854585,
+    w: 1}
   m_LocalPosition: {x: 0.000000030147493, y: 0.16377567, z: 0.0000010480799}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -9146,7 +9397,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5102316047929147016}
-  m_LocalRotation: {x: -0.000000070780516, y: -0.000000027008351, z: 0.000000088475645, w: 1}
+  m_LocalRotation: {x: -0.000000070780516, y: -0.000000027008351, z: 0.000000088475645,
+    w: 1}
   m_LocalPosition: {x: -0.068666466, y: -0.0000000011920929, z: 0.000000023841856}
   m_LocalScale: {x: 1.0000001, y: 1, z: 1.0000001}
   m_ConstrainProportionsScale: 0
@@ -9801,7 +10053,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5102316047996249651}
-  m_LocalRotation: {x: 0.00000017229465, y: 0.0000000018626438, z: -0.00000020489097, w: 1}
+  m_LocalRotation: {x: 0.00000017229465, y: 0.0000000018626438, z: -0.00000020489097,
+    w: 1}
   m_LocalPosition: {x: -0.061201386, y: 0.0000000047683715, z: 0.00000004529953}
   m_LocalScale: {x: 0.99999994, y: 1.0000002, z: 1.0000001}
   m_ConstrainProportionsScale: 0
@@ -9993,7 +10246,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5102316048019484177}
-  m_LocalRotation: {x: 0.000000010306467, y: 0.00000037532288, z: -0.00000015743396, w: 1}
+  m_LocalRotation: {x: 0.000000010306467, y: 0.00000037532288, z: -0.00000015743396,
+    w: 1}
   m_LocalPosition: {x: -0.20536478, y: 0.0000000181024, z: -0.000000052352917}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -10120,7 +10374,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5102316048037487295}
-  m_LocalRotation: {x: -0.0000011663931, y: 0.00000074995114, z: -0.00000041768004, w: 1}
+  m_LocalRotation: {x: -0.0000011663931, y: 0.00000074995114, z: -0.00000041768004,
+    w: 1}
   m_LocalPosition: {x: -0.20536473, y: 0.0000000923872, z: 0.00000050125306}
   m_LocalScale: {x: 1, y: 0.9999998, z: 1}
   m_ConstrainProportionsScale: 0
@@ -10215,6 +10470,7 @@ MonoBehaviour:
     connectionMode: 0
     rotationalInterpolation: 0.5
     rootRotation: 0.5
+    updateMode: 0
     animationPoseRatio: 0
     reductionSetting:
       simpleDistance: 0.0219
@@ -10232,6 +10488,7 @@ MonoBehaviour:
       y: -1
       z: 0
     gravityFalloff: 0
+    stablizationTimeAfterReset: 0.1
     damping:
       value: 0.158
       useCurve: 0
@@ -10487,6 +10744,15 @@ MonoBehaviour:
           m_RotationOrder: 4
       syncMode: 0
       syncPartner: {fileID: 0}
+      clothMass: 0
+    wind:
+      influence: 1
+      frequency: 0.832
+      turbulence: 1.403
+      blend: 0.664
+      synchronization: 0.948
+      depthWeight: 0
+      movingWind: 0
   serializeData2:
     selectionData:
       positions:
@@ -12102,7 +12368,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5102316048066345189}
-  m_LocalRotation: {x: 0.0000011185168, y: 0.00000024678076, z: -0.00000007896757, w: 1}
+  m_LocalRotation: {x: 0.0000011185168, y: 0.00000024678076, z: -0.00000007896757,
+    w: 1}
   m_LocalPosition: {x: 0.000000007277849, y: 0.20569688, z: -0.00000012074027}
   m_LocalScale: {x: 1, y: 0.9999999, z: 0.99999994}
   m_ConstrainProportionsScale: 0
@@ -12420,7 +12687,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5102316048116717406}
-  m_LocalRotation: {x: -0.0000031776726, y: 0.00000029980117, z: -0.00000028831255, w: 1}
+  m_LocalRotation: {x: -0.0000031776726, y: 0.00000029980117, z: -0.00000028831255,
+    w: 1}
   m_LocalPosition: {x: 0.00000003035513, y: 0.13229717, z: -0.000000066826814}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -12613,7 +12881,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5102316048151519535}
-  m_LocalRotation: {x: -0.0000014510006, y: 0.00000047640458, z: -0.00000047733556, w: 1}
+  m_LocalRotation: {x: -0.0000014510006, y: 0.00000047640458, z: -0.00000047733556,
+    w: 1}
   m_LocalPosition: {x: 0.000000008950094, y: 0.20569701, z: 0.00000005475743}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -15142,7 +15411,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5102316048418311828}
-  m_LocalRotation: {x: 0.0000002160668, y: -0.00000008475034, z: 0.000000051222738, w: 1}
+  m_LocalRotation: {x: 0.0000002160668, y: -0.00000008475034, z: 0.000000051222738,
+    w: 1}
   m_LocalPosition: {x: -0.068666436, y: -0.0000000667572, z: 0.00000034332274}
   m_LocalScale: {x: 1, y: 1.0000001, z: 1.0000002}
   m_ConstrainProportionsScale: 0
@@ -15493,6 +15763,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5102316048522634205
 GameObject:
   m_ObjectHideFlags: 0
@@ -15579,7 +15850,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5102316048540228179}
-  m_LocalRotation: {x: -0.000000018626448, y: -0.00000012479722, z: -0.00000025518239, w: 1}
+  m_LocalRotation: {x: -0.000000018626448, y: -0.00000012479722, z: -0.00000025518239,
+    w: 1}
   m_LocalPosition: {x: -0.061201327, y: 0.000000023841856, z: -0.000000014305114}
   m_LocalScale: {x: 1, y: 1.0000001, z: 1.0000001}
   m_ConstrainProportionsScale: 0
@@ -15674,7 +15946,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5102316048561681906}
-  m_LocalRotation: {x: -0.0000002695015, y: 0.0000035446137, z: 0.00000017951245, w: 1}
+  m_LocalRotation: {x: -0.0000002695015, y: 0.0000035446137, z: 0.00000017951245,
+    w: 1}
   m_LocalPosition: {x: 0.20241499, y: 0.00000021934508, z: -0.000000008791685}
   m_LocalScale: {x: 1, y: 0.99999976, z: 1}
   m_ConstrainProportionsScale: 0
@@ -15929,7 +16202,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5102316048604011025}
-  m_LocalRotation: {x: -0.0000004515385, y: -0.0000044915355, z: -0.00000030900992, w: 1}
+  m_LocalRotation: {x: -0.0000004515385, y: -0.0000044915355, z: -0.00000030900992,
+    w: 1}
   m_LocalPosition: {x: -0.20241575, y: 0.00000013411045, z: -0.0000002967932}
   m_LocalScale: {x: 0.99999994, y: 1, z: 1.0000001}
   m_ConstrainProportionsScale: 0
@@ -16089,7 +16363,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5102316048635807206}
-  m_LocalRotation: {x: -0.000000013092317, y: -0.0000013895333, z: 0.000000036315225, w: 1}
+  m_LocalRotation: {x: -0.000000013092317, y: -0.0000013895333, z: 0.000000036315225,
+    w: 1}
   m_LocalPosition: {x: -0.20241548, y: -0.000000007486665, z: -0.000000014204306}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -16184,7 +16459,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5102316048647244604}
-  m_LocalRotation: {x: 0.00000043213367, y: -0.000000017451445, z: 0.000000006864544, w: 1}
+  m_LocalRotation: {x: 0.00000043213367, y: -0.000000017451445, z: 0.000000006864544,
+    w: 1}
   m_LocalPosition: {x: -0.00000003495618, y: 0.16377598, z: 0.00000008490355}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -17099,7 +17375,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5102316048739745580}
-  m_LocalRotation: {x: -0.0000031758095, y: -0.00000007047311, z: -0.000000009660246, w: 1}
+  m_LocalRotation: {x: -0.0000031758095, y: -0.00000007047311, z: -0.000000009660246,
+    w: 1}
   m_LocalPosition: {x: 0.0000000058321894, y: 0.18826447, z: -0.000000033450405}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -17691,7 +17968,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5102316048783501271}
-  m_LocalRotation: {x: 0.0000039525153, y: -0.0000007035201, z: 0.00000030958725, w: 1}
+  m_LocalRotation: {x: 0.0000039525153, y: -0.0000007035201, z: 0.00000030958725,
+    w: 1}
   m_LocalPosition: {x: -0.000000027283749, y: 0.14331758, z: 0.0000000045852357}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -17786,7 +18064,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5102316048805399468}
-  m_LocalRotation: {x: 0.0000030118667, y: -0.00000080360417, z: -0.00000054368763, w: 1}
+  m_LocalRotation: {x: 0.0000030118667, y: -0.00000080360417, z: -0.00000054368763,
+    w: 1}
   m_LocalPosition: {x: -0.000000009375799, y: 0.2056968, z: -0.000000070580974}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -18339,7 +18618,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5102316048879894846}
-  m_LocalRotation: {x: -0.000000073574476, y: -0.00000002328306, z: 0.00000030547378, w: 1}
+  m_LocalRotation: {x: -0.000000073574476, y: -0.00000002328306, z: 0.00000030547378,
+    w: 1}
   m_LocalPosition: {x: -0.06120137, y: -0.000000052452087, z: 0.000000007152557}
   m_LocalScale: {x: 1.0000001, y: 1.0000001, z: 1.0000001}
   m_ConstrainProportionsScale: 0
@@ -18379,6 +18659,7 @@ Transform:
   - {fileID: 5102316049433254812}
   - {fileID: 5102316048859309956}
   - {fileID: 94251069}
+  - {fileID: 1826467131}
   m_Father: {fileID: 5102316049798164432}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -18878,7 +19159,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5102316048909350285}
-  m_LocalRotation: {x: 0.0000005918554, y: 0.00000011036171, z: -0.000000102212645, w: 1}
+  m_LocalRotation: {x: 0.0000005918554, y: 0.00000011036171, z: -0.000000102212645,
+    w: 1}
   m_LocalPosition: {x: -0.10290304, y: -0.000000047683713, z: -0.00000046253203}
   m_LocalScale: {x: 1, y: 1.0000001, z: 1.0000002}
   m_ConstrainProportionsScale: 0
@@ -19161,7 +19443,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5102316048950165356}
-  m_LocalRotation: {x: -0.0000020712544, y: 0.00000036774742, z: 0.00000012400066, w: 1}
+  m_LocalRotation: {x: -0.0000020712544, y: 0.00000036774742, z: 0.00000012400066,
+    w: 1}
   m_LocalPosition: {x: 0.000000023280444, y: 0.1882643, z: -0.000000077367545}
   m_LocalScale: {x: 1, y: 1, z: 1.0000001}
   m_ConstrainProportionsScale: 0
@@ -19292,7 +19575,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5102316048961871337}
-  m_LocalRotation: {x: -0.000001151127, y: -0.00000047408884, z: -0.00000022679427, w: 1}
+  m_LocalRotation: {x: -0.000001151127, y: -0.00000047408884, z: -0.00000022679427,
+    w: 1}
   m_LocalPosition: {x: -0.00000005695081, y: 0.2056968, z: -0.00000008667848}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -19324,7 +19608,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5102316048974569016}
-  m_LocalRotation: {x: 0.00000008922146, y: 0.0000038673716, z: 0.00000015285693, w: 1}
+  m_LocalRotation: {x: 0.00000008922146, y: 0.0000038673716, z: 0.00000015285693,
+    w: 1}
   m_LocalPosition: {x: -0.1933014, y: -0.0000000020861626, z: 0.0000009214996}
   m_LocalScale: {x: 1.0000002, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -20383,7 +20668,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5102316049115014023}
-  m_LocalRotation: {x: -0.0000008710208, y: 0.0000009949636, z: 0.00000045876016, w: 1}
+  m_LocalRotation: {x: -0.0000008710208, y: 0.0000009949636, z: 0.00000045876016,
+    w: 1}
   m_LocalPosition: {x: -0.15935083, y: 0.00000012934207, z: 0.0000006139952}
   m_LocalScale: {x: 0.9999998, y: 0.99999976, z: 0.99999994}
   m_ConstrainProportionsScale: 0
@@ -20414,7 +20700,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5102316049119016094}
-  m_LocalRotation: {x: 0.0000025499612, y: -0.0000000085358245, z: 0.0000000013564954, w: 1}
+  m_LocalRotation: {x: 0.0000025499612, y: -0.0000000085358245, z: 0.0000000013564954,
+    w: 1}
   m_LocalPosition: {x: -0.00000004670306, y: 0.10419001, z: -0.00000009729876}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -20446,7 +20733,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5102316049122225118}
-  m_LocalRotation: {x: -0.000000059604645, y: 2.3283064e-10, z: 0.00000012564124, w: 1}
+  m_LocalRotation: {x: -0.000000059604645, y: 2.3283064e-10, z: 0.00000012564124,
+    w: 1}
   m_LocalPosition: {x: -0.06120142, y: 0.00000006407499, z: -0.000000013113022}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -20845,6 +21133,7 @@ MonoBehaviour:
     connectionMode: 0
     rotationalInterpolation: 0.5
     rootRotation: 0.5
+    updateMode: 0
     animationPoseRatio: 0
     reductionSetting:
       simpleDistance: 0.0219
@@ -20862,6 +21151,7 @@ MonoBehaviour:
       y: -1
       z: 0
     gravityFalloff: 0
+    stablizationTimeAfterReset: 0.1
     damping:
       value: 0.158
       useCurve: 0
@@ -21117,6 +21407,15 @@ MonoBehaviour:
           m_RotationOrder: 4
       syncMode: 0
       syncPartner: {fileID: 0}
+      clothMass: 0
+    wind:
+      influence: 1
+      frequency: 0.832
+      turbulence: 1.4
+      blend: 0.663
+      synchronization: 0.931
+      depthWeight: 0
+      movingWind: 0
   serializeData2:
     selectionData:
       positions:
@@ -22732,7 +23031,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5102316049146426256}
-  m_LocalRotation: {x: 0.00000008333883, y: -0.00000006679329, z: 0.0000000046566138, w: 1}
+  m_LocalRotation: {x: 0.00000008333883, y: -0.00000006679329, z: 0.0000000046566138,
+    w: 1}
   m_LocalPosition: {x: -0.061201222, y: 0.000000022649765, z: 0.0000000997819}
   m_LocalScale: {x: 1, y: 0.9999998, z: 0.9999999}
   m_ConstrainProportionsScale: 0
@@ -22925,7 +23225,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5102316049158117707}
-  m_LocalRotation: {x: 0.0000028815002, y: -0.0000003269356, z: 0.00000014373873, w: 1}
+  m_LocalRotation: {x: 0.0000028815002, y: -0.0000003269356, z: 0.00000014373873,
+    w: 1}
   m_LocalPosition: {x: -0.000000017018756, y: 0.1322969, z: -0.000000110429426}
   m_LocalScale: {x: 1, y: 0.99999994, z: 0.99999994}
   m_ConstrainProportionsScale: 0
@@ -23027,7 +23328,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5102316049177957235}
-  m_LocalRotation: {x: -0.00000044138864, y: -0.00000256038, z: -0.00000040221488, w: 1}
+  m_LocalRotation: {x: -0.00000044138864, y: -0.00000256038, z: -0.00000040221488,
+    w: 1}
   m_LocalPosition: {x: 0.15935068, y: 0.000000076293944, z: 0.0000001603365}
   m_LocalScale: {x: 1.0000002, y: 1.0000001, z: 1.0000001}
   m_ConstrainProportionsScale: 0
@@ -23711,7 +24013,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5102316049233366140}
-  m_LocalRotation: {x: -0.0000001379085, y: 0.000000059069862, z: -0.000000031664968, w: 1}
+  m_LocalRotation: {x: -0.0000001379085, y: 0.000000059069862, z: -0.000000031664968,
+    w: 1}
   m_LocalPosition: {x: -0.06120134, y: 0.000000028610229, z: 0.00000008167233}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -24301,7 +24604,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5102316049411348661}
-  m_LocalRotation: {x: 0.00000006798655, y: -0.000000013969839, z: 0.0000005578622, w: 1}
+  m_LocalRotation: {x: 0.00000006798655, y: -0.000000013969839, z: 0.0000005578622,
+    w: 1}
   m_LocalPosition: {x: -0.061201286, y: -0.00000004053116, z: 0.000000009536743}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -24396,7 +24700,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5102316049427931211}
-  m_LocalRotation: {x: 0.00000010064001, y: -0.000007730376, z: 0.00000016145212, w: 1}
+  m_LocalRotation: {x: 0.00000010064001, y: -0.000007730376, z: 0.00000016145212,
+    w: 1}
   m_LocalPosition: {x: 0.000000028639041, y: 0.14331773, z: 0.00000008029514}
   m_LocalScale: {x: 1, y: 0.99999994, z: 1}
   m_ConstrainProportionsScale: 0
@@ -26646,7 +26951,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5102316049630901622}
-  m_LocalRotation: {x: 0.0000009291107, y: -0.00000047113275, z: 0.000000025058398, w: 1}
+  m_LocalRotation: {x: 0.0000009291107, y: -0.00000047113275, z: 0.000000025058398,
+    w: 1}
   m_LocalPosition: {x: 0.19330154, y: 0.000000047683713, z: -0.00000016614794}
   m_LocalScale: {x: 1.0000001, y: 0.99999994, z: 1.0000001}
   m_ConstrainProportionsScale: 0
@@ -26806,7 +27112,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5102316049664916514}
-  m_LocalRotation: {x: 0.000000013969838, y: 0.0000000015133992, z: 0.0000000942091, w: 1}
+  m_LocalRotation: {x: 0.000000013969838, y: 0.0000000015133992, z: 0.0000000942091,
+    w: 1}
   m_LocalPosition: {x: -0.061201274, y: 0.000000007897615, z: 0.000000007152557}
   m_LocalScale: {x: 1, y: 1, z: 1.0000001}
   m_ConstrainProportionsScale: 0
@@ -27062,7 +27369,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5102316049739771470}
-  m_LocalRotation: {x: -0.0000008771457, y: 0.00000004516914, z: -0.00000022945459, w: 1}
+  m_LocalRotation: {x: -0.0000008771457, y: 0.00000004516914, z: -0.00000022945459,
+    w: 1}
   m_LocalPosition: {x: -0.05926093, y: -0.000000011920928, z: -0.000000007152557}
   m_LocalScale: {x: 1, y: 1.0000001, z: 1.0000001}
   m_ConstrainProportionsScale: 0
@@ -27262,6 +27570,7 @@ Transform:
   - {fileID: 5102316047968358251}
   - {fileID: 708306343}
   - {fileID: 1165620514}
+  - {fileID: 1199536171}
   m_Father: {fileID: 5102316047813637098}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

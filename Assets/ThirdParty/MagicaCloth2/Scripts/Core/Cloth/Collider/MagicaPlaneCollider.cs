@@ -2,6 +2,8 @@
 // Copyright (c) 2023 MagicaSoft.
 // https://magicasoft.jp
 
+using UnityEngine;
+
 namespace MagicaCloth2
 {
     /// <summary>
@@ -10,6 +12,7 @@ namespace MagicaCloth2
     /// Plane Collider.
     /// Infinite plane for the Y-axis direction.
     /// </summary>
+    [AddComponentMenu("MagicaCloth2/MagicaPlaneCollider")]
     public class MagicaPlaneCollider : ColliderComponent
     {
         public override ColliderManager.ColliderType GetColliderType()

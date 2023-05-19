@@ -611,6 +611,7 @@ namespace MagicaCloth2
 
             var tm = MagicaManager.Team;
             var vm = MagicaManager.VMesh;
+            var wm = MagicaManager.Wind;
 
             // シミュレーションステップカウンター
             SimulationStepCount++;
@@ -682,10 +683,14 @@ namespace MagicaCloth2
                 depthArray = vm.vertexDepths.GetNativeArray(),
                 positions = vm.positions.GetNativeArray(),
                 rotations = vm.rotations.GetNativeArray(),
+                vertexRootIndices = vm.vertexRootIndices.GetNativeArray(),
 
                 teamDataArray = tm.teamDataArray.GetNativeArray(),
                 parameterArray = tm.parameterArray.GetNativeArray(),
                 centerDataArray = tm.centerDataArray.GetNativeArray(),
+                teamWindArray = tm.teamWindArray.GetNativeArray(),
+
+                windDataArray = wm.windDataArray.GetNativeArray(),
 
                 teamIdArray = teamIdArray.GetNativeArray(),
                 oldPosArray = oldPosArray.GetNativeArray(),
@@ -696,6 +701,7 @@ namespace MagicaCloth2
                 oldPositionArray = oldPositionArray.GetNativeArray(),
                 oldRotationArray = oldRotationArray.GetNativeArray(),
                 velocityPosArray = velocityPosArray.GetNativeArray(),
+                frictionArray = frictionArray.GetNativeArray(),
 
                 stepBasicPositionArray = stepBasicPositionBuffer,
                 stepBasicRotationArray = stepBasicRotationBuffer,
@@ -1030,6 +1036,8 @@ namespace MagicaCloth2
             public NativeArray<float3> positions;
             [Unity.Collections.ReadOnly]
             public NativeArray<quaternion> rotations;
+            [Unity.Collections.ReadOnly]
+            public NativeArray<int> vertexRootIndices;
 
             // team
             [Unity.Collections.ReadOnly]
@@ -1038,6 +1046,12 @@ namespace MagicaCloth2
             public NativeArray<ClothParameters> parameterArray;
             [Unity.Collections.ReadOnly]
             public NativeArray<InertiaConstraint.CenterData> centerDataArray;
+            [Unity.Collections.ReadOnly]
+            public NativeArray<TeamWindData> teamWindArray;
+
+            // wind
+            [Unity.Collections.ReadOnly]
+            public NativeArray<WindManager.WindData> windDataArray;
 
             // particle
             [Unity.Collections.ReadOnly]
@@ -1062,6 +1076,8 @@ namespace MagicaCloth2
             [NativeDisableParallelForRestriction]
             [Unity.Collections.WriteOnly]
             public NativeArray<float3> velocityPosArray;
+            [Unity.Collections.ReadOnly]
+            public NativeArray<float> frictionArray;
 
             // buffer
             [NativeDisableParallelForRestriction]
@@ -1114,57 +1130,52 @@ namespace MagicaCloth2
                 // 移動パーティクル
                 if (attr.IsMove())
                 {
+                    // 重量
+                    //float mass = MathUtility.CalcMass(depth);
+
                     // 速度
                     var velocity = velocityArray[pindex];
 
                     // 慣性シフト
-                    {
-                        var cdata = centerDataArray[teamId];
+                    var cdata = centerDataArray[teamId];
 
-                        // シフト量
-                        float3 inertiaVector = cdata.inertiaVector;
-                        quaternion inertiaRotation = cdata.inertiaRotation;
+                    // シフト量
+                    float3 inertiaVector = cdata.inertiaVector;
+                    quaternion inertiaRotation = cdata.inertiaRotation;
 
-                        // 慣性の深さ影響
-                        //float depthRatio = math.pow(depth, param.inertiaConstraint.depthInertiaPow);
-                        //float depthRatio = depth;
-                        //float inertiaDepth = param.inertiaConstraint.depthInertia * (1.0f - depth);
-                        float inertiaDepth = param.inertiaConstraint.depthInertia * (1.0f - depth * depth); // 二次曲線
-                        //inertiaDepth *= inertiaDepth; // 二次曲線
-                        inertiaVector = math.lerp(inertiaVector, cdata.stepVector, inertiaDepth);
-                        inertiaRotation = math.slerp(inertiaRotation, cdata.stepRotation, inertiaDepth);
+                    // 慣性の深さ影響
+                    float inertiaDepth = param.inertiaConstraint.depthInertia * (1.0f - depth * depth); // 二次曲線
+                    inertiaVector = math.lerp(inertiaVector, cdata.stepVector, inertiaDepth);
+                    inertiaRotation = math.slerp(inertiaRotation, cdata.stepRotation, inertiaDepth);
 
-                        // ローカル変換して計算する
-                        //float3 lpos = nextPos - cdata.nowWorldPosition;
-                        //lpos = math.mul(inertiaRotation, lpos);
-                        //lpos += inertiaVector;
-                        //float3 wpos = cdata.nowWorldPosition + lpos;
-                        //var inertiaOffset = wpos - nextPos;
+                    // ローカル変換して計算する
+                    //float3 lpos = nextPos - cdata.nowWorldPosition;
+                    //lpos = math.mul(inertiaRotation, lpos);
+                    //lpos += inertiaVector;
+                    //float3 wpos = cdata.nowWorldPosition + lpos;
+                    //var inertiaOffset = wpos - nextPos;
 
-                        // たぶんこっちが正しい
-                        float3 lpos = oldPos - cdata.oldWorldPosition;
-                        lpos = math.mul(inertiaRotation, lpos);
-                        lpos += inertiaVector;
-                        float3 wpos = cdata.oldWorldPosition + lpos;
-                        var inertiaOffset = wpos - nextPos;
+                    // たぶんこっちが正しい
+                    float3 lpos = oldPos - cdata.oldWorldPosition;
+                    lpos = math.mul(inertiaRotation, lpos);
+                    lpos += inertiaVector;
+                    float3 wpos = cdata.oldWorldPosition + lpos;
+                    var inertiaOffset = wpos - nextPos;
 
-                        // nextPos
-                        nextPos = wpos;
+                    // nextPos
+                    nextPos = wpos;
 
-                        // 速度位置も調整
-                        velocityPos += inertiaOffset;
+                    // 速度位置も調整
+                    velocityPos += inertiaOffset;
 
-                        // 速度に慣性回転を加える
-                        velocity = math.mul(inertiaRotation, velocity);
-                    }
+                    // 速度に慣性回転を加える
+                    velocity = math.mul(inertiaRotation, velocity);
 
                     // 安定化用の速度割合
                     velocity *= tdata.velocityWeight;
 
                     // 抵抗
                     // 重力に影響させたくないので先に計算する（※通常はforce適用後に行うのが一般的）
-                    //float damping = math.lerp(param.rootDamping, param.leafDamping, depth);
-                    //float damping = param.damping.Evaluate(depth);
                     float damping = param.dampingCurveData.EvaluateCurveClamp01(depth);
                     velocity *= 1.0f - damping;
 
@@ -1175,7 +1186,8 @@ namespace MagicaCloth2
                     float3 gforce = param.gravityDirection * (param.gravity * tdata.gravityRatio);
                     force += gforce;
 
-                    // todo:風などの外力
+                    // 風力
+                    force += Wind(teamId, tdata, param.wind, cdata, vindex, pindex, depth);
 
                     // 外力チームスケール倍率
                     force *= tdata.scaleRatio;
@@ -1198,6 +1210,103 @@ namespace MagicaCloth2
 
                 // 予測位置格納
                 nextPosArray[pindex] = nextPos;
+            }
+
+            float3 Wind(int teamId, in TeamManager.TeamData tdata, in WindParams windParams, in InertiaConstraint.CenterData cdata, int vindex, int pindex, float depth)
+            {
+                float3 windForce = 0;
+
+                // 基準ルート座標
+                // (1)チームごとにずらす
+                // (2)同期率によりルートラインごとにずらす
+                // (3)チームの座標やパーティクルの座標は計算に入れない
+                int rootIndex = vertexRootIndices[vindex];
+                float3 windPos = (teamId + 1) * 4.19230645f + (rootIndex * 0.0023963f * (1.0f - windParams.synchronization) * 100);
+
+                // ゾーンごとの風影響計算
+                var teamWindData = teamWindArray[teamId];
+                int cnt = teamWindData.ZoneCount;
+                for (int i = 0; i < cnt; i++)
+                {
+                    var windInfo = teamWindData.windZoneList[i];
+                    var windData = windDataArray[windInfo.windId];
+                    windForce += WindForceBlend(windInfo, windParams, windPos, windData.turbulence);
+                }
+
+#if true
+                // 移動風影響計算
+                if (windParams.movingWind > 0.01f)
+                {
+                    windForce += WindForceBlend(teamWindData.movingWind, windParams, windPos, 1.0f);
+                }
+#endif
+
+                //Debug.Log($"windForce:{windForce}");
+
+                // その他影響
+                // チーム風影響
+                float influence = windParams.influence; // 0.0 ~ 2.0
+
+                // 摩擦による影響
+                float friction = frictionArray[pindex];
+                influence *= (1.0f - friction);
+
+                // 深さ影響
+                float depthScale = depth * depth;
+                influence *= math.lerp(1.0f, depthScale, windParams.depthWeight);
+
+                // 最終影響
+                windForce *= influence;
+
+                //Debug.Log($"windForce:{windForce}");
+
+                return windForce;
+            }
+
+            float3 WindForceBlend(in TeamWindInfo windInfo, in WindParams windParams, in float3 windPos, float windTurbulence)
+            {
+                float windMain = windInfo.main;
+                if (windMain < 0.01f)
+                    return 0;
+
+                // 風速係数
+                float mainRatio = windMain / Define.System.WindBaseSpeed; // 0.0 ~ 
+
+                // Sin波形
+                var sinPos = windPos + windInfo.time * 10.0f;
+                float2 sinXY = math.sin(sinPos.xy);
+
+                // Noise波形
+                var noisePos = windPos + windInfo.time * 2.3132f; // Sin波形との調整用
+                float2 noiseXY = new float2(noise.cnoise(noisePos.xy), noise.cnoise(noisePos.yx));
+                noiseXY *= 2.3f; // cnoiseは弱いので補強 2.0?
+
+                // 波形ブレンド
+                float2 waveXY = math.lerp(sinXY, noiseXY, windParams.blend);
+
+                // 基本乱流率
+                windTurbulence *= windParams.turbulence; // 0.0 ~ 2.0
+
+                // 風向き
+                const float rangAng = 45.0f; // 乱流角度
+                var ang = math.radians(waveXY * rangAng);
+                ang.y *= math.lerp(0.1f, 0.5f, windParams.blend); // 横方向は抑える。そうしないと円運動になってしまうため。0.3 - 0.5?
+                ang *= windTurbulence; // 乱流率
+                var rq = quaternion.Euler(ang.x, ang.y, 0.0f); // XY
+                var dirq = MathUtility.AxisQuaternion(windInfo.direction);
+                float3 wdir = math.forward(math.mul(dirq, rq));
+
+                // 風速
+                // 風速が低いと大きくなり、風速が高いと0.0になる
+                float mainScale = math.saturate(1.0f - mainRatio * 1.0f);
+                float mainWave = math.unlerp(-1.0f, 1.0f, waveXY.x); // 0.0 ~ 1.0
+                mainWave *= mainScale * windTurbulence;
+                windMain -= windMain * mainWave;
+
+                // 合成
+                float3 windForce = wdir * windMain;
+
+                return windForce;
             }
         }
 

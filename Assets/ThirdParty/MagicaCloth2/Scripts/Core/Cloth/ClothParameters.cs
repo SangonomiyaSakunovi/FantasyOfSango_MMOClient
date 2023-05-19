@@ -86,5 +86,8 @@ namespace MagicaCloth2
 
         // セルフコリジョン
         public SelfCollisionConstraint.SelfCollisionConstraintParams selfCollisionConstraint;
+
+        // 風
+        public WindParams wind;
     }
 }

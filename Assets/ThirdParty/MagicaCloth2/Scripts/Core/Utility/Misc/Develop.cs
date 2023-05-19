@@ -25,7 +25,7 @@ namespace MagicaCloth2
             Debug.LogError($"[MC2] {mes}");
         }
 
-        [System.Diagnostics.Conditional("MC2_DEBUG")]
+        [System.Diagnostics.Conditional("MC2_LOG")]
         public static void DebugLog(in object mes)
         {
             Debug.Log($"[MC2 DEBUG] {mes}");

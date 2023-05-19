@@ -6,7 +6,9 @@ using Unity.Burst;
 using Unity.Collections;
 using Unity.Jobs;
 using Unity.Mathematics;
+#if MC2_DEBUG
 using UnityEngine;
+#endif
 
 namespace MagicaCloth2
 {
@@ -404,7 +406,7 @@ namespace MagicaCloth2
             tdata.proxyMeshType = proxyMesh.meshType;
 
             // Transform
-            tdata.proxyTransformChunk = MagicaManager.Bone.AddTransform(proxyMesh.transformData);
+            tdata.proxyTransformChunk = MagicaManager.Bone.AddTransform(proxyMesh.transformData, teamId);
 
             // center transform
             tdata.centerTransformIndex = proxyMesh.centerTransformIndex + tdata.proxyTransformChunk.startIndex;
@@ -592,7 +594,7 @@ namespace MagicaCloth2
 
             // transform
             var ct = mappingMesh.GetCenterTransform();
-            var c = MagicaManager.Bone.AddTransform(ct, new ExBitFlag8(TransformManager.Flag_Read | TransformManager.Flag_Enable));
+            var c = MagicaManager.Bone.AddTransform(ct, new ExBitFlag8(TransformManager.Flag_Read | TransformManager.Flag_Enable), teamId);
             mdata.centerTransformIndex = c.startIndex;
 
             // プロキシメッシュへの変換
@@ -1425,9 +1427,17 @@ namespace MagicaCloth2
                 var pos1 = positions[start + tri.x];
                 var pos2 = positions[start + tri.y];
                 var pos3 = positions[start + tri.z];
-                var nor = MathUtility.TriangleNormal(pos1, pos2, pos3);
-                outTriangleNormals[tindex] = nor;
-                Debug.Assert(math.length(nor) > 1e-06f);
+                float3 cross = math.cross(pos2 - pos1, pos3 - pos1);
+                float len = math.length(cross);
+                if (len > Define.System.Epsilon)
+                    outTriangleNormals[tindex] = cross / len;
+#if MC2_DEBUG
+                else
+                    Debug.LogWarning("CalcTriangleNormalTangentJob.normal = 0!");
+#endif
+                //var nor = MathUtility.TriangleNormal(pos1, pos2, pos3);
+                //outTriangleNormals[tindex] = nor;
+                //Debug.Assert(math.length(nor) > 1e-06f);
 
                 // トライアングル接線を求める
                 var uv1 = uv[start + tri.x];

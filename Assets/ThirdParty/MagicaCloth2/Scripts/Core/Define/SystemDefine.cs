@@ -322,6 +322,18 @@ namespace MagicaCloth2
             /// Thicknessの最大値(m)
             /// </summary>
             public const float SelfCollisionThicknessMax = 0.05f;
+
+            /// <summary>
+            /// [Wind]
+            /// 風時間の最大値
+            /// </summary>
+            public const float WindMaxTime = 10000.0f;
+
+            /// <summary>
+            /// [Wind]
+            /// 風速係数の基準となる風速(m/s)
+            /// </summary>
+            public const float WindBaseSpeed = 7.5f;
         }
     }
 }

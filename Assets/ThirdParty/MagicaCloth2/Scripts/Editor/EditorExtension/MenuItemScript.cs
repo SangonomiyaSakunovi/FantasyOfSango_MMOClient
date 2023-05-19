@@ -20,7 +20,7 @@ namespace MagicaCloth2
         [MenuItem("GameObject/Create Other/Magica Cloth2/Magica Sphere Collider", priority = 200)]
         static void AddSphereCollider()
         {
-            var obj = AddObject("Magica Sphere Collider", false, true);
+            var obj = AddObject("Magica Sphere Collider", true, true);
             var comp = obj.AddComponent<MagicaSphereCollider>();
             //comp.size = new Vector3(0.1f, 0.1f, 0.1f);
             comp.SetSize(new Vector3(0.1f, 0.1f, 0.1f));
@@ -30,7 +30,7 @@ namespace MagicaCloth2
         [MenuItem("GameObject/Create Other/Magica Cloth2/Magica Capsule Collider", priority = 200)]
         static void AddCapsuleCollider()
         {
-            var obj = AddObject("Magica Capsule Collider", false, true);
+            var obj = AddObject("Magica Capsule Collider", true, true);
             var comp = obj.AddComponent<MagicaCapsuleCollider>();
             //comp.size = new Vector3(0.05f, 0.05f, 0.3f);
             comp.SetSize(new Vector3(0.05f, 0.05f, 0.3f));
@@ -42,8 +42,16 @@ namespace MagicaCloth2
         [MenuItem("GameObject/Create Other/Magica Cloth2/Magica Plane Collider", priority = 200)]
         static void AddPlaneCollider()
         {
-            var obj = AddObject("Magica Plane Collider", false, true);
+            var obj = AddObject("Magica Plane Collider", true, true);
             var comp = obj.AddComponent<MagicaPlaneCollider>();
+            Selection.activeGameObject = obj;
+        }
+
+        [MenuItem("GameObject/Create Other/Magica Cloth2/Magica Wind Zone", priority = 200)]
+        static void AddWindZone()
+        {
+            var obj = AddObject("Magica Wind Zone", false, true);
+            var comp = obj.AddComponent<MagicaWindZone>();
             Selection.activeGameObject = obj;
         }
 

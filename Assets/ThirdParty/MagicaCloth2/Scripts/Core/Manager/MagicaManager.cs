@@ -31,6 +31,7 @@ namespace MagicaCloth2
         public static VirtualMeshManager VMesh => managers?[4] as VirtualMeshManager;
         public static SimulationManager Simulation => managers?[5] as SimulationManager;
         public static ColliderManager Collider => managers?[6] as ColliderManager;
+        public static WindManager Wind => managers?[7] as WindManager;
 
         //=========================================================================================
         // player loop delegate
@@ -106,6 +107,7 @@ namespace MagicaCloth2
             managers.Add(new VirtualMeshManager()); // [4]
             managers.Add(new SimulationManager()); // [5]
             managers.Add(new ColliderManager()); // [6]
+            managers.Add(new WindManager()); // [7]
             foreach (var manager in managers)
                 manager.Initialize();
 
@@ -238,10 +240,11 @@ namespace MagicaCloth2
         //=========================================================================================
         /// <summary>
         /// カスタム更新ループ登録
-        /// このループはエディタ編集中でも動作する
+        /// すでに登録されている場合は何もしない
+        /// Custom update loop registration.
+        /// Do nothing if already registered.
         /// </summary>
-        //[RuntimeInitializeOnLoadMethod()]
-        static void InitCustomGameLoop()
+        public static void InitCustomGameLoop()
         {
             //Debug.Log("PhysicsManager.InitCustomGameLoop()");
             PlayerLoopSystem playerLoop = PlayerLoop.GetCurrentPlayerLoop();
@@ -249,7 +252,7 @@ namespace MagicaCloth2
             // すでに設定されているならばスルー
             if (CheckRegist(ref playerLoop))
             {
-                Develop.DebugLog("SetCustomGameLoop Skip!!");
+                //Develop.DebugLog("SetCustomGameLoop Skip!!");
                 return;
             }
 

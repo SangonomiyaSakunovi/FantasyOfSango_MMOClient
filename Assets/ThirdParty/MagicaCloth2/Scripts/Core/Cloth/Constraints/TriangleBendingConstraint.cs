@@ -322,12 +322,15 @@ namespace MagicaCloth2
                 constraintData.writeBufferCount = multiBuilder.Count();
                 constraintData.writeIndexArray = multiBuilder.ToIndexArray();
 
+                constraintData.result.SetSuccess();
+
                 //Develop.DebugLog($"TriangleBending:{bendingCount}, Volume:{volumeCount}");
             }
             catch (Exception exception)
             {
                 Debug.LogError(exception);
                 constraintData.result.SetError(Define.Result.Constraint_CreateTriangleBendingException);
+                throw;
             }
             finally
             {

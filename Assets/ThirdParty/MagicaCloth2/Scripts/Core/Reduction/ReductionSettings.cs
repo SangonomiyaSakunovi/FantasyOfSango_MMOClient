@@ -19,7 +19,7 @@ namespace MagicaCloth2
         /// [NG] Runtime changes.
         /// [NG] Export/Import with Presets
         /// </summary>
-        [Range(0.0f, 0.1f)]
+        [Range(0.0f, 0.2f)]
         public float simpleDistance = 0.0f;
 
         /// <summary>
@@ -28,7 +28,7 @@ namespace MagicaCloth2
         /// [NG] Runtime changes.
         /// [NG] Export/Import with Presets
         /// </summary>
-        [Range(0.0f, 0.1f)]
+        [Range(0.0f, 0.2f)]
         public float shapeDistance = 0.0f;
 
         //=========================================================================================
@@ -50,8 +50,8 @@ namespace MagicaCloth2
 
         public void DataValidate()
         {
-            simpleDistance = Mathf.Clamp(simpleDistance, 0.0f, 0.1f);
-            shapeDistance = Mathf.Clamp(shapeDistance, 0.0f, 0.1f);
+            simpleDistance = Mathf.Clamp(simpleDistance, 0.0f, 0.2f);
+            shapeDistance = Mathf.Clamp(shapeDistance, 0.0f, 0.2f);
         }
 
         /// <summary>

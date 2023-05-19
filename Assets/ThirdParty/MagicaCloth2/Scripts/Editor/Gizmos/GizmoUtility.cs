@@ -12,6 +12,8 @@ namespace MagicaCloth2
         public static readonly Color ColorCollider = new Color(0.0f, 1.0f, 0.0f);
         public static readonly Color ColorNonSelectedCollider = new Color(0.5f, 0.3f, 0.0f);
         public static readonly Color ColorSkinningBone = new Color(1.0f, 0.5f, 0.0f);
+        public static readonly Color ColorWindZone = new Color(1f, 1f, 1f);
+        public static readonly Color ColorWindArrow = new Color(1f, 1f, 0f);
 
         public static readonly Quaternion FlipZ = Quaternion.AngleAxis(180.0f, Vector3.up);
 
@@ -150,7 +152,6 @@ namespace MagicaCloth2
             }
         }
 
-
         public static void DrawCross(Vector3 pos, Quaternion rot, float size, bool useHandles)
         {
             if (useHandles)
@@ -173,8 +174,7 @@ namespace MagicaCloth2
             }
         }
 
-
-
+        //=========================================================================================
         public static void DrawCollider(ColliderComponent collider, Quaternion camRot, bool useHandles, bool selected)
         {
             if (collider == null)
@@ -218,8 +218,6 @@ namespace MagicaCloth2
 
             }
         }
-
-
 
         /// <summary>
         /// ワイヤーカプセルを描画する
@@ -374,7 +372,8 @@ namespace MagicaCloth2
         /// <param name="cross">十字描画</param>
         public static void DrawWireArrow(Vector3 pos, Quaternion rot, Vector3 size, bool cross = false)
         {
-            Gizmos.matrix = Matrix4x4.TRS(pos, rot, size);
+            //Gizmos.matrix = Matrix4x4.TRS(pos, rot, size);
+            Handles.matrix = Matrix4x4.TRS(pos, rot, size);
 
             Vector3[] points = new Vector3[]
             {
@@ -392,14 +391,17 @@ namespace MagicaCloth2
             {
                 for (int i = 0; i < points.Length - 1; i++)
                 {
-                    Gizmos.DrawLine(points[i], points[i + 1]);
+                    //Gizmos.DrawLine(points[i], points[i + 1]);
+                    Handles.DrawLine(points[i], points[i + 1]);
                 }
 
                 rot = rot * Quaternion.AngleAxis(addAngle, Vector3.forward);
-                Gizmos.matrix = Matrix4x4.TRS(pos, rot, size);
+                //Gizmos.matrix = Matrix4x4.TRS(pos, rot, size);
+                Handles.matrix = Matrix4x4.TRS(pos, rot, size);
             }
 
-            Gizmos.matrix = Matrix4x4.identity;
+            //Gizmos.matrix = Matrix4x4.identity;
+            Handles.matrix = Matrix4x4.identity;
         }
 
         /// <summary>
@@ -575,6 +577,50 @@ namespace MagicaCloth2
             Handles.color = wireColor;
             Handles.DrawLine(pos, pos + forward * size, wireThickness);
 
+        }
+
+        //=========================================================================================
+        public static void DrawWindZone(MagicaWindZone windZone, Quaternion camRot, bool selected)
+        {
+            if (windZone == null)
+                return;
+
+            // ゾーン
+            Handles.matrix = windZone.transform.localToWorldMatrix;
+            Handles.color = selected ? ColorWindZone : ColorWindZone * 0.5f;
+
+            switch (windZone.mode)
+            {
+                case MagicaWindZone.Mode.GlobalDirection:
+                    break;
+                case MagicaWindZone.Mode.BoxDirection:
+                    DrawWireCube(Vector3.zero, Quaternion.identity, windZone.size, true);
+                    break;
+                case MagicaWindZone.Mode.SphereDirection:
+                case MagicaWindZone.Mode.SphereRadial:
+                    // カメラ回転をコライダーのローカル回転に変換
+                    camRot = Quaternion.Inverse(windZone.transform.rotation) * camRot;
+                    DrawWireSphere(Vector3.zero, Quaternion.identity, windZone.radius, camRot, true);
+                    break;
+            }
+
+            // 方向
+            Handles.color = selected ? ColorWindArrow : ColorWindArrow * 0.5f;
+            var pos = windZone.transform.position;
+            const float gsize = 0.5f;
+            if (windZone.IsDirection())
+            {
+                var rot = MathUtility.AxisQuaternion(windZone.GetWindDirection());
+                DrawWireArrow(pos, rot, new Vector3(gsize, gsize, gsize * 2), true);
+            }
+            else if (windZone.IsRadial())
+            {
+                DrawLine(new Vector3(0, -gsize, 0), new Vector3(0, gsize, 0), true);
+                DrawLine(new Vector3(-gsize, 0, 0), new Vector3(gsize, 0, 0), true);
+                DrawLine(new Vector3(0, 0, -gsize), new Vector3(0, 0, gsize), true);
+            }
+
+            Handles.matrix = Matrix4x4.identity;
         }
     }
 }

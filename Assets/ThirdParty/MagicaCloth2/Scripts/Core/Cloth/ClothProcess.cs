@@ -135,45 +135,6 @@ namespace MagicaCloth2
         }
 
         /// <summary>
-        /// MeshClothの利用を解除する（メインスレッドのみ）
-        /// </summary>
-        /// <param name="renderHandle"></param>
-        internal void RemoveRenderer(int renderHandle)
-        {
-            if (renderHandleList == null)
-                return;
-            if (renderHandleList.Contains(renderHandle))
-            {
-                lock (lockObject)
-                {
-                    // レンダーデータの破棄
-                    // レンダーデータは参照カウンタ方式なので実際に破棄するかはdeleteフラグを見る
-                    MagicaManager.Render.RemoveRenderer(renderHandle);
-
-                    // レンダーメッシュの破棄
-                    {
-                        renderHandleList.Remove(renderHandle);
-                        int cnt = renderMeshInfoList.Count;
-                        for (int i = 0; i < cnt; i++)
-                        {
-                            var info = renderMeshInfoList[i];
-                            if (info == null)
-                                continue;
-                            if (info.renderHandle != renderHandle)
-                                continue;
-
-                            // 仮想メッシュ破棄
-                            info.renderMesh?.Dispose();
-
-                            // nullに設定
-                            renderMeshInfoList[i] = null;
-                        }
-                    }
-                }
-            }
-        }
-
-        /// <summary>
         /// BoneClothの利用を開始する（メインスレッドのみ）
         /// これはAwake()などのアニメーションの前に実行すること
         /// </summary>
@@ -309,6 +270,7 @@ namespace MagicaCloth2
         /// <returns></returns>
         async Task BuildAsync(CancellationToken ct)
         {
+            isBuild = true;
             Develop.DebugLog($"Build start : {Name}");
             result.SetProcess();
 #if MC2_DEBUG
@@ -361,6 +323,9 @@ namespace MagicaCloth2
                 // ■スレッド
                 await Task.Run(() =>
                 {
+                    // 作業用メッシュ
+                    VirtualMesh renderMesh = null;
+
                     try
                     {
                         // プロキシメッシュ作成
@@ -407,7 +372,7 @@ namespace MagicaCloth2
 
                                 // レンダーメッシュ作成
                                 var renderData = MagicaManager.Render.GetRendererData(renderHandle);
-                                var renderMesh = new VirtualMesh($"[{renderData.Name}]");
+                                renderMesh = new VirtualMesh($"[{renderData.Name}]");
                                 renderMesh.result.SetProcess();
 
                                 // import -------------------------------------------------
@@ -468,6 +433,7 @@ namespace MagicaCloth2
                                 //info.mixHash = mixHash;
                                 info.renderHandle = renderHandle;
                                 info.renderMesh = renderMesh;
+                                renderMesh = null;
                                 renderMeshInfos.Add(info);
                             }
                             Develop.DebugLog($"(MERGE) {proxyMesh}");
@@ -627,11 +593,20 @@ namespace MagicaCloth2
                     {
                         throw;
                     }
+                    catch (OperationCanceledException)
+                    {
+                        throw;
+                    }
                     catch (Exception exception)
                     {
                         Debug.LogException(exception);
                         result.SetError(Define.Result.ClothProcess_Exception);
                         throw;
+                    }
+                    finally
+                    {
+                        // この時点で作業用renderMeshが存在する場合は中断されているので開放する
+                        renderMesh?.Dispose();
                     }
                 }, ct);
 
@@ -671,6 +646,73 @@ namespace MagicaCloth2
                 // パラメータ変更フラグ
                 SetState(State_ParameterDirty, true);
 
+                // 自チームと同期チームのデータ（コピー）
+                //var teamData = MagicaManager.Team.GetTeamData(TeamId);
+                //var syncTeamData = syncCloth != null ? MagicaManager.Team.GetTeamData(syncCloth.Process.TeamId) : default;
+
+                // ■スレッド
+                ct.ThrowIfCancellationRequested();
+                await Task.Run(() =>
+                {
+                    // ■クロスデータの作成
+                    try
+                    {
+                        // 距離制約(Distance)
+                        ct.ThrowIfCancellationRequested();
+                        distanceConstraintData = DistanceConstraint.CreateData(proxyMesh, parameters);
+                        if (distanceConstraintData != null && distanceConstraintData.result.IsError())
+                        {
+                            result = distanceConstraintData.result;
+                            throw new MagicaClothProcessingException();
+                        }
+
+                        // 曲げ制約(Bending)
+                        ct.ThrowIfCancellationRequested();
+                        bendingConstraintData = TriangleBendingConstraint.CreateData(proxyMesh, parameters);
+                        if (bendingConstraintData != null && bendingConstraintData.result.IsError())
+                        {
+                            result = bendingConstraintData.result;
+                            throw new MagicaClothProcessingException();
+                        }
+
+                        // 慣性制約(Inertia)
+                        ct.ThrowIfCancellationRequested();
+                        inertiaConstraintData = InertiaConstraint.CreateData(proxyMesh, parameters);
+                        if (inertiaConstraintData != null && inertiaConstraintData.result.IsError())
+                        {
+                            result = inertiaConstraintData.result;
+                            throw new MagicaClothProcessingException();
+                        }
+
+                        // セルフコリジョン２(SelfCollision2)
+                        //ct.ThrowIfCancellationRequested();
+                        //self2ConstraintData = SelfCollisionConstraint2.CreateData(TeamId, teamData, ProxyMesh, parameters, syncCloth?.Process?.TeamId ?? 0, syncTeamData, syncCloth?.Process?.ProxyMesh);
+                        //if (self2ConstraintData != null && self2ConstraintData.result.IsError())
+                        //    result = self2ConstraintData.result;
+
+                        if (result.IsError())
+                            throw new MagicaClothProcessingException();
+                    }
+                    catch (MagicaClothProcessingException)
+                    {
+                        throw;
+                    }
+                    catch (OperationCanceledException)
+                    {
+                        throw;
+                    }
+                    catch (Exception exception)
+                    {
+                        Debug.LogException(exception);
+                        result.SetError(Define.Result.Constraint_Exception);
+                        throw;
+                    }
+                }, ct);
+
+
+                // ■メインスレッド
+                ct.ThrowIfCancellationRequested();
+
                 // 登録
                 lock (lockObject)
                 {
@@ -689,58 +731,6 @@ namespace MagicaCloth2
                     MagicaManager.Collider.Register(this);
                 }
 
-                // 自チームと同期チームのデータ（コピー）
-                //var teamData = MagicaManager.Team.GetTeamData(TeamId);
-                //var syncTeamData = syncCloth != null ? MagicaManager.Team.GetTeamData(syncCloth.Process.TeamId) : default;
-
-                // ■スレッド
-                ct.ThrowIfCancellationRequested();
-                await Task.Run(() =>
-                {
-                    // ■クロスデータの作成
-                    try
-                    {
-                        // 距離制約(Distance)
-                        ct.ThrowIfCancellationRequested();
-                        distanceConstraintData = DistanceConstraint.CreateData(ProxyMesh, parameters);
-                        if (distanceConstraintData.result.IsError())
-                            result = distanceConstraintData.result;
-
-                        // 曲げ制約(Bending)
-                        ct.ThrowIfCancellationRequested();
-                        bendingConstraintData = TriangleBendingConstraint.CreateData(ProxyMesh, parameters);
-                        if (bendingConstraintData != null && bendingConstraintData.result.IsError())
-                            result = bendingConstraintData.result;
-
-                        // 慣性制約(Inertia)
-                        ct.ThrowIfCancellationRequested();
-                        inertiaConstraintData = InertiaConstraint.CreateData(ProxyMesh, parameters);
-                        if (inertiaConstraintData.result.IsError())
-                            result = inertiaConstraintData.result;
-
-                        // セルフコリジョン２(SelfCollision2)
-                        //ct.ThrowIfCancellationRequested();
-                        //self2ConstraintData = SelfCollisionConstraint2.CreateData(TeamId, teamData, ProxyMesh, parameters, syncCloth?.Process?.TeamId ?? 0, syncTeamData, syncCloth?.Process?.ProxyMesh);
-                        //if (self2ConstraintData != null && self2ConstraintData.result.IsError())
-                        //    result = self2ConstraintData.result;
-
-                        if (result.IsError())
-                            throw new MagicaClothProcessingException();
-                    }
-                    catch (MagicaClothProcessingException)
-                    {
-                        throw;
-                    }
-                    catch (Exception exception)
-                    {
-                        Debug.LogException(exception);
-                        result.SetError(Define.Result.Constraint_Exception);
-                        throw;
-                    }
-                }, ct);
-
-
-                // ■メインスレッド
                 // 制約データ登録
                 ct.ThrowIfCancellationRequested();
                 MagicaManager.Simulation.RegisterConstraint(this);
@@ -797,6 +787,7 @@ namespace MagicaCloth2
             {
                 result.SetCancel();
                 result.DebugLog();
+                //Debug.LogWarning($"Cancel!");
             }
             catch (Exception exception)
             {
@@ -823,12 +814,23 @@ namespace MagicaCloth2
                     }
                 }
 
+                // ビルド完了
+                isBuild = false;
 #if MC2_DEBUG
                 span.DebugLog();
 #endif
 
-                // ビルド完了イベント
-                cloth?.OnBuildComplete?.Invoke(result.IsSuccess());
+                // この時点でコンポーネントが削除されている場合は破棄する
+                if (isDestory)
+                {
+                    DisposeInternal();
+                    //Debug.LogWarning($"Delay Dispose!");
+                }
+                else
+                {
+                    // ビルド完了イベント
+                    cloth?.OnBuildComplete?.Invoke(result.IsSuccess());
+                }
             }
         }
 

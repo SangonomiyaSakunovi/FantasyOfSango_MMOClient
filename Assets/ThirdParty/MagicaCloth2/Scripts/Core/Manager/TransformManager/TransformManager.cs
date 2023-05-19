@@ -63,6 +63,11 @@ namespace MagicaCloth2
         internal ExNativeArray<quaternion> localRotationArray;
 
         /// <summary>
+        /// 接続チームID(0=なし)
+        /// </summary>
+        internal ExNativeArray<short> teamIdArray;
+
+        /// <summary>
         /// 読み込み用トランスフォームアクセス配列
         /// この配列は上記の配列グループとインデックが同期している
         /// </summary>
@@ -99,6 +104,7 @@ namespace MagicaCloth2
             scaleArray?.Dispose();
             localPositionArray?.Dispose();
             localRotationArray?.Dispose();
+            teamIdArray?.Dispose();
             //writeIndexArray?.Dispose();
 
             flagArray = null;
@@ -110,6 +116,7 @@ namespace MagicaCloth2
             scaleArray = null;
             localPositionArray = null;
             localRotationArray = null;
+            teamIdArray = null;
             //writeIndexArray = null;
 
             if (transformAccessArray.isCreated)
@@ -137,6 +144,7 @@ namespace MagicaCloth2
             scaleArray = new ExNativeArray<float3>(capacity);
             localPositionArray = new ExNativeArray<float3>(capacity);
             localRotationArray = new ExNativeArray<quaternion>(capacity);
+            teamIdArray = new ExNativeArray<short>(capacity);
 
             transformAccessArray = new TransformAccessArray(capacity);
 
@@ -154,7 +162,7 @@ namespace MagicaCloth2
         /// </summary>
         /// <param name="tdata"></param>
         /// <returns></returns>
-        internal DataChunk AddTransform(TransformData tdata)
+        internal DataChunk AddTransform(TransformData tdata, int teamId)
         {
             if (isValid == false)
                 return default;
@@ -174,6 +182,9 @@ namespace MagicaCloth2
             scaleArray.AddRange(cnt);
             localPositionArray.AddRange(cnt);
             localRotationArray.AddRange(cnt);
+
+            // チームID
+            teamIdArray.AddRange(cnt, (short)teamId);
 
             // トランスフォーム
             int nowcnt = transformAccessArray.length;
@@ -204,7 +215,7 @@ namespace MagicaCloth2
         /// </summary>
         /// <param name="count"></param>
         /// <returns></returns>
-        internal DataChunk AddTransform(int count)
+        internal DataChunk AddTransform(int count, int teamId)
         {
             if (isValid == false)
                 return default;
@@ -219,6 +230,9 @@ namespace MagicaCloth2
             scaleArray.AddRange(count);
             localPositionArray.AddRange(count);
             localRotationArray.AddRange(count);
+
+            // チームID
+            teamIdArray.AddRange(count, (short)teamId);
 
             // トランスフォームはすべてnullで登録する
             int nowcnt = transformAccessArray.length;
@@ -250,7 +264,7 @@ namespace MagicaCloth2
         /// <param name="t"></param>
         /// <param name="flag"></param>
         /// <returns></returns>
-        internal DataChunk AddTransform(Transform t, ExBitFlag8 flag)
+        internal DataChunk AddTransform(Transform t, ExBitFlag8 flag, int teamId)
         {
             if (isValid == false)
                 return default;
@@ -265,6 +279,9 @@ namespace MagicaCloth2
             scaleArray.Add(t.lossyScale);
             localPositionArray.Add(t.localPosition);
             localRotationArray.Add(t.localRotation);
+
+            // チームID
+            teamIdArray.Add((short)teamId);
 
             // トランスフォーム
             int nowcnt = transformAccessArray.length;
@@ -283,7 +300,7 @@ namespace MagicaCloth2
         /// <param name="t"></param>
         /// <param name="flag"></param>
         /// <param name="index"></param>
-        internal void SetTransform(Transform t, ExBitFlag8 flag, int index)
+        internal void SetTransform(Transform t, ExBitFlag8 flag, int index, int teamId)
         {
             if (isValid == false)
                 return;
@@ -300,6 +317,7 @@ namespace MagicaCloth2
                 scaleArray[index] = t.lossyScale;
                 localPositionArray[index] = t.localPosition;
                 localRotationArray[index] = t.localRotation;
+                teamIdArray[index] = (short)teamId;
                 transformAccessArray[index] = t;
             }
             else
@@ -307,6 +325,7 @@ namespace MagicaCloth2
                 // データクリア（無効化）
                 flagArray[index] = default;
                 transformAccessArray[index] = null;
+                teamIdArray[index] = 0;
             }
         }
 
@@ -330,6 +349,7 @@ namespace MagicaCloth2
             localPositionArray[toIndex] = localPositionArray[fromIndex];
             localRotationArray[toIndex] = localRotationArray[fromIndex];
             transformAccessArray[toIndex] = transformAccessArray[fromIndex];
+            teamIdArray[toIndex] = teamIdArray[fromIndex];
         }
 
         /// <summary>
@@ -352,6 +372,7 @@ namespace MagicaCloth2
             scaleArray.Remove(c);
             localPositionArray.Remove(c);
             localRotationArray.Remove(c);
+            teamIdArray.RemoveAndFill(c, 0);
 
             // トランスフォーム削除
             for (int i = 0; i < c.dataLength; i++)
@@ -440,6 +461,9 @@ namespace MagicaCloth2
                     flagList = flagArray.GetNativeArray(),
                     localPositionArray = initLocalPositionArray.GetNativeArray(),
                     localRotationArray = initLocalRotationArray.GetNativeArray(),
+                    //teamIdArray = teamIdArray.GetNativeArray(),
+
+                    //teamDataArray = MagicaManager.Team.teamDataArray.GetNativeArray(),
                 };
                 jobHandle = job.Schedule(transformAccessArray, jobHandle);
             }
@@ -457,15 +481,21 @@ namespace MagicaCloth2
             public NativeArray<float3> localPositionArray;
             [Unity.Collections.ReadOnly]
             public NativeArray<quaternion> localRotationArray;
+            //[Unity.Collections.ReadOnly]
+            //public NativeArray<short> teamIdArray;
+
+            // team
+            //[Unity.Collections.ReadOnly]
+            //public NativeArray<TeamManager.TeamData> teamDataArray;
+
 
             public void Execute(int index, TransformAccess transform)
             {
                 if (transform.isValid == false)
                     return;
                 var flag = flagList[index];
-                // 復元はEnableフラグを見ない
-                //if (flag.IsSet(Flag_Enable) == false)
-                //    return;
+                if (flag.IsSet(Flag_Enable) == false)
+                    return;
                 if (flag.IsSet(Flag_Restore) == false)
                     return;
 
@@ -614,16 +644,18 @@ namespace MagicaCloth2
         {
             StringBuilder sb = new StringBuilder();
 
-            sb.AppendLine($"Transform Manager. :{Count}");
+
+            int tcnt = transformAccessArray.isCreated ? transformAccessArray.length : 0;
+            sb.AppendLine($"Transform Manager. Length:{tcnt}");
 
             if (transformAccessArray.isCreated)
             {
-                int tcnt = transformAccessArray.length;
                 for (int i = 0; i < tcnt; i++)
                 {
                     var t = transformAccessArray[i];
                     var flag = flagArray[i];
-                    sb.Append($"  [{i}] (");
+                    var teamId = teamIdArray[i];
+                    sb.Append($"  [{i}] team:{teamId} (");
                     sb.Append(flag.IsSet(Flag_Enable) ? "E" : "");
                     sb.Append(flag.IsSet(Flag_Restore) ? "R" : "");
                     sb.Append(flag.IsSet(Flag_Read) ? "r" : "");

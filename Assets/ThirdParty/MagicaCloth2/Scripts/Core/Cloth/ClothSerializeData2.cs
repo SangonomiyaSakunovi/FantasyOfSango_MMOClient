@@ -16,7 +16,6 @@ namespace MagicaCloth2
         /// vertex paint data.
         /// </summary>
         [SerializeField]
-        //[SerializeReference]
         public SelectionData selectionData = new SelectionData();
 
         //=========================================================================================

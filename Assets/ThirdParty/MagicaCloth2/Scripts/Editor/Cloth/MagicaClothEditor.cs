@@ -386,6 +386,18 @@ namespace MagicaCloth2
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("serializeData.selfCollisionConstraint.clothMass"));
             }
             );
+
+            // Wind
+            Foldout("Wind", null, () =>
+            {
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("serializeData.wind.influence"));
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("serializeData.wind.frequency"));
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("serializeData.wind.turbulence"));
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("serializeData.wind.blend"), new GUIContent("Noise Blend"));
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("serializeData.wind.synchronization"));
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("serializeData.wind.depthWeight"));
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("serializeData.wind.movingWind"));
+            });
         }
 
         /// <summary>

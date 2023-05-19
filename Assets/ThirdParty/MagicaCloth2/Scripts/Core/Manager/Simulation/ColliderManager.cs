@@ -227,7 +227,7 @@ namespace MagicaCloth2
             oldPositions.AddRange(cnt);
             oldRotations.AddRange(cnt);
             workDataArray.AddRange(cnt);
-            tdata.colliderTransformChunk = MagicaManager.Bone.AddTransform(cnt); // 領域のみ
+            tdata.colliderTransformChunk = MagicaManager.Bone.AddTransform(cnt, teamId); // 領域のみ
             tdata.colliderCount = 0;
             MagicaManager.Team.SetTeamData(teamId, tdata);
 
@@ -397,14 +397,18 @@ namespace MagicaCloth2
         /// <param name="localIndex"></param>
         internal void RemoveCollider(ColliderComponent col, int teamId)
         {
+            if (isValid == false)
+                return;
             var tdata = MagicaManager.Team.GetTeamData(teamId);
             int ccnt = tdata.colliderCount;
             if (ccnt == 0)
                 return;
             var cprocess = MagicaManager.Team.GetClothProcess(teamId);
-            Debug.Assert(cprocess != null);
+            if (cprocess == null)
+                return;
             int index = cprocess.GetColliderIndex(col);
-            Debug.Assert(index >= 0);
+            if (index < 0)
+                return;
 
             int arrayIndex = tdata.colliderChunk.startIndex + index;
             int transformIndex = tdata.colliderTransformChunk.startIndex + index;
@@ -438,7 +442,7 @@ namespace MagicaCloth2
 
                 // transform
                 MagicaManager.Bone.CopyTransform(swapTransformIndex, transformIndex);
-                MagicaManager.Bone.SetTransform(null, default, swapTransformIndex);
+                MagicaManager.Bone.SetTransform(null, default, swapTransformIndex, 0);
 
                 // cprocess
                 cprocess.colliderArray[index] = cprocess.colliderArray[swapIndex];
@@ -451,7 +455,7 @@ namespace MagicaCloth2
                 teamIdArray[arrayIndex] = 0;
 
                 // transform
-                MagicaManager.Bone.SetTransform(null, default, transformIndex);
+                MagicaManager.Bone.SetTransform(null, default, transformIndex, 0);
 
                 // cprocess
                 cprocess.colliderArray[index] = null;
@@ -502,7 +506,7 @@ namespace MagicaCloth2
             bool t_enable = cprocess.IsEnable && flag.IsSet(Flag_Enable);
             var tflag = new ExBitFlag8(TransformManager.Flag_Read);
             tflag.SetFlag(TransformManager.Flag_Enable, t_enable);
-            MagicaManager.Bone.SetTransform(col.transform, tflag, transformIndex);
+            MagicaManager.Bone.SetTransform(col.transform, tflag, transformIndex, teamId);
             //MagicaManager.Bone.SetTransform(col.transform, new ExBitFlag8(TransformManager.Flag_Read), transformIndex);
 
             colliderSet.Add(col);

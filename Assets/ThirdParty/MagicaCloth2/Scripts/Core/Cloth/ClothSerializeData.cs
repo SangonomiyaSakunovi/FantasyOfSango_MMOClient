@@ -236,5 +236,10 @@ namespace MagicaCloth2
         /// Self collision
         /// </summary>
         public SelfCollisionConstraint.SerializeData selfCollisionConstraint = new SelfCollisionConstraint.SerializeData();
+
+        /// <summary>
+        /// Wind
+        /// </summary>
+        public WindSettings wind = new WindSettings();
     }
 }

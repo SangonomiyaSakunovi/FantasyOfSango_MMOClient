@@ -76,6 +76,7 @@ namespace MagicaCloth2
             motionConstraint.DataValidate();
             colliderCollisionConstraint.DataValidate();
             selfCollisionConstraint.DataValidate();
+            wind.DataValidate();
         }
 
         /// <summary>
@@ -153,6 +154,7 @@ namespace MagicaCloth2
             cparams.motionConstraint.Convert(motionConstraint);
             cparams.colliderCollisionConstraint.Convert(colliderCollisionConstraint);
             cparams.selfCollisionConstraint.Convert(selfCollisionConstraint);
+            cparams.wind.Convert(wind);
 
             return cparams;
         }
@@ -316,6 +318,7 @@ namespace MagicaCloth2
             motionConstraint = sdata.motionConstraint.Clone();
             colliderCollisionConstraint = sdata.colliderCollisionConstraint.Clone();
             selfCollisionConstraint = sdata.selfCollisionConstraint.Clone();
+            wind = sdata.wind.Clone();
 
             if (deepCopy == false)
                 temp.Pop(this);

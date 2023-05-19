@@ -714,13 +714,14 @@ namespace MagicaCloth2
             float3 tan = 0;
             if (area == 0.0f)
             {
-                // error
-                //Debug.LogWarning($"tdistBA:{tdistBA}, tdistCA:{tdistCA}, a:{tdistBA.x * tdistCA.y}, b:{tdistBA.y * tdistCA.x}");
-                //Debug.LogError($"Calc tangent area = 0!\np0:{p0},p1:{p1},p2:{p2}\nuv0:{uv0},uv1:{uv1},uv2:{uv2}");
+#if MC2_DEBUG
                 Debug.LogWarning($"Calc tangent area = 0!\np0:{p0},p1:{p1},p2:{p2}\nuv0:{uv0},uv1:{uv1},uv2:{uv2}");
-                // todo:どうしてもまれに発生するので一旦定数で処理を流してみる
+#endif
+
+                // どうしてもまれに発生するので一旦定数で処理を流してみる
                 area = 1;
             }
+
             //else
             {
                 float delta = 1.0f / area;
@@ -1404,36 +1405,6 @@ namespace MagicaCloth2
         }
 
         //=========================================================================================
-#if false
-        /// <summary>
-        /// カーブパラメータから指定位置の値を取得する
-        /// </summary>
-        /// <param name="t">取得位置(0.0 ~ 1.0)</param>
-        /// <param name="value">パラメータ値</param>
-        /// <param name="useCurve">カーブの利用有無</param>
-        /// <param name="curveStart">カーブ開始割合(0.0 ~ 1.0)</param>
-        /// <param name="curveEnd">カーブ終了割合(0.0 ~ 1.0)</param>
-        /// <param name="curveStrength">カーブ強さ(-1.0 ~ +1.0), 0.0ならば直線</param>
-        /// <returns></returns>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static float GetCurveValue(float t, float value, bool useCurve, float curveStart, float curveEnd, float curveStrength)
-        {
-            float scale = 1.0f;
-
-            if (useCurve)
-            {
-                // ２次ベジェ曲線
-                // 制御点
-                float cval = math.lerp(curveEnd, curveStart, curveStrength * 0.5f + 0.5f);
-                float w = 1.0f - t;
-                //float y = w * w * sval + 2 * w * t * cval + t * t * eval;
-                scale = math.dot(new float3(w * w, 2 * w * t, t * t), new float3(curveStart, cval, curveEnd));
-            }
-
-            return value * scale;
-        }
-#endif
-
         /// <summary>
         /// 深さから重量を計算して返す
         /// </summary>

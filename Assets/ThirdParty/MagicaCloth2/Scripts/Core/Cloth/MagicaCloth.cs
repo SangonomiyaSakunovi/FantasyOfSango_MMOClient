@@ -8,6 +8,7 @@ namespace MagicaCloth2
     /// <summary>
     /// MagicaCloth main component.
     /// </summary>
+    [AddComponentMenu("MagicaCloth2/MagicaCloth")]
     public partial class MagicaCloth : ClothBehaviour, IValid
     {
         /// <summary>
@@ -98,7 +99,7 @@ namespace MagicaCloth2
         /// Hash code for checking changes when editing.
         /// </summary>
         /// <returns></returns>
-        public override int GetHashCode()
+        public override int GetMagicaHashCode()
         {
             int hash = SerializeData.GetHashCode();
             hash += isActiveAndEnabled ? GetInstanceID() : 0; // component active.

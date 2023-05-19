@@ -13,11 +13,6 @@ namespace MagicaCloth2
 {
     public partial class VirtualMesh
     {
-        //=========================================================================================
-        //static readonly ProfilerMarker importSetupProfiler = new ProfilerMarker("Import Setup");
-        //static readonly ProfilerMarker addMeshProfiler = new ProfilerMarker("Add Mesh");
-
-        //=========================================================================================
         /// <summary>
         /// レンダー情報からインポートする（スレッド可）
         /// </summary>
@@ -28,19 +23,16 @@ namespace MagicaCloth2
         {
             try
             {
-                // プロファイラ
-                //importSetupProfiler.Begin();
-
                 // ★基本的に一連の作業が完了するまでキャンセルはさせない（安全性のため）
                 if (rsetup == null)
                 {
                     result.SetError(Define.Result.VirtualMesh_InvalidSetup);
-                    throw new NullReferenceException();
+                    throw new MagicaClothProcessingException();
                 }
                 if (rsetup.IsFaild())
                 {
                     result.SetError(Define.Result.VirtualMesh_InvalidSetup);
-                    throw new InvalidOperationException();
+                    throw new MagicaClothProcessingException();
                 }
 
                 // ========== Transform =========
@@ -115,20 +107,14 @@ namespace MagicaCloth2
 
                 // 頂点平均接続距離算出
                 CalcAverageAndMaxVertexDistanceRun();
-
-                // ========== finish =========
             }
-            //catch (Exception exception)
             catch (Exception)
             {
-                //Debug.LogError(exception);
                 if (result.IsNone()) result.SetError(Define.Result.VirtualMesh_ImportError);
-                //result.DebugLog();
-                //throw;
+                throw;
             }
             finally
             {
-                //importSetupProfiler.End();
             }
         }
 
@@ -840,49 +826,24 @@ namespace MagicaCloth2
                 if (renderData == null)
                 {
                     result.SetError(Define.Result.VirtualMesh_InvalidRenderData);
-                    //throw new NullReferenceException();
+                    throw new MagicaClothProcessingException();
                 }
 
                 ImportFrom(renderData.setupData);
             }
-            //catch (Exception e)
+            catch (MagicaClothProcessingException)
+            {
+                if (result.IsError() == false)
+                    result.SetError(Define.Result.VirtualMesh_ImportError);
+                throw;
+            }
             catch (Exception)
             {
                 //Debug.LogException(e);
-                //throw;
                 result.SetError(Define.Result.VirtualMesh_ImportError);
-            }
-        }
-
-#if false
-        /// <summary>
-        /// レンダラーからインポートする（同期）
-        /// </summary>
-        /// <param name="ren"></param>
-        public void ImportFrom(Renderer ren)
-        {
-            Debug.Assert(ren);
-            result.Clear();
-
-            try
-            {
-                // レンダラー情報
-                using var rsetup = new RenderSetupData(ren);
-                if (rsetup.result.IsFaild())
-                {
-                    return;
-                }
-
-                // 内部データ構築
-                ImportFrom(rsetup);
-            }
-            catch (Exception e)
-            {
-                Debug.LogException(e);
                 throw;
             }
         }
-#endif
 
         //=========================================================================================
         /// <summary>
@@ -1283,8 +1244,6 @@ namespace MagicaCloth2
         {
             try
             {
-                //addMeshProfiler.Begin();
-
                 if (IsError)
                     throw new InvalidOperationException();
 
@@ -1443,10 +1402,7 @@ namespace MagicaCloth2
             }
             finally
             {
-                //addMeshProfiler.End();
             }
-
-            //return chunk;
         }
 
         /// <summary>
@@ -1779,11 +1735,10 @@ namespace MagicaCloth2
             localNormals.CopyTo(newNormals);
 
             // 接線はwを(-1)にして書き込む
-            var tangentArray = new NativeArray<Vector4>(VertexCount, Allocator.TempJob);
+            using var tangentArray = new NativeArray<Vector4>(VertexCount, Allocator.TempJob);
             JobUtility.FillRun(tangentArray, VertexCount, new Vector4(0, 0, 0, -1));
             var newTangents = tangentArray.ToArray();
             localTangents.CopyToWithTypeChangeStride(newTangents); // float3[] -> Vector4[]コピー
-            tangentArray.Dispose();
 
             mesh.vertices = newVertices;
             if (recalculationNormals == false)

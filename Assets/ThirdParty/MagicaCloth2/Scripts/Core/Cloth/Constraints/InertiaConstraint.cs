@@ -222,11 +222,13 @@ namespace MagicaCloth2
 
             /// <summary>
             /// ステップごとの移動ベクトル
+            /// これは削減前の純粋なワールドベクトル
             /// </summary>
             public float3 stepVector;
 
             /// <summary>
             /// ステップごとの回転ベクトル
+            /// これは削減前の純粋なワールド回転
             /// </summary>
             public quaternion stepRotation;
 
@@ -239,6 +241,16 @@ namespace MagicaCloth2
             /// ステップごとの慣性全体シフト回転
             /// </summary>
             public quaternion inertiaRotation;
+
+            /// <summary>
+            /// ステップごとの慣性削減後の移動速度(m/s)
+            /// </summary>
+            public float stepMovingSpeed;
+
+            /// <summary>
+            /// ステップごとの慣性削減後の移動方向
+            /// </summary>
+            public float3 stepMovingDirection;
 
             /// <summary>
             /// 回転の角速度(rad/s)
@@ -335,12 +347,16 @@ namespace MagicaCloth2
                     localGravityDirection = math.mul(irot, parameters.gravityDirection);
                 }
                 constraintData.initLocalGravityDirection = localGravityDirection;
+
+                constraintData.result.SetSuccess();
+
                 //Develop.Log($"Create [InertiaConstraint].");
             }
             catch (Exception exception)
             {
                 Debug.LogError(exception);
                 constraintData.result.SetError(Define.Result.Constraint_CreateInertiaException);
+                throw;
             }
             finally
             {

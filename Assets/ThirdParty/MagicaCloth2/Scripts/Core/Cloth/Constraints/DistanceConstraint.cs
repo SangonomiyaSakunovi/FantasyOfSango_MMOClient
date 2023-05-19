@@ -132,6 +132,7 @@ namespace MagicaCloth2
         internal static ConstraintData CreateData(VirtualMesh proxyMesh, in ClothParameters parameters)
         {
             var constraintData = new ConstraintData();
+
             NativeParallelMultiHashMap<int, ushort> vvMap = default;
 
             try
@@ -295,11 +296,14 @@ namespace MagicaCloth2
                     constraintData.dataArray = dataList.ToArray();
                     constraintData.distanceArray = distanceList.ToArray();
                 }
+
+                constraintData.result.SetSuccess();
             }
             catch (Exception exception)
             {
                 Debug.LogError(exception);
                 constraintData.result.SetError(Define.Result.Constraint_CreateDistanceException);
+                throw;
             }
             finally
             {

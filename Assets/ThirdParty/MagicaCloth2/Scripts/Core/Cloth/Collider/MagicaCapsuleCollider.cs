@@ -8,6 +8,7 @@ namespace MagicaCloth2
     /// <summary>
     /// Capsuleコライダーコンポーネント
     /// </summary>
+    [AddComponentMenu("MagicaCloth2/MagicaCapsuleCollider")]
     public class MagicaCapsuleCollider : ColliderComponent
     {
         public enum Direction
@@ -53,7 +54,7 @@ namespace MagicaCloth2
         public void SetSize(float startRadius, float endRadius, float length)
         {
             SetSize(new Vector3(startRadius, endRadius, length));
-            radiusSeparation = startRadius == endRadius;
+            radiusSeparation = startRadius != endRadius;
         }
 
         /// <summary>

@@ -6,8 +6,9 @@ using UnityEngine;
 namespace MagicaCloth2
 {
     /// <summary>
-    /// Sphereコライダーコンポーネント
+    /// Sphere collider
     /// </summary>
+    [AddComponentMenu("MagicaCloth2/MagicaSphereCollider")]
     public class MagicaSphereCollider : ColliderComponent
     {
         public override ColliderManager.ColliderType GetColliderType()

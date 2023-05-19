@@ -168,6 +168,16 @@ namespace MagicaCloth2
         /// </summary>
         volatile int suspendCounter = 0;
 
+        /// <summary>
+        /// 破棄フラグ
+        /// </summary>
+        volatile bool isDestory = false;
+
+        /// <summary>
+        /// 構築中フラグ
+        /// </summary>
+        volatile bool isBuild = false;
+
         public BitField32 GetStateFlag()
         {
             lock (lockState)
@@ -235,7 +245,7 @@ namespace MagicaCloth2
 
         public void Dispose()
         {
-            //isValid = false;
+            isDestory = true;
             SetState(State_Valid, false);
             result.Clear();
             cts.Cancel();
@@ -243,15 +253,25 @@ namespace MagicaCloth2
             if (MagicaManager.IsPlaying() == false)
                 return;
 
-            // マネージャから削除
-            MagicaManager.Simulation.ExitProxyMesh(this);
-            MagicaManager.VMesh.ExitProxyMesh(TeamId); // マッピングメッシュも解放される
-            MagicaManager.Collider.Exit(this);
-            MagicaManager.Cloth.RemoveCloth(this);
+            DisposeInternal();
+            //Debug.Log($"ClothProcessData.Dispose()!");
+        }
 
-            // レンダーメッシュの破棄
+        void DisposeInternal()
+        {
             lock (lockObject)
             {
+                // ビルド中は破棄を保留する
+                if (isBuild)
+                    return;
+
+                // マネージャから削除
+                MagicaManager.Simulation?.ExitProxyMesh(this);
+                MagicaManager.VMesh?.ExitProxyMesh(TeamId); // マッピングメッシュも解放される
+                MagicaManager.Collider?.Exit(this);
+                MagicaManager.Cloth?.RemoveCloth(this);
+
+                // レンダーメッシュの破棄
                 foreach (var info in renderMeshInfoList)
                 {
                     if (info == null)
@@ -262,28 +282,25 @@ namespace MagicaCloth2
                 }
                 renderMeshInfoList.Clear();
                 renderMeshInfoList = null;
-            }
 
-            // レンダーデータの利用終了
-            lock (lockObject)
-            {
+                // レンダーデータの利用終了
                 foreach (int renderHandle in renderHandleList)
                 {
-                    MagicaManager.Render.RemoveRenderer(renderHandle);
+                    MagicaManager.Render?.RemoveRenderer(renderHandle);
                 }
                 renderHandleList.Clear();
                 renderHandleList = null;
+
+                // BoneClothセットアップデータ
+                boneClothSetupData?.Dispose();
+                boneClothSetupData = null;
+
+                // プロキシメッシュ破棄
+                ProxyMesh?.Dispose();
+                ProxyMesh = null;
+
+                colliderArray = null;
             }
-
-            // BoneClothセットアップデータ
-            boneClothSetupData?.Dispose();
-            boneClothSetupData = null;
-
-            // プロキシメッシュ破棄
-            ProxyMesh?.Dispose();
-            ProxyMesh = null;
-
-            colliderArray = null;
         }
 
         internal void IncrementSuspendCounter()

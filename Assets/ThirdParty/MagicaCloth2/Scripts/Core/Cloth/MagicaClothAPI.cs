@@ -9,6 +9,16 @@ namespace MagicaCloth2
 {
     public partial class MagicaCloth
     {
+        /// <summary>
+        /// シリアライズデータ２の取得
+        /// SerializeData2クラスはシステムが利用するパラメータクラスです。
+        /// そのためユーザーによる変更は推奨されていません。
+        /// 
+        /// Acquisition of SerializedData2.
+        /// The SerializeData2 class is a parameter class used by the system.
+        /// Therefore, user modification is not recommended.
+        /// </summary>
+        /// <returns></returns>
         public ClothSerializeData2 GetSerializeData2()
         {
             return serializeData2;
