@@ -25,6 +25,7 @@ public class AvaterInfoWindow : BaseWindow
     private Vector2 clickPos;
 
     public Button closeButton;
+    public Button weaponsButton;
 
     protected override void InitWindow()
     {
@@ -71,6 +72,11 @@ public class AvaterInfoWindow : BaseWindow
     public void OnCloseButtonClick()
     {
         AvaterInfoSystem.Instance.CloseAvaterInfoWindow();
+    }
+
+    public void OnWeaponsButtonClick()
+    {
+
     }
 
     private void RegistTouchEvent()

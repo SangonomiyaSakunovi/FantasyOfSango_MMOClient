@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.unity.2d.sprite": "1.0.0",
     "com.unity.addressables": "1.21.9",
     "com.unity.animation.rigging": "1.2.1",
     "com.unity.burst": "1.8.3",

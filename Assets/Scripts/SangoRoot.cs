@@ -113,6 +113,8 @@ public class SangoRoot : MonoBehaviour
         missionSystem.InitSystem();
         AvaterInfoSystem avaterInfoSystem = GetComponent<AvaterInfoSystem>();
         avaterInfoSystem.InitSystem();
+        WeaponsEnhanceSystem weaponsEnhanceSystem = GetComponent<WeaponsEnhanceSystem>();
+        weaponsEnhanceSystem.InitSystem();
     }
 
     public static void AddMessage(string message)
