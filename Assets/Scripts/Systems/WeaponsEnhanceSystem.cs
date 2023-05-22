@@ -18,4 +18,17 @@ public class WeaponsEnhanceSystem : BaseSystem
         Instance = this;
     }
 
+    public void OpenWeaponsEnhanceWindow()
+    {
+        audioService.PlayUIAudio(AudioConstant.ClickButtonUI);
+        avaterInfoWindow.SetWindowState(false);
+        weaponsEnhanceWindow.SetWindowState();
+    }
+
+    public void CloseWeaponsEnhanceWindow()
+    {
+        audioService.PlayUIAudio(AudioConstant.ClickButtonUI);
+        weaponsEnhanceWindow.SetWindowState(false);
+        avaterInfoWindow.SetWindowState();        
+    }
 }

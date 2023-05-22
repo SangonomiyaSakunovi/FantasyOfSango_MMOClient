@@ -28,3 +28,25 @@ public class IslandSceneConfig : DataConfig<IslandSceneConfig>
     public Vector3 localPlayerPosition;
     public Quaternion localPlayerRotation;
 }
+
+public class WeaponBreak : DataConfig<WeaponBreak>
+{
+    public int weaponBreakCoin;
+    public string weaponBreakMaterial1;
+    public string weaponBreakMaterial2;
+}
+
+public class WeaponInfo : DataConfig<WeaponInfo>
+{
+    public string weaponName;
+    public string weaponDescribe;
+}
+
+public class WeaponValue : DataConfig<WeaponValue>
+{
+    public int weaponLevel;
+    public int weaponBaseATK;
+    public string weaponAbility1;
+    public string weaponAbility2;
+    public int weaponEnhanceLevelExp;
+}

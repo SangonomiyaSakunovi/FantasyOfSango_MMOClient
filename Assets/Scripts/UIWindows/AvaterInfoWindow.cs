@@ -3,6 +3,7 @@
 
 using SangoCommon.Classs;
 using SangoCommon.Enums;
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -25,13 +26,18 @@ public class AvaterInfoWindow : BaseWindow
     private Vector2 clickPos;
 
     public Button closeButton;
-    public Button weaponsButton;
+
+    public Transform buttonsTransform;
+    private Image[] buttonBGImageArray = new Image[5];
+    private int currentButtonIndex;
 
     protected override void InitWindow()
     {
         base.InitWindow();
-        RegistTouchEvent();
+        RegistTouchEvents();
         RefreshUI(AvaterCode.SangonomiyaKokomi);
+        RegistClickEvents();
+        OnItemClick(0);
     }
 
     private void RefreshUI(AvaterCode avater)
@@ -69,6 +75,37 @@ public class AvaterInfoWindow : BaseWindow
         SetText(avaterDefence, avaterAttribute.Defence);
     }
 
+    private void RegistClickEvents()
+    {
+        for(int i = 0; i < buttonsTransform.childCount; i++)
+        {
+            Image image = buttonsTransform.GetChild(i).GetComponent<Image>();
+            OnClick(image.gameObject, (object args) =>
+            {
+                OnItemClick((int)args);
+                audioService.PlayUIAudio(AudioConstant.ClickButtonUI);
+            }, i);
+            buttonBGImageArray[i] = image;
+        }
+    }
+
+    private void OnItemClick(int index)
+    {
+        currentButtonIndex = index;
+        for (int i = 0; i < buttonBGImageArray.Length; i++)
+        {
+            Transform trans = buttonBGImageArray[i].transform;
+            if (i == currentButtonIndex)
+            {
+                SetSprite(buttonBGImageArray[i], ButtonConstant.EnhanceSelectedImagePath);
+            }
+            else
+            {
+                SetSprite(buttonBGImageArray[i], ButtonConstant.EnhanceUnSelectedImagePath);
+            }
+        }
+    }
+
     public void OnCloseButtonClick()
     {
         AvaterInfoSystem.Instance.CloseAvaterInfoWindow();
@@ -76,10 +113,10 @@ public class AvaterInfoWindow : BaseWindow
 
     public void OnWeaponsButtonClick()
     {
-
+        WeaponsEnhanceSystem.Instance.OpenWeaponsEnhanceWindow();
     }
 
-    private void RegistTouchEvent()
+    private void RegistTouchEvents()
     {
         OnClickDown(avaterShowRawImage.gameObject, (PointerEventData pointerEvent) =>
         {

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<item _id="Sword_Test">
+		<weaponName>希夏普的佩剑</weaponName>
+		<weaponDescribe>传说中的佩剑，早已损坏，但据说看到的人都会有好运，得到来自某异世珊瑚宫家的祝福</weaponDescribe>
+	</item>
+	<item/>
+</root>

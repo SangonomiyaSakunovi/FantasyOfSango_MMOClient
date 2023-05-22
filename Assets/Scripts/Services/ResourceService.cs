@@ -14,7 +14,11 @@ public class ResourceService : MonoBehaviour
 
     private Dictionary<string, AudioClip> audioClipDict = new Dictionary<string, AudioClip>();
     private Dictionary<string, Sprite> spriteDict = new Dictionary<string, Sprite>();
+
     private Dictionary<string, MissionConfig> missionConfigDict = new Dictionary<string, MissionConfig>();
+    private Dictionary<string, WeaponBreakConfig> weaponBreakConfigDict = new Dictionary<string, WeaponBreakConfig>();
+    private Dictionary<string, WeaponInfoConfig> weaponInfoConfigDict = new Dictionary<string, WeaponInfoConfig>();
+    private Dictionary<string, WeaponValueConfig> weaponValueConfigDict = new Dictionary<string, WeaponValueConfig>();
 
     public void InitService()
     {
@@ -78,7 +82,7 @@ public class ResourceService : MonoBehaviour
                 switch (element.Name)
                 {
                     case "missionName":
-                        config.missionName = element.InnerText; 
+                        config.missionName = element.InnerText;
                         break;
                     case "npcID":
                         config.npcID = element.InnerText;
@@ -103,10 +107,143 @@ public class ResourceService : MonoBehaviour
             missionConfigDict.Add(missionId, config);
         }
     }
+
     public MissionConfig GetMissionConfig(string missionId)
     {
         return DictTools.GetDictValue<string, MissionConfig>(missionConfigDict, missionId);
     }
+    #endregion
+
+    #region WeaponsConfig
+    private void InitWeaponBreakConfig(string path)
+    {
+        TextAsset xml = Resources.Load<TextAsset>(path);
+        XmlDocument document = new XmlDocument();
+        document.LoadXml(xml.text);
+        XmlNodeList xmlNodeList = document.SelectSingleNode("root").ChildNodes;
+        for (int i = 0; i < xmlNodeList.Count; i++)
+        {
+            XmlElement xmlElement = xmlNodeList[i] as XmlElement;
+            if (xmlElement.GetAttributeNode("_id") == null)
+            {
+                continue;
+            }
+            string weaponBreakId = xmlElement.GetAttributeNode("_id").InnerText;
+            WeaponBreakConfig config = new WeaponBreakConfig
+            {
+                _id = weaponBreakId
+            };
+            foreach (XmlElement element in xmlNodeList[i].ChildNodes)
+            {
+                switch (element.Name)
+                {
+                    case "weaponBreakCoin":
+                        config.weaponBreakCoin = int.Parse(element.InnerText);
+                        break;
+                    case "weaponBreakMaterial1":
+                        config.weaponBreakMaterial1 = element.InnerText;
+                        break;
+                    case "weaponBreakMaterial2":
+                        config.weaponBreakMaterial2 = element.InnerText;
+                        break;                    
+                }
+            }
+            weaponBreakConfigDict.Add(weaponBreakId, config);
+        }
+    }
+
+    private void InitWeaponInfoConfig(string path)
+    {
+        TextAsset xml = Resources.Load<TextAsset>(path);
+        XmlDocument document = new XmlDocument();
+        document.LoadXml(xml.text);
+        XmlNodeList xmlNodeList = document.SelectSingleNode("root").ChildNodes;
+        for (int i = 0; i < xmlNodeList.Count; i++)
+        {
+            XmlElement xmlElement = xmlNodeList[i] as XmlElement;
+            if (xmlElement.GetAttributeNode("_id") == null)
+            {
+                continue;
+            }
+            string weaponInfoId = xmlElement.GetAttributeNode("_id").InnerText;
+            WeaponInfoConfig config = new WeaponInfoConfig
+            {
+                _id = weaponInfoId
+            };
+            foreach (XmlElement element in xmlNodeList[i].ChildNodes)
+            {
+                switch (element.Name)
+                {
+                    case "weaponName":
+                        config.weaponName = element.InnerText;
+                        break;
+                    case "weaponDescribe":
+                        config.weaponDescribe = element.InnerText;
+                        break;
+                }
+            }
+            weaponInfoConfigDict.Add(weaponInfoId, config);
+        }
+    }
+
+    private void InitWeaponValueConfig(string path)
+    {
+        TextAsset xml = Resources.Load<TextAsset>(path);
+        XmlDocument document = new XmlDocument();
+        document.LoadXml(xml.text);
+        XmlNodeList xmlNodeList = document.SelectSingleNode("root").ChildNodes;
+        for (int i = 0; i < xmlNodeList.Count; i++)
+        {
+            XmlElement xmlElement = xmlNodeList[i] as XmlElement;
+            if (xmlElement.GetAttributeNode("_id") == null)
+            {
+                continue;
+            }
+            string weaponValueId = xmlElement.GetAttributeNode("_id").InnerText;
+            WeaponValueConfig config = new WeaponValueConfig
+            {
+                _id = weaponValueId
+            };
+            foreach (XmlElement element in xmlNodeList[i].ChildNodes)
+            {
+                switch (element.Name)
+                {
+                    case "weaponLevel":
+                        config.weaponLevel = int.Parse(element.InnerText);
+                        break;
+                    case "weaponBaseATK":
+                        config.weaponBaseATK = int.Parse(element.InnerText);
+                        break;
+                    case "weaponAbility1":
+                        config.weaponAbility1 = element.InnerText;
+                        break;
+                    case "weaponAbility2":
+                        config.weaponAbility2 = element.InnerText;
+                        break;
+                    case "weaponEnhanceLevelExp":
+                        config.weaponEnhanceLevelExp = int.Parse(element.InnerText);
+                        break;
+                }
+            }
+            weaponValueConfigDict.Add(weaponValueId, config);
+        }
+    }
+
+    public WeaponBreakConfig GetWeaponBreakConfig(string weaponBreakId)
+    {
+        return DictTools.GetDictValue<string, WeaponBreakConfig>(weaponBreakConfigDict, weaponBreakId);
+    }
+
+    public WeaponInfoConfig GetWeaponInfoConfig(string weaponInfoId)
+    {
+        return DictTools.GetDictValue<string, WeaponInfoConfig>(weaponInfoConfigDict, weaponInfoId);
+    }
+
+    public WeaponValueConfig GetWeaponValueConfig(string weaponValueId)
+    {
+        return DictTools.GetDictValue<string, WeaponValueConfig>(weaponValueConfigDict, weaponValueId);
+    }
+    #endregion
 
     public AudioClip LoadAudioClip(string audioPath, bool isCache)
     {
@@ -125,8 +262,8 @@ public class ResourceService : MonoBehaviour
     public Sprite LoadSprite(string spritePath, bool isCache = false)
     {
         Sprite sprite = DictTools.GetDictValue<string, Sprite>(spriteDict, spritePath);
-        if (sprite == null) 
-        { 
+        if (sprite == null)
+        {
             sprite = Resources.Load<Sprite>(spritePath);
             if (isCache)
             {
@@ -135,5 +272,4 @@ public class ResourceService : MonoBehaviour
         }
         return sprite;
     }
-    #endregion
 }

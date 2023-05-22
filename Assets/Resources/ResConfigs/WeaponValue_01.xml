@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<item _id="Sword_Test_1">
+		<weaponLevel>1</weaponLevel>
+		<weaponBaseATK>5</weaponBaseATK>
+		<weaponAbility1>ATK#1</weaponAbility1>
+		<weaponAbility2>-1</weaponAbility2>
+		<weaponEnhanceLevelExp>100</weaponEnhanceLevelExp>
+	</item>
+	<item _id="Sword_Test_2">
+		<weaponLevel>2</weaponLevel>
+		<weaponBaseATK>10</weaponBaseATK>
+		<weaponAbility1>ATK#2</weaponAbility1>
+		<weaponAbility2>-1</weaponAbility2>
+		<weaponEnhanceLevelExp>110</weaponEnhanceLevelExp>
+	</item>
+	<item _id="Sword_Test_3">
+		<weaponLevel>3</weaponLevel>
+		<weaponBaseATK>15</weaponBaseATK>
+		<weaponAbility1>ATK#3</weaponAbility1>
+		<weaponAbility2>-1</weaponAbility2>
+		<weaponEnhanceLevelExp>120</weaponEnhanceLevelExp>
+	</item>
+	<item _id="Sword_Test_4">
+		<weaponLevel>4</weaponLevel>
+		<weaponBaseATK>20</weaponBaseATK>
+		<weaponAbility1>ATK#4</weaponAbility1>
+		<weaponAbility2>-1</weaponAbility2>
+		<weaponEnhanceLevelExp>130</weaponEnhanceLevelExp>
+	</item>
+	<item _id="Sword_Test_5">
+		<weaponLevel>5</weaponLevel>
+		<weaponBaseATK>25</weaponBaseATK>
+		<weaponAbility1>ATK#5</weaponAbility1>
+		<weaponAbility2>-1</weaponAbility2>
+		<weaponEnhanceLevelExp>140</weaponEnhanceLevelExp>
+	</item>
+	<item _id="Sword_Test_6">
+		<weaponLevel>6</weaponLevel>
+		<weaponBaseATK>30</weaponBaseATK>
+		<weaponAbility1>ATK#6</weaponAbility1>
+		<weaponAbility2>-1</weaponAbility2>
+		<weaponEnhanceLevelExp>150</weaponEnhanceLevelExp>
+	</item>
+	<item _id="Sword_Test_7">
+		<weaponLevel>7</weaponLevel>
+		<weaponBaseATK>35</weaponBaseATK>
+		<weaponAbility1>ATK#7</weaponAbility1>
+		<weaponAbility2>-1</weaponAbility2>
+		<weaponEnhanceLevelExp>160</weaponEnhanceLevelExp>
+	</item>
+	<item _id="Sword_Test_8">
+		<weaponLevel>8</weaponLevel>
+		<weaponBaseATK>40</weaponBaseATK>
+		<weaponAbility1>ATK#8</weaponAbility1>
+		<weaponAbility2>-1</weaponAbility2>
+		<weaponEnhanceLevelExp>170</weaponEnhanceLevelExp>
+	</item>
+	<item _id="Sword_Test_9">
+		<weaponLevel>9</weaponLevel>
+		<weaponBaseATK>45</weaponBaseATK>
+		<weaponAbility1>ATK#9</weaponAbility1>
+		<weaponAbility2>-1</weaponAbility2>
+		<weaponEnhanceLevelExp>180</weaponEnhanceLevelExp>
+	</item>
+	<item _id="Sword_Test_10">
+		<weaponLevel>10</weaponLevel>
+		<weaponBaseATK>50</weaponBaseATK>
+		<weaponAbility1>ATK#10</weaponAbility1>
+		<weaponAbility2>-1</weaponAbility2>
+		<weaponEnhanceLevelExp>190</weaponEnhanceLevelExp>
+	</item>
+</root>

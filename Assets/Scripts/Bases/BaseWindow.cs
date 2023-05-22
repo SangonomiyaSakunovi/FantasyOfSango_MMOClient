@@ -108,6 +108,13 @@ public class BaseWindow : MonoBehaviour
     #endregion
 
     #region ClickEvents
+    protected void OnClick(GameObject gameObject, Action<object> pointerObject, object clickArgs)
+    {
+        ClickListener clickListener = GetOrAddComponent<ClickListener>(gameObject);
+        clickListener.onClick = pointerObject;
+        clickListener.clickArguments = clickArgs;
+    }
+
     protected void OnClickDown(GameObject gameObject,Action<PointerEventData> pointerEvent)
     {
         ClickListener clickListener = GetOrAddComponent<ClickListener>(gameObject);

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<item _id="Sword_Test_5">
+		<weaponBreakCoin>100</weaponBreakCoin>
+		<weaponBreakMaterial1>Stone_Test</weaponBreakMaterial1>
+		<weaponBreakMaterial2>-1</weaponBreakMaterial2>
+	</item>
+	<item _id="Sword_Test_10">
+		<weaponBreakCoin>200</weaponBreakCoin>
+		<weaponBreakMaterial1>Stone_Test</weaponBreakMaterial1>
+		<weaponBreakMaterial2>-1</weaponBreakMaterial2>
+	</item>
+</root>
