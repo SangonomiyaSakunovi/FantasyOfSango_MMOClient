@@ -1904,14 +1904,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: WeaponsEnhanceWindow
       objectReference: {fileID: 0}
-    - target: {fileID: 2105582845523892955, guid: 77d0bd88f8d94b147b316bc0fd2b16bf, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3847282191113482585, guid: 77d0bd88f8d94b147b316bc0fd2b16bf, type: 3}
-      propertyPath: buttonsTransform
-      value: 
-      objectReference: {fileID: 4819057584876786339}
     - target: {fileID: 8903088231269473503, guid: 77d0bd88f8d94b147b316bc0fd2b16bf, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2001,11 +1993,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77d0bd88f8d94b147b316bc0fd2b16bf, type: 3}
---- !u!224 &4819057584876786339 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 9076717521334739169, guid: 77d0bd88f8d94b147b316bc0fd2b16bf, type: 3}
-  m_PrefabInstance: {fileID: 4819057584876786338}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &5817181769235281166 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8675414451185665922, guid: 8a1bf10a4a854fb418a9f7d61e17ad92, type: 3}
@@ -2765,7 +2752,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4879810650859959565, guid: f2d20cccca826a249b206abe81eda432, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -111,11 +111,6 @@ public class AvaterInfoWindow : BaseWindow
         AvaterInfoSystem.Instance.CloseAvaterInfoWindow();
     }
 
-    public void OnWeaponsButtonClick()
-    {
-        WeaponsEnhanceSystem.Instance.OpenWeaponsEnhanceWindow();
-    }
-
     private void RegistTouchEvents()
     {
         OnClickDown(avaterShowRawImage.gameObject, (PointerEventData pointerEvent) =>
