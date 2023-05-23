@@ -2,7 +2,7 @@
 // 作者：Stark
 //-------------------------------------
 
-#if UNITY_ANDROID
+#if UNITY_ANDROID && UNITY_EDITOR
 /// <summary>
 /// 为Github对开发者的友好，采用自动补充UnityPlayerActivity.java文件的通用姿势满足各个开发者
 /// </summary>
@@ -30,7 +30,6 @@ internal class AndroidPost : UnityEditor.Android.IPostGenerateGradleAndroidProje
 			"        } \n" +
 			"        catch(java.io.IOException e) \n" +
 			"        { \n" +
-			"            e.printStackTrace(); \n" +
 			"        } \n" +
 			"        return false; \n" +
 			"    } \n" +
