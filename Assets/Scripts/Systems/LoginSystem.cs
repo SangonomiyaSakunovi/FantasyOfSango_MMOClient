@@ -71,7 +71,7 @@ public class LoginSystem : BaseSystem
     {
         if (returnCode == ReturnCode.Success)
         {
-            SangoRoot.AddMessage("登录成功，请进行后续测试");
+            SangoRoot.AddMessage("登录成功，请进行后续测试", TextColorCode.OrangeColor);
             SetOtherAccount();
             //Load the MainGame
             netService.AsyncLoadPlayerData(() =>
@@ -84,11 +84,11 @@ public class LoginSystem : BaseSystem
         }
         else if (returnCode == ReturnCode.AccountOnline)
         {
-            SangoRoot.AddMessage("登录失败，该玩家已在线");
+            SangoRoot.AddMessage("登录失败，该玩家已在线", TextColorCode.OrangeColor);
         }
         else
         {
-            SangoRoot.AddMessage("登录失败，请检查用户名或密码是否匹配");
+            SangoRoot.AddMessage("登录失败，请检查用户名或密码是否匹配", TextColorCode.OrangeColor);
         }
     }
 

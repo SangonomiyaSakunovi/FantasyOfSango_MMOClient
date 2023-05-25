@@ -63,12 +63,12 @@ public class AttackDamageRequest : BaseRequest
             if (attackResult.DamageNumber > 0)
             {
                 IslandOnlineAccountSystem.Instance.SetOnlineAvaterAttackResult(attackResult);
-                SangoRoot.AddMessage("你攻击了玩家" + attackResult.DamagerAccount + "本次伤害为" + attackResult.DamageNumber + "HP");
+                SangoRoot.AddMessage("你攻击了玩家" + attackResult.DamagerAccount + "本次伤害为" + attackResult.DamageNumber + "HP", TextColorCode.OrangeColor);
             }
             else    //in this kind, the avater has been cured
             {
                 IslandOnlineAccountSystem.Instance.SetOnlineAvaterAttackResult(attackResult);
-                SangoRoot.AddMessage("你治疗了玩家" + attackResult.DamagerAccount + "本次治疗量为" + -attackResult.DamageNumber + "HP");
+                SangoRoot.AddMessage("你治疗了玩家" + attackResult.DamagerAccount + "本次治疗量为" + -attackResult.DamageNumber + "HP", TextColorCode.OrangeColor);
             }
 
 

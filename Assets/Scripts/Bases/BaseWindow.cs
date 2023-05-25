@@ -1,5 +1,6 @@
 using System;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -52,26 +53,75 @@ public class BaseWindow : MonoBehaviour
         return t;
     }
 
-    #region SetText Tools
-    protected void SetText(TMP_Text tMP_Text, string text)
+    #region SetText
+    protected void SetText(TMP_Text tMP_Text, string text, TextColorCode textColor)
     {
-        tMP_Text.text = text;
+        string result = SetTextWithColor(text, textColor);
+        tMP_Text.text = result;
     }
-    protected void SetText(TMP_Text tMP_Text, int number)
+    protected void SetText(TMP_Text tMP_Text, int number, TextColorCode textColor)
     {
-        tMP_Text.text = number.ToString();
+        string result = SetTextWithColor(number.ToString(), textColor);
+        tMP_Text.text = result;
     }
-    protected void SetText(Transform transform, string text)
+    protected void SetText(Transform transform, string text, TextColorCode textColor)
     {
-        transform.GetComponent<TMP_Text>().text = text;
+        string result = SetTextWithColor(text, textColor);
+        transform.GetComponent<TMP_Text>().text = result;
     }
-    protected void SetText(Transform transform, int number)
+    protected void SetText(Transform transform, int number, TextColorCode textColor)
     {
-        transform.GetComponent<TMP_Text>().text = number.ToString();
+        string result = SetTextWithColor(number.ToString(), textColor);
+        transform.GetComponent<TMP_Text>().text = result;
+    }
+
+    private string SetTextWithColor(string text, TextColorCode textColor)
+    {
+        string result = "";
+        string colorStart = "<color=";
+        string colorEnd = ">";
+        string textEnd = "</color>";
+        switch (textColor)
+        {
+            case TextColorCode.WhiteColor:
+                result = colorStart + ColorConstant.WhiteColorHex + colorEnd + text + textEnd;
+                break;
+            case TextColorCode.RedColor:
+                result = colorStart + ColorConstant.RedColorHex + colorEnd + text + textEnd;
+                break;
+            case TextColorCode.GreenColor:
+                result = colorStart + ColorConstant.GreenColorHex + colorEnd + text + textEnd;
+                break;
+            case TextColorCode.BlueColor:
+                result = colorStart + ColorConstant.BlueColorHex + colorEnd + text + textEnd;
+                break;
+            case TextColorCode.CyanColor:
+                result = colorStart + ColorConstant.CyanColorHex + colorEnd + text + textEnd;
+                break;
+            case TextColorCode.PurpleColor:
+                result = colorStart + ColorConstant.PurpleColorHex + colorEnd + text + textEnd;
+                break;
+            case TextColorCode.GoldColor:
+                result = colorStart + ColorConstant.GoldColorHex + colorEnd + text + textEnd;
+                break;
+            case TextColorCode.OrangeColor:
+                result = colorStart + ColorConstant.OrangeColorHex + colorEnd + text + textEnd;
+                break;
+            case TextColorCode.VaporizeColor:
+                result = colorStart + ColorConstant.VaporizeColorHex + colorEnd + text + textEnd;
+                break;
+            case TextColorCode.MeltColor:
+                result = colorStart + ColorConstant.MeltColorHex + colorEnd + text + textEnd;
+                break;
+            case TextColorCode.FrozenColor:
+                result = colorStart + ColorConstant.FrozenColorHex + colorEnd + text + textEnd;
+                break;
+        }
+        return result;
     }
     #endregion
 
-    #region SetActive Tools
+    #region SetActive
     protected void SetActive(GameObject gameObject, bool isActive = true)
     {
         gameObject.SetActive(isActive);
@@ -98,7 +148,7 @@ public class BaseWindow : MonoBehaviour
     }
     #endregion
 
-    #region SetSprite Tools
+    #region SetSprite
     protected void SetSprite(Image image, string path, bool isCache = false)
     {
         Sprite sprite = resourceService.LoadSprite(path, isCache);

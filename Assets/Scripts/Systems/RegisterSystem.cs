@@ -37,11 +37,11 @@ public class RegisterSystem : BaseSystem
     {
         if (returnCode == ReturnCode.Success)
         {
-            SangoRoot.AddMessage("注册成功，感谢您参加本次测试");
+            SangoRoot.AddMessage("注册成功，感谢您参加本次测试", TextColorCode.GreenColor);
         }
         else
         {
-            SangoRoot.AddMessage("注册失败，该用户名已存在，请更换用户名");
+            SangoRoot.AddMessage("注册失败，该用户名已存在，请更换用户名", TextColorCode.GoldColor);
         }
     }
 

@@ -48,7 +48,7 @@ public class LoginWindow : BaseWindow
         }
         else
         {
-            SangoRoot.AddMessage("账号或密码为空");
+            SangoRoot.AddMessage("账号或密码为空", TextColorCode.RedColor);
         }
     }
 

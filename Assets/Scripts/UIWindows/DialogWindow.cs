@@ -1,5 +1,4 @@
 using TMPro;
-using Unity.Burst.CompilerServices;
 using UnityEngine.UI;
 
 //Developer : SangonomiyaSakunovi
@@ -19,12 +18,12 @@ public class DialogWindow : BaseWindow
 
     public void SetDialogText(string text)
     {
-        SetText(dialogText, text);
+        SetText(dialogText, text, TextColorCode.WhiteColor);
     }
 
     public void SetDialogAvaterName(string name)
-    {        
-        SetText(dialogAvaterName, name);
+    {
+        SetText(dialogAvaterName, name, TextColorCode.OrangeColor);
     }
 
     public void SetDialogAvaterImage(string dialogAvaterImg)

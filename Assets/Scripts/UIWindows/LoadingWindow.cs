@@ -14,22 +14,23 @@ public class LoadingWindow : BaseWindow
 
     public float loadingProgressFGWidth;
 
+    private float loadingProgressPointYPos = -444.731f;
+
     protected override void InitWindow()
     {
         base.InitWindow();
         loadingProgressFGWidth = loadingProgressFG.GetComponent<RectTransform>().sizeDelta.x;
-        SetText(tips, "¸ÐÐ»ÄúµÄ²âÊÔ");
-        SetText(loadingProgressText, "0%");
+        SetText(tips, "¸ÐÐ»ÄúµÄ²âÊÔ", TextColorCode.OrangeColor);
+        SetText(loadingProgressText, "0%", TextColorCode.OrangeColor);
         loadingProgressFG.fillAmount = 0;
-        loadingProgressPoint.transform.localPosition = new Vector3(-loadingProgressFGWidth / 2, -444.731f, 0);
+        loadingProgressPoint.transform.localPosition = new Vector3(-loadingProgressFGWidth / 2, loadingProgressPointYPos, 0);
     }
 
     public void SetLoadingProgress(float loadingProgress)
     {
-        SetText(loadingProgressText, (int)(loadingProgress * 100) + "%");
+        SetText(loadingProgressText, (int)(loadingProgress * 100) + "%", TextColorCode.OrangeColor);
         loadingProgressFG.fillAmount = loadingProgress;
-
         float positionLoadingProgressPoint = loadingProgress * loadingProgressFGWidth - loadingProgressFGWidth / 2;
-        loadingProgressPoint.transform.localPosition = new Vector3(positionLoadingProgressPoint, -444.731f, 0);
+        loadingProgressPoint.transform.localPosition = new Vector3(positionLoadingProgressPoint, loadingProgressPointYPos, 0);
     }
 }

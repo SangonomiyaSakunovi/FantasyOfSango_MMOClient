@@ -3,7 +3,9 @@ using SangoCommon.Enums;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing.Text;
 using TMPro;
+using UnityEditor.VersionControl;
 using UnityEngine;
 
 //Developer : SangonomiyaSakunovi
@@ -16,7 +18,7 @@ public class DynamicWindow : BaseWindow
     public Transform uiItemRoot;
 
     private bool isMessageShow = false;
-    private Queue<string> messageQueue = new Queue<string>();
+    private Queue<MessageStruct> messageStructQueue = new Queue<MessageStruct>();
 
     private Dictionary<string, EnemyHpUIShows> enemyHpUIShowsDict = new Dictionary<string, EnemyHpUIShows>();
     private List<ElementReactionNameShows> elementReactionShowsList = new List<ElementReactionNameShows>();
@@ -25,6 +27,8 @@ public class DynamicWindow : BaseWindow
     private float scaleRate = 1.0f * 1080 / Screen.height;
     private Vector3 enemyHeight;
 
+    
+
     protected override void InitWindow()
     {
         base.InitWindow();
@@ -32,11 +36,12 @@ public class DynamicWindow : BaseWindow
         enemyHeight = new Vector3(0, 400, 0);
     }
 
-    public void AddMessage(string message)
+    public void AddMessage(string message, TextColorCode textColor)
     {
-        lock (messageQueue)
+        lock (messageStructQueue)
         {
-            messageQueue.Enqueue(message);
+            MessageStruct messageStruct = new MessageStruct(message, textColor);            
+            messageStructQueue.Enqueue(messageStruct);
         }
     }
 
@@ -99,13 +104,13 @@ public class DynamicWindow : BaseWindow
     }
     private void Update()
     {
-        if (messageQueue.Count > 0 && isMessageShow == false)
+        if (messageStructQueue.Count > 0 && isMessageShow == false)
         {
-            lock (messageQueue)
+            lock (messageStructQueue)
             {
-                string message = messageQueue.Dequeue();
+                MessageStruct messageStruct = messageStructQueue.Dequeue();
                 isMessageShow = true;
-                SetMessage(message);
+                SetMessage(messageStruct.Message, messageStruct.TextColor);
             }
         }
         CleanObjectPool();
@@ -124,10 +129,10 @@ public class DynamicWindow : BaseWindow
         }
     }
 
-    private void SetMessage(string message)
+    private void SetMessage(string message, TextColorCode textColor)
     {
         SetActive(messageText);
-        SetText(messageText, message);
+        SetText(messageText, message, textColor);
         AnimationClip animationClip = messageShowAnimation.GetClip("MessageShowAni");
         messageShowAnimation.Play();
         //Close after a while

@@ -68,7 +68,7 @@ public class EnemyHpUIItem : BaseWindow
 
     public void SetLevelText(int level)
     {
-        SetText(levelText, "Lv. " + level);
+        SetText(levelText, "Lv. " + level, TextColorCode.WhiteColor);
     }
 
     public void SetIsFocusEnemy(bool bo = true)

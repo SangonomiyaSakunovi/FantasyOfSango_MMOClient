@@ -39,7 +39,7 @@ public class RegisterWindow : BaseWindow
         }
         else
         {
-            SangoRoot.AddMessage("亲，信息要输入完整哦");
+            SangoRoot.AddMessage("亲，信息要输入完整哦", TextColorCode.GreenColor);
         }
     }
 

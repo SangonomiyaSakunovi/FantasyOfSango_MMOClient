@@ -3,7 +3,6 @@
 
 using SangoCommon.Classs;
 using SangoCommon.Enums;
-using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -68,16 +67,16 @@ public class AvaterInfoWindow : BaseWindow
                 avaterNameTemp = "ÂÃÐÐÕß£º¿Õ";
                 break;
         }
-        SetText(avaterName, avaterNameTemp);
-        SetText(avaterElementType, avaterAttribute.ElementType.ToString());
-        SetText(avaterMaxHP, avaterAttribute.HPFull);
-        SetText(avaterAttack, avaterAttribute.Attack);
-        SetText(avaterDefence, avaterAttribute.Defence);
+        SetText(avaterName, avaterNameTemp, TextColorCode.WhiteColor);
+        SetText(avaterElementType, avaterAttribute.ElementType.ToString(), TextColorCode.WhiteColor);
+        SetText(avaterMaxHP, avaterAttribute.HPFull, TextColorCode.WhiteColor);
+        SetText(avaterAttack, avaterAttribute.Attack, TextColorCode.WhiteColor);
+        SetText(avaterDefence, avaterAttribute.Defence, TextColorCode.WhiteColor);
     }
 
     private void RegistClickEvents()
     {
-        for(int i = 0; i < buttonsTransform.childCount; i++)
+        for (int i = 0; i < buttonsTransform.childCount; i++)
         {
             Image image = buttonsTransform.GetChild(i).GetComponent<Image>();
             OnClick(image.gameObject, (object args) =>

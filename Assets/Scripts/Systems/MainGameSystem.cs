@@ -98,7 +98,7 @@ public class MainGameSystem : BaseSystem
             {
                 playerCube.transform.Find(AvaterConstant.YoimiyaName).GetComponent<AttackControllerYoimiya>().SetDamaged(attackResult);
             }
-            SangoRoot.AddMessage("你被玩家" + attackResult.AttackerAccount + "攻击了，受到伤害-" + attackResult.DamageNumber + "HP");
+            SangoRoot.AddMessage("你被玩家" + attackResult.AttackerAccount + "攻击了，受到伤害-" + attackResult.DamageNumber + "HP", TextColorCode.OrangeColor);
             AvaterAttributeInfo tempAttribute = attackResult.DamagerAvaterInfo.AttributeInfoList[0];
             mainGameWindow.RefreshMainAvaterUI(tempAttribute);
         }
@@ -110,7 +110,7 @@ public class MainGameSystem : BaseSystem
             {
                 healerGameobject.GetComponent<AttackControllerSangonomiyaKokomi>().SetCureResult(playerCube.transform.position);
             }
-            SangoRoot.AddMessage("你被玩家" + attackResult.AttackerAccount + "治疗了，治疗量为" + -attackResult.DamageNumber + "HP");
+            SangoRoot.AddMessage("你被玩家" + attackResult.AttackerAccount + "治疗了，治疗量为" + -attackResult.DamageNumber + "HP", TextColorCode.OrangeColor);
             AvaterAttributeInfo tempAttribute = attackResult.DamagerAvaterInfo.AttributeInfoList[0];
             mainGameWindow.RefreshMainAvaterUI(tempAttribute);
         }

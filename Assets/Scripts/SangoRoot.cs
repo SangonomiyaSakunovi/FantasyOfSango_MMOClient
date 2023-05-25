@@ -117,9 +117,9 @@ public class SangoRoot : MonoBehaviour
         weaponsEnhanceSystem.InitSystem();
     }
 
-    public static void AddMessage(string message)
+    public static void AddMessage(string message, TextColorCode textColor)
     {
-        Instance.dynamicWindow.AddMessage(message);
+        Instance.dynamicWindow.AddMessage(message, textColor);
     }
 
     private void OnApplicationQuit()

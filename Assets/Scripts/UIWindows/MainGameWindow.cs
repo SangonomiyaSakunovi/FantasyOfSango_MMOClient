@@ -62,7 +62,7 @@ public class MainGameWindow : BaseWindow
 
     public void RefreshMainAvaterUI(AvaterAttributeInfo info)
     {
-        SetText(mainHpText, info.HP + " / " + info.HPFull);
+        SetText(mainHpText, info.HP + " / " + info.HPFull, TextColorCode.WhiteColor);
         mainHpFG.fillAmount = (float)info.HP / info.HPFull;
         mainElementBurstFG.fillAmount = (float)info.MP / info.MPFull;
     }
@@ -75,7 +75,7 @@ public class MainGameWindow : BaseWindow
     public void SetGuidMissionText()
     {
         string text = MissionSystem.Instance.GetGuidMissionText();
-        SetText(guidMissionText, text);
+        SetText(guidMissionText, text, TextColorCode.WhiteColor);
     }
 
     public void OnAutoFindPathButtonClick()
@@ -93,7 +93,7 @@ public class MainGameWindow : BaseWindow
         }
         else
         {
-            SangoRoot.AddMessage("更多任务，珊瑚忆梦制作组正在开发中，下次再来探索吧~");
+            SangoRoot.AddMessage("更多任务，珊瑚忆梦制作组正在开发中，下次再来探索吧~", TextColorCode.CyanColor);
         }
     }
 

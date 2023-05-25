@@ -12,27 +12,23 @@ public class ElementReactionNameUIItem : BaseWindow
 
     public void PlayElementReactionName(ElementReactionCode elementReaction)
     {
-        SetColor(elementReactionNameText, elementReaction);
+        SetElementReactionName(elementReactionNameText, elementReaction);
         elementReactionNameAni.Play();
     }
 
-    private void SetColor(TMP_Text text, ElementReactionCode elementReaction)
+    private void SetElementReactionName(TMP_Text text, ElementReactionCode elementReaction)
     {
-        float Nor = 255f;
         if (elementReaction == ElementReactionCode.Vaporize)
         {
-            SetText(elementReactionNameText, "蒸发");
-            text.color = new Color(254 / Nor, 197 / Nor, 82 / Nor);
+            SetText(elementReactionNameText, "蒸发", TextColorCode.VaporizeColor);
         }
         else if (elementReaction == ElementReactionCode.Melt)
         {
-            SetText(elementReactionNameText, "融化");
-            text.color = new Color(255 / Nor, 201 / Nor, 100 / Nor);
+            SetText(elementReactionNameText, "融化", TextColorCode.MeltColor);
         }
         else if (elementReaction == ElementReactionCode.Frozen)
         {
-            SetText(elementReactionNameText, "冻结");
-            text.color = new Color(144 / Nor, 246 / Nor, 255 / Nor);
+            SetText(elementReactionNameText, "冻结", TextColorCode.FrozenColor);
         }
     }
 }

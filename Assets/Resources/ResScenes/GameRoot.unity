@@ -1900,6 +1900,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2075706608}
     m_Modifications:
+    - target: {fileID: 89247308824024660, guid: 77d0bd88f8d94b147b316bc0fd2b16bf, type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 89247308824024660, guid: 77d0bd88f8d94b147b316bc0fd2b16bf, type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 89247308824024660, guid: 77d0bd88f8d94b147b316bc0fd2b16bf, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 89247308824024660, guid: 77d0bd88f8d94b147b316bc0fd2b16bf, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 2105582845523892955, guid: 77d0bd88f8d94b147b316bc0fd2b16bf, type: 3}
       propertyPath: m_Name
       value: WeaponsEnhanceWindow
