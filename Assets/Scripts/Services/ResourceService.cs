@@ -17,21 +17,31 @@ public class ResourceService : MonoBehaviour
 
     private Dictionary<string, MissionConfig> missionConfigDict = new Dictionary<string, MissionConfig>();
     private Dictionary<string, WeaponBreakConfig> weaponBreakConfigDict = new Dictionary<string, WeaponBreakConfig>();
-    private Dictionary<string, WeaponInfoConfig> weaponInfoConfigDict = new Dictionary<string, WeaponInfoConfig>();
+    private Dictionary<string, WeaponDetailsConfig> weaponDetailsConfigDict = new Dictionary<string, WeaponDetailsConfig>();
     private Dictionary<string, WeaponValueConfig> weaponValueConfigDict = new Dictionary<string, WeaponValueConfig>();
+
+    private Action loadingProgressCallBack = null;
 
     public void InitService()
     {
         Instance = this;
         InitMissionConfig(ConfigConstant.MissionConfigPath_01);
+        InitWeaponBreakConfig(ConfigConstant.WeaponBreakConfigPath_01);
+        InitWeaponDetailsConfig(ConfigConstant.WeaponDetailsConfigPath_01);
+        InitWeaponValueConfig(ConfigConstant.WeaponValueConfigPath_01);
     }
 
-    private Action loadingProgressCallBack = null;
+    private void Update()
+    {
+        if (loadingProgressCallBack != null)
+        {
+            loadingProgressCallBack();
+        }
+    }
 
     public void AsyncLoadScene(string sceneName, Action loadedActionCallBack)
     {
         SangoRoot.Instance.loadingWindow.SetWindowState();
-
         AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneName);
         loadingProgressCallBack = () =>
             {
@@ -48,14 +58,6 @@ public class ResourceService : MonoBehaviour
                     SangoRoot.Instance.loadingWindow.SetWindowState(false);
                 }
             };
-    }
-
-    private void Update()
-    {
-        if (loadingProgressCallBack != null)
-        {
-            loadingProgressCallBack();
-        }
     }
 
     #region MissionConfig
@@ -102,6 +104,18 @@ public class ResourceService : MonoBehaviour
                     case "guidText":
                         config.guidText = element.InnerText;
                         break;
+                    case "coinRewards":
+                        config.coinRewards = int.Parse(element.InnerText);
+                        break;
+                    case "worldExpRewards":
+                        config.worldExpRewards = int.Parse(element.InnerText);
+                        break;
+                    case "material1Rewards":
+                        config.material1Rewards = element.InnerText;
+                        break;
+                    case "material2Rewards":
+                        config.material2Rewards = element.InnerText;
+                        break;
                 }
             }
             missionConfigDict.Add(missionId, config);
@@ -145,14 +159,14 @@ public class ResourceService : MonoBehaviour
                         break;
                     case "weaponBreakMaterial2":
                         config.weaponBreakMaterial2 = element.InnerText;
-                        break;                    
+                        break;
                 }
             }
             weaponBreakConfigDict.Add(weaponBreakId, config);
         }
     }
 
-    private void InitWeaponInfoConfig(string path)
+    private void InitWeaponDetailsConfig(string path)
     {
         TextAsset xml = Resources.Load<TextAsset>(path);
         XmlDocument document = new XmlDocument();
@@ -166,7 +180,7 @@ public class ResourceService : MonoBehaviour
                 continue;
             }
             string weaponInfoId = xmlElement.GetAttributeNode("_id").InnerText;
-            WeaponInfoConfig config = new WeaponInfoConfig
+            WeaponDetailsConfig config = new WeaponDetailsConfig
             {
                 _id = weaponInfoId
             };
@@ -177,12 +191,15 @@ public class ResourceService : MonoBehaviour
                     case "weaponName":
                         config.weaponName = element.InnerText;
                         break;
+                    case "weaponQuanlity":
+                        config.weaponQuanlity = int.Parse(element.InnerText);
+                        break;
                     case "weaponDescribe":
                         config.weaponDescribe = element.InnerText;
                         break;
                 }
             }
-            weaponInfoConfigDict.Add(weaponInfoId, config);
+            weaponDetailsConfigDict.Add(weaponInfoId, config);
         }
     }
 
@@ -208,9 +225,6 @@ public class ResourceService : MonoBehaviour
             {
                 switch (element.Name)
                 {
-                    case "weaponLevel":
-                        config.weaponLevel = int.Parse(element.InnerText);
-                        break;
                     case "weaponBaseATK":
                         config.weaponBaseATK = int.Parse(element.InnerText);
                         break;
@@ -223,6 +237,9 @@ public class ResourceService : MonoBehaviour
                     case "weaponEnhanceLevelExp":
                         config.weaponEnhanceLevelExp = int.Parse(element.InnerText);
                         break;
+                    case "weaponAccumulateExp":
+                        config.weaponAccumulateExp = int.Parse(element.InnerText);
+                        break;
                 }
             }
             weaponValueConfigDict.Add(weaponValueId, config);
@@ -234,9 +251,9 @@ public class ResourceService : MonoBehaviour
         return DictTools.GetDictValue<string, WeaponBreakConfig>(weaponBreakConfigDict, weaponBreakId);
     }
 
-    public WeaponInfoConfig GetWeaponInfoConfig(string weaponInfoId)
+    public WeaponDetailsConfig GetWeaponDetailsConfig(string weaponDetailsId)
     {
-        return DictTools.GetDictValue<string, WeaponInfoConfig>(weaponInfoConfigDict, weaponInfoId);
+        return DictTools.GetDictValue<string, WeaponDetailsConfig>(weaponDetailsConfigDict, weaponDetailsId);
     }
 
     public WeaponValueConfig GetWeaponValueConfig(string weaponValueId)

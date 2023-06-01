@@ -8,8 +8,6 @@ using System.Collections.Generic;
 
 public class SyncPlayerAccountRequest : BaseRequest
 {
-    public string Account { get; private set; }
-
     public override void InitRequset()
     {
         base.InitRequset();
@@ -28,10 +26,5 @@ public class SyncPlayerAccountRequest : BaseRequest
         {
             IslandOnlineAccountSystem.Instance.InstantiatePlayerCube(account);
         }
-    }
-
-    public void SetAccount(string account)
-    {
-        Account = account;
     }
 }

@@ -11,7 +11,6 @@ using SangoCommon.Structs;
 
 public class AttackCommandRequest : BaseRequest
 {
-    public string Account { get; private set; }
     private AttackCommand attackCommand;
     public override void InitRequset()
     {
@@ -22,7 +21,7 @@ public class AttackCommandRequest : BaseRequest
     {
         attackCommand = new AttackCommand
         {
-            Account = this.Account,
+            Account = netService.Account,
             SkillCode = skillCode,
             Vector3Position = new Vector3Position
             {
@@ -51,10 +50,5 @@ public class AttackCommandRequest : BaseRequest
     public override void OnOperationResponse(OperationResponse operationResponse)
     {
         throw new System.NotImplementedException();
-    }
-
-    public void SetAccount(string account)
-    {
-        Account = account;
     }
 }

@@ -1,73 +1,87 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<item _id="Sword_Test_1">
-		<weaponLevel>1</weaponLevel>
 		<weaponBaseATK>5</weaponBaseATK>
 		<weaponAbility1>ATK#1</weaponAbility1>
 		<weaponAbility2>-1</weaponAbility2>
 		<weaponEnhanceLevelExp>100</weaponEnhanceLevelExp>
+		<weaponAccumulateExp>100</weaponAccumulateExp>
 	</item>
 	<item _id="Sword_Test_2">
-		<weaponLevel>2</weaponLevel>
 		<weaponBaseATK>10</weaponBaseATK>
 		<weaponAbility1>ATK#2</weaponAbility1>
 		<weaponAbility2>-1</weaponAbility2>
 		<weaponEnhanceLevelExp>110</weaponEnhanceLevelExp>
+		<weaponAccumulateExp>210</weaponAccumulateExp>
 	</item>
 	<item _id="Sword_Test_3">
-		<weaponLevel>3</weaponLevel>
 		<weaponBaseATK>15</weaponBaseATK>
 		<weaponAbility1>ATK#3</weaponAbility1>
 		<weaponAbility2>-1</weaponAbility2>
 		<weaponEnhanceLevelExp>120</weaponEnhanceLevelExp>
+		<weaponAccumulateExp>330</weaponAccumulateExp>
 	</item>
 	<item _id="Sword_Test_4">
-		<weaponLevel>4</weaponLevel>
 		<weaponBaseATK>20</weaponBaseATK>
 		<weaponAbility1>ATK#4</weaponAbility1>
 		<weaponAbility2>-1</weaponAbility2>
 		<weaponEnhanceLevelExp>130</weaponEnhanceLevelExp>
+		<weaponAccumulateExp>460</weaponAccumulateExp>
 	</item>
 	<item _id="Sword_Test_5">
-		<weaponLevel>5</weaponLevel>
 		<weaponBaseATK>25</weaponBaseATK>
 		<weaponAbility1>ATK#5</weaponAbility1>
 		<weaponAbility2>-1</weaponAbility2>
 		<weaponEnhanceLevelExp>140</weaponEnhanceLevelExp>
+		<weaponAccumulateExp>600</weaponAccumulateExp>
+	</item>
+	<item _id="Sword_Test_5_S">
+		<weaponBaseATK>28</weaponBaseATK>
+		<weaponAbility1>ATK#5</weaponAbility1>
+		<weaponAbility2>-1</weaponAbility2>
+		<weaponEnhanceLevelExp>150</weaponEnhanceLevelExp>
+		<weaponAccumulateExp>750</weaponAccumulateExp>
 	</item>
 	<item _id="Sword_Test_6">
-		<weaponLevel>6</weaponLevel>
 		<weaponBaseATK>30</weaponBaseATK>
 		<weaponAbility1>ATK#6</weaponAbility1>
 		<weaponAbility2>-1</weaponAbility2>
-		<weaponEnhanceLevelExp>150</weaponEnhanceLevelExp>
+		<weaponEnhanceLevelExp>0</weaponEnhanceLevelExp>
+		<weaponAccumulateExp>750</weaponAccumulateExp>
 	</item>
 	<item _id="Sword_Test_7">
-		<weaponLevel>7</weaponLevel>
 		<weaponBaseATK>35</weaponBaseATK>
 		<weaponAbility1>ATK#7</weaponAbility1>
 		<weaponAbility2>-1</weaponAbility2>
 		<weaponEnhanceLevelExp>160</weaponEnhanceLevelExp>
+		<weaponAccumulateExp>910</weaponAccumulateExp>
 	</item>
 	<item _id="Sword_Test_8">
-		<weaponLevel>8</weaponLevel>
 		<weaponBaseATK>40</weaponBaseATK>
 		<weaponAbility1>ATK#8</weaponAbility1>
 		<weaponAbility2>-1</weaponAbility2>
 		<weaponEnhanceLevelExp>170</weaponEnhanceLevelExp>
+		<weaponAccumulateExp>1080</weaponAccumulateExp>
 	</item>
 	<item _id="Sword_Test_9">
-		<weaponLevel>9</weaponLevel>
 		<weaponBaseATK>45</weaponBaseATK>
 		<weaponAbility1>ATK#9</weaponAbility1>
 		<weaponAbility2>-1</weaponAbility2>
 		<weaponEnhanceLevelExp>180</weaponEnhanceLevelExp>
+		<weaponAccumulateExp>1260</weaponAccumulateExp>
 	</item>
 	<item _id="Sword_Test_10">
-		<weaponLevel>10</weaponLevel>
 		<weaponBaseATK>50</weaponBaseATK>
 		<weaponAbility1>ATK#10</weaponAbility1>
 		<weaponAbility2>-1</weaponAbility2>
 		<weaponEnhanceLevelExp>190</weaponEnhanceLevelExp>
+		<weaponAccumulateExp>1450</weaponAccumulateExp>
+	</item>
+	<item _id="Sword_Blunt_1">
+		<weaponBaseATK>1</weaponBaseATK>
+		<weaponAbility1>-1</weaponAbility1>
+		<weaponAbility2>-1</weaponAbility2>
+		<weaponEnhanceLevelExp>20</weaponEnhanceLevelExp>
+		<weaponAccumulateExp>20</weaponAccumulateExp>
 	</item>
 </root>

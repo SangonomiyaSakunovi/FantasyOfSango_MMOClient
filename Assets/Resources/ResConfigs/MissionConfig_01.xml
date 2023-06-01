@@ -54,6 +54,10 @@
 #Main_Pre_01_24</dialogAudioArray>
 		<actionID>Main_Pre_02</actionID>
 		<guidText>-1</guidText>
+		<coinRewards>1000</coinRewards>
+		<worldExpRewards>10</worldExpRewards>
+		<material1Rewards>-1</material1Rewards>
+		<material2Rewards>-1</material2Rewards>
 	</item>
 	<item _id="Main_Pre_02">
 		<missionName>子夜落梦 · 一</missionName>
@@ -63,5 +67,9 @@
 		<dialogAudioArray>-1</dialogAudioArray>
 		<actionID>Main_Pre_03</actionID>
 		<guidText>四处看看，寻找声音踪迹</guidText>
+		<coinRewards>-1</coinRewards>
+		<worldExpRewards>-1</worldExpRewards>
+		<material1Rewards>-1</material1Rewards>
+		<material2Rewards>-1</material2Rewards>
 	</item>
 </root>

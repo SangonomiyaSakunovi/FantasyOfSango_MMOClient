@@ -26,21 +26,36 @@ public class AvaterInfoWindow : BaseWindow
 
     public Button closeButton;
 
-    public Transform buttonsTransform;
-    private Image[] buttonBGImageArray = new Image[5];
-    private int currentButtonIndex;
+    public Transform functionButtonsBaseTransform;
+    private Image[] functionButtonImageArray = new Image[5];
+    private int functionButtonCurrentIndex;
+    private int functionWindowCurrentIndex;
 
     protected override void InitWindow()
     {
         base.InitWindow();
-        RegistTouchEvents();
+        RegistAvaterTouchEvents();
+        RegistFunctionButtonClickEvents();
+        InitUI();
         RefreshUI(AvaterCode.SangonomiyaKokomi);
-        RegistClickEvents();
-        OnItemClick(0);
+        OnFunctionButtonClick(0);
     }
 
-    private void RefreshUI(AvaterCode avater)
+    protected override void ClearWindow()
     {
+        base.ClearWindow();
+        EndAvaterTouchEvents();
+        EndFunctionButtonClickEvents();
+    }
+
+    public void InitUI()
+    {
+        functionButtonCurrentIndex = -1;
+        functionWindowCurrentIndex = -1;
+    }
+
+    public void RefreshUI(AvaterCode avater)
+    {        
         AvaterInfo avaterInfo = OnlineAccountCache.Instance.AvaterInfo;
         AvaterAttributeInfo avaterAttribute = null;
         for (int i = 0; i < avaterInfo.AttributeInfoList.Count; i++)
@@ -74,33 +89,58 @@ public class AvaterInfoWindow : BaseWindow
         SetText(avaterDefence, avaterAttribute.Defence, TextColorCode.WhiteColor);
     }
 
-    private void RegistClickEvents()
+    private void RegistFunctionButtonClickEvents()
     {
-        for (int i = 0; i < buttonsTransform.childCount; i++)
+        for (int i = 0; i < functionButtonsBaseTransform.childCount; i++)
         {
-            Image image = buttonsTransform.GetChild(i).GetComponent<Image>();
+            Image image = functionButtonsBaseTransform.GetChild(i).GetComponent<Image>();
             OnClick(image.gameObject, (object args) =>
             {
-                OnItemClick((int)args);
                 audioService.PlayUIAudio(AudioConstant.ClickButtonUI);
+                OnFunctionButtonClick((int)args);             
             }, i);
-            buttonBGImageArray[i] = image;
+            functionButtonImageArray[i] = image;
         }
     }
 
-    private void OnItemClick(int index)
+    private void EndFunctionButtonClickEvents()
     {
-        currentButtonIndex = index;
-        for (int i = 0; i < buttonBGImageArray.Length; i++)
+        for (int i = 0; i < functionButtonsBaseTransform.childCount; i++)
         {
-            Transform trans = buttonBGImageArray[i].transform;
-            if (i == currentButtonIndex)
+            Image image = functionButtonsBaseTransform.GetChild(i).GetComponent<Image>();
+            OnEndClickEvents(image.gameObject);
+            functionButtonImageArray[i] = null;
+        }
+    }
+
+    private void OnFunctionButtonClick(int index)
+    {
+        functionButtonCurrentIndex = index;
+        for (int i = 0; i < functionButtonImageArray.Length; i++)
+        {
+            if (functionButtonImageArray[i] != null)
             {
-                SetSprite(buttonBGImageArray[i], ButtonConstant.EnhanceSelectedImagePath);
-            }
-            else
-            {
-                SetSprite(buttonBGImageArray[i], ButtonConstant.EnhanceUnSelectedImagePath);
+                Transform trans = functionButtonImageArray[i].transform;
+                if (i == functionButtonCurrentIndex)
+                {
+                    SetSprite(functionButtonImageArray[i], ButtonUIConstant.ItemFunctionButtonSelectedImagePath);
+                    switch (functionButtonCurrentIndex)
+                    {
+                        case 1:
+                            if (functionWindowCurrentIndex != functionButtonCurrentIndex)
+                            {
+                                WeaponsEnhanceSystem.Instance.OpenWeaponsEnhanceWindow();
+                                functionWindowCurrentIndex = functionButtonCurrentIndex;
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                else
+                {
+                    SetSprite(functionButtonImageArray[i], ButtonUIConstant.ItemFunctionButtonUnSelectedImagePath);
+                }
             }
         }
     }
@@ -110,7 +150,7 @@ public class AvaterInfoWindow : BaseWindow
         AvaterInfoSystem.Instance.CloseAvaterInfoWindow();
     }
 
-    private void RegistTouchEvents()
+    private void RegistAvaterTouchEvents()
     {
         OnClickDown(avaterShowRawImage.gameObject, (PointerEventData pointerEvent) =>
         {
@@ -122,5 +162,10 @@ public class AvaterInfoWindow : BaseWindow
             float rotation = -(pointerEvent.position.x - clickPos.x) * 0.5f;
             AvaterInfoSystem.Instance.SetAvaterShowRotation(rotation);
         });
+    }
+
+    private void EndAvaterTouchEvents()
+    {
+        OnEndClickEvents(avaterShowRawImage.gameObject);
     }
 }

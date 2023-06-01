@@ -7,8 +7,8 @@ using System.Collections.Generic;
 
 public class LoginRequest : BaseRequest
 {
-    public string Account { get; private set; }
-    public string Password { get; private set; }
+    private string account;
+    private string password;
 
     public override void InitRequset()
     {
@@ -18,8 +18,8 @@ public class LoginRequest : BaseRequest
     public override void DefaultRequest()
     {
         Dictionary<byte, object> dict = new Dictionary<byte, object>();
-        dict.Add((byte)ParameterCode.Account, Account);
-        dict.Add((byte)ParameterCode.Password, Password);
+        dict.Add((byte)ParameterCode.Account, account);
+        dict.Add((byte)ParameterCode.Password, password);
         NetService.Peer.OpCustom((byte)OpCode, dict, true);
     }
 
@@ -28,9 +28,9 @@ public class LoginRequest : BaseRequest
         ReturnCode returnCode = (ReturnCode)operationResponse.ReturnCode;
         LoginSystem.Instance.OnLoginResponse(returnCode);
     }
-    public void SetAccount(string account, string password)
+    public void SetAccount(string acc, string pass)
     {
-        Account = account;
-        Password = password;
+        account = acc;
+        password = pass;
     }
 }

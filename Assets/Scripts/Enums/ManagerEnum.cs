@@ -5,4 +5,6 @@ public enum GameModeCode
 {
     GamePlayMode,
     DialogueMode,
+    ConfigureItemMode,
+    WaitingServerResponseMode,
 }

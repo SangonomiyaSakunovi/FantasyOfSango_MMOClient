@@ -1,6 +1,5 @@
 using System;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -53,29 +52,16 @@ public class BaseWindow : MonoBehaviour
         return t;
     }
 
-    #region SetText
-    protected void SetText(TMP_Text tMP_Text, string text, TextColorCode textColor)
+    protected void RemoveComponent<T>(GameObject gameObject) where T : Component
     {
-        string result = SetTextWithColor(text, textColor);
-        tMP_Text.text = result;
-    }
-    protected void SetText(TMP_Text tMP_Text, int number, TextColorCode textColor)
-    {
-        string result = SetTextWithColor(number.ToString(), textColor);
-        tMP_Text.text = result;
-    }
-    protected void SetText(Transform transform, string text, TextColorCode textColor)
-    {
-        string result = SetTextWithColor(text, textColor);
-        transform.GetComponent<TMP_Text>().text = result;
-    }
-    protected void SetText(Transform transform, int number, TextColorCode textColor)
-    {
-        string result = SetTextWithColor(number.ToString(), textColor);
-        transform.GetComponent<TMP_Text>().text = result;
+        T t = gameObject.GetComponent<T>();
+        if (t != null)
+        {
+            Destroy(t);
+        }
     }
 
-    private string SetTextWithColor(string text, TextColorCode textColor)
+    protected string GetTextWithHexColor(string text, TextColorCode textColor)
     {
         string result = "";
         string colorStart = "<color=";
@@ -119,20 +105,32 @@ public class BaseWindow : MonoBehaviour
         }
         return result;
     }
-    #endregion
+
+    #region SetText
+    protected void SetText(TMP_Text tMP_Text, string text)
+    {
+        tMP_Text.text = text;
+    }
+    protected void SetText(TMP_Text tMP_Text, int number)
+    {
+        tMP_Text.text = number.ToString();
+    }
+    protected void SetText(TMP_Text tMP_Text, string text, TextColorCode textColor)
+    {
+        string result = GetTextWithHexColor(text, textColor);
+        tMP_Text.text = result;
+    }
+    protected void SetText(TMP_Text tMP_Text, int number, TextColorCode textColor)
+    {
+        string result = GetTextWithHexColor(number.ToString(), textColor);
+        tMP_Text.text = result;
+    }
+    #endregion   
 
     #region SetActive
     protected void SetActive(GameObject gameObject, bool isActive = true)
     {
         gameObject.SetActive(isActive);
-    }
-    protected void SetActive(Transform transform, bool isActive = true)
-    {
-        transform.gameObject.SetActive(isActive);
-    }
-    protected void SetActive(RectTransform rectTransform, bool isActive = true)
-    {
-        rectTransform.gameObject.SetActive(isActive);
     }
     protected void SetActive(Image image, bool isActive = true)
     {
@@ -165,7 +163,7 @@ public class BaseWindow : MonoBehaviour
         clickListener.clickArguments = clickArgs;
     }
 
-    protected void OnClickDown(GameObject gameObject,Action<PointerEventData> pointerEvent)
+    protected void OnClickDown(GameObject gameObject, Action<PointerEventData> pointerEvent)
     {
         ClickListener clickListener = GetOrAddComponent<ClickListener>(gameObject);
         clickListener.onClickDown = pointerEvent;
@@ -181,6 +179,11 @@ public class BaseWindow : MonoBehaviour
     {
         ClickListener clickListener = GetOrAddComponent<ClickListener>(gameObject);
         clickListener.onDrag = pointerEvent;
+    }
+    
+    protected void OnEndClickEvents(GameObject gameObject)
+    {
+        RemoveComponent<ClickListener>(gameObject);
     }
     #endregion
 }

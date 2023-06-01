@@ -1,3 +1,4 @@
+using Animancer.Examples.StateMachines.GameManager;
 using UnityEngine;
 
 //Developer : SangonomiyaSakunovi
@@ -23,6 +24,8 @@ public class AvaterInfoSystem : BaseSystem
 
     public void OpenAvaterInfoWindow()
     {
+        GameManager.Instance.SetGameMode(GameModeCode.ConfigureItemMode);
+        CameraController.Instance.LockCursor(false);
         audioService.PlayUIAudio(AudioConstant.AttributeAudio);
         ResetAvaterShowRotation();
         avaterShowTablet.SetActive(true);
@@ -36,6 +39,8 @@ public class AvaterInfoSystem : BaseSystem
         avaterInfoWindow.SetWindowState(false);
         mainGameWindow.SetWindowState();
         avaterShowTablet.SetActive(false);
+        GameManager.Instance.SetGameMode(GameModeCode.GamePlayMode);
+        CameraController.Instance.LockCursor();
     }
 
     public void InitAvaterShowTablet()

@@ -18,6 +18,10 @@ public class MissionConfig : DataConfig<MissionConfig>
     public string dialogAudioArray;
     public string actionID;
     public string guidText;
+    public int coinRewards;
+    public int worldExpRewards;
+    public string material1Rewards;
+    public string material2Rewards;
 }
 
 public class IslandSceneConfig : DataConfig<IslandSceneConfig>
@@ -36,17 +40,18 @@ public class WeaponBreakConfig : DataConfig<WeaponBreakConfig>
     public string weaponBreakMaterial2;
 }
 
-public class WeaponInfoConfig : DataConfig<WeaponInfoConfig>
+public class WeaponDetailsConfig : DataConfig<WeaponDetailsConfig>
 {
     public string weaponName;
+    public int weaponQuanlity;
     public string weaponDescribe;
 }
 
 public class WeaponValueConfig : DataConfig<WeaponValueConfig>
 {
-    public int weaponLevel;
     public int weaponBaseATK;
     public string weaponAbility1;
     public string weaponAbility2;
     public int weaponEnhanceLevelExp;
+    public int weaponAccumulateExp;
 }

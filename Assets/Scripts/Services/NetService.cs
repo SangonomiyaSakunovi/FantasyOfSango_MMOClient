@@ -1,6 +1,5 @@
 using ExitGames.Client.Photon;
 using SangoCommon.Enums;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -26,7 +25,7 @@ public class NetService : MonoBehaviour, IPhotonPeerListener
 
     public void InitService()
     {
-        string ipAddress = SetIPAddress(ConfigureModeCode.Online);
+        string ipAddress = SetIPAddress(ConfigureModeCode.Offline);
         Instance = this;
         peer = new PhotonPeer(this, ConnectionProtocol.Udp);
         peer.Connect(ipAddress, "FSOGameServer");
@@ -51,11 +50,6 @@ public class NetService : MonoBehaviour, IPhotonPeerListener
         if (peer != null)
         {
             peer.Service();
-        }
-
-        if (loadingPlayerDataCallBack != null)
-        {
-            loadingPlayerDataCallBack();
         }
     }
 
@@ -132,25 +126,6 @@ public class NetService : MonoBehaviour, IPhotonPeerListener
     {
         //Use  OperationCode as Key to remove, no need to specify the Event
         EventDict.Remove(_event.EvCode);
-    }
-
-    private Action loadingPlayerDataCallBack = null;
-
-    public void AsyncLoadPlayerData(Action loadedActionCallBack)
-    {
-        loadingPlayerDataCallBack = () =>
-        {
-            CacheSystem.Instance.syncPlayerDataRequest.DefaultRequest();
-            if (CacheSystem.Instance.syncPlayerDataRequest.IsGetResponse)
-            {
-                if (loadedActionCallBack != null)
-                {
-                    loadedActionCallBack();
-                }
-                loadingPlayerDataCallBack = null;
-                CacheSystem.Instance.syncPlayerDataRequest.SetIsGetResponse();
-            }
-        };
     }
 
     public void SetAccount(string account)

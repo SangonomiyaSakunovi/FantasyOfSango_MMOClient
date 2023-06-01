@@ -2,21 +2,28 @@ using ExitGames.Client.Photon;
 using SangoCommon.Classs;
 using SangoCommon.Enums;
 using SangoCommon.Tools;
+using System;
 
 //Developer : SangonomiyaSakunovi
 //Discription: The Sync Data Request.
 
 public class SyncPlayerDataRequest : BaseRequest
 {
-    public string Account { get; private set; }
-    public AvaterInfo AvaterInfo { get; private set; }
-    public MissionInfo MissionInfo { get; private set; }
-    public bool IsGetResponse { get; private set; }
+    private bool isGetResponse;
+    private Action loadingPlayerDataCallBack = null;
+
+    private void Update()
+    {
+        if (loadingPlayerDataCallBack != null)
+        {
+            loadingPlayerDataCallBack();
+        }
+    }
 
     public override void InitRequset()
     {
         base.InitRequset();
-        IsGetResponse = false;
+        isGetResponse = false;
     }
 
     public override void DefaultRequest()
@@ -27,24 +34,30 @@ public class SyncPlayerDataRequest : BaseRequest
     public override void OnOperationResponse(OperationResponse operationResponse)
     {
         string avaterInfoJson = DictTools.GetStringValue(operationResponse.Parameters, (byte)ParameterCode.AvaterInfo);
-        string missionInfoJson = DictTools.GetStringValue(operationResponse.Parameters,(byte)ParameterCode.MissionInfo);
-        AvaterInfo = DeJsonString<AvaterInfo>(avaterInfoJson);
-        MissionInfo = DeJsonString<MissionInfo>(missionInfoJson);
-        IsGetResponse = true;
+        string missionInfoJson = DictTools.GetStringValue(operationResponse.Parameters, (byte)ParameterCode.MissionInfo);
+        string itemInfoJson = DictTools.GetStringValue(operationResponse.Parameters, (byte)ParameterCode.ItemInfo);
+        AvaterInfo AvaterInfo = DeJsonString<AvaterInfo>(avaterInfoJson);
+        MissionInfo MissionInfo = DeJsonString<MissionInfo>(missionInfoJson);
+        ItemInfo itemInfo = DeJsonString<ItemInfo>(itemInfoJson);
+        OnlineAccountCache.Instance.SetAvaterInfo(AvaterInfo);
+        OnlineAccountCache.Instance.SetMissionInfo(MissionInfo);
+        OnlineAccountCache.Instance.SetItemInfo(itemInfo);
+        isGetResponse = true;
     }
 
-    public void SetAccoount(string account)
+    public void AsyncLoadPlayerData(Action loadedActionCallBack)
     {
-        Account = account;
-    }
-
-    public void SetIsGetResponse(bool isGetResponse = false)
-    {
-        IsGetResponse = isGetResponse;
-    }
-
-    public void SetPlayerCache(AvaterInfo avaterInfo)
-    {
-        AvaterInfo = avaterInfo;
+        loadingPlayerDataCallBack = () =>
+        {
+            if (isGetResponse)
+            {
+                if (loadedActionCallBack != null)
+                {
+                    loadedActionCallBack();
+                }
+                loadingPlayerDataCallBack = null;
+                isGetResponse = false;
+            }
+        };
     }
 }

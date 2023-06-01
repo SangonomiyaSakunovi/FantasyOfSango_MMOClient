@@ -12,9 +12,8 @@ using UnityEngine;
 
 public class AttackDamageRequest : BaseRequest
 {
-    public string Account { get; private set; }
-    public string DamagerAccount { get; private set; }
     private AttackDamage attackDamage;
+
     public override void InitRequset()
     {
         base.InitRequset();
@@ -25,7 +24,7 @@ public class AttackDamageRequest : BaseRequest
         attackDamage = new AttackDamage
         {
             FightTypeCode = fightType,
-            AttackerAccount = Account,
+            AttackerAccount = netService.Account,
             DamagerAccount = damager,
             SkillCode = skillCode,
             ElementReactionCode = elementReaction,
@@ -73,10 +72,5 @@ public class AttackDamageRequest : BaseRequest
 
 
         }
-    }
-
-    public void SetAccount(string account)
-    {
-        Account = account;
     }
 }

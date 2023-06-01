@@ -77,6 +77,10 @@ public class SangoRoot : MonoBehaviour
         attackDamageRequest.InitRequset();
         ChooseAvaterRequest chooseAvaterRequest = GetComponent<ChooseAvaterRequest>();
         chooseAvaterRequest.InitRequset();
+        ItemEnhanceRequest itemEnhanceRequest = GetComponent<ItemEnhanceRequest>();
+        itemEnhanceRequest.InitRequset();
+        MissionUpdateRequest missionUpdateRequest = GetComponent<MissionUpdateRequest>();
+        missionUpdateRequest.InitRequset();
     }
 
     private void InitEvent()
@@ -109,8 +113,8 @@ public class SangoRoot : MonoBehaviour
         registerSystem.InitSystem();
         MainGameSystem mainGameSystem = GetComponent<MainGameSystem>();
         mainGameSystem.InitSystem();
-        MissionSystem missionSystem = GetComponent<MissionSystem>();
-        missionSystem.InitSystem();
+        MissionUpdateSystem missionUpdateSystem = GetComponent<MissionUpdateSystem>();
+        missionUpdateSystem.InitSystem();
         AvaterInfoSystem avaterInfoSystem = GetComponent<AvaterInfoSystem>();
         avaterInfoSystem.InitSystem();
         WeaponsEnhanceSystem weaponsEnhanceSystem = GetComponent<WeaponsEnhanceSystem>();

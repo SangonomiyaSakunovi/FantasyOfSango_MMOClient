@@ -74,22 +74,22 @@ public class MainGameWindow : BaseWindow
 
     public void SetGuidMissionText()
     {
-        string text = MissionSystem.Instance.GetGuidMissionText();
+        string text = MissionUpdateSystem.Instance.GetGuidMissionText();
         SetText(guidMissionText, text, TextColorCode.WhiteColor);
     }
 
     public void OnAutoFindPathButtonClick()
     {
         audioService.PlayUIAudio(AudioConstant.ClickButtonUI);
-        MissionSystem.Instance.AutoFindMissionPath();
+        MissionUpdateSystem.Instance.AutoFindMissionPath();
     }
 
     public void OnGetMissionButtonClick()
     {
         audioService.PlayUIAudio(AudioConstant.ClickButtonUI);
-        if (MissionSystem.Instance.CurrentMissionConfig != null)
+        if (MissionUpdateSystem.Instance.CurrentMissionConfig != null)
         {
-            MissionSystem.Instance.RunMission();
+            MissionUpdateSystem.Instance.RunMission();
         }
         else
         {
@@ -99,6 +99,6 @@ public class MainGameWindow : BaseWindow
 
     public void SetCurrentMission(string id)
     {
-        MissionSystem.Instance.SetCurrentMission(id);
+        MissionUpdateSystem.Instance.SetCurrentMission(id);
     }
 }

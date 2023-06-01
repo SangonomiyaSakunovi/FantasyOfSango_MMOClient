@@ -8,7 +8,7 @@ using System.Collections.Generic;
 public class ChooseAvaterRequest : BaseRequest
 {
     public AvaterCode Avater { get; private set; }
-    public string Account { get; private set; }
+
     public override void InitRequset()
     {
         base.InitRequset();
@@ -17,7 +17,7 @@ public class ChooseAvaterRequest : BaseRequest
     {
         Dictionary<byte, object> dict = new Dictionary<byte, object>();
         dict.Add((byte)ParameterCode.ChooseAvater, Avater);
-        dict.Add((byte)ParameterCode.Account, Account);
+        dict.Add((byte)ParameterCode.Account, netService.Account);
         NetService.Peer.OpCustom((byte)OpCode, dict, true);
     }
 
@@ -29,10 +29,5 @@ public class ChooseAvaterRequest : BaseRequest
     public void SetAvater(AvaterCode avater)
     {
         Avater = avater;
-    }
-
-    public void SetAccount(string account)
-    {
-        Account = account;
     }
 }

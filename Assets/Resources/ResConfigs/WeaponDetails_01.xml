@@ -2,7 +2,12 @@
 <root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<item _id="Sword_Test">
 		<weaponName>希夏普的佩剑</weaponName>
+		<weaponQuanlity>1</weaponQuanlity>
 		<weaponDescribe>传说中的佩剑，早已损坏，但据说看到的人都会有好运，得到来自某异世珊瑚宫家的祝福</weaponDescribe>
 	</item>
-	<item/>
+	<item _id="Sword_Blunt">
+		<weaponName>钝剑</weaponName>
+		<weaponQuanlity>1</weaponQuanlity>
+		<weaponDescribe>貌似是某世界很穷的作者顺手拿来测试的武器，不出意外的话只能用来当材料投喂，剑柄文字：不要强化，强化会出错的哦</weaponDescribe>
+	</item>
 </root>

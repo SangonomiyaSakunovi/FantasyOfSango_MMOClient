@@ -18,7 +18,7 @@ public class DynamicWindow : BaseWindow
     public Transform uiItemRoot;
 
     private bool isMessageShow = false;
-    private Queue<MessageStruct> messageStructQueue = new Queue<MessageStruct>();
+    private Queue<string> messageShowQueue = new Queue<string>();
 
     private Dictionary<string, EnemyHpUIShows> enemyHpUIShowsDict = new Dictionary<string, EnemyHpUIShows>();
     private List<ElementReactionNameShows> elementReactionShowsList = new List<ElementReactionNameShows>();
@@ -38,10 +38,10 @@ public class DynamicWindow : BaseWindow
 
     public void AddMessage(string message, TextColorCode textColor)
     {
-        lock (messageStructQueue)
+        lock (messageShowQueue)
         {
-            MessageStruct messageStruct = new MessageStruct(message, textColor);            
-            messageStructQueue.Enqueue(messageStruct);
+            string messageShowStr = GetTextWithHexColor(message, textColor);            
+            messageShowQueue.Enqueue(messageShowStr);
         }
     }
 
@@ -104,13 +104,13 @@ public class DynamicWindow : BaseWindow
     }
     private void Update()
     {
-        if (messageStructQueue.Count > 0 && isMessageShow == false)
+        if (messageShowQueue.Count > 0 && isMessageShow == false)
         {
-            lock (messageStructQueue)
+            lock (messageShowQueue)
             {
-                MessageStruct messageStruct = messageStructQueue.Dequeue();
+                string messageShowStr = messageShowQueue.Dequeue();
                 isMessageShow = true;
-                SetMessage(messageStruct.Message, messageStruct.TextColor);
+                SetMessage(messageShowStr);
             }
         }
         CleanObjectPool();
@@ -129,10 +129,10 @@ public class DynamicWindow : BaseWindow
         }
     }
 
-    private void SetMessage(string message, TextColorCode textColor)
+    private void SetMessage(string message)
     {
         SetActive(messageText);
-        SetText(messageText, message, textColor);
+        SetText(messageText, message);
         AnimationClip animationClip = messageShowAnimation.GetClip("MessageShowAni");
         messageShowAnimation.Play();
         //Close after a while

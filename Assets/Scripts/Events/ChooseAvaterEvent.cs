@@ -15,6 +15,9 @@ public class ChooseAvaterEvent : BaseEvent
     {
         AvaterCode avater = (AvaterCode)DictTools.GetDictValue<byte, object>(eventData.Parameters, (byte)ParameterCode.ChooseAvater);
         string account = DictTools.GetStringValue(eventData.Parameters, (byte)ParameterCode.Account);
-        IslandOnlineAccountSystem.Instance.SetChoosedAvater(account, avater);
+        if (account != OnlineAccountCache.Instance.LocalAccount)
+        {
+            IslandOnlineAccountSystem.Instance.SetChoosedAvater(account, avater);
+        }        
     }
 }

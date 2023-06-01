@@ -1,13 +1,20 @@
-//Developer : SangonomiyaSakunovi
-//Discription: The MissionSystem, all the mission behaviour should define here.
+using SangoCommon.Classs;
+using SangoCommon.Enums;
 
-public class MissionSystem : BaseSystem
+//Developer : SangonomiyaSakunovi
+//Discription: The MissionUpdateSystem, all the mission behaviour should define here.
+
+public class MissionUpdateSystem : BaseSystem
 {
-    public static MissionSystem Instance = null;
+    public static MissionUpdateSystem Instance = null;
     public DialogWindow dialogWindow;
     public MainGameWindow mainGameWindow;
 
     public MissionConfig CurrentMissionConfig { get; private set; }
+
+    private MissionUpdateRequest missionUpdateRequest;
+    private MissionUpdateReq missionUpdateReq;
+    private string currentMissionId;
 
     private string[] dialogAvaterImageArray = null;
     private string[] dialogTextArray = null;
@@ -19,6 +26,8 @@ public class MissionSystem : BaseSystem
     {
         base.InitSystem();
         Instance = this;
+        missionUpdateRequest = GetComponent<MissionUpdateRequest>();
+        missionUpdateReq = new MissionUpdateReq();
     }
 
     public void RunMission()
@@ -35,7 +44,7 @@ public class MissionSystem : BaseSystem
         else
         {
             SetDialogInfo(dialogIndex);
-        }
+        }        
     }
 
     public void AutoFindMissionPath()
@@ -50,6 +59,15 @@ public class MissionSystem : BaseSystem
         dialogTextArray = CurrentMissionConfig.dialogTextArray.Split('#');
         dialogAudioArray = CurrentMissionConfig.dialogAudioArray.Split('#');
         dialogIndex = 1;
+        currentMissionId = missionId;
+    }
+
+    private void OnMissionComplete()
+    {
+        missionUpdateReq.MissionId = currentMissionId;
+        missionUpdateReq.MissionTypeCode = MissionTypeCode.Main;
+        missionUpdateReq.missionUpdateTypeCode = MissionUpdateTypeCode.Complete;
+        missionUpdateRequest.SetMissionUpdateReq(missionUpdateReq);
     }
 
     public string GetGuidMissionText()
@@ -78,10 +96,27 @@ public class MissionSystem : BaseSystem
         else
         {
             dialogWindow.SetWindowState(false);
-            mainGameWindow.SetWindowState();
-            GameManager.Instance.SetGameMode(GameModeCode.GamePlayMode);
+            mainGameWindow.SetWindowState();            
             audioService.PlayBGAudio(AudioConstant.MainGameBG, true);
-            //TODO SendRequest to Server
+            OnMissionComplete();
+            missionUpdateRequest.DefaultRequest();
+            GameManager.Instance.SetGameMode(GameModeCode.GamePlayMode);
         }
+    }
+
+    public void OnMissionCompleteResponse(MissionUpdateRsp missionUpdateRsp)
+    {
+        if (missionUpdateRsp.missionUpdateTypeCode == MissionUpdateTypeCode.Complete)
+        {
+            UpdateMissionCompleteRewards(missionUpdateRsp);
+        }
+    }
+
+    private void UpdateMissionCompleteRewards(MissionUpdateRsp missionUpdateRsp)
+    {
+        //TODO
+        SangoRoot.AddMessage("成功完成当前任务，奖励已经发放", TextColorCode.GreenColor);
+        MissionConfig missionConfig = resourceService.GetMissionConfig(missionUpdateRsp.MissionId);
+        OnlineAccountCache.Instance.ItemInfo.Coin += missionConfig.coinRewards;
     }
 }

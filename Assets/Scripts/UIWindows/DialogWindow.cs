@@ -46,6 +46,6 @@ public class DialogWindow : BaseWindow
 
     public void OnNextButtonClick()
     {
-        MissionSystem.Instance.SetNextDialog();
+        MissionUpdateSystem.Instance.SetNextDialog();
     }
 }

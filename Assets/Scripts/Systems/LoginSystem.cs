@@ -21,7 +21,6 @@ public class LoginSystem : BaseSystem
     public Button rememberAccountButtonPress;
 
     public string Account { get; private set; }
-
     public string Password { get; private set; }
 
     public override void InitSystem()
@@ -72,12 +71,12 @@ public class LoginSystem : BaseSystem
         if (returnCode == ReturnCode.Success)
         {
             SangoRoot.AddMessage("登录成功，请进行后续测试", TextColorCode.OrangeColor);
-            SetOtherAccount();
+            netService.SetAccount(Account);
+            OnlineAccountCache.Instance.SetLocalAccount(Account);
             //Load the MainGame
-            netService.AsyncLoadPlayerData(() =>
+            CacheSystem.Instance.syncPlayerDataRequest.DefaultRequest();
+            CacheSystem.Instance.syncPlayerDataRequest.AsyncLoadPlayerData(() =>
             {
-                OnlineAccountCache.Instance.SetAvaterInfo(CacheSystem.Instance.syncPlayerDataRequest.AvaterInfo);
-                OnlineAccountCache.Instance.SetMissionInfo(CacheSystem.Instance.syncPlayerDataRequest.MissionInfo);
                 MainGameSystem.Instance.EnterIslandScene();
                 loginWindow.SetWindowState(false);
             });
@@ -102,17 +101,6 @@ public class LoginSystem : BaseSystem
         {
             Password = PlayerPrefs.GetString("Password");
         }
-    }
-
-    private void SetOtherAccount()
-    {
-        netService.SetAccount(Account);
-        CacheSystem.Instance.syncPlayerDataRequest.SetAccoount(Account);
-        CacheSystem.Instance.syncPlayerTransformRequest.SetAccount(Account);
-        CacheSystem.Instance.syncPlayerAccountRequest.SetAccount(Account);
-        CacheSystem.Instance.attackCommandRequest.SetAccount(Account);
-        CacheSystem.Instance.attackDamageRequest.SetAccount(Account);
-        CacheSystem.Instance.chooseAvaterRequest.SetAccount(Account);
     }
 
     public void SetAccount(string account, string password)
