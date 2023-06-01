@@ -25,7 +25,7 @@ public class NetService : MonoBehaviour, IPhotonPeerListener
 
     public void InitService()
     {
-        string ipAddress = SetIPAddress(ConfigureModeCode.Offline);
+        string ipAddress = SetIPAddress(ConfigureModeCode.Online);
         Instance = this;
         peer = new PhotonPeer(this, ConnectionProtocol.Udp);
         peer.Connect(ipAddress, "FSOGameServer");
