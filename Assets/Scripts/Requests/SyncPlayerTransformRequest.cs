@@ -17,13 +17,14 @@ public class SyncPlayerTransformRequest : BaseRequest
     public override void InitRequset()
     {
         base.InitRequset();
+        OpCode = OperationCode.SyncPlayerTransform;
     }
 
     public void SetPlayerTransform(Vector3 position, Quaternion rotation)
     {
         playerTransform = new TransformOnline
         {
-            Account = netService.Account,
+            Account = OnlineAccountCache.Instance.LocalAccount,
             Vector3Position = new Vector3Position
             {
                 X = (float)Math.Round(position.x, 2),

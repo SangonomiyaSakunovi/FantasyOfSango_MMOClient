@@ -15,13 +15,14 @@ public class AttackCommandRequest : BaseRequest
     public override void InitRequset()
     {
         base.InitRequset();
+        OpCode = OperationCode.AttackCommand;
     }
 
     public void SetAttackCommand(SkillCode skillCode, Vector3 position, Quaternion rotation)
     {
         attackCommand = new AttackCommand
         {
-            Account = netService.Account,
+            Account = OnlineAccountCache.Instance.LocalAccount,
             SkillCode = skillCode,
             Vector3Position = new Vector3Position
             {

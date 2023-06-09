@@ -14,6 +14,7 @@ public class RegisterRequest : BaseRequest
     public override void InitRequset()
     {
         base.InitRequset();
+        OpCode = OperationCode.Register;
     }
 
     public override void DefaultRequest()

@@ -1,4 +1,5 @@
 using SangoCommon.Classs;
+using SangoCommon.Constants;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -26,6 +27,12 @@ public class MainGameWindow : BaseWindow
 
     public TMP_Text guidMissionText;
 
+    public Button avaterInfoButton;
+    public Button viewChatButton;
+    public Button shopButton;
+
+    public TMP_Text newUnreadChatNotice;
+
     protected override void InitWindow()
     {
         base.InitWindow();
@@ -41,7 +48,7 @@ public class MainGameWindow : BaseWindow
         }
         if (Input.GetButtonDown("OpenAvaterInfoWindow"))
         {
-            AvaterInfoSystem.Instance.OpenAvaterInfoWindow();
+            OnAvaterInfoButtonClick();
         }
     }
 
@@ -80,13 +87,35 @@ public class MainGameWindow : BaseWindow
 
     public void OnAutoFindPathButtonClick()
     {
-        audioService.PlayUIAudio(AudioConstant.ClickButtonUI);
+        audioService.PlayUIAudio(AudioConstant.ClickUIButton);
         MissionUpdateSystem.Instance.AutoFindMissionPath();
+    }
+
+    public void OnAvaterInfoButtonClick()
+    {
+        AvaterInfoSystem.Instance.OpenAvaterInfoWindow();
+    }
+
+    public void OnShopButtonClick()
+    {
+        ShopInfoSystem.Instance.OpenShopWindow();
+    }
+
+    public void OnViewChatButtonClick()
+    {
+        if (GameManager.Instance.GameMode == GameModeCode.GamePlayMode)
+        {
+            ChatSystem.Instance.OpenChatWindow();
+        }
+        else
+        {
+            ChatSystem.Instance.CloseChatWindow();
+        }        
     }
 
     public void OnGetMissionButtonClick()
     {
-        audioService.PlayUIAudio(AudioConstant.ClickButtonUI);
+        audioService.PlayUIAudio(AudioConstant.ClickUIButton);
         if (MissionUpdateSystem.Instance.CurrentMissionConfig != null)
         {
             MissionUpdateSystem.Instance.RunMission();
@@ -100,5 +129,17 @@ public class MainGameWindow : BaseWindow
     public void SetCurrentMission(string id)
     {
         MissionUpdateSystem.Instance.SetCurrentMission(id);
+    }
+
+    public void SetNewUnreadChatNotice(bool hasUnread = true)
+    {
+        if (hasUnread)
+        {
+            SetText(newUnreadChatNotice, "您有新的未读消息", TextColorCode.WhiteColor);
+        }
+        else
+        {
+            SetText(newUnreadChatNotice, "");
+        }
     }
 }

@@ -13,6 +13,7 @@ public class LoginRequest : BaseRequest
     public override void InitRequset()
     {
         base.InitRequset();
+        OpCode = OperationCode.Login;
     }
 
     public override void DefaultRequest()

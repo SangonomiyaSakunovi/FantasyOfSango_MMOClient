@@ -18,7 +18,7 @@ public class CameraController : MonoBehaviour
     private void Start()
     {
         Instance = this;
-        LockCursor();
+        GameManager.Instance.SetCursorShowType(CursorShowTypeCode.Hide);
     }
 
     private void Update()
@@ -46,13 +46,13 @@ public class CameraController : MonoBehaviour
     {
         if (GameManager.Instance.GameMode == GameModeCode.GamePlayMode)
         {
-            if (Input.GetKey("z"))
+            if (Input.GetKey(KeyCode.LeftAlt))
             {
-                LockCursor(false);
+                GameManager.Instance.SetCursorShowType(CursorShowTypeCode.Show);
             }
             else
             {
-                LockCursor();
+                GameManager.Instance.SetCursorShowType(CursorShowTypeCode.Hide);
             }
         }    
     }
@@ -91,17 +91,6 @@ public class CameraController : MonoBehaviour
             }
         }
         offsetPosition = transform.position - playerTrans.position;
-    }
-    public void LockCursor(bool bo = true)
-    {
-        if (bo)
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-        }
-        else
-        {
-            Cursor.lockState = CursorLockMode.Confined;
-        }
     }
 
     public void SetPlayerTrans(Transform transform)

@@ -17,6 +17,7 @@ public class AttackDamageRequest : BaseRequest
     public override void InitRequset()
     {
         base.InitRequset();
+        OpCode = OperationCode.AttackDamage;
     }
 
     public void SetAttackDamage(FightTypeCode fightType, string damager, SkillCode skillCode, ElementReactionCode elementReaction, Vector3 attakerPos, Vector3 damagerPos)
@@ -24,7 +25,7 @@ public class AttackDamageRequest : BaseRequest
         attackDamage = new AttackDamage
         {
             FightTypeCode = fightType,
-            AttackerAccount = netService.Account,
+            AttackerAccount = OnlineAccountCache.Instance.LocalAccount,
             DamagerAccount = damager,
             SkillCode = skillCode,
             ElementReactionCode = elementReaction,

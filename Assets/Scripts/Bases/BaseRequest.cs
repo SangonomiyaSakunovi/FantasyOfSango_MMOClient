@@ -12,6 +12,7 @@ public abstract class BaseRequest : MonoBehaviour
     protected ResourceService resourceService = null;
     protected AudioService audioService = null;
 
+    [HideInInspector]
     public OperationCode OpCode;
     public abstract void DefaultRequest();
     public abstract void OnOperationResponse(OperationResponse operationResponse);

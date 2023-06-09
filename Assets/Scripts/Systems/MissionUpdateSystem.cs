@@ -7,6 +7,7 @@ using SangoCommon.Enums;
 public class MissionUpdateSystem : BaseSystem
 {
     public static MissionUpdateSystem Instance = null;
+    
     public DialogWindow dialogWindow;
     public MainGameWindow mainGameWindow;
 
@@ -34,8 +35,8 @@ public class MissionUpdateSystem : BaseSystem
     {
         audioService.PlayBGAudio("TestDialogAudio", true);
         GameManager.Instance.SetGameMode(GameModeCode.DialogueMode);
+        GameManager.Instance.SetCursorShowType(CursorShowTypeCode.Show);
         mainGameWindow.SetWindowState(false);
-        CameraController.Instance.LockCursor(false);
         dialogWindow.SetWindowState();
         if (CurrentMissionConfig.npcID != "-1")
         {
@@ -66,7 +67,7 @@ public class MissionUpdateSystem : BaseSystem
     {
         missionUpdateReq.MissionId = currentMissionId;
         missionUpdateReq.MissionTypeCode = MissionTypeCode.Main;
-        missionUpdateReq.missionUpdateTypeCode = MissionUpdateTypeCode.Complete;
+        missionUpdateReq.MissionUpdateTypeCode = MissionUpdateTypeCode.Complete;
         missionUpdateRequest.SetMissionUpdateReq(missionUpdateReq);
     }
 
@@ -87,7 +88,7 @@ public class MissionUpdateSystem : BaseSystem
 
     public void SetNextDialog()
     {
-        audioService.PlayUIAudio(AudioConstant.ClickButtonUI);
+        audioService.PlayUIAudio(AudioConstant.ClickUIButton);
         dialogIndex++;
         if (dialogIndex < dialogTextArray.Length)
         {
@@ -106,7 +107,7 @@ public class MissionUpdateSystem : BaseSystem
 
     public void OnMissionCompleteResponse(MissionUpdateRsp missionUpdateRsp)
     {
-        if (missionUpdateRsp.missionUpdateTypeCode == MissionUpdateTypeCode.Complete)
+        if (missionUpdateRsp.MissionUpdateTypeCode == MissionUpdateTypeCode.Complete)
         {
             UpdateMissionCompleteRewards(missionUpdateRsp);
         }

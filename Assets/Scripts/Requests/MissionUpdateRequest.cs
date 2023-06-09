@@ -14,6 +14,7 @@ public class MissionUpdateRequest : BaseRequest
     public override void InitRequset()
     {
         base.InitRequset();
+        OpCode = OperationCode.MissionUpdate;
     }
 
     public override void DefaultRequest()
@@ -32,7 +33,7 @@ public class MissionUpdateRequest : BaseRequest
             MissionUpdateRsp missionUpdateRsp = DeJsonString<MissionUpdateRsp>(missionUpdateResponseJson);
             if (missionUpdateRsp.IsCompleteSuccess)
             {
-                switch (missionUpdateRsp.missionUpdateTypeCode)
+                switch (missionUpdateRsp.MissionUpdateTypeCode)
                 {
                     case MissionUpdateTypeCode.Complete:
                         MissionUpdateSystem.Instance.OnMissionCompleteResponse(missionUpdateRsp);

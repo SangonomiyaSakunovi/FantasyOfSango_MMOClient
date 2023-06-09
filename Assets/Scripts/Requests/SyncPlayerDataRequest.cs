@@ -23,6 +23,7 @@ public class SyncPlayerDataRequest : BaseRequest
     public override void InitRequset()
     {
         base.InitRequset();
+        OpCode = OperationCode.SyncPlayerData;
         isGetResponse = false;
     }
 

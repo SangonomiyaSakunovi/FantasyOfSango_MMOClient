@@ -10,6 +10,7 @@ public class ChooseAvaterEvent : BaseEvent
     public override void InitEvent()
     {
         base.InitEvent();
+        EvCode = EventCode.ChooseAvater;
     }
     public override void OnEvent(EventData eventData)
     {

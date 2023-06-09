@@ -15,6 +15,7 @@ public class NewAccountJoinEvent : BaseEvent
     public override void InitEvent()
     {
         base.InitEvent();
+        EvCode = EventCode.NewAccountJoin;
         newAccountJoinEventStack.Push("-1");
     }
     public override void OnEvent(EventData eventData)

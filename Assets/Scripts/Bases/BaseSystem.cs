@@ -1,6 +1,4 @@
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 //Developer : SangonomiyaSakunovi
 //Discription: Base system, need define the UI method.
@@ -16,5 +14,5 @@ public class BaseSystem : MonoBehaviour
         netService = NetService.Instance;
         resourceService = ResourceService.Instance;
         audioService = AudioService.Instance;
-    }    
+    }
 }

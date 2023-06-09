@@ -11,6 +11,7 @@ public class SyncPlayerAccountRequest : BaseRequest
     public override void InitRequset()
     {
         base.InitRequset();
+        OpCode = OperationCode.SyncPlayerAccount;
     }
 
     public override void DefaultRequest()

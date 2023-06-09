@@ -25,7 +25,7 @@ public class AvaterInfoSystem : BaseSystem
     public void OpenAvaterInfoWindow()
     {
         GameManager.Instance.SetGameMode(GameModeCode.ConfigureItemMode);
-        CameraController.Instance.LockCursor(false);
+        GameManager.Instance.SetCursorShowType(CursorShowTypeCode.Show);
         audioService.PlayUIAudio(AudioConstant.AttributeAudio);
         ResetAvaterShowRotation();
         avaterShowTablet.SetActive(true);
@@ -35,12 +35,12 @@ public class AvaterInfoSystem : BaseSystem
 
     public void CloseAvaterInfoWindow()
     {
-        audioService.PlayUIAudio(AudioConstant.ClickButtonUI);
+        audioService.PlayUIAudio(AudioConstant.ClickUIButton);
         avaterInfoWindow.SetWindowState(false);
         mainGameWindow.SetWindowState();
         avaterShowTablet.SetActive(false);
         GameManager.Instance.SetGameMode(GameModeCode.GamePlayMode);
-        CameraController.Instance.LockCursor();
+        GameManager.Instance.SetCursorShowType(CursorShowTypeCode.Hide);
     }
 
     public void InitAvaterShowTablet()

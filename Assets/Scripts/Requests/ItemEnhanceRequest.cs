@@ -14,6 +14,7 @@ public class ItemEnhanceRequest : BaseRequest
     public override void InitRequset()
     {
         base.InitRequset();
+        OpCode = OperationCode.ItemEnhance;
     }
 
     public void SetWeaponEnhanceReq(ItemEnhanceReq enhanceReq)

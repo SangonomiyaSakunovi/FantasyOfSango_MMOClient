@@ -11,9 +11,7 @@ public class NetService : MonoBehaviour, IPhotonPeerListener
     public static NetService Instance;
     private static PhotonPeer peer;
     private Dictionary<OperationCode, BaseRequest> RequestDict = new Dictionary<OperationCode, BaseRequest>();
-    private Dictionary<EventCode, BaseEvent> EventDict = new Dictionary<EventCode, BaseEvent>();
-
-    public string Account { get; private set; }
+    private Dictionary<EventCode, BaseEvent> EventDict = new Dictionary<EventCode, BaseEvent>();   
 
     public static PhotonPeer Peer
     {
@@ -25,7 +23,7 @@ public class NetService : MonoBehaviour, IPhotonPeerListener
 
     public void InitService()
     {
-        string ipAddress = SetIPAddress(ConfigureModeCode.Online);
+        string ipAddress = SetIPAddress(ConfigureModeCode.Offline); 
         Instance = this;
         peer = new PhotonPeer(this, ConnectionProtocol.Udp);
         peer.Connect(ipAddress, "FSOGameServer");
@@ -126,11 +124,6 @@ public class NetService : MonoBehaviour, IPhotonPeerListener
     {
         //Use  OperationCode as Key to remove, no need to specify the Event
         EventDict.Remove(_event.EvCode);
-    }
-
-    public void SetAccount(string account)
-    {
-        Account = account;
     }
 
     private enum ConfigureModeCode

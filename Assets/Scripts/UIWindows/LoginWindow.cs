@@ -28,7 +28,7 @@ public class LoginWindow : BaseWindow
 
     public void OnLoginButtonClick()
     {
-        audioService.PlayUIAudio(AudioConstant.ClickButtonUI);
+        audioService.PlayUIAudio(AudioConstant.ClickUIButton);
         string account = accountInput.text;
         string password = passwordInput.text;
         if (account != "" && password != "")
@@ -54,27 +54,27 @@ public class LoginWindow : BaseWindow
 
     public void OnRegisterButtonClick()
     {
-        audioService.PlayUIAudio(AudioConstant.ClickButtonUI);
+        audioService.PlayUIAudio(AudioConstant.ClickUIButton);
         registerWindow.SetWindowState();
         loginWindow.SetWindowState(false);
     }
 
     public void OnAutoLoginButtonClick()
     {
-        audioService.PlayUIAudio(AudioConstant.ClickButtonUI);
+        audioService.PlayUIAudio(AudioConstant.ClickUIButton);
         SetActive(autoLoginButtonPress);
         SetActive(autoLoginButton, false);
     }
 
     public void OnRememberAccountButtonClick()
     {
-        audioService.PlayUIAudio(AudioConstant.ClickButtonUI);
+        audioService.PlayUIAudio(AudioConstant.ClickUIButton);
         SetActive(rememberAccountButtonPress);
         SetActive(rememberAccountButton, false);
     }
     public void OnAutoLoginButtonPressClick()
     {
-        audioService.PlayUIAudio(AudioConstant.ClickButtonUI);
+        audioService.PlayUIAudio(AudioConstant.ClickUIButton);
         SetActive(autoLoginButton);
         SetActive(autoLoginButtonPress, false);
         PlayerPrefs.DeleteKey("Account");
@@ -83,7 +83,7 @@ public class LoginWindow : BaseWindow
 
     public void OnRememberAccountButtonPressClick()
     {
-        audioService.PlayUIAudio(AudioConstant.ClickButtonUI);
+        audioService.PlayUIAudio(AudioConstant.ClickUIButton);
         SetActive(rememberAccountButton);
         SetActive(rememberAccountButtonPress, false);
         PlayerPrefs.DeleteKey("Account");

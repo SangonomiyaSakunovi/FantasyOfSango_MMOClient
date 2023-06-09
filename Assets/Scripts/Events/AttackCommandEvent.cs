@@ -11,6 +11,7 @@ public class AttackCommandEvent : BaseEvent
     public override void InitEvent()
     {
         base.InitEvent();
+        EvCode = EventCode.AttackCommand;
     }
     public override void OnEvent(EventData eventData)
     {

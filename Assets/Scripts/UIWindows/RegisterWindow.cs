@@ -27,7 +27,7 @@ public class RegisterWindow : BaseWindow
 
     public void OnRegisterButtonClick()
     {
-        audioService.PlayUIAudio(AudioConstant.ClickButtonUI);
+        audioService.PlayUIAudio(AudioConstant.ClickUIButton);
         string account = accountInput.text;
         string password = passwordInput.text;
         string nickname = nicknameInput.text;
@@ -45,7 +45,7 @@ public class RegisterWindow : BaseWindow
 
     public void OnReturnButtonClick()
     {
-        audioService.PlayUIAudio(AudioConstant.ClickButtonUI);
+        audioService.PlayUIAudio(AudioConstant.ClickUIButton);
         loginWindow.SetWindowState();
         registerWindow.SetWindowState(false);
     }

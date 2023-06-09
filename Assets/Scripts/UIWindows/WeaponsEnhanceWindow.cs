@@ -146,7 +146,7 @@ public class WeaponsEnhanceWindow : BaseWindow
             OnClick(image.gameObject, (object args) =>
             {
                 OnFunctionButtonClick((int)args);
-                audioService.PlayUIAudio(AudioConstant.ClickButtonUI);
+                audioService.PlayUIAudio(AudioConstant.ClickUIButton);
             }, i);
             functionButtonImageArray[i] = image;
         }
@@ -157,7 +157,7 @@ public class WeaponsEnhanceWindow : BaseWindow
             OnClick(buttonImage.gameObject, (object args) =>
             {
                 OnEnhanceMaterialButtonClick((int)args);
-                audioService.PlayUIAudio(AudioConstant.ClickButtonUI);
+                audioService.PlayUIAudio(AudioConstant.ClickUIButton);
             }, j);
             enhanceMaterialAddButtonImageArray[j] = buttonImage;
             enhanceMaterialAddResultArray[j] = 0;

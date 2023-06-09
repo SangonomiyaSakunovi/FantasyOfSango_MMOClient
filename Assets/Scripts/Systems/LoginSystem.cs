@@ -71,7 +71,6 @@ public class LoginSystem : BaseSystem
         if (returnCode == ReturnCode.Success)
         {
             SangoRoot.AddMessage("登录成功，请进行后续测试", TextColorCode.OrangeColor);
-            netService.SetAccount(Account);
             OnlineAccountCache.Instance.SetLocalAccount(Account);
             //Load the MainGame
             CacheSystem.Instance.syncPlayerDataRequest.DefaultRequest();

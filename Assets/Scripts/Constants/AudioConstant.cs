@@ -10,7 +10,7 @@ public class AudioConstant
 
     //UI
     public const string LoginAudioUI = "Genshin Impact [Teleport]";
-    public const string ClickButtonUI = "Genshin Impact [ItemClick]";
+    public const string ClickUIButton = "Genshin Impact [ItemClick]";
     public const string DamagedAudio = "Genshin Impact [OfDrinkADreaming]";
     public const string AttributeAudio = "Genshin Impact [CharacterAttributes]";
 }

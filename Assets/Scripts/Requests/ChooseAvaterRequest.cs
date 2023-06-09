@@ -12,12 +12,13 @@ public class ChooseAvaterRequest : BaseRequest
     public override void InitRequset()
     {
         base.InitRequset();
+        OpCode = OperationCode.ChooseAvater;
     }
     public override void DefaultRequest()
     {
         Dictionary<byte, object> dict = new Dictionary<byte, object>();
         dict.Add((byte)ParameterCode.ChooseAvater, Avater);
-        dict.Add((byte)ParameterCode.Account, netService.Account);
+        dict.Add((byte)ParameterCode.Account, OnlineAccountCache.Instance.LocalAccount);
         NetService.Peer.OpCustom((byte)OpCode, dict, true);
     }
 

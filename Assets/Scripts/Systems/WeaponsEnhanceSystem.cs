@@ -25,14 +25,14 @@ public class WeaponsEnhanceSystem : BaseSystem
 
     public void OpenWeaponsEnhanceWindow()
     {
-        audioService.PlayUIAudio(AudioConstant.ClickButtonUI);
+        audioService.PlayUIAudio(AudioConstant.ClickUIButton);
         avaterInfoWindow.SetWindowState(false);
         weaponsEnhanceWindow.SetWindowState();
     }
 
     public void CloseWeaponsEnhanceWindow()
     {
-        audioService.PlayUIAudio(AudioConstant.ClickButtonUI);
+        audioService.PlayUIAudio(AudioConstant.ClickUIButton);
         weaponsEnhanceWindow.SetWindowState(false);
         avaterInfoWindow.SetWindowState();
     }

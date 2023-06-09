@@ -1,5 +1,3 @@
-using SangoCommon.Enums;
-using System.Collections.Generic;
 using UnityEngine;
 
 //Developer : SangonomiyaSakunovi
@@ -11,8 +9,6 @@ public class SangoRoot : MonoBehaviour
 
     public LoadingWindow loadingWindow;
     public DynamicWindow dynamicWindow;
-
-    private Dictionary<OperationCode, BaseRequest> RequestDict = new Dictionary<OperationCode, BaseRequest>();
 
     void Start()
     {
@@ -81,6 +77,10 @@ public class SangoRoot : MonoBehaviour
         itemEnhanceRequest.InitRequset();
         MissionUpdateRequest missionUpdateRequest = GetComponent<MissionUpdateRequest>();
         missionUpdateRequest.InitRequset();
+        ChatRequest chatRequest = GetComponent<ChatRequest>();
+        chatRequest.InitRequset();
+        ShopInfoRequest shopInfoRequest = GetComponent<ShopInfoRequest>();
+        shopInfoRequest.InitRequset();
     }
 
     private void InitEvent()
@@ -95,6 +95,8 @@ public class SangoRoot : MonoBehaviour
         attackResultEvent.InitEvent();
         ChooseAvaterEvent chooseAvaterEvent = GetComponent<ChooseAvaterEvent>();
         chooseAvaterEvent.InitEvent();
+        ChatEvent chatEvent = GetComponent<ChatEvent>();
+        chatEvent.InitEvent();
     }
 
     private void InitCache()
@@ -119,6 +121,10 @@ public class SangoRoot : MonoBehaviour
         avaterInfoSystem.InitSystem();
         WeaponsEnhanceSystem weaponsEnhanceSystem = GetComponent<WeaponsEnhanceSystem>();
         weaponsEnhanceSystem.InitSystem();
+        ChatSystem chatSystem = GetComponent<ChatSystem>();
+        chatSystem.InitSystem();
+        ShopInfoSystem shopInfoSystem = GetComponent<ShopInfoSystem>();
+        shopInfoSystem.InitSystem();
     }
 
     public static void AddMessage(string message, TextColorCode textColor)

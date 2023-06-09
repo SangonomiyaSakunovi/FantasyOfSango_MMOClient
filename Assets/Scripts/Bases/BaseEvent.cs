@@ -12,6 +12,7 @@ public abstract class BaseEvent : MonoBehaviour
     protected ResourceService resourceService = null;
     protected AudioService audioService = null;
 
+    [HideInInspector]
     public EventCode EvCode;
     public abstract void OnEvent(EventData eventData);
 

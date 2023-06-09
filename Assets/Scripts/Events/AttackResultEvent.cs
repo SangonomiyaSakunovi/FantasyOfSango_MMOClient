@@ -11,6 +11,7 @@ public class AttackResultEvent : BaseEvent
     public override void InitEvent()
     {
         base.InitEvent();
+        EvCode = EventCode.AttackResult;
     }
     public override void OnEvent(EventData eventData)
     {
@@ -19,7 +20,7 @@ public class AttackResultEvent : BaseEvent
             if (attackResultJson != null && IslandOnlineAccountSystem.Instance != null)
             {
                 AttackResult attackResult = DeJsonString<AttackResult>(attackResultJson);
-                if (attackResult.DamagerAccount == NetService.Instance.Account)
+                if (attackResult.DamagerAccount == OnlineAccountCache.Instance.LocalAccount)
                 {
                     MainGameSystem.Instance.SetLocalAvaterAttackResult(attackResult);
                 }

@@ -12,6 +12,7 @@ public class SyncPlayerTransformEvent : BaseEvent
     public override void InitEvent()
     {
         base.InitEvent();
+        EvCode = EventCode.SyncPlayerTransform;
     }
     public override void OnEvent(EventData eventData)
     {

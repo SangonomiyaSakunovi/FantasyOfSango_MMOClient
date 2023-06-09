@@ -1,12 +1,12 @@
-//Developer : SangonomiyaSakunovi
-//Discription: The AvaterInfoWindow.
-
 using SangoCommon.Classs;
 using SangoCommon.Enums;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+
+//Developer : SangonomiyaSakunovi
+//Discription: The AvaterInfoWindow.
 
 public class AvaterInfoWindow : BaseWindow
 {
@@ -96,7 +96,7 @@ public class AvaterInfoWindow : BaseWindow
             Image image = functionButtonsBaseTransform.GetChild(i).GetComponent<Image>();
             OnClick(image.gameObject, (object args) =>
             {
-                audioService.PlayUIAudio(AudioConstant.ClickButtonUI);
+                audioService.PlayUIAudio(AudioConstant.ClickUIButton);
                 OnFunctionButtonClick((int)args);             
             }, i);
             functionButtonImageArray[i] = image;

@@ -61,6 +61,19 @@ public class BaseWindow : MonoBehaviour
         }
     }
 
+    protected bool ExamIfInputIsNumeral(string input)
+    {
+        foreach (char ch in input)
+        {
+            if (ch < '0' || ch > '9')
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    #region RichText
     protected string GetTextWithHexColor(string text, TextColorCode textColor)
     {
         string result = "";
@@ -105,6 +118,22 @@ public class BaseWindow : MonoBehaviour
         }
         return result;
     }
+
+    protected string GetTextWithBoldFont(string text)
+    {
+        return "<b>" + text + "</b>";
+    }
+
+    protected string GetTextWithItalicFont(string text)
+    {
+        return "<i>" + text + "</i>";
+    }
+
+    protected string GetTextWithSizeFont(string text, int sizeNum)
+    {
+        return "<size=" + sizeNum + ">" + text + "</size>";
+    }
+    #endregion
 
     #region SetText
     protected void SetText(TMP_Text tMP_Text, string text)
@@ -180,7 +209,7 @@ public class BaseWindow : MonoBehaviour
         ClickListener clickListener = GetOrAddComponent<ClickListener>(gameObject);
         clickListener.onDrag = pointerEvent;
     }
-    
+
     protected void OnEndClickEvents(GameObject gameObject)
     {
         RemoveComponent<ClickListener>(gameObject);
