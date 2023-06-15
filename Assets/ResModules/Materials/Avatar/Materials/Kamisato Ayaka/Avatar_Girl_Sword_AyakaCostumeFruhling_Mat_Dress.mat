@@ -12,6 +12,7 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
+  - ENABLE_ALPHA_CLIPPING
   - ENABLE_BLOOM_MASK
   - ENABLE_METAL_SPECULAR
   - ENABLE_RAMP_SHADOW
@@ -147,7 +148,7 @@ Material:
     - _Emission: 1
     - _EmissionBloomFactor: 1
     - _EmissionMulByBaseColor: 0
-    - _EnableAlphaClipping: 0
+    - _EnableAlphaClipping: 1
     - _EnableAutoColor: 0
     - _EnableBloomMask: 1
     - _EnableEmission: 0
