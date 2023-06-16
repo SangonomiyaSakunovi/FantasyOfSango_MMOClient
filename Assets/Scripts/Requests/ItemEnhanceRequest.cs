@@ -1,20 +1,17 @@
-using ExitGames.Client.Photon;
-using SangoCommon.Classs;
-using SangoCommon.Enums;
-using SangoCommon.Tools;
-using System.Collections.Generic;
+using SangoMMOCommons.Classs;
+using SangoMMOCommons.Enums;
+using SangoMMONetProtocol;
 
 //Developer : SangonomiyaSakunovi
-//Discription: The ItemEnhance Request.
 
 public class ItemEnhanceRequest : BaseRequest
 {
     private ItemEnhanceReq itemEnhanceReq;
 
     public override void InitRequset()
-    {
+    {      
+        NetOpCode = OperationCode.ItemEnhance;
         base.InitRequset();
-        OpCode = OperationCode.ItemEnhance;
     }
 
     public void SetWeaponEnhanceReq(ItemEnhanceReq enhanceReq)
@@ -25,15 +22,13 @@ public class ItemEnhanceRequest : BaseRequest
     public override void DefaultRequest()
     {
         GameManager.Instance.SetGameMode(GameModeCode.WaitingServerResponseMode);
-        Dictionary<byte, object> dict = new Dictionary<byte, object>();
         string itemEnhanceRequstJson = SetJsonString(itemEnhanceReq);
-        dict.Add((byte)ParameterCode.ItemEnhanceReq, itemEnhanceRequstJson);
-        NetService.Peer.OpCustom((byte)OpCode, dict, true);
+        netService.ClientInstance.ClientPeer.SendOperationRequest(NetOpCode, itemEnhanceRequstJson);
     }
 
-    public override void OnOperationResponse(OperationResponse operationResponse)
+    public override void OnOperationResponse(SangoNetMessage sangoNetMessage)
     {
-        string itemEnhanceResponseJson = DictTools.GetStringValue(operationResponse.Parameters, (byte)ParameterCode.ItemEnhanceRsp);
+        string itemEnhanceResponseJson = sangoNetMessage.MessageBody.MessageString;
         if (itemEnhanceResponseJson != null)
         {
             ItemEnhanceRsp itemEnhanceRsp = DeJsonString<ItemEnhanceRsp>(itemEnhanceResponseJson);

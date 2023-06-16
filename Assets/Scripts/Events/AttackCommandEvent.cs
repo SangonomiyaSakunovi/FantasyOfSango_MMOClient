@@ -1,7 +1,5 @@
-using ExitGames.Client.Photon;
-using SangoCommon.Classs;
-using SangoCommon.Enums;
-using SangoCommon.Tools;
+using SangoMMOCommons.Classs;
+using SangoMMONetProtocol;
 
 //Developer : SangonomiyaSakunovi
 //Discription: Attack Commond Event.
@@ -10,12 +8,12 @@ public class AttackCommandEvent : BaseEvent
 {
     public override void InitEvent()
     {
-        base.InitEvent();
-        EvCode = EventCode.AttackCommand;
+        NetOpCode = OperationCode.AttackCommand;
+        base.InitEvent();       
     }
-    public override void OnEvent(EventData eventData)
+    public override void OnEvent(SangoNetMessage sangoNetMessage)
     {
-        string attackCommandJson = DictTools.GetStringValue(eventData.Parameters, (byte)ParameterCode.AttackCommand);
+        string attackCommandJson = sangoNetMessage.MessageBody.MessageString;
         if (attackCommandJson != null && IslandOnlineAccountSystem.Instance != null)
         {
             AttackCommand attackCommand = DeJsonString<AttackCommand>(attackCommandJson);

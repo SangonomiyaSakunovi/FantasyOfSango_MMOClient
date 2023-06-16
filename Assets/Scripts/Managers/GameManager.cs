@@ -1,7 +1,6 @@
-//Developer : SangonomiyaSakunovi
-//Discription: The Game manager.
-
 using UnityEngine;
+
+//Developer : SangonomiyaSakunovi
 
 public class GameManager : BaseManager
 {

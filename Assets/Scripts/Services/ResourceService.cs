@@ -1,4 +1,4 @@
-using SangoCommon.Tools;
+using SangoMMOCommons.Tools;
 using System;
 using System.Collections.Generic;
 using System.Xml;
@@ -6,9 +6,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 //Developer : SangonomiyaSakunovi
-//Discription: The Resource Service.
 
-public class ResourceService : MonoBehaviour
+public class ResourceService : BaseService
 {
     public static ResourceService Instance = null;
 
@@ -22,7 +21,7 @@ public class ResourceService : MonoBehaviour
 
     private Action loadingProgressCallBack = null;
 
-    public void InitService()
+    public override void InitService()
     {
         Instance = this;
         InitMissionConfig(ConfigConstant.MissionConfigPath_01);
@@ -124,7 +123,7 @@ public class ResourceService : MonoBehaviour
 
     public MissionConfig GetMissionConfig(string missionId)
     {
-        return DictTools.GetDictValue<string, MissionConfig>(missionConfigDict, missionId);
+        return DictTool.GetDictValue<string, MissionConfig>(missionId, missionConfigDict);
     }
     #endregion
 
@@ -248,23 +247,23 @@ public class ResourceService : MonoBehaviour
 
     public WeaponBreakConfig GetWeaponBreakConfig(string weaponBreakId)
     {
-        return DictTools.GetDictValue<string, WeaponBreakConfig>(weaponBreakConfigDict, weaponBreakId);
+        return DictTool.GetDictValue<string, WeaponBreakConfig>(weaponBreakId, weaponBreakConfigDict);
     }
 
     public WeaponDetailsConfig GetWeaponDetailsConfig(string weaponDetailsId)
     {
-        return DictTools.GetDictValue<string, WeaponDetailsConfig>(weaponDetailsConfigDict, weaponDetailsId);
+        return DictTool.GetDictValue<string, WeaponDetailsConfig>(weaponDetailsId, weaponDetailsConfigDict);
     }
 
     public WeaponValueConfig GetWeaponValueConfig(string weaponValueId)
     {
-        return DictTools.GetDictValue<string, WeaponValueConfig>(weaponValueConfigDict, weaponValueId);
+        return DictTool.GetDictValue<string, WeaponValueConfig>(weaponValueId, weaponValueConfigDict);
     }
     #endregion
 
     public AudioClip LoadAudioClip(string audioPath, bool isCache)
     {
-        AudioClip audioClip = DictTools.GetDictValue<string, AudioClip>(audioClipDict, audioPath);
+        AudioClip audioClip = DictTool.GetDictValue<string, AudioClip>(audioPath, audioClipDict);
         if (audioClip == null)
         {
             audioClip = Resources.Load<AudioClip>(audioPath);
@@ -278,7 +277,7 @@ public class ResourceService : MonoBehaviour
 
     public Sprite LoadSprite(string spritePath, bool isCache = false)
     {
-        Sprite sprite = DictTools.GetDictValue<string, Sprite>(spriteDict, spritePath);
+        Sprite sprite = DictTool.GetDictValue<string, Sprite>(spritePath, spriteDict);
         if (sprite == null)
         {
             sprite = Resources.Load<Sprite>(spritePath);

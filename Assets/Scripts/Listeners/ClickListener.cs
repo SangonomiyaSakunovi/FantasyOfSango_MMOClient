@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 //Developer : SangonomiyaSakunovi
-//Discription: The Click Listener.
 
 public class ClickListener : MonoBehaviour, IPointerClickHandler, IPointerDownHandler, IPointerUpHandler, IDragHandler
 {   

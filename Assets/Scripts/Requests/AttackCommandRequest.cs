@@ -1,21 +1,19 @@
-using ExitGames.Client.Photon;
-using SangoCommon.Classs;
-using SangoCommon.Enums;
+using SangoMMOCommons.Classs;
+using SangoMMOCommons.Enums;
+using SangoMMOCommons.Structs;
+using SangoMMONetProtocol;
 using System;
-using System.Collections.Generic;
 using UnityEngine;
-using SangoCommon.Structs;
 
 //Developer : SangonomiyaSakunovi
-//Discription: The Attack Command Request.
 
 public class AttackCommandRequest : BaseRequest
 {
     private AttackCommand attackCommand;
     public override void InitRequset()
-    {
+    {        
+        NetOpCode = OperationCode.AttackCommand;
         base.InitRequset();
-        OpCode = OperationCode.AttackCommand;
     }
 
     public void SetAttackCommand(SkillCode skillCode, Vector3 position, Quaternion rotation)
@@ -43,13 +41,11 @@ public class AttackCommandRequest : BaseRequest
     public override void DefaultRequest()
     {
         string attackCommandJson = SetJsonString(attackCommand);
-        Dictionary<byte, object> dict = new Dictionary<byte, object>();
-        dict.Add((byte)ParameterCode.AttackCommand, attackCommandJson);
-        NetService.Peer.OpCustom((byte)OpCode, dict, true);
+        netService.ClientInstance.ClientPeer.SendOperationRequest(NetOpCode, attackCommandJson);
     }
 
-    public override void OnOperationResponse(OperationResponse operationResponse)
+    public override void OnOperationResponse(SangoNetMessage sangoNetMessage)
     {
-        throw new System.NotImplementedException();
+
     }
 }

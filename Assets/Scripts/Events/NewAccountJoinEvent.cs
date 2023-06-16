@@ -1,10 +1,8 @@
-using ExitGames.Client.Photon;
-using SangoCommon.Enums;
-using SangoCommon.Tools;
+using SangoMMOCommons.Classs;
+using SangoMMONetProtocol;
 using System.Collections.Generic;
 
 //Developer : SangonomiyaSakunovi
-//Discription: New Account Join Event.
 
 public class NewAccountJoinEvent : BaseEvent
 {
@@ -13,14 +11,16 @@ public class NewAccountJoinEvent : BaseEvent
     Stack<string> newAccountJoinEventStack = new Stack<string>();
 
     public override void InitEvent()
-    {
+    {        
+        NetOpCode = OperationCode.SyncPlayerAccount;
         base.InitEvent();
-        EvCode = EventCode.NewAccountJoin;
         newAccountJoinEventStack.Push("-1");
     }
-    public override void OnEvent(EventData eventData)
+    public override void OnEvent(SangoNetMessage sangoNetMessage)
     {
-        string tempAccount = DictTools.GetStringValue(eventData.Parameters, (byte)ParameterCode.Account);
+        string newAccountOnlineJson = sangoNetMessage.MessageBody.MessageString;
+        NewAccountOnline newAccountOnline = DeJsonString<NewAccountOnline>(newAccountOnlineJson);
+        string tempAccount = newAccountOnline.Account;
         if (tempAccount != null)
         {
             if (newAccountJoinEventStack.Peek() != tempAccount)

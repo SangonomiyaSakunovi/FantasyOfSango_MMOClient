@@ -1,9 +1,8 @@
-using SangoCommon.Classs;
-using SangoCommon.Enums;
+using SangoMMOCommons.Classs;
+using SangoMMOCommons.Enums;
 using UnityEngine;
 
 //Developer : SangonomiyaSakunovi
-//Discription: The WeaponsEnhanceSystem.
 
 public class WeaponsEnhanceSystem : BaseSystem
 {

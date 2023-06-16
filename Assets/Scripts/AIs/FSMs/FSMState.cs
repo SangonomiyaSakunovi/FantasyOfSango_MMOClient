@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //Developer : SangonomiyaSakunovi
-//Discription: The BaseState, use to define what to do.
 
 public abstract class FSMState
 {

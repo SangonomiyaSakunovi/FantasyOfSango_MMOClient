@@ -1,15 +1,11 @@
-using Assets.Scripts.Common.Constant;
-using SangoCommon.Enums;
+using SangoMMOCommons.Enums;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Drawing.Text;
 using TMPro;
-using UnityEditor.VersionControl;
 using UnityEngine;
 
 //Developer : SangonomiyaSakunovi
-//Discription: The Dynamic Window.
 
 public class DynamicWindow : BaseWindow
 {
@@ -27,7 +23,7 @@ public class DynamicWindow : BaseWindow
     private float scaleRate = 1.0f * 1080 / Screen.height;
     private Vector3 enemyHeight;
 
-    
+
 
     protected override void InitWindow()
     {
@@ -40,7 +36,7 @@ public class DynamicWindow : BaseWindow
     {
         lock (messageShowQueue)
         {
-            string messageShowStr = GetTextWithHexColor(message, textColor);            
+            string messageShowStr = GetTextWithHexColor(message, textColor);
             messageShowQueue.Enqueue(messageShowStr);
         }
     }

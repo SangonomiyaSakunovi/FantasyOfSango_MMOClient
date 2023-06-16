@@ -1,5 +1,4 @@
 //Developer : SangonomiyaSakunovi
-//Discription: The Weapon constant.
 
 public class WeaponConstant
 {

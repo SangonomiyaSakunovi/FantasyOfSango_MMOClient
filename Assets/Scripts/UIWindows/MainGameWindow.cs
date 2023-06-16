@@ -1,11 +1,10 @@
-using SangoCommon.Classs;
-using SangoCommon.Constants;
+using SangoMMOCommons.Classs;
+using SangoMMOCommons.Constants;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 //Developer : SangonomiyaSakunovi
-//Discription: The Main Game Window.
 
 public class MainGameWindow : BaseWindow
 {

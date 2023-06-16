@@ -1,5 +1,4 @@
 //Developer : SangonomiyaSakunovi
-//Discription: The DialogConstant.
 
 public class DialogConstant
 {

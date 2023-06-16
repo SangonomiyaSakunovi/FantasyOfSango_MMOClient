@@ -1,9 +1,7 @@
-using ExitGames.Client.Photon;
-using SangoCommon.Enums;
-using System.Collections.Generic;
+using SangoMMOCommons.Classs;
+using SangoMMONetProtocol;
 
 //Developer : SangonomiyaSakunovi
-//Discription: The Login Request.
 
 public class LoginRequest : BaseRequest
 {
@@ -11,22 +9,25 @@ public class LoginRequest : BaseRequest
     private string password;
 
     public override void InitRequset()
-    {
+    {       
+        NetOpCode = OperationCode.Login;
         base.InitRequset();
-        OpCode = OperationCode.Login;
     }
 
     public override void DefaultRequest()
     {
-        Dictionary<byte, object> dict = new Dictionary<byte, object>();
-        dict.Add((byte)ParameterCode.Account, account);
-        dict.Add((byte)ParameterCode.Password, password);
-        NetService.Peer.OpCustom((byte)OpCode, dict, true);
+        LoginReq loginReq = new()
+        {
+            Account = account,
+            Password = password
+        };
+        string loginReqJson = SetJsonString(loginReq);
+        netService.ClientInstance.ClientPeer.SendOperationRequest(NetOpCode, loginReqJson);
     }
 
-    public override void OnOperationResponse(OperationResponse operationResponse)
+    public override void OnOperationResponse(SangoNetMessage sangoNetMessage)
     {
-        ReturnCode returnCode = (ReturnCode)operationResponse.ReturnCode;
+        ReturnCode returnCode = sangoNetMessage.MessageBody.ReturnCode;
         LoginSystem.Instance.OnLoginResponse(returnCode);
     }
     public void SetAccount(string acc, string pass)

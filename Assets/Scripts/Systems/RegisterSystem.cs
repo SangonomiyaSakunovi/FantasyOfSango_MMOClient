@@ -1,7 +1,6 @@
-using SangoCommon.Enums;
+using SangoMMONetProtocol;
 
 //Developer : SangonomiyaSakunovi
-//Discription: The Regist System.
 
 public class RegisterSystem : BaseSystem
 {

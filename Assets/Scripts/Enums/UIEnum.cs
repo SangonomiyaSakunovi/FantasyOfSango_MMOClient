@@ -1,5 +1,4 @@
 //Developer : SangonomiyaSakunovi
-//Discription:
 
 public enum TextColorCode
 {

@@ -1,10 +1,9 @@
 using Assets.Scripts.Common.Constant;
-using SangoCommon.Classs;
-using SangoCommon.Enums;
+using SangoMMOCommons.Classs;
+using SangoMMOCommons.Enums;
 using UnityEngine;
 
 //Developer : SangonomiyaSakunovi
-//Discription: The MainGame Sytem.
 
 public class MainGameSystem : BaseSystem
 {
@@ -15,6 +14,8 @@ public class MainGameSystem : BaseSystem
     public GameObject playerCapsule = null;
     [HideInInspector]
     public GameObject playerCube = null;
+    [HideInInspector]
+    public MovePlayerCubeController movePlayerCubeController = null;
 
     private Transform[] npcTransformArray;
 
@@ -32,8 +33,8 @@ public class MainGameSystem : BaseSystem
             GameManager.Instance.SetGameMode(GameModeCode.GamePlayMode);
             //Load Avater
             InitiateLocalAvater();
-            playerCube.GetComponent<MovePlayerCubeController>().SetAvaterObject(AvaterCode.SangonomiyaKokomi);
-            playerCube.GetComponent<MovePlayerCubeController>().AvaterObject.SetActive(true);
+            movePlayerCubeController.SetAvaterObject(AvaterCode.SangonomiyaKokomi);
+            movePlayerCubeController.AvaterObject.SetActive(true);
             OnlineAccountCache.Instance.SetLocalAvater(AvaterCode.SangonomiyaKokomi);
             CameraController.Instance.SetPlayerTrans(playerCube.transform);
             CameraController.Instance.InitCamera();
@@ -63,6 +64,7 @@ public class MainGameSystem : BaseSystem
     {
         playerCapsule = (GameObject)Instantiate(Resources.Load(AvaterConstant.PlayerCapsule));
         playerCube = (GameObject)Instantiate(Resources.Load(AvaterConstant.PlayerCube));
+        movePlayerCubeController = playerCube.GetComponent<MovePlayerCubeController>();
         GameObject tempKokomi = (GameObject)Instantiate(Resources.Load(AvaterConstant.SangonomiyaKokomiPath));
         GameObject tempYoimiya = (GameObject)Instantiate(Resources.Load(AvaterConstant.YoimiyaPath));
         GameObject tempAyaka = (GameObject)Instantiate(Resources.Load(AvaterConstant.AyakaPath));

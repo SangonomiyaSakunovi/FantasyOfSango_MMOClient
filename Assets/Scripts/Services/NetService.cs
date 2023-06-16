@@ -1,32 +1,89 @@
-using ExitGames.Client.Photon;
-using SangoCommon.Enums;
+using SangoIOCPNet;
+using SangoMMOCommons.Tools;
+using SangoMMONetProtocol;
 using System.Collections.Generic;
 using UnityEngine;
 
 //Developer : SangonomiyaSakunovi
-//Discription: The NetService.
 
-public class NetService : MonoBehaviour, IPhotonPeerListener
+public class NetService : BaseService
 {
     public static NetService Instance;
-    private static PhotonPeer peer;
-    private Dictionary<OperationCode, BaseRequest> RequestDict = new Dictionary<OperationCode, BaseRequest>();
-    private Dictionary<EventCode, BaseEvent> EventDict = new Dictionary<EventCode, BaseEvent>();   
 
-    public static PhotonPeer Peer
+    public IOCPPeer<ClientPeer> ClientInstance;
+    private int localIPPort = 52022;
+
+    private Dictionary<OperationCode, BaseRequest> RequestDict = new Dictionary<OperationCode, BaseRequest>();
+    private Dictionary<OperationCode, BaseEvent> EventDict = new Dictionary<OperationCode, BaseEvent>();
+
+    public override void InitService()
     {
-        get
-        {
-            return peer;
-        }
+        string ipAddress = SetIPAddress(ConfigureModeCode.Offline);
+        Instance = this;
+        InitClientInstance(ipAddress, localIPPort);
+        InitRequests();
+        InitEvents();
     }
 
-    public void InitService()
+    private void InitClientInstance(string ipAddress, int localIPPort)
     {
-        string ipAddress = SetIPAddress(ConfigureModeCode.Offline); 
-        Instance = this;
-        peer = new PhotonPeer(this, ConnectionProtocol.Udp);
-        peer.Connect(ipAddress, "FSOGameServer");
+        ClientInstance = new IOCPPeer<ClientPeer>();
+        ClientInstance.InitClient(ipAddress, localIPPort);
+
+        IOCPLog.LogInfoCallBack = Debug.Log;
+        IOCPLog.LogWarningCallBack = Debug.LogWarning;
+        IOCPLog.LogErrorCallBack = Debug.LogError;
+        IOCPLog.LogDoneCallBack = Debug.Log;
+        IOCPLog.LogProcessingCallBack = Debug.Log;
+    }
+
+    public void CloseClientInstance()
+    {
+        ClientInstance.CloseClient();
+    }
+
+    private void InitRequests()
+    {
+        LoginRequest loginRequest = GetComponent<LoginRequest>();
+        loginRequest.InitRequset();
+        RegisterRequest registerRequest = GetComponent<RegisterRequest>();
+        registerRequest.InitRequset();
+        SyncPlayerDataRequest syncPlayerDataRequest = GetComponent<SyncPlayerDataRequest>();
+        syncPlayerDataRequest.InitRequset();
+        SyncPlayerTransformRequest syncPlayerTransformRequest = GetComponent<SyncPlayerTransformRequest>();
+        syncPlayerTransformRequest.InitRequset();
+        SyncPlayerAccountRequest syncPlayerAccountRequest = GetComponent<SyncPlayerAccountRequest>();
+        syncPlayerAccountRequest.InitRequset();
+        AttackCommandRequest attackCommandRequest = GetComponent<AttackCommandRequest>();
+        attackCommandRequest.InitRequset();
+        AttackDamageRequest attackDamageRequest = GetComponent<AttackDamageRequest>();
+        attackDamageRequest.InitRequset();
+        ChooseAvaterRequest chooseAvaterRequest = GetComponent<ChooseAvaterRequest>();
+        chooseAvaterRequest.InitRequset();
+        ItemEnhanceRequest itemEnhanceRequest = GetComponent<ItemEnhanceRequest>();
+        itemEnhanceRequest.InitRequset();
+        MissionUpdateRequest missionUpdateRequest = GetComponent<MissionUpdateRequest>();
+        missionUpdateRequest.InitRequset();
+        ChatRequest chatRequest = GetComponent<ChatRequest>();
+        chatRequest.InitRequset();
+        ShopInfoRequest shopInfoRequest = GetComponent<ShopInfoRequest>();
+        shopInfoRequest.InitRequset();
+    }
+
+    private void InitEvents()
+    {
+        NewAccountJoinEvent newAccountJoinEvent = GetComponent<NewAccountJoinEvent>();
+        newAccountJoinEvent.InitEvent();
+        SyncPlayerTransformEvent syncPlayerTransformEvent = GetComponent<SyncPlayerTransformEvent>();
+        syncPlayerTransformEvent.InitEvent();
+        AttackCommandEvent attackCommandEvent = GetComponent<AttackCommandEvent>();
+        attackCommandEvent.InitEvent();
+        AttackResultEvent attackResultEvent = GetComponent<AttackResultEvent>();
+        attackResultEvent.InitEvent();
+        ChooseAvaterEvent chooseAvaterEvent = GetComponent<ChooseAvaterEvent>();
+        chooseAvaterEvent.InitEvent();
+        ChatEvent chatEvent = GetComponent<ChatEvent>();
+        chatEvent.InitEvent();
     }
 
     private string SetIPAddress(ConfigureModeCode mode)
@@ -34,96 +91,59 @@ public class NetService : MonoBehaviour, IPhotonPeerListener
         string ipAddress = null;
         if (mode == ConfigureModeCode.Online)
         {
-            ipAddress = "124.220.20.98:5055";
+            ipAddress = "124.220.20.98";
         }
         else if (mode == ConfigureModeCode.Offline)
         {
-            ipAddress = "127.0.0.1:5055";
+            ipAddress = "127.0.0.1";
         }
         return ipAddress;
     }
 
-    private void Update()
+    public void OnOperationResponseDistribute(SangoNetMessage sangoNetMessage)
     {
-        if (peer != null)
+        BaseRequest baseRequest = DictTool.GetDictValue<OperationCode, BaseRequest>(sangoNetMessage.MessageHead.OperationCode, RequestDict);
+        if (baseRequest != null)
         {
-            peer.Service();
-        }
-    }
-
-    public void OnStatusChanged(StatusCode statusCode)
-    {
-        Debug.Log(statusCode);
-    }
-
-    public void OnDestory()
-    {
-        if (peer != null && peer.PeerState == PeerStateValue.Connected)
-        {
-            peer.Disconnect();
-        }
-    }
-
-    public void OnEvent(EventData eventData)
-    {
-        //Client Listen the Event from Server
-        EventCode eventCode = (EventCode)eventData.Code;
-        BaseEvent _event = null;
-        bool isGetEvent = EventDict.TryGetValue(eventCode, out _event);
-        if (isGetEvent)
-        {
-            _event.OnEvent(eventData);
+            baseRequest.OnOperationResponse(sangoNetMessage);
         }
         else
         {
-            Debug.Log("There is no Event in EventDict, the EventCode is: [ " + eventCode + " ]");
+            Debug.Log("There is no Request in RequestDict, the OperationCode is: [ " + sangoNetMessage.MessageHead.OperationCode + " ]");
         }
     }
 
-    public void OnOperationResponse(OperationResponse operationResponse)
+    public void OnEventDataDistribute(SangoNetMessage sangoNetMessage)
     {
-        //Client SendRequest and Listen the Response from Server
-        OperationCode operationCode = (OperationCode)operationResponse.OperationCode;
-        BaseRequest request = null;
-        bool isGetRequest = RequestDict.TryGetValue(operationCode, out request);
-        if (isGetRequest)
+        BaseEvent baseEvent = DictTool.GetDictValue<OperationCode, BaseEvent>(sangoNetMessage.MessageHead.OperationCode, EventDict);
+        if (baseEvent != null)
         {
-            request.OnOperationResponse(operationResponse);
+            baseEvent.OnEvent(sangoNetMessage);
         }
         else
         {
-            Debug.Log("There is no Request in RequestDict, the OperationCode is: [ " + operationCode + " ]");
+            Debug.Log("There is no Event in EventDict, the EventCode is: [ " + sangoNetMessage.MessageHead.OperationCode + " ]");
         }
     }
 
-    public void DebugReturn(DebugLevel level, string message)
+    public void AddRequest(BaseRequest req)
     {
-        //Seldom to use
-        throw new System.NotImplementedException();
+        RequestDict.Add(req.NetOpCode, req);
     }
 
-    public void AddRequest(BaseRequest _request)
+    public void RemoveRequest(BaseRequest req)
     {
-        //Use OperationCode as Key to add Requst
-        RequestDict.Add(_request.OpCode, _request);
+        RequestDict.Remove(req.NetOpCode);
     }
 
-    public void RemoveRequest(BaseRequest _request)
+    public void AddEvent(BaseEvent evt)
     {
-        //Use  OperationCode as Key to remove, no need to specify the Request
-        RequestDict.Remove(_request.OpCode);
+        EventDict.Add(evt.NetOpCode, evt);
     }
 
-    public void AddEvent(BaseEvent _event)
+    public void RemoveEvent(BaseEvent evt)
     {
-        //Use OperationCode as Key to add Event
-        EventDict.Add(_event.EvCode, _event);
-    }
-
-    public void RemoveEvent(BaseEvent _event)
-    {
-        //Use  OperationCode as Key to remove, no need to specify the Event
-        EventDict.Remove(_event.EvCode);
+        EventDict.Remove(evt.NetOpCode);
     }
 
     private enum ConfigureModeCode

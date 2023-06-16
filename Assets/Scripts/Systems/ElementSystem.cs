@@ -1,12 +1,11 @@
-using SangoCommon.Classs;
-using SangoCommon.Enums;
+using SangoMMOCommons.Classs;
+using SangoMMOCommons.Enums;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using SangoCommon.Constants;
+using SangoMMOCommons.Constants;
 
 //Developer : SangonomiyaSakunovi
-//Discription: The ElementSystem.
 
 public class ElementSystem : MonoBehaviour
 {

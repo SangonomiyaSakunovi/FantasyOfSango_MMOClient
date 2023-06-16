@@ -1,30 +1,32 @@
-using ExitGames.Client.Photon;
-using SangoCommon.Enums;
-using System.Collections.Generic;
+using SangoMMOCommons.Classs;
+using SangoMMOCommons.Enums;
+using SangoMMONetProtocol;
 
 //Developer : SangonomiyaSakunovi
-//Discription: The Choose Avater Request.
 
 public class ChooseAvaterRequest : BaseRequest
 {
     public AvaterCode Avater { get; private set; }
 
     public override void InitRequset()
-    {
+    {       
+        NetOpCode = OperationCode.ChooseAvater;
         base.InitRequset();
-        OpCode = OperationCode.ChooseAvater;
     }
     public override void DefaultRequest()
     {
-        Dictionary<byte, object> dict = new Dictionary<byte, object>();
-        dict.Add((byte)ParameterCode.ChooseAvater, Avater);
-        dict.Add((byte)ParameterCode.Account, OnlineAccountCache.Instance.LocalAccount);
-        NetService.Peer.OpCustom((byte)OpCode, dict, true);
+        ChooseAvaterCode chooseAvaterCode = new()
+        {
+            Account = OnlineAccountCache.Instance.LocalAccount,
+            AvaterCode = Avater
+        };
+        string chooseAvaterCodeJson = SetJsonString(chooseAvaterCode);
+        netService.ClientInstance.ClientPeer.SendOperationRequest(NetOpCode, chooseAvaterCodeJson);
     }
 
-    public override void OnOperationResponse(OperationResponse operationResponse)
+    public override void OnOperationResponse(SangoNetMessage sangoNetMessage)
     {
-        throw new System.NotImplementedException();
+
     }
 
     public void SetAvater(AvaterCode avater)

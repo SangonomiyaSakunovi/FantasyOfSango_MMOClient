@@ -1,24 +1,25 @@
-using ExitGames.Client.Photon;
-using SangoCommon.Enums;
-using SangoCommon.Tools;
+using SangoMMOCommons.Classs;
+using SangoMMOCommons.Enums;
+using SangoMMONetProtocol;
 
 //Developer : SangonomiyaSakunovi
-//Discription: ChooseAvater Event.
 
 public class ChooseAvaterEvent : BaseEvent
 {
     public override void InitEvent()
     {
-        base.InitEvent();
-        EvCode = EventCode.ChooseAvater;
+        NetOpCode = OperationCode.ChooseAvater;
+        base.InitEvent();        
     }
-    public override void OnEvent(EventData eventData)
+    public override void OnEvent(SangoNetMessage sangoNetMessage)
     {
-        AvaterCode avater = (AvaterCode)DictTools.GetDictValue<byte, object>(eventData.Parameters, (byte)ParameterCode.ChooseAvater);
-        string account = DictTools.GetStringValue(eventData.Parameters, (byte)ParameterCode.Account);
+        string chooseAvaterCodeJson = sangoNetMessage.MessageBody.MessageString;
+        ChooseAvaterCode chooseAvaterCode = DeJsonString<ChooseAvaterCode>(chooseAvaterCodeJson);
+        AvaterCode avater = chooseAvaterCode.AvaterCode;
+        string account = chooseAvaterCode.Account;
         if (account != OnlineAccountCache.Instance.LocalAccount)
         {
             IslandOnlineAccountSystem.Instance.SetChoosedAvater(account, avater);
-        }        
+        }
     }
 }

@@ -1,15 +1,14 @@
 using UnityEngine;
 
 //Developer : SangonomiyaSakunovi
-//Discription: The Audio Service.
 
-public class AudioService : MonoBehaviour
+public class AudioService : BaseService
 {
     public static AudioService Instance = null;
     public AudioSource bGAudio;
     public AudioSource uIAudio;
 
-    public void InitServive()
+    public override void InitService()
     {
         Instance = this;
     }

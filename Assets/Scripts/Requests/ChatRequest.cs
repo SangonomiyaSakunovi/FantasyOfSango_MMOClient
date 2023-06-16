@@ -1,19 +1,18 @@
-using ExitGames.Client.Photon;
-using SangoCommon.Classs;
-using SangoCommon.Enums;
+using SangoMMOCommons.Classs;
+using SangoMMOCommons.Enums;
+using SangoMMONetProtocol;
 using System.Collections.Generic;
 
 //Developer : SangonomiyaSakunovi
-//Discription: 
 
 public class ChatRequest : BaseRequest
 {
     private OnlineAccountChatMessage onlineAccountChatMessage;
 
     public override void InitRequset()
-    {
+    {        
+        NetOpCode = OperationCode.Chat;
         base.InitRequset();
-        OpCode = OperationCode.Chat;
     }
 
     public void SetOnlineAccountChatMessage(string message)
@@ -28,15 +27,13 @@ public class ChatRequest : BaseRequest
     public override void DefaultRequest()
     {
         GameManager.Instance.SetGameMode(GameModeCode.WaitingServerResponseMode);
-        Dictionary<byte, object> dict = new Dictionary<byte, object>();
         string onlineAccountChatMessageJson = SetJsonString(onlineAccountChatMessage);
-        dict.Add((byte)ParameterCode.OnlineAccountChatMessage, onlineAccountChatMessageJson);
-        NetService.Peer.OpCustom((byte)OpCode, dict, true);
+        netService.ClientInstance.ClientPeer.SendOperationRequest(NetOpCode, onlineAccountChatMessageJson);
     }
 
-    public override void OnOperationResponse(OperationResponse operationResponse)
+    public override void OnOperationResponse(SangoNetMessage sangoNetMessage)
     {
-        ReturnCode returnCode = (ReturnCode)operationResponse.ReturnCode;
+        ReturnCode returnCode = sangoNetMessage.MessageBody.ReturnCode;
         ChatSystem.Instance.OnSendChatMessageResponse(returnCode);
         GameManager.Instance.SetGameMode(GameModeCode.ChatMode);
     }

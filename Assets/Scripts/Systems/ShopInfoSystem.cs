@@ -1,7 +1,6 @@
-using SangoCommon.Classs;
+using SangoMMOCommons.Classs;
 
 //Developer : SangonomiyaSakunovi
-//Discription: 
 
 public class ShopInfoSystem : BaseSystem
 {

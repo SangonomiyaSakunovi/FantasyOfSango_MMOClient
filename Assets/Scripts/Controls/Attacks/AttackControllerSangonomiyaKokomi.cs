@@ -1,10 +1,9 @@
-using SangoCommon.Classs;
-using SangoCommon.Enums;
+using SangoMMOCommons.Classs;
+using SangoMMOCommons.Enums;
 using System.Collections.Generic;
 using UnityEngine;
 
 //Developer : SangonomiyaSakunovi
-//Discription: The Kokomi Attack.
 
 public class AttackControllerSangonomiyaKokomi : MonoBehaviour
 {

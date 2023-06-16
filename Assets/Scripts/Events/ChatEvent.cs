@@ -1,22 +1,19 @@
-using ExitGames.Client.Photon;
-using SangoCommon.Classs;
-using SangoCommon.Enums;
-using SangoCommon.Tools;
+using SangoMMOCommons.Classs;
+using SangoMMONetProtocol;
 
 //Developer : SangonomiyaSakunovi
-//Discription: 
 
 public class ChatEvent : BaseEvent
 {
     public override void InitEvent()
     {
-        base.InitEvent();
-        EvCode = EventCode.Chat;
+        NetOpCode = OperationCode.Chat;
+        base.InitEvent();       
     }
 
-    public override void OnEvent(EventData eventData)
+    public override void OnEvent(SangoNetMessage sangoNetMessage)
     {
-        string onlineAccountChatMessageJson = DictTools.GetStringValue(eventData.Parameters, (byte)ParameterCode.OnlineAccountChatMessage);
+        string onlineAccountChatMessageJson = sangoNetMessage.MessageBody.MessageString;
         if (onlineAccountChatMessageJson != null && ChatSystem.Instance != null)
         {
             OnlineAccountChatMessage onlineAccountChatMessage = DeJsonString<OnlineAccountChatMessage>(onlineAccountChatMessageJson);

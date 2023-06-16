@@ -4,7 +4,6 @@ using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
 //Developer : SangonomiyaSakunovi
-//Discription: The ABManager, define the bundle method, not done.
 
 public class AssetBundleManager : Singleton<AssetBundleManager>
 {

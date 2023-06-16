@@ -5,7 +5,6 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 //Developer : SangonomiyaSakunovi
-//Discription: Base window, need define UI method.
 
 public class BaseWindow : MonoBehaviour
 {

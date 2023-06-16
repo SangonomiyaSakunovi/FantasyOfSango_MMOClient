@@ -1,5 +1,4 @@
 //Developer : SangonomiyaSakunovi
-//Discription: The Scene constant.
 
 public class SceneConstant
 {

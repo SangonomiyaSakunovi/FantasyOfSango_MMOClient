@@ -1,9 +1,8 @@
-using SangoCommon.Enums;
+using SangoMMOCommons.Enums;
 using TMPro;
 using UnityEngine;
 
 //Developer : SangonomiyaSakunovi
-//Discription: The Attack Num Item.
 
 public class AttackNumUIItem : BaseWindow
 {

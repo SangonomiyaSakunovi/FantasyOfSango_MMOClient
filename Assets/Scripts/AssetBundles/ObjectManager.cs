@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 
 //Developer : SangonomiyaSakunovi
-//Discription: The ABBundle objectPool manager.
+
 public class ObjectManager : Singleton<ObjectManager>
 {
     protected Dictionary<Type,object> m_ClassPoolDict = new Dictionary<Type, object>();

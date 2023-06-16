@@ -1,21 +1,18 @@
-using ExitGames.Client.Photon;
-using SangoCommon.Classs;
-using SangoCommon.Enums;
-using SangoCommon.Tools;
+using SangoMMOCommons.Classs;
+using SangoMMONetProtocol;
 
 //Developer : SangonomiyaSakunovi
-//Discription: Attack Result Event.
 
 public class AttackResultEvent : BaseEvent
 {
     public override void InitEvent()
     {
-        base.InitEvent();
-        EvCode = EventCode.AttackResult;
+        NetOpCode = OperationCode.AttackDamage;
+        base.InitEvent();       
     }
-    public override void OnEvent(EventData eventData)
+    public override void OnEvent(SangoNetMessage sangoNetMessage)
     {
-        string attackResultJson = DictTools.GetStringValue(eventData.Parameters, (byte)ParameterCode.AttackResult);
+        string attackResultJson = sangoNetMessage.MessageBody.MessageString;
         {
             if (attackResultJson != null && IslandOnlineAccountSystem.Instance != null)
             {

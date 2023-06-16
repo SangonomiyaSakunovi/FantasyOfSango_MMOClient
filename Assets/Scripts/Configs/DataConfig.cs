@@ -1,8 +1,7 @@
-//Developer : SangonomiyaSakunovi
-//Discription: The Configs.
-
-using SangoCommon.Enums;
+using SangoMMOCommons.Enums;
 using UnityEngine;
+
+//Developer : SangonomiyaSakunovi
 
 public class DataConfig<T>
 {

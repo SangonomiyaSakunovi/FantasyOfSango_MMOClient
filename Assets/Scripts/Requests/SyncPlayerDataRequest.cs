@@ -1,11 +1,8 @@
-using ExitGames.Client.Photon;
-using SangoCommon.Classs;
-using SangoCommon.Enums;
-using SangoCommon.Tools;
+using SangoMMOCommons.Classs;
+using SangoMMONetProtocol;
 using System;
 
 //Developer : SangonomiyaSakunovi
-//Discription: The Sync Data Request.
 
 public class SyncPlayerDataRequest : BaseRequest
 {
@@ -21,25 +18,24 @@ public class SyncPlayerDataRequest : BaseRequest
     }
 
     public override void InitRequset()
-    {
+    {       
+        NetOpCode = OperationCode.SyncPlayerData;
         base.InitRequset();
-        OpCode = OperationCode.SyncPlayerData;
         isGetResponse = false;
     }
 
     public override void DefaultRequest()
     {
-        NetService.Peer.OpCustom((byte)OpCode, null, true);
+        netService.ClientInstance.ClientPeer.SendOperationRequest(NetOpCode, "");
     }
 
-    public override void OnOperationResponse(OperationResponse operationResponse)
+    public override void OnOperationResponse(SangoNetMessage sangoNetMessage)
     {
-        string avaterInfoJson = DictTools.GetStringValue(operationResponse.Parameters, (byte)ParameterCode.AvaterInfo);
-        string missionInfoJson = DictTools.GetStringValue(operationResponse.Parameters, (byte)ParameterCode.MissionInfo);
-        string itemInfoJson = DictTools.GetStringValue(operationResponse.Parameters, (byte)ParameterCode.ItemInfo);
-        AvaterInfo AvaterInfo = DeJsonString<AvaterInfo>(avaterInfoJson);
-        MissionInfo MissionInfo = DeJsonString<MissionInfo>(missionInfoJson);
-        ItemInfo itemInfo = DeJsonString<ItemInfo>(itemInfoJson);
+        string playerDataJson = sangoNetMessage.MessageBody.MessageString;
+        PlayerData playerData = DeJsonString<PlayerData>(playerDataJson);
+        AvaterInfo AvaterInfo = playerData.AvaterInfo;
+        MissionInfo MissionInfo = playerData.MissionInfo;
+        ItemInfo itemInfo = playerData.ItemInfo;
         OnlineAccountCache.Instance.SetAvaterInfo(AvaterInfo);
         OnlineAccountCache.Instance.SetMissionInfo(MissionInfo);
         OnlineAccountCache.Instance.SetItemInfo(itemInfo);

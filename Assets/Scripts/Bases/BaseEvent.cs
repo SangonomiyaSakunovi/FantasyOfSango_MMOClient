@@ -1,10 +1,8 @@
-using ExitGames.Client.Photon;
-using SangoCommon.Enums;
+using SangoMMONetProtocol;
 using System.Text.Json;
 using UnityEngine;
 
 //Developer : SangonomiyaSakunovi
-//Discription: The EventBase, Json method need define here.
 
 public abstract class BaseEvent : MonoBehaviour
 {
@@ -13,8 +11,8 @@ public abstract class BaseEvent : MonoBehaviour
     protected AudioService audioService = null;
 
     [HideInInspector]
-    public EventCode EvCode;
-    public abstract void OnEvent(EventData eventData);
+    public OperationCode NetOpCode;
+    public abstract void OnEvent(SangoNetMessage sangoNetMessage);
 
     public virtual void InitEvent()
     {

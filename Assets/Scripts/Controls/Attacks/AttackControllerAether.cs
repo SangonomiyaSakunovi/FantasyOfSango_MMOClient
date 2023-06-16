@@ -1,7 +1,6 @@
 using UnityEngine;
 
 //Developer : SangonomiyaSakunovi
-//Discription: The Aether Attack.
 
 public class AttackControllerAether : MonoBehaviour
 {

@@ -1,5 +1,4 @@
 ﻿//Developer : SangonomiyaSakunovi
-//Discription: The Enemy Constant.
 
 namespace Assets.Scripts.Common.Constant
 {

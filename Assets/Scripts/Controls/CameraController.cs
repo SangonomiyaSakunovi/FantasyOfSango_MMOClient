@@ -1,7 +1,6 @@
 using UnityEngine;
 
 //Developer : SangonomiyaSakunovi
-//Discription: The Camera.
 
 public class CameraController : MonoBehaviour
 {

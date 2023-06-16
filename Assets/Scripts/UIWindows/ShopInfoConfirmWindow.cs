@@ -1,9 +1,8 @@
-using SangoCommon.Constants;
+using SangoMMOCommons.Constants;
 using TMPro;
 using UnityEngine.UI;
 
 //Developer : SangonomiyaSakunovi
-//Discription: 
 
 public class ShopInfoConfirmWindow : BaseWindow
 {

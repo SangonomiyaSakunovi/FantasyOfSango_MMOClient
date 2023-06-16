@@ -1,23 +1,19 @@
-using ExitGames.Client.Photon;
-using SangoCommon.Classs;
-using SangoCommon.Enums;
+using SangoMMOCommons.Classs;
+using SangoMMOCommons.Structs;
+using SangoMMONetProtocol;
 using System;
-using System.Collections.Generic;
 using UnityEngine;
-using SangoCommon.Structs;
-using SangoCommon.Tools;
 
 //Developer : SangonomiyaSakunovi
-//Discription: The Synv Transform Request.
 
 public class SyncPlayerTransformRequest : BaseRequest
 {
     private TransformOnline playerTransform;
 
     public override void InitRequset()
-    {
+    {       
+        NetOpCode = OperationCode.SyncPlayerTransform;
         base.InitRequset();
-        OpCode = OperationCode.SyncPlayerTransform;
     }
 
     public void SetPlayerTransform(Vector3 position, Quaternion rotation)
@@ -45,26 +41,29 @@ public class SyncPlayerTransformRequest : BaseRequest
     public override void DefaultRequest()
     {
         string playerTransformJson = SetJsonString(playerTransform);
-        Dictionary<byte, object> dict = new Dictionary<byte, object>();
-        dict.Add((byte)ParameterCode.PlayerTransform, playerTransformJson);
-        NetService.Peer.OpCustom((byte)OpCode, dict, true);
+        netService.ClientInstance.ClientPeer.SendOperationRequest(NetOpCode, playerTransformJson);
     }
 
-    public override void OnOperationResponse(OperationResponse operationResponse)
+    public override void OnOperationResponse(SangoNetMessage sangoNetMessage)
     {
+        string syncPlayerTransformRspJson = sangoNetMessage.MessageBody.MessageString;
+        SyncPlayerTransformRsp syncPlayerTransformRsp = DeJsonString<SyncPlayerTransformRsp>(syncPlayerTransformRspJson);
+        bool isSyncTransformResult = syncPlayerTransformRsp.SyncPlayerTransformResult;
         TransformOnline targetTransform = null;
-        bool syncTransformResult = (bool)DictTools.GetDictValue<byte, object>(operationResponse.Parameters, (byte)ParameterCode.SyncPlayerTransformResult);
-        if (syncTransformResult)
+        if (isSyncTransformResult)
         {
             targetTransform = playerTransform;
         }
         else
         {
-            string predictTransformJson = DictTools.GetStringValue(operationResponse.Parameters, (byte)ParameterCode.PredictPlayerTransform);
-            targetTransform = DeJsonString<TransformOnline>(predictTransformJson);
+            bool isPredictPlayerTransform = syncPlayerTransformRsp.PredictPlayerTransform;
+            if (isPredictPlayerTransform)
+            {
+                targetTransform = syncPlayerTransformRsp.TransformOnline;
+            }
         }
         Vector3 targetPosition = new Vector3(targetTransform.Vector3Position.X, targetTransform.Vector3Position.Y, targetTransform.Vector3Position.Z);
-        Quaternion targetRotation = new Quaternion(targetTransform.QuaternionRotation.X, targetTransform.QuaternionRotation.Y, targetTransform.QuaternionRotation.Z, targetTransform.QuaternionRotation.W);
-        MainGameSystem.Instance.playerCube.GetComponent<MovePlayerCubeController>().SetTransform(targetPosition, targetRotation);
+        Quaternion targetRotation = new Quaternion(targetTransform.QuaternionRotation.X, targetTransform.QuaternionRotation.Y, targetTransform.QuaternionRotation.Z, targetTransform.QuaternionRotation.W);      
+        MainGameSystem.Instance.movePlayerCubeController.SetTransform(targetPosition, targetRotation);
     }
 }

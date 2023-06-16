@@ -1,11 +1,10 @@
-using SangoCommon.Classs;
-using SangoCommon.Enums;
-using SangoCommon.Tools;
+using SangoMMOCommons.Classs;
+using SangoMMOCommons.Enums;
+using SangoMMOCommons.Tools;
 using System.Collections.Generic;
 using UnityEngine;
 
 //Developer : SangonomiyaSakunovi
-//Discription: The online account System.
 
 public class IslandOnlineAccountSystem : MonoBehaviour
 {
@@ -24,13 +23,13 @@ public class IslandOnlineAccountSystem : MonoBehaviour
 
     public GameObject GetOnlineCurrentGameobject(string account)
     {
-        GameObject gameObject = DictTools.GetDictValue<string, GameObject>(onlineAccountPlayerCubeDict, account);
+        GameObject gameObject = DictTool.GetDictValue<string, GameObject>(account, onlineAccountPlayerCubeDict);
         return gameObject;
     }
 
     public AvaterCode GetOnlineCurrentAvater(string account)
     {
-        AvaterCode avaterCurrent = DictTools.GetDictValue<string, GameObject>(onlineAccountPlayerCubeDict, account).GetComponent<MovePlayerCubeController>().OnlinePlayerAvater;
+        AvaterCode avaterCurrent = DictTool.GetDictValue<string, GameObject>(account, onlineAccountPlayerCubeDict).GetComponent<MovePlayerCubeController>().OnlinePlayerAvater;
         return avaterCurrent;
     }
 
@@ -83,7 +82,7 @@ public class IslandOnlineAccountSystem : MonoBehaviour
                 {
                     onlineAccountAvaterTransformDict.Add(playerTransList[i].Account, playerTransList[i]);
                 }
-                GameObject gameObject = DictTools.GetDictValue<string, GameObject>(onlineAccountPlayerCubeDict, playerTransList[i].Account);
+                GameObject gameObject = DictTool.GetDictValue<string, GameObject>(playerTransList[i].Account, onlineAccountPlayerCubeDict);
                 if (gameObject != null && !gameObject.GetComponent<MovePlayerCubeController>().isLocalPlayer)
                 {
                     Vector3 targetPosition = new Vector3(playerTransList[i].Vector3Position.X, playerTransList[i].Vector3Position.Y, playerTransList[i].Vector3Position.Z);
@@ -99,7 +98,7 @@ public class IslandOnlineAccountSystem : MonoBehaviour
     {
         if (attackCommand != null)
         {
-            GameObject gameObject = DictTools.GetDictValue<string, GameObject>(onlineAccountPlayerCubeDict, attackCommand.Account);
+            GameObject gameObject = DictTool.GetDictValue<string, GameObject>(attackCommand.Account, onlineAccountPlayerCubeDict);
             if (gameObject != null)
             {
                 AvaterCode avaterCurrent = gameObject.GetComponent<MovePlayerCubeController>().OnlinePlayerAvater;
@@ -124,7 +123,7 @@ public class IslandOnlineAccountSystem : MonoBehaviour
         {
             if (attackResult.DamageNumber > 0)
             {
-                GameObject gameObject = DictTools.GetDictValue<string, GameObject>(onlineAccountPlayerCubeDict, attackResult.DamagerAccount);
+                GameObject gameObject = DictTool.GetDictValue<string, GameObject>(attackResult.DamagerAccount, onlineAccountPlayerCubeDict);
                 if (gameObject != null)
                 {
                     AvaterCode avaterCurrent = gameObject.GetComponent<MovePlayerCubeController>().OnlinePlayerAvater;
@@ -147,7 +146,7 @@ public class IslandOnlineAccountSystem : MonoBehaviour
 
     public void SetChoosedAvater(string account, AvaterCode avater)
     {
-        GameObject gameObject = DictTools.GetDictValue<string, GameObject>(onlineAccountPlayerCubeDict, account);
+        GameObject gameObject = DictTool.GetDictValue<string, GameObject>(account, onlineAccountPlayerCubeDict);
         gameObject.GetComponent<MovePlayerCubeController>().AvaterObject.SetActive(false);
         gameObject.GetComponent<MovePlayerCubeController>().SetAvaterObject(avater);
         gameObject.GetComponent<MovePlayerCubeController>().AvaterObject.SetActive(true);

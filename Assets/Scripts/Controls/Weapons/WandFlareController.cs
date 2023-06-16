@@ -1,5 +1,5 @@
 using UnityEngine;
-using SangoCommon.Constants;
+using SangoMMOCommons.Constants;
 
 //Developer : SangonomiyaSakunovi
 //Discription: The Flare hehaviour.

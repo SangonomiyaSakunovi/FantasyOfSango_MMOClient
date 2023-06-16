@@ -1,12 +1,11 @@
-using SangoCommon.Classs;
-using SangoCommon.Enums;
+using SangoMMOCommons.Classs;
+using SangoMMOCommons.Enums;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 //Developer : SangonomiyaSakunovi
-//Discription: The AvaterInfoWindow.
 
 public class AvaterInfoWindow : BaseWindow
 {

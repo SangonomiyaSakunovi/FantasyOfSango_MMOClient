@@ -1,8 +1,7 @@
 using UnityEngine;
-using SangoCommon.Constants;
+using SangoMMOCommons.Constants;
 
 //Developer : SangonomiyaSakunovi
-//Discription: Player Capsulr.
 
 public class MovePlayerCapsuleController : MonoBehaviour
 {

@@ -1,41 +1,42 @@
-using ExitGames.Client.Photon;
-using SangoCommon.Enums;
-using System.Collections.Generic;
+using SangoMMOCommons.Classs;
+using SangoMMONetProtocol;
 
 //Developer : SangonomiyaSakunovi
-//Discription: The Register Request.
 
 public class RegisterRequest : BaseRequest
 {
-    public string Account { get; private set; }
-    public string Password { get; private set; }
-    public string Nickname { get; private set; }
+    private string account;
+    private string password;
+    private string nickname;
 
     public override void InitRequset()
-    {
+    {       
+        NetOpCode = OperationCode.Register;
         base.InitRequset();
-        OpCode = OperationCode.Register;
     }
 
     public override void DefaultRequest()
     {
-        Dictionary<byte, object> dict = new Dictionary<byte, object>();
-        dict.Add((byte)ParameterCode.Account, Account);
-        dict.Add((byte)ParameterCode.Password, Password);
-        dict.Add((byte)ParameterCode.Nickname, Nickname);
-        NetService.Peer.OpCustom((byte)OpCode, dict, true);
+        RegisterReq registerReq = new()
+        {
+            Account = account,
+            Password = password,
+            Nickname = nickname
+        };
+        string registerReqJson = SetJsonString(registerReq);
+        netService.ClientInstance.ClientPeer.SendOperationRequest(NetOpCode, registerReqJson);
     }
 
-    public override void OnOperationResponse(OperationResponse operationResponse)
+    public override void OnOperationResponse(SangoNetMessage sangoNetMessage)
     {
-        ReturnCode returnCode = (ReturnCode)operationResponse.ReturnCode;
+        ReturnCode returnCode = sangoNetMessage.MessageBody.ReturnCode;
         RegisterSystem.Instance.OnRegisterResponse(returnCode);
     }
 
-    public void SetAccount(string account, string password, string nickname)
+    public void SetAccount(string acct, string pass, string nick)
     {
-        Account = account;
-        Password = password;
-        Nickname = nickname;
+        account = acct;
+        password = pass;
+        nickname = nick;
     }
 }

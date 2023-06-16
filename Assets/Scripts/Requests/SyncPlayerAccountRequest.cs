@@ -1,27 +1,24 @@
-using ExitGames.Client.Photon;
-using SangoCommon.Enums;
-using SangoCommon.Tools;
+using SangoMMONetProtocol;
 using System.Collections.Generic;
 
 //Developer : SangonomiyaSakunovi
-//Discription: The Sync Account Request.
 
 public class SyncPlayerAccountRequest : BaseRequest
 {
     public override void InitRequset()
-    {
+    {        
+        NetOpCode = OperationCode.SyncPlayerAccount;
         base.InitRequset();
-        OpCode = OperationCode.SyncPlayerAccount;
     }
 
     public override void DefaultRequest()
     {
-        NetService.Peer.OpCustom((byte)OpCode, null, true);
+        netService.ClientInstance.ClientPeer.SendOperationRequest(NetOpCode, "");
     }
 
-    public override void OnOperationResponse(OperationResponse operationResponse)
+    public override void OnOperationResponse(SangoNetMessage sangoNetMessage)
     {
-        string tempOnlineAccountJson = DictTools.GetStringValue(operationResponse.Parameters, (byte)ParameterCode.OnlineAccountList);
+        string tempOnlineAccountJson = sangoNetMessage.MessageBody.MessageString;
         List<string> onlineAccountList = DeJsonString<List<string>>(tempOnlineAccountJson);
         foreach (string account in onlineAccountList)
         {

@@ -1,8 +1,7 @@
-using SangoCommon.Classs;
-using SangoCommon.Enums;
+using SangoMMOCommons.Classs;
+using SangoMMOCommons.Enums;
 
 //Developer : SangonomiyaSakunovi
-//Discription: The MissionUpdateSystem, all the mission behaviour should define here.
 
 public class MissionUpdateSystem : BaseSystem
 {

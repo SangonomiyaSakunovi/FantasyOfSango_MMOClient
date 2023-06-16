@@ -1,7 +1,6 @@
 using UnityEngine;
 
 //Developer : SangonomiyaSakunovi
-//Discription: The baseManager, base method should define here.
 
 public class BaseManager : MonoBehaviour
 {

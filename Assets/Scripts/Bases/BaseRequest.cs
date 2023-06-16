@@ -1,10 +1,8 @@
-using ExitGames.Client.Photon;
-using SangoCommon.Enums;
+using SangoMMONetProtocol;
 using System.Text.Json;
 using UnityEngine;
 
 //Developer : SangonomiyaSakunovi
-//Discription: Base request, need define json method.
 
 public abstract class BaseRequest : MonoBehaviour
 {
@@ -13,16 +11,16 @@ public abstract class BaseRequest : MonoBehaviour
     protected AudioService audioService = null;
 
     [HideInInspector]
-    public OperationCode OpCode;
+    public OperationCode NetOpCode;
     public abstract void DefaultRequest();
-    public abstract void OnOperationResponse(OperationResponse operationResponse);
+    public abstract void OnOperationResponse(SangoNetMessage sangoNetMessage);
 
     public virtual void InitRequset()
     {
-        netService = NetService.Instance;
-        netService.AddRequest(this);
+        netService = NetService.Instance;        
         resourceService = ResourceService.Instance;
         audioService = AudioService.Instance;
+        netService.AddRequest(this);
     }
 
     public void OnDestroy()

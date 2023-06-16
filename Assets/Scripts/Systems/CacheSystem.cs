@@ -1,7 +1,6 @@
 using UnityEngine;
 
 //Developer : SangonomiyaSakunovi
-//Discription: The Cache System.
 
 public class CacheSystem : BaseSystem
 {

@@ -1,7 +1,6 @@
 using UnityEngine;
 
 //Developer : SangonomiyaSakunovi
-//Discription: Base system, need define the UI method.
 
 public class BaseSystem : MonoBehaviour
 {

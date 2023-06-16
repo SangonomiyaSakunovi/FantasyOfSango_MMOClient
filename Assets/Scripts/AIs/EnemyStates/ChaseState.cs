@@ -1,7 +1,6 @@
 using UnityEngine;
 
 //Developer : SangonomiyaSakunovi
-//Discription: The ChaseState, you can define what to do here.
 
 public class ChaseState : FSMState
 {

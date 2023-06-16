@@ -1,33 +1,28 @@
-using ExitGames.Client.Photon;
-using SangoCommon.Classs;
-using SangoCommon.Enums;
-using SangoCommon.Tools;
-using System.Collections.Generic;
+using SangoMMOCommons.Classs;
+using SangoMMOCommons.Enums;
+using SangoMMONetProtocol;
 
 //Developer : SangonomiyaSakunovi
-//Discription: 
 
 public class MissionUpdateRequest : BaseRequest
 {
     private MissionUpdateReq missionUpdateReq;
-    
+
     public override void InitRequset()
-    {
+    {       
+        NetOpCode = OperationCode.MissionUpdate;
         base.InitRequset();
-        OpCode = OperationCode.MissionUpdate;
     }
 
     public override void DefaultRequest()
-    {       
+    {
         string missionUpdateRequestJson = SetJsonString(missionUpdateReq);
-        Dictionary<byte, object> dict = new Dictionary<byte, object>();
-        dict.Add((byte)ParameterCode.MissionUpdateReq, missionUpdateRequestJson);
-        NetService.Peer.OpCustom((byte)OpCode, dict, true);
+        netService.ClientInstance.ClientPeer.SendOperationRequest(NetOpCode, missionUpdateRequestJson);
     }
 
-    public override void OnOperationResponse(OperationResponse operationResponse)
+    public override void OnOperationResponse(SangoNetMessage sangoNetMessage)
     {
-        string missionUpdateResponseJson = DictTools.GetStringValue(operationResponse.Parameters, (byte)ParameterCode.MissionUpdateRsp);
+        string missionUpdateResponseJson = sangoNetMessage.MessageBody.MessageString;
         if (missionUpdateResponseJson != null)
         {
             MissionUpdateRsp missionUpdateRsp = DeJsonString<MissionUpdateRsp>(missionUpdateResponseJson);
@@ -38,7 +33,7 @@ public class MissionUpdateRequest : BaseRequest
                     case MissionUpdateTypeCode.Complete:
                         MissionUpdateSystem.Instance.OnMissionCompleteResponse(missionUpdateRsp);
                         break;
-                } 
+                }
             }
             else
             {

@@ -1,7 +1,5 @@
-using ExitGames.Client.Photon;
-using SangoCommon.Classs;
-using SangoCommon.Enums;
-using SangoCommon.Tools;
+using SangoMMOCommons.Classs;
+using SangoMMONetProtocol;
 using System.Collections.Generic;
 
 //Developer : SangonomiyaSakunovi
@@ -10,13 +8,13 @@ using System.Collections.Generic;
 public class SyncPlayerTransformEvent : BaseEvent
 {
     public override void InitEvent()
-    {
+    {        
+        NetOpCode = OperationCode.SyncPlayerTransform;
         base.InitEvent();
-        EvCode = EventCode.SyncPlayerTransform;
     }
-    public override void OnEvent(EventData eventData)
+    public override void OnEvent(SangoNetMessage sangoNetMessage)
     {
-        string playerTransformJson = DictTools.GetStringValue(eventData.Parameters, (byte)ParameterCode.PlayerTransformList);
+        string playerTransformJson = sangoNetMessage.MessageBody.MessageString;
         if (playerTransformJson != null && IslandOnlineAccountSystem.Instance != null)
         {
             List<TransformOnline> playerTransformList = DeJsonString<List<TransformOnline>>(playerTransformJson);

@@ -1,5 +1,4 @@
 //Developer : SangonomiyaSakunovi
-//Discription: 
 
 public struct WeaponEnhanceResultPreCal
 {
@@ -7,6 +6,3 @@ public struct WeaponEnhanceResultPreCal
     public string WeaponEnhanceIdResult { get; set; }
     public int WeaponEnhanceExpResult { get; set; }
 }
-
-
-

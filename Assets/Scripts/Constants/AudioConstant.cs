@@ -1,5 +1,4 @@
 //Developer : SangonomiyaSakunovi
-//Discription: The Audio Constant.
 
 public class AudioConstant
 {

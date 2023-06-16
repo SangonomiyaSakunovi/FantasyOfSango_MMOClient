@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.UI;
 
 //Developer : SangonomiyaSakunovi
-//Discription: The Login Window.
 
 public class LoginWindow : BaseWindow
 {

@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Xml.Serialization;
 
 //Developer : SangonomiyaSakunovi
-//Discription: The ABConfig, not done.
 
 [System.Serializable]
 public class AssetBundleConfig

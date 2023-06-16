@@ -3,7 +3,6 @@ using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
 //Developer : SangonomiyaSakunovi
-//Discription: Just a test.
 
 public class TestABBundleLoad : MonoBehaviour
 {

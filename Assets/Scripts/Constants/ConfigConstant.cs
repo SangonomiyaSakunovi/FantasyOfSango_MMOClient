@@ -1,5 +1,4 @@
 //Developer : SangonomiyaSakunovi
-//Discription: The ConfigConstant.
 
 public class ConfigConstant
 {

@@ -4,7 +4,6 @@ using System.IO;
 using UnityEngine;
 
 //Developer : SangonomiyaSakunovi
-//Discription: A Grid Generator.
 
 public class AStarGraphGenerator : MonoBehaviour
 {

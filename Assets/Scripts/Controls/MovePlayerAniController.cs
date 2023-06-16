@@ -1,7 +1,6 @@
 using UnityEngine;
 
 //Developer : SangonomiyaSakunovi
-//Discription: Player Animation.
 
 public class MovePlayerAniController : MonoBehaviour
 {

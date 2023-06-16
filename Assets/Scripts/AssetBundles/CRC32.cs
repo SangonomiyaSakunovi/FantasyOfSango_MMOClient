@@ -2,7 +2,6 @@ using System;
 using UnityEngine;
 
 //Developer : SangonomiyaSakunovi
-//Discription: The Binary method.
 
 public class CRC32 : MonoBehaviour
 {

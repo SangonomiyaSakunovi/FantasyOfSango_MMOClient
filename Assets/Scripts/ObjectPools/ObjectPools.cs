@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 
 //Developer : SangonomiyaSakunovi
-//Discription: The Object Pools.
 
 public static class GameObjectPools<T> where T : new()
 {

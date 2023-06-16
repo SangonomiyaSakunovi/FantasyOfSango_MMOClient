@@ -1,8 +1,7 @@
-using SangoCommon.Constants;
+using SangoMMOCommons.Constants;
 using UnityEngine.UI;
 
 //Developer : SangonomiyaSakunovi
-//Discription:
 
 public class ShopWindow : BaseWindow
 {

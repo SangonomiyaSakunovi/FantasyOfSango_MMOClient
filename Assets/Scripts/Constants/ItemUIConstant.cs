@@ -1,5 +1,4 @@
 //Developer : SangonomiyaSakunovi
-//Discription: The ItemUIConstant.
 
 public class ButtonUIConstant
 {

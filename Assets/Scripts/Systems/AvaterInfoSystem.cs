@@ -1,8 +1,6 @@
-using Animancer.Examples.StateMachines.GameManager;
 using UnityEngine;
 
 //Developer : SangonomiyaSakunovi
-//Discription: The AvaterInfo Sytem.
 
 public class AvaterInfoSystem : BaseSystem
 {

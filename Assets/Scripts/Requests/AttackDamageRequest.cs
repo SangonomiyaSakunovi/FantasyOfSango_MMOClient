@@ -1,23 +1,20 @@
-using ExitGames.Client.Photon;
-using SangoCommon.Classs;
-using SangoCommon.Enums;
-using SangoCommon.Structs;
-using SangoCommon.Tools;
+using SangoMMOCommons.Classs;
+using SangoMMOCommons.Enums;
+using SangoMMOCommons.Structs;
+using SangoMMONetProtocol;
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 //Developer : SangonomiyaSakunovi
-//Discription: The Attack Damage Request.
 
 public class AttackDamageRequest : BaseRequest
 {
     private AttackDamage attackDamage;
 
     public override void InitRequset()
-    {
+    {       
+        NetOpCode = OperationCode.AttackDamage;
         base.InitRequset();
-        OpCode = OperationCode.AttackDamage;
     }
 
     public void SetAttackDamage(FightTypeCode fightType, string damager, SkillCode skillCode, ElementReactionCode elementReaction, Vector3 attakerPos, Vector3 damagerPos)
@@ -49,14 +46,12 @@ public class AttackDamageRequest : BaseRequest
     public override void DefaultRequest()
     {
         string attackDamageJson = SetJsonString(attackDamage);
-        Dictionary<byte, object> dict = new Dictionary<byte, object>();
-        dict.Add((byte)ParameterCode.AttackDamage, attackDamageJson);
-        NetService.Peer.OpCustom((byte)OpCode, dict, true);
+        netService.ClientInstance.ClientPeer.SendOperationRequest(NetOpCode, attackDamageJson);
     }
 
-    public override void OnOperationResponse(OperationResponse operationResponse)
+    public override void OnOperationResponse(SangoNetMessage sangoNetMessage)
     {
-        string attackResultJson = DictTools.GetStringValue(operationResponse.Parameters, (byte)ParameterCode.AttackResult);
+        string attackResultJson = sangoNetMessage.MessageBody.MessageString;
         if (attackResultJson != null)
         {
             AttackResult attackResult = DeJsonString<AttackResult>(attackResultJson);
@@ -70,8 +65,6 @@ public class AttackDamageRequest : BaseRequest
                 IslandOnlineAccountSystem.Instance.SetOnlineAvaterAttackResult(attackResult);
                 SangoRoot.AddMessage("你治疗了玩家" + attackResult.DamagerAccount + "本次治疗量为" + -attackResult.DamageNumber + "HP", TextColorCode.OrangeColor);
             }
-
-
         }
     }
 }

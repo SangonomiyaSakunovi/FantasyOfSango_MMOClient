@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 
 //Developer : SangonomiyaSakunovi
-//Discription: A special objectPool.
 
 public class ClassObjectPool<T> where T : class, new()
 {

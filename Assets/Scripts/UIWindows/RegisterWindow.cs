@@ -2,7 +2,6 @@ using TMPro;
 using UnityEngine.UI;
 
 //Developer : SangonomiyaSakunovi
-//Discription: The Regist Window.
 
 public class RegisterWindow : BaseWindow
 {

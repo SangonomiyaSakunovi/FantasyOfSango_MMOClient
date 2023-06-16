@@ -1,12 +1,11 @@
-using SangoCommon.Classs;
-using SangoCommon.Enums;
+using SangoMMOCommons.Classs;
+using SangoMMOCommons.Enums;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 //Developer : SangonomiyaSakunovi
-//Discription: The WeaponsEnhanceWindow.
 
 public class WeaponsEnhanceWindow : BaseWindow
 {

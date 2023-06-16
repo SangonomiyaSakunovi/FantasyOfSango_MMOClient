@@ -1,10 +1,9 @@
-using SangoCommon.Enums;
+using SangoMMONetProtocol;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 //Developer : SangonomiyaSakunovi
-//Discription: The Login System.
 
 public class LoginSystem : BaseSystem
 {
@@ -42,8 +41,6 @@ public class LoginSystem : BaseSystem
                 if (Password != null)
                 {
                     SendLoginRequest();
-                    Debug.Log(Account);
-                    Debug.Log(Password);
                     SetActive(autoLoginButtonPress);
                     SetActive(autoLoginButton, false);
                     accountInput.text = Account;
