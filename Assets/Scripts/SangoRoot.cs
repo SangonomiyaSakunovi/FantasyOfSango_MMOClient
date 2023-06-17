@@ -38,12 +38,14 @@ public class SangoRoot : MonoBehaviour
 
     private void InitService()
     {
-        NetService netService = GetComponent<NetService>();
-        netService.InitService();
+        ProxyService proxyService = GetComponent<ProxyService>();
+        proxyService.InitService();        
         ResourceService resourceService = GetComponent<ResourceService>();
         resourceService.InitService();
         AudioService audioService = GetComponent<AudioService>();
         audioService.InitService();
+        NetService netService = GetComponent<NetService>();
+        netService.InitService();
     }
 
     private void InitManager()

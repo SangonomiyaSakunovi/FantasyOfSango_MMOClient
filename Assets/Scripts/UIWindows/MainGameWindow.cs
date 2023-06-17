@@ -45,10 +45,6 @@ public class MainGameWindow : BaseWindow
         {
             OnGetMissionButtonClick();
         }
-        if (Input.GetButtonDown("OpenAvaterInfoWindow"))
-        {
-            OnAvaterInfoButtonClick();
-        }
     }
 
     public void SetMiniMapTransPosition(Transform playerTrans)

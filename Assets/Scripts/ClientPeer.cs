@@ -19,20 +19,8 @@ public class ClientPeer : IClientPeer
 
     protected override void OnRecieveMessage(byte[] byteMessages)
     {
-        SangoNetMessage sangoNetMessage = ProtobufTool.DeProtoBytes<SangoNetMessage>(byteMessages);        
-        switch (sangoNetMessage.MessageHead.MessageCommand)
-        {
-            case MessageCommand.OperationResponse:
-                {
-                    NetService.Instance.OnOperationResponseDistribute(sangoNetMessage);
-                }
-                break;
-            case MessageCommand.EventData:
-                {
-                    NetService.Instance.OnEventDataDistribute(sangoNetMessage);
-                }
-                break;
-        }
+        SangoNetMessage sangoNetMessage = ProtobufTool.DeProtoBytes<SangoNetMessage>(byteMessages);
+        ProxyService.Instance.AddNetProxy(sangoNetMessage);
     }
 
     public void SendOperationRequest(OperationCode operationCode, string messageString)

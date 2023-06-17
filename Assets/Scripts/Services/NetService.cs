@@ -20,6 +20,7 @@ public class NetService : BaseService
     {
         string ipAddress = SetIPAddress(ConfigureModeCode.Offline);
         Instance = this;
+        InitIOCPLog();
         InitClientInstance(ipAddress, localIPPort);
         InitRequests();
         InitEvents();
@@ -29,7 +30,10 @@ public class NetService : BaseService
     {
         ClientInstance = new IOCPPeer<ClientPeer>();
         ClientInstance.InitClient(ipAddress, localIPPort);
+    }
 
+    private void InitIOCPLog()
+    {
         IOCPLog.LogInfoCallBack = Debug.Log;
         IOCPLog.LogWarningCallBack = Debug.LogWarning;
         IOCPLog.LogErrorCallBack = Debug.LogError;

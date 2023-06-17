@@ -64,6 +64,7 @@ public class SyncPlayerTransformRequest : BaseRequest
         }
         Vector3 targetPosition = new Vector3(targetTransform.Vector3Position.X, targetTransform.Vector3Position.Y, targetTransform.Vector3Position.Z);
         Quaternion targetRotation = new Quaternion(targetTransform.QuaternionRotation.X, targetTransform.QuaternionRotation.Y, targetTransform.QuaternionRotation.Z, targetTransform.QuaternionRotation.W);      
+        //就是下面这行，如果movePlayerCubeController是GetComponent的方式得到，那么立刻就会卡在这里，也没有任何提示，但是没有崩，只是收不到消息
         MainGameSystem.Instance.movePlayerCubeController.SetTransform(targetPosition, targetRotation);
     }
 }
