@@ -19,7 +19,10 @@ namespace YooAsset
 		public static void Initialize(ILogger logger = null)
 		{
 			if (_isInitialize)
-				throw new Exception($"{nameof(YooAssets)} is initialized !");
+			{
+				UnityEngine.Debug.LogWarning($"{nameof(YooAssets)} is initialized !");
+				return;
+			}
 
 			if (_isInitialize == false)
 			{
@@ -113,7 +116,7 @@ namespace YooAsset
 		{
 			var package = TryGetPackage(packageName);
 			if (package == null)
-				YooLogger.Error($"Not found assets package : {packageName}");
+				YooLogger.Error($"Not found resource package : {packageName}");
 			return package;
 		}
 

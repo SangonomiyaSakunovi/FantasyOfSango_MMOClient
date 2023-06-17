@@ -74,7 +74,7 @@ internal class FsmInitialize : IStateNode
 		}
 
 		yield return initializationOperation;
-		if (package.InitializeStatus == EOperationStatus.Succeed)
+		if (initializationOperation.Status == EOperationStatus.Succeed)
 		{
 			_machine.ChangeState<FsmUpdateVersion>();
 		}
@@ -92,39 +92,27 @@ internal class FsmInitialize : IStateNode
 	{
 		//string hostServerIP = "http://10.0.2.2"; //安卓模拟器地址
 		string hostServerIP = "http://127.0.0.1";
-		string gameVersion = "v1.0";
+		string appVersion = "v1.0";
 
 #if UNITY_EDITOR
 		if (UnityEditor.EditorUserBuildSettings.activeBuildTarget == UnityEditor.BuildTarget.Android)
-			return $"{hostServerIP}/CDN/Android/{gameVersion}";
+			return $"{hostServerIP}/CDN/Android/{appVersion}";
 		else if (UnityEditor.EditorUserBuildSettings.activeBuildTarget == UnityEditor.BuildTarget.iOS)
-			return $"{hostServerIP}/CDN/IPhone/{gameVersion}";
+			return $"{hostServerIP}/CDN/IPhone/{appVersion}";
 		else if (UnityEditor.EditorUserBuildSettings.activeBuildTarget == UnityEditor.BuildTarget.WebGL)
-			return $"{hostServerIP}/CDN/WebGL/{gameVersion}";
+			return $"{hostServerIP}/CDN/WebGL/{appVersion}";
 		else
-			return $"{hostServerIP}/CDN/PC/{gameVersion}";
+			return $"{hostServerIP}/CDN/PC/{appVersion}";
 #else
 		if (Application.platform == RuntimePlatform.Android)
-			return $"{hostServerIP}/CDN/Android/{gameVersion}";
+			return $"{hostServerIP}/CDN/Android/{appVersion}";
 		else if (Application.platform == RuntimePlatform.IPhonePlayer)
-			return $"{hostServerIP}/CDN/IPhone/{gameVersion}";
+			return $"{hostServerIP}/CDN/IPhone/{appVersion}";
 		else if (Application.platform == RuntimePlatform.WebGLPlayer)
-			return $"{hostServerIP}/CDN/WebGL/{gameVersion}";
+			return $"{hostServerIP}/CDN/WebGL/{appVersion}";
 		else
-			return $"{hostServerIP}/CDN/PC/{gameVersion}";
+			return $"{hostServerIP}/CDN/PC/{appVersion}";
 #endif
-	}
-
-	/// <summary>
-	/// 内置文件查询服务类
-	/// </summary>
-	private class GameQueryServices : IQueryServices
-	{
-		public bool QueryStreamingAssets(string fileName)
-		{
-			string buildinFolderName = YooAssets.GetStreamingAssetBuildinFolderName();
-			return StreamingAssetsHelper.FileExists($"{buildinFolderName}/{fileName}");
-		}
 	}
 
 	/// <summary>
@@ -144,7 +132,7 @@ internal class FsmInitialize : IStateNode
 
 		public Stream LoadFromStream(DecryptFileInfo fileInfo)
 		{
-			BundleStream bundleStream = new BundleStream(fileInfo.FilePath, FileMode.Open);
+			BundleStream bundleStream = new BundleStream(fileInfo.FilePath, FileMode.Open, FileAccess.Read, FileShare.Read);
 			return bundleStream;
 		}
 
