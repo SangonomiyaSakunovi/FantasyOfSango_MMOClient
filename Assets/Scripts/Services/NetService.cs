@@ -11,25 +11,25 @@ public class NetService : BaseService
     public static NetService Instance;
 
     public IOCPPeer<ClientPeer> ClientInstance;
-    private int localIPPort = 52022;
 
     private Dictionary<OperationCode, BaseRequest> RequestDict = new Dictionary<OperationCode, BaseRequest>();
     private Dictionary<OperationCode, BaseEvent> EventDict = new Dictionary<OperationCode, BaseEvent>();
 
     public override void InitService()
     {
-        string ipAddress = SetIPAddress(ConfigureModeCode.Offline);
+        string ipAddress = ClientConfig.Instance.GetIPAddress();
+        int port = ClientConfig.Instance.GetPort();
         Instance = this;
         InitIOCPLog();
-        InitClientInstance(ipAddress, localIPPort);
+        InitClientInstance(ipAddress, port);
         InitRequests();
         InitEvents();
     }
 
-    private void InitClientInstance(string ipAddress, int localIPPort)
+    private void InitClientInstance(string ipAddress, int port)
     {
         ClientInstance = new IOCPPeer<ClientPeer>();
-        ClientInstance.InitClient(ipAddress, localIPPort);
+        ClientInstance.InitClient(ipAddress, port);
     }
 
     private void InitIOCPLog()
@@ -90,20 +90,6 @@ public class NetService : BaseService
         chatEvent.InitEvent();
     }
 
-    private string SetIPAddress(ConfigureModeCode mode)
-    {
-        string ipAddress = null;
-        if (mode == ConfigureModeCode.Online)
-        {
-            ipAddress = "124.220.20.98";
-        }
-        else if (mode == ConfigureModeCode.Offline)
-        {
-            ipAddress = "127.0.0.1";
-        }
-        return ipAddress;
-    }
-
     public void OnOperationResponseDistribute(SangoNetMessage sangoNetMessage)
     {
         BaseRequest baseRequest = DictTool.GetDictValue<OperationCode, BaseRequest>(sangoNetMessage.MessageHead.OperationCode, RequestDict);
@@ -148,11 +134,5 @@ public class NetService : BaseService
     public void RemoveEvent(BaseEvent evt)
     {
         EventDict.Remove(evt.NetOpCode);
-    }
-
-    private enum ConfigureModeCode
-    {
-        Offline,
-        Online
     }
 }

@@ -9,12 +9,15 @@ public class SangoRoot : MonoBehaviour
     public LoadingWindow loadingWindow;
     public DynamicWindow dynamicWindow;
 
+    public ClientConfig clientConfig;
+
     void Start()
     {
         Instance = this;
         DontDestroyOnLoad(this.gameObject);
         CleanUIWindow();
         InitRoot();
+        StartGame();
     }
 
     private void CleanUIWindow()
@@ -29,11 +32,22 @@ public class SangoRoot : MonoBehaviour
 
     private void InitRoot()
     {
+        InitConfig();
         InitService();
         InitManager();
         InitSystem();
-        InitCache();
-        LoginSystem.Instance.EnterLogin();
+        InitCache();        
+    }
+
+    private void StartGame()
+    {
+        HotFixSystem.Instance.EnterHotFix();
+        //LoginSystem.Instance.EnterLogin();
+    }
+
+    public void InitConfig()
+    {
+        clientConfig.InitConfig();
     }
 
     private void InitService()
@@ -46,6 +60,8 @@ public class SangoRoot : MonoBehaviour
         audioService.InitService();
         NetService netService = GetComponent<NetService>();
         netService.InitService();
+        HotFixService hotFixService = GetComponent<HotFixService>();
+        hotFixService.InitService();
     }
 
     private void InitManager()
@@ -80,6 +96,8 @@ public class SangoRoot : MonoBehaviour
         chatSystem.InitSystem();
         ShopInfoSystem shopInfoSystem = GetComponent<ShopInfoSystem>();
         shopInfoSystem.InitSystem();
+        HotFixSystem hotFixSystem = GetComponent<HotFixSystem>();
+        hotFixSystem.InitSystem();
     }
 
     public static void AddMessage(string message, TextColorCode textColor)
