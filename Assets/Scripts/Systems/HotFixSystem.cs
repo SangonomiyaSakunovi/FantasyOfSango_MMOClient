@@ -16,15 +16,21 @@ public class HotFixSystem : BaseSystem
         Instance = this;
     }
 
-    public void EnterHotFix()
+    public void OpenHotFixWindow(long totalDownloadBytes)
     {
+        hotFixWindow.SetHotFixInfoText(totalDownloadBytes);
+        hotFixWindow.SetWindowState();
+    }
 
+    public void CloseHotFixWindow()
+    {
+        hotFixWindow.SetWindowState(false);
     }
 
     public void RunHotFix()
     {
-        HotFixService.Instance.DownloadSangoAssets();
-        HotFixService.Instance.LoadDll();
+        HotFixService.Instance.RunHotFix();
+        hotFixWindow.SetWindowState(false);
     }
 
     public void OnHotFix()

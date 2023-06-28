@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "com.code-philosophy.hybridclr": "https://gitee.com/focus-creative-games/hybridclr_unity.git",
+    "com.tuyoogame.yooasset": "1.4.17",
     "com.unity.2d.sprite": "1.0.0",
     "com.unity.addressables": "1.21.12",
     "com.unity.animation.rigging": "1.2.1",
@@ -54,5 +55,14 @@
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
     "com.unity.modules.xr": "1.0.0"
-  }
+  },
+  "scopedRegistries": [
+    {
+      "name": "package.openupm.cn",
+      "url": "https://package.openupm.cn",
+      "scopes": [
+        "com.tuyoogame.yooasset"
+      ]
+    }
+  ]
 }

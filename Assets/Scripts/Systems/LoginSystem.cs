@@ -53,6 +53,7 @@ public class LoginSystem : BaseSystem
                     accountInput.text = Account;
                 }
             }
+            HotFixService.Instance.LoadTest();
         });
         audioService.PlayBGAudio(AudioConstant.LoginAudioBG, true);
     }

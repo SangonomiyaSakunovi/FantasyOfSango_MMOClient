@@ -40,12 +40,12 @@ public class ResourceService : BaseService
 
     public void AsyncLoadScene(string sceneName, Action loadedActionCallBack)
     {
-        SangoRoot.Instance.loadingWindow.SetWindowState();
+        LoadingSystem.Instance.OpenLoadingWindow();
         AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneName);
         loadingProgressCallBack = () =>
             {
                 float loadingProgress = asyncOperation.progress;
-                SangoRoot.Instance.loadingWindow.SetLoadingProgress(loadingProgress);
+                LoadingSystem.Instance.SetLoadingProgress(loadingProgress);
                 if (loadingProgress == 1)
                 {
                     if (loadedActionCallBack != null)
@@ -54,7 +54,7 @@ public class ResourceService : BaseService
                     }
                     loadingProgressCallBack = null;
                     asyncOperation = null;
-                    SangoRoot.Instance.loadingWindow.SetWindowState(false);
+                    LoadingSystem.Instance.CloseLoadingWindow();
                 }
             };
     }

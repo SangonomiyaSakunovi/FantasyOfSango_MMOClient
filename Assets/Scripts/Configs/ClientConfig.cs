@@ -59,11 +59,18 @@ public class ClientConfig : MonoBehaviour
         switch (cndServerMode)
         {
             case CDNServerModeCode.Local:
-                cndAddress = "http://127.0.0.1/CDN1/Android/v1.0";
+                switch (sangoApplication)
+                {
+                    case SangoApplicationCode.FOS_MMO:
+                        cndAddress = "http://127.0.0.1/CNDServer_MMO";
+                        break;
+                    case SangoApplicationCode.FOS_AR:
+                        cndAddress = "http://127.0.0.1/CDNServer_AR";
+                        break;
+                }
                 break;
             case CDNServerModeCode.Remote:
                 //TODO
-                cndAddress = "http://127.0.0.1/CDN1/Android/v1.0";
                 break;
         }
         return cndAddress;

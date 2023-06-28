@@ -1,0 +1,94 @@
+ManifestFileVersion: 0
+CRC: 2788020924
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: ac6dc7e04f5ff3c99f37441e88926786
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 4174899cbfdd243d94429f352c042b56
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 54
+  Script: {instanceID: 0}
+- Class: 74
+  Script: {instanceID: 0}
+- Class: 90
+  Script: {instanceID: 0}
+- Class: 91
+  Script: {instanceID: 0}
+- Class: 95
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: b2d8418b0b9634b1892b0268dd9c2743, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 1ce47c2d64d7b094da370b9100dcbd30, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 4333728ea1b69e0468101e0dae4ae6a0, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: bdbd3ce05f5b45942b56ede5c9b38364, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 137
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers:
+- AssemblyName: MagicaClothV2
+  ClassName: MagicaCloth2.AngleConstraint/LimitSerializeData
+- AssemblyName: MagicaClothV2
+  ClassName: MagicaCloth2.AngleConstraint/RestorationSerializeData
+- AssemblyName: MagicaClothV2
+  ClassName: MagicaCloth2.CheckSliderSerializeData
+- AssemblyName: MagicaClothV2
+  ClassName: MagicaCloth2.ClothDebugSettings
+- AssemblyName: MagicaClothV2
+  ClassName: MagicaCloth2.ClothSerializeData
+- AssemblyName: MagicaClothV2
+  ClassName: MagicaCloth2.ClothSerializeData2
+- AssemblyName: MagicaClothV2
+  ClassName: MagicaCloth2.ColliderCollisionConstraint/SerializeData
+- AssemblyName: MagicaClothV2
+  ClassName: MagicaCloth2.CurveSerializeData
+- AssemblyName: MagicaClothV2
+  ClassName: MagicaCloth2.CustomSkinningSettings
+- AssemblyName: MagicaClothV2
+  ClassName: MagicaCloth2.DistanceConstraint/SerializeData
+- AssemblyName: MagicaClothV2
+  ClassName: MagicaCloth2.GizmoSerializeData
+- AssemblyName: MagicaClothV2
+  ClassName: MagicaCloth2.InertiaConstraint/SerializeData
+- AssemblyName: MagicaClothV2
+  ClassName: MagicaCloth2.MotionConstraint/SerializeData
+- AssemblyName: MagicaClothV2
+  ClassName: MagicaCloth2.NormalAlignmentSettings
+- AssemblyName: MagicaClothV2
+  ClassName: MagicaCloth2.ReductionSettings
+- AssemblyName: MagicaClothV2
+  ClassName: MagicaCloth2.SelectionData
+- AssemblyName: MagicaClothV2
+  ClassName: MagicaCloth2.SelfCollisionConstraint/SerializeData
+- AssemblyName: MagicaClothV2
+  ClassName: MagicaCloth2.TetherConstraint/SerializeData
+- AssemblyName: MagicaClothV2
+  ClassName: MagicaCloth2.TriangleBendingConstraint/SerializeData
+- AssemblyName: MagicaClothV2
+  ClassName: MagicaCloth2.VertexAttribute
+- AssemblyName: MagicaClothV2
+  ClassName: MagicaCloth2.WindSettings
+- AssemblyName: Unity.Mathematics
+  ClassName: Unity.Mathematics.float3
+Assets:
+- Assets/AssetPackages/Prefabs/AvaterPrefabs/Avatar_Girl_Bow_Yoimiya_Remote (merge).prefab
+Dependencies:
+- E:/FantasyOfSango/FantasyOfSango_MMOClient/Bundles/StandaloneWindows64/DefaultPackage/OutputCache/unityshaders.bundle

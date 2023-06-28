@@ -1,20 +1,32 @@
-using System.Collections;
- using System.Collections.Generic;
- using UnityEngine;
- using UnityEngine.UI;
- using UnityEngine.EventSystems;
+using TMPro;
+using UnityEngine.UI;
 
 //Developer: SangonomiyaSakunovi
 
-public class HotFixWindow : MonoBehaviour
- {
-     //获取需要点击的按钮
-    public Button UpdateWindowButton;
+public class HotFixWindow : BaseWindow
+{
+    public TMP_Text hotFixInfoText;
+    public Button confirmButton;
+    public Button cancelButton;
 
-    public void UpdateWindowButtonClick()
-     {
+    protected override void InitWindow()
+    {
+        base.InitWindow();
+    }
 
-        //代码实现按钮的点击
-        ExecuteEvents.Execute(UpdateWindowButton.gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerClickHandler);
-     }
- }
+    public void OnConfirmButtonClick()
+    {
+        HotFixSystem.Instance.RunHotFix();
+    }
+
+    public void OnCancelButtonClick()
+    {
+        //TODO
+    }
+
+    public void SetHotFixInfoText(long totalDownloadBytes)
+    {
+        string text = "当前需要下载更新" + totalDownloadBytes + "左右，\n是否继续？\n（建议在Wifi环境下进行）";
+        SetText(hotFixInfoText, text);
+    }
+}

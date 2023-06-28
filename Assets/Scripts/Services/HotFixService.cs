@@ -8,27 +8,43 @@ public class HotFixService : BaseService
 {
     public static HotFixService Instance;
 
+    private ResourceDownloaderOperation downloaderOperation;
+    private ResourcePackage package;
+
     public override void InitService()
     {
         base.InitService();
-        Instance = this;              
+        Instance = this;
     }
 
-    public void DownloadSangoAssets()
-    {        
-        StartCoroutine(LoadAsset());
-    }
-
-    public void LoadDll()
+    public void PrepareHotFix()
     {
-
+        StartCoroutine(PrepareAssets());
     }
 
-    private IEnumerator LoadAsset()
+    public void RunHotFix()
+    {
+        StartCoroutine(RunDownloader(downloaderOperation));
+    }
+
+    public void LoadTest()
+    {
+        StartCoroutine(LoadPrefabs());
+    }
+
+    private IEnumerator LoadPrefabs()
+    {
+        AssetOperationHandle handle = package.LoadAssetAsync<GameObject>("Assets/AssetPackages/Prefabs/AvaterPrefabs/Avatar_Girl_Bow_Yoimiya_Remote (merge).prefab");
+        yield return handle;
+        GameObject gameObject = handle.InstantiateSync();
+        Debug.Log(gameObject.name);
+    }
+
+    private IEnumerator PrepareAssets()
     {
         //1. InitYooAsset
         YooAssets.Initialize();
-        var package = YooAssets.CreatePackage("DefaultPackage");
+        package = YooAssets.CreatePackage("DefaultPackage");
         YooAssets.SetDefaultPackage(package);
         EPlayMode PlayMode = ClientConfig.Instance.GetEPlayMode();
         switch (PlayMode)
@@ -37,9 +53,21 @@ public class HotFixService : BaseService
                 {
                     var initParameters = new EditorSimulateModeParameters();
                     initParameters.SimulateManifestFilePath = EditorSimulateModeHelper.SimulateBuild("DefaultPackage");
-                    yield return package.InitializeAsync(initParameters);
+                    var initOperation = package.InitializeAsync(initParameters);
+                    yield return initOperation;
+
+                    if (initOperation.Status == EOperationStatus.Succeed)
+                    {
+                        Debug.Log("资源包初始化成功！");
+                        LoginSystem.Instance.EnterLogin();
+                        yield break;
+                    }
+                    else
+                    {
+                        Debug.LogError($"资源包初始化失败：{initOperation.Error}");
+                        yield break;
+                    }
                 }
-                break;
             case EPlayMode.HostPlayMode:
                 {
                     var initParameters = new HostPlayModeParameters();
@@ -51,7 +79,7 @@ public class HotFixService : BaseService
 
                     if (initOperation.Status == EOperationStatus.Succeed)
                     {
-                        Debug.Log("资源包初始化成功！");
+                        Debug.Log("资源包初始化成功！");                        
                     }
                     else
                     {
@@ -63,9 +91,21 @@ public class HotFixService : BaseService
             case EPlayMode.OfflinePlayMode:
                 {
                     var initParameters = new OfflinePlayModeParameters();
-                    yield return package.InitializeAsync(initParameters);
+                    var initOperation = package.InitializeAsync(initParameters);
+                    yield return initOperation;
+
+                    if (initOperation.Status == EOperationStatus.Succeed)
+                    {
+                        Debug.Log("资源包初始化成功！");
+                        LoginSystem.Instance.EnterLogin();
+                        yield break;
+                    }
+                    else
+                    {
+                        Debug.LogError($"资源包初始化失败：{initOperation.Error}");
+                        yield break;
+                    }
                 }
-                break;
         }
 
         //2. UpdatePackageVersion
@@ -90,20 +130,22 @@ public class HotFixService : BaseService
         }
 
         //4. Download
-        yield return Download();
+        PrepareDownloader();
     }
 
-    private IEnumerator Download()
+    private void PrepareDownloader()
     {
         int downloadingMaxNum = 10;
         int failedTryAgain = 3;
         var package = YooAssets.GetPackage("DefaultPackage");
         var downloader = package.CreateResourceDownloader(downloadingMaxNum, failedTryAgain);
 
-        if (downloader.TotalDownloadCount == 0)
-        {
-            yield break;
-        }
+        //if (downloader.TotalDownloadCount == 0)
+        //{
+        //    LoginSystem.Instance.EnterLogin();
+        //    Debug.Log("没有任何数据需要下载哦~");
+        //    return;
+        //}
 
         int totalDownloadCount = downloader.TotalDownloadCount;
         long totalDownloadBytes = downloader.TotalDownloadBytes;
@@ -113,12 +155,24 @@ public class HotFixService : BaseService
         downloader.OnDownloadOverCallback = OnDownloadOverFunction;
         downloader.OnStartDownloadFileCallback = OnStartDownloadFileFunction;
 
-        downloader.BeginDownload();
-        yield return downloader;
+        downloaderOperation = downloader;
 
+        HotFixSystem.Instance.OpenHotFixWindow(totalDownloadBytes);
+
+        Debug.Log("现在已经准备好下载器了哦~");
+    }
+
+    private IEnumerator RunDownloader(ResourceDownloaderOperation downloader)
+    {
+        downloader.BeginDownload();
+        HotFixSystem.Instance.CloseHotFixWindow();
+        LoadingSystem.Instance.OpenLoadingWindow();
+        yield return downloader;
         if (downloader.Status == EOperationStatus.Succeed)
         {
             Debug.Log("下载成功");
+            LoadingSystem.Instance.CloseLoadingWindow();
+            LoginSystem.Instance.EnterLogin();
         }
         else
         {
@@ -126,14 +180,16 @@ public class HotFixService : BaseService
         }
     }
 
-    private void OnStartDownloadFileFunction(string fileName, long sizeBytes)
-    {
-        Debug.Log($"开始下载: {fileName}, 文件大小: {sizeBytes}");
-    }
-
     private void OnDownloadProgressUpdateFunction(int totalDownloadCount, int currentDownloadCount, long totalDownloadBytes, long currentDownloadBytes)
     {
         Debug.Log($"文件总数: {totalDownloadCount}, 已下载文件数： {currentDownloadCount}, 总大小: {totalDownloadBytes}, 已下载大小: {currentDownloadBytes}");
+        float progress = (float)currentDownloadBytes / totalDownloadBytes;
+        LoadingSystem.Instance.SetLoadingProgress(progress);
+    }
+
+    private void OnStartDownloadFileFunction(string fileName, long sizeBytes)
+    {
+        Debug.Log($"开始下载: {fileName}, 文件大小: {sizeBytes}");
     }
 
     private void OnDownloadOverFunction(bool isSucceed)

@@ -6,7 +6,6 @@ public class SangoRoot : MonoBehaviour
 {
     public static SangoRoot Instance = null;
 
-    public LoadingWindow loadingWindow;
     public DynamicWindow dynamicWindow;
 
     public ClientConfig clientConfig;
@@ -41,7 +40,8 @@ public class SangoRoot : MonoBehaviour
 
     private void StartGame()
     {
-        HotFixSystem.Instance.EnterHotFix();
+        HotFixService.Instance.PrepareHotFix();
+        //HotFixSystem.Instance.PrepareHotFix();
         //LoginSystem.Instance.EnterLogin();
     }
 
@@ -80,6 +80,8 @@ public class SangoRoot : MonoBehaviour
     {
         CacheSystem cacheSystem = GetComponent<CacheSystem>();
         cacheSystem.InitSystem();
+        LoadingSystem loadingSystem = GetComponent<LoadingSystem>();
+        loadingSystem.InitSystem();
         LoginSystem loginSystem = GetComponent<LoginSystem>();
         loginSystem.InitSystem();
         RegisterSystem registerSystem = GetComponent<RegisterSystem>();
