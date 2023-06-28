@@ -79,7 +79,7 @@ public class HotFixService : BaseService
 
                     if (initOperation.Status == EOperationStatus.Succeed)
                     {
-                        Debug.Log("资源包初始化成功！");                        
+                        Debug.Log("资源包初始化成功！");
                     }
                     else
                     {
@@ -120,7 +120,8 @@ public class HotFixService : BaseService
         string packageVersion = updatePackageVersionOperation.PackageVersion;
 
         //3. UpdatePackageManifest
-        var updatePackageManifestOperation = package.UpdatePackageManifestAsync(packageVersion);
+        bool savePackageVersion = true;
+        var updatePackageManifestOperation = package.UpdatePackageManifestAsync(packageVersion, savePackageVersion);
         yield return updatePackageManifestOperation;
 
         if (updatePackageManifestOperation.Status != EOperationStatus.Succeed)
@@ -131,13 +132,13 @@ public class HotFixService : BaseService
 
         //4. Download
         PrepareDownloader();
+        yield break;
     }
 
     private void PrepareDownloader()
     {
         int downloadingMaxNum = 10;
         int failedTryAgain = 3;
-        var package = YooAssets.GetPackage("DefaultPackage");
         var downloader = package.CreateResourceDownloader(downloadingMaxNum, failedTryAgain);
 
         //if (downloader.TotalDownloadCount == 0)
@@ -206,9 +207,8 @@ public class HotFixService : BaseService
     {
         public bool QueryStreamingAssets(string fileName)
         {
-            // StreamingAssetsHelper.cs是太空战机里提供的一个查询脚本。
             string buildinFolderName = YooAssets.GetStreamingAssetBuildinFolderName();
-            return true;
+            return StreamingAssetsHelper.FileExists($"{buildinFolderName}/{fileName}");
         }
     }
 }

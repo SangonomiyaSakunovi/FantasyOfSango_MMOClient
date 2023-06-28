@@ -15,4 +15,4 @@ EditorBuildSettings:
     path: Assets/Resources/ResScenes/IslandScene.unity
     guid: 6c2b98058ad08d7429dc125f9a1ed201
   m_configObjects:
-    com.unity.addressableassets: {fileID: 11400000, guid: 719e3533d0c09dd4184609411f227a7c, type: 2}
+    com.unity.addressableassets: {fileID: 11400000, guid: 9177c7df9ecb8ce4eac1841a829f9128, type: 2}

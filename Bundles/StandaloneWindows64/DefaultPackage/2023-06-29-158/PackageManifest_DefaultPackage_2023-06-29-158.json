@@ -1,0 +1,250 @@
+{
+    "FileVersion": "1.4.17",
+    "EnableAddressable": false,
+    "LocationToLower": false,
+    "IncludeAssetGUID": false,
+    "OutputNameStyle": 1,
+    "PackageName": "DefaultPackage",
+    "PackageVersion": "2023-06-29-158",
+    "AssetList": [
+        {
+            "Address": "",
+            "AssetPath": "Assets/AssetPackages/Prefabs/AvaterPrefabs/Avatar_Girl_Bow_Yoimiya_Remote (merge).prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 0,
+            "DependIDs": [
+                4
+            ]
+        },
+        {
+            "Address": "",
+            "AssetPath": "Assets/AssetPackages/Prefabs/UIPrefabs/AvaterInfoWindow.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 1,
+            "DependIDs": [
+                4
+            ]
+        },
+        {
+            "Address": "",
+            "AssetPath": "Assets/AssetPackages/Prefabs/UIPrefabs/ChatWindow.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 1,
+            "DependIDs": [
+                4
+            ]
+        },
+        {
+            "Address": "",
+            "AssetPath": "Assets/AssetPackages/Prefabs/UIPrefabs/DialogWindow.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 1,
+            "DependIDs": [
+                4
+            ]
+        },
+        {
+            "Address": "",
+            "AssetPath": "Assets/AssetPackages/Prefabs/UIPrefabs/DynamicWindow.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 1,
+            "DependIDs": [
+                4
+            ]
+        },
+        {
+            "Address": "",
+            "AssetPath": "Assets/AssetPackages/Prefabs/UIPrefabs/HotFixWindow.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 1,
+            "DependIDs": [
+                3,
+                4,
+                2
+            ]
+        },
+        {
+            "Address": "",
+            "AssetPath": "Assets/AssetPackages/Prefabs/UIPrefabs/LoadingWindow.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 1,
+            "DependIDs": [
+                4
+            ]
+        },
+        {
+            "Address": "",
+            "AssetPath": "Assets/AssetPackages/Prefabs/UIPrefabs/LoginWindow.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 1,
+            "DependIDs": [
+                4
+            ]
+        },
+        {
+            "Address": "",
+            "AssetPath": "Assets/AssetPackages/Prefabs/UIPrefabs/MainGameWindow.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 1,
+            "DependIDs": [
+                4
+            ]
+        },
+        {
+            "Address": "",
+            "AssetPath": "Assets/AssetPackages/Prefabs/UIPrefabs/RegisterWindow.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 1,
+            "DependIDs": [
+                4
+            ]
+        },
+        {
+            "Address": "",
+            "AssetPath": "Assets/AssetPackages/Prefabs/UIPrefabs/ShopInfoConfirmWindow.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 1,
+            "DependIDs": [
+                4
+            ]
+        },
+        {
+            "Address": "",
+            "AssetPath": "Assets/AssetPackages/Prefabs/UIPrefabs/ShopWindow.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 1,
+            "DependIDs": [
+                4
+            ]
+        },
+        {
+            "Address": "",
+            "AssetPath": "Assets/AssetPackages/Prefabs/UIPrefabs/WeaponsEnhanceWindow.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 1,
+            "DependIDs": [
+                4
+            ]
+        },
+        {
+            "Address": "",
+            "AssetPath": "Assets/AssetPackages/UIs/Sprites/BackGrounds/UI_Hachi_Frame.png",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 2,
+            "DependIDs": []
+        },
+        {
+            "Address": "",
+            "AssetPath": "Assets/AssetPackages/UIs/Sprites/Buttons/UI_Button_Gacha.png",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 3,
+            "DependIDs": []
+        },
+        {
+            "Address": "",
+            "AssetPath": "Assets/AssetPackages/UIs/Sprites/Buttons/UI_GravenInnocence_AD_Btn_03_1.png",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 3,
+            "DependIDs": []
+        },
+        {
+            "Address": "",
+            "AssetPath": "Assets/AssetPackages/UIs/Sprites/Buttons/UI_Img_AkaFesAkaFesBtn_Bg.png",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 3,
+            "DependIDs": []
+        },
+        {
+            "Address": "",
+            "AssetPath": "Assets/AssetPackages/UIs/Sprites/Buttons/UI_Img_EffigyChallengeV3_Shop_TextBg.png",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 3,
+            "DependIDs": []
+        },
+        {
+            "Address": "",
+            "AssetPath": "Assets/AssetPackages/UIs/Sprites/Buttons/UI_MusicV3SelectPage_Img_Watcher_Bg.png",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 3,
+            "DependIDs": []
+        }
+    ],
+    "BundleList": [
+        {
+            "BundleName": "assets_assetpackages_prefabs_avaterprefabs.bundle",
+            "FileHash": "46b5477bc18cbe2753905d2e2f83541f",
+            "FileCRC": "541df07f",
+            "FileSize": 5501737,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_assetpackages_prefabs_uiprefabs.bundle",
+            "FileHash": "35bc5eb5adbdbfd4f10e1f8aae01144d",
+            "FileCRC": "ba0937f7",
+            "FileSize": 26472224,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_assetpackages_uis_sprites_backgrounds.bundle",
+            "FileHash": "253857fa5ebdc87338954bc7937b1ed2",
+            "FileCRC": "6f6e2939",
+            "FileSize": 6908,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": [
+                1
+            ]
+        },
+        {
+            "BundleName": "assets_assetpackages_uis_sprites_buttons.bundle",
+            "FileHash": "5d5b70a4bfb65ae82b8029aa8250a9c1",
+            "FileCRC": "333acae8",
+            "FileSize": 35784,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": [
+                1
+            ]
+        },
+        {
+            "BundleName": "unityshaders.bundle",
+            "FileHash": "3a41ad922e02f5259cadc7fed2a3daa8",
+            "FileCRC": "68b4efd8",
+            "FileSize": 44348,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": [
+                0,
+                1
+            ]
+        }
+    ]
+}
