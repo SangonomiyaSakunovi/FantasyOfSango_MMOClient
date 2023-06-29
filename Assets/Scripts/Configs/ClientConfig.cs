@@ -5,6 +5,12 @@ using YooAsset;
 
 public class ClientConfig : MonoBehaviour
 {
+    //Do not call these directly!!!
+    public SangoServerModeCode sangoServerMode = SangoServerModeCode.Offline;
+    public SangoApplicationCode sangoApplication = SangoApplicationCode.FOS_MMO;
+    public EPlayMode ePlayMode = EPlayMode.EditorSimulateMode;
+    public CDNServerModeCode cndServerMode = CDNServerModeCode.Local;
+
     public static ClientConfig Instance;
 
     public void InitConfig()
@@ -12,12 +18,7 @@ public class ClientConfig : MonoBehaviour
         Instance = this;
     }
 
-    //Do not call these directly!!!
-    public SangoServerModeCode sangoServerMode = SangoServerModeCode.Offline;
-    public SangoApplicationCode sangoApplication = SangoApplicationCode.FOS_MMO;
-    public EPlayMode ePlayMode = EPlayMode.EditorSimulateMode;
-    public CDNServerModeCode cndServerMode = CDNServerModeCode.Local;
-
+    #region ClientIPConfig
     public string GetIPAddress()
     {
         string ipAddress = "";
@@ -46,13 +47,22 @@ public class ClientConfig : MonoBehaviour
                 break;
         }
         return port;
-    }
+    }   
 
-    public EPlayMode GetEPlayMode()
+    public enum SangoServerModeCode
     {
-        return ePlayMode;
+        Offline,
+        Online
     }
 
+    public enum SangoApplicationCode
+    {
+        FOS_MMO,
+        FOS_AR
+    }
+    #endregion
+
+    #region CDNServerConfig
     public string GetCNDServerAddress()
     {
         string cndAddress = "";
@@ -75,4 +85,16 @@ public class ClientConfig : MonoBehaviour
         }
         return cndAddress;
     }
+
+    public EPlayMode GetEPlayMode()
+    {
+        return ePlayMode;
+    }
+
+    public enum CDNServerModeCode
+    {
+        Local,
+        Remote
+    }
+    #endregion
 }
