@@ -22,6 +22,11 @@ public class LoadingSystem : BaseSystem
         loadingWindow.SetLoadingProgress(loadingProgress);
     }
 
+    public void SetTips(string tips)
+    {
+        loadingWindow.SetTips(tips);
+    }
+
     public void CloseLoadingWindow()
     {
         loadingWindow.SetWindowState(false);

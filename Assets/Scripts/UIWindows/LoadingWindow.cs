@@ -19,10 +19,15 @@ public class LoadingWindow : BaseWindow
     {
         base.InitWindow();
         loadingProgressFGWidth = loadingProgressFG.GetComponent<RectTransform>().sizeDelta.x;
-        SetText(tips, "感谢您的测试", TextColorCode.OrangeColor);
-        SetText(loadingProgressText, "0%", TextColorCode.OrangeColor);
+        SetText(tips, "感谢您参加本次测试", TextColorCode.BlackColor);
+        SetText(loadingProgressText, "0%", TextColorCode.WhiteColor);
         loadingProgressFG.fillAmount = 0;
         loadingProgressPoint.transform.localPosition = new Vector3(-loadingProgressFGWidth / 2, loadingProgressPointYPos, 0);
+    }
+
+    public void SetTips(string text)
+    {
+        SetText(tips, text, TextColorCode.BlackColor);
     }
 
     public void SetLoadingProgress(float loadingProgress)

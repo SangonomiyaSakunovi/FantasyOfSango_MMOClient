@@ -55,7 +55,6 @@ public class LoginSystem : BaseSystem
             }
             HotFixService.Instance.LoadTest();
         });
-        audioService.PlayBGAudio(AudioConstant.LoginAudioBG, true);
     }
 
     public void SendLoginRequest()

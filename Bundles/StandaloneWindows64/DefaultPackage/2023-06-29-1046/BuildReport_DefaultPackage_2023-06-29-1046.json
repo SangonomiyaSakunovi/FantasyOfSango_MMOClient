@@ -1,0 +1,1050 @@
+{
+    "Summary": {
+        "YooVersion": "1.4.17",
+        "UnityVersion": "2022.3.0f1c1",
+        "BuildDate": "2023/6/29 17:27:25",
+        "BuildSeconds": 29,
+        "BuildTarget": 19,
+        "BuildPipeline": 0,
+        "BuildMode": 0,
+        "BuildPackageName": "DefaultPackage",
+        "BuildPackageVersion": "2023-06-29-1046",
+        "EnableAddressable": false,
+        "LocationToLower": false,
+        "IncludeAssetGUID": false,
+        "UniqueBundleName": false,
+        "SharedPackRuleClassName": "YooAsset.Editor.ZeroRedundancySharedPackRule",
+        "EncryptionServicesClassName": "YooAsset.Editor.EncryptionNone",
+        "OutputNameStyle": 1,
+        "CompressOption": 2,
+        "DisableWriteTypeTree": false,
+        "IgnoreTypeTreeChanges": true,
+        "AssetFileTotalCount": 147,
+        "MainAssetTotalCount": 45,
+        "AllBundleTotalCount": 11,
+        "AllBundleTotalSize": 20015243,
+        "EncryptedBundleTotalCount": 0,
+        "EncryptedBundleTotalSize": 0,
+        "RawBundleTotalCount": 0,
+        "RawBundleTotalSize": 0
+    },
+    "AssetInfos": [
+        {
+            "Address": "",
+            "AssetPath": "Assets/AssetPackages/Prefabs/AvaterPrefabs/Avatar_Girl_Bow_Yoimiya_Remote (merge).prefab",
+            "AssetGUID": "9084138cd24a92e43823d325af0e24e8",
+            "AssetTags": [],
+            "MainBundleName": "assets_assetpackages_prefabs_avaterprefabs.bundle",
+            "MainBundleSize": 5501737,
+            "DependBundles": [
+                "unityshaders.bundle"
+            ],
+            "DependAssets": [
+                "Assets/Art/ResAnimations/CharacterAnimations/Wizard Animset/FBX Files/Humanoid@IdleWizard.fbx",
+                "Assets/ResModules/Materials/Avatar/Materials/宵宫/Avatar_Girl_Bow_Yoimiya_Mat_Hair.mat",
+                "Assets/ResModules/Textures/Genshin impact/GI-Assets-main/Models/Characters/Naganohara Yoimiya/Avatar_Girl_Bow_Yoimiya_Tex_Body_Lightmap.png",
+                "Assets/ResModules/Materials/Avatar/Materials/宵宫/Avatar_Girl_Bow_Yoimiya_Mat_Face.mat",
+                "Assets/ResModules/Textures/Genshin impact/GI-Assets-main/Models/Characters/Naganohara Yoimiya/Avatar_Girl_Bow_Yoimiya_Tex_Body_Diffuse.png",
+                "Assets/ResModules/Textures/Genshin impact/GI-Assets-main/Models/Characters/Naganohara Yoimiya/Avatar_Girl_Bow_Yoimiya_Tex_Body_Shadow_Ramp.png",
+                "Assets/ResModules/Materials/Avatar/Materials/宵宫/Avatar_Girl_Bow_Yoimiya_Mat_Body.mat",
+                "Assets/ResModules/Textures/Genshin impact/GI-Assets-main/Models/Characters/Naganohara Yoimiya/Avatar_Girl_Bow_Yoimiya_Tex_Hair_Diffuse.png",
+                "Assets/ResModules/Textures/Genshin impact/GI-Assets-main/Models/Characters/Naganohara Yoimiya/Avatar_Girl_Bow_Yoimiya_Remote (merge).fbx",
+                "Assets/Art/ResAnimations/CharacterAnimations/Wizard Animset/FBX Files/Humanoid@GetHitBackLightWizard.fbx",
+                "Assets/ResModules/Textures/Genshin impact/GI-Assets-main/Models/Characters/Naganohara Yoimiya/Avatar_Girl_Bow_Yoimiya_Tex_Hair_Shadow_Ramp.png",
+                "Assets/Art/ResAnimations/CharacterAnimations/Wizard Animset/FBX Files/Humanoid@RunFastWizard.fbx",
+                "Assets/ThirdParty/MagicaCloth2/Res/Icon/icon-cloth.png",
+                "Assets/ResModules/Textures/Genshin impact/GI-Assets-main/Models/Characters/Naganohara Yoimiya/Avatar_Girl_Bow_Yoimiya_Tex_Hair_Lightmap.png",
+                "Assets/ResModules/Textures/Genshin impact/GI-Assets-main/Models/Characters/Naganohara Yoimiya/Avatar_Girl_Tex_FaceLightmap.png",
+                "Assets/ResModules/Materials/Avatar/Materials/宵宫/Avatar_Girl_Bow_Yoimiya_Mat_Dress.mat",
+                "Assets/ResModules/Shaders/GenshinCelShaderURP/Shaders/GenshinCelShaderURP/V3.1/GenshinCharacterShaderZhihuVer-main/GenshinCharacterShaderZhihuVer.shader",
+                "Assets/Art/ResAnimations/CharacterAnimations/Wizard Animset/FBX Files/Humanoid@CastSpell6Wizard.fbx",
+                "Packages/com.unity.animation.rigging/Editor/Icons/RuntimeRig@128.png",
+                "Assets/ResModules/Materials/Avatar/Materials/宵宫/miHoYoDiffuse.mat",
+                "Assets/ResModules/Textures/Genshin impact/GI-Assets-main/Models/Characters/Naganohara Yoimiya/Avatar_Girl_Bow_Yoimiya_Tex_Face_Diffuse.png",
+                "Assets/ResModules/Textures/Genshin impact/GI-Assets-main/Models/Characters/Naganohara Yoimiya/Avatar_Tex_MetalMap.png",
+                "Assets/Art/ResAnimations/CharacterAnimators/YoimiyaAni.controller",
+                "Assets/ResModules/Shaders/GenshinCelShaderURP/Shaders/GenshinCelShaderURP/V2.2Release/GenshinCharacterShaderZhihuVer-main/GenshinCharacterShaderZhihuVer.shader",
+                "Assets/ResModules/Textures/Genshin impact/GI-Assets-main/Models/Characters/Naganohara Yoimiya/Avatar_Tex_Face_Shadow.png",
+                "Assets/ResModules/Materials/Avatar/Materials/宵宫/Avatar_Default_Mat.mat"
+            ]
+        },
+        {
+            "Address": "",
+            "AssetPath": "Assets/AssetPackages/Prefabs/UIPrefabs/AvaterInfoWindow.prefab",
+            "AssetGUID": "37b2c2a7b39a83d41917e14bd5ec8376",
+            "AssetTags": [],
+            "MainBundleName": "assets_assetpackages_prefabs_uiprefabs.bundle",
+            "MainBundleSize": 11646052,
+            "DependBundles": [
+                "unityshaders.bundle"
+            ],
+            "DependAssets": [
+                "Assets/Resources/ResImages/ResUIGenshin/ElementUI/UI_Img_Pendant_Inazuma.png",
+                "Assets/Resources/ResImages/ResUIGenshin/Attribute/UI_Icon_HP.png",
+                "Assets/Resources/ResImages/ResUIGenshin/Attribute/UI_Icon_Player.png",
+                "Assets/Resources/ResImages/ResUIGenshin/Attribute/UI_Icon_CurDefense.png",
+                "Assets/ThirdParty/TextMesh Pro/Shaders/TMP_SDF.shader",
+                "Assets/Resources/ResFonts/SourceHanSans-Light-Lite SDF.asset",
+                "Assets/Resources/ResImages/Texture/AvaterShow.renderTexture",
+                "Assets/Resources/ResImages/ResUIGenshin/BG/UI_GachaSettlement_Bg.png",
+                "Assets/Resources/ResImages/ResUIGenshin/Button/UI_Img_ChapterLogo.png",
+                "Assets/Resources/ResImages/ResUIGenshin/ElementUI/UI_Icon_Water.png",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Font Asset Icon.psd",
+                "Assets/Resources/ResImages/ResUIGenshin/Attribute/UI_Img_MPLobbyPlayerRow_Star.png",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Text Component Icon.psd",
+                "Assets/ThirdParty/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader",
+                "Assets/Resources/ResFonts/SourceHanSans-Light-Lite.ttf",
+                "Assets/ThirdParty/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Fallback.asset",
+                "Assets/Resources/ResImages/ResUIGenshin/Item/UI_BtnIcon_Close.png",
+                "Assets/Resources/ResImages/ResUIGenshin/Item/UI_Item_Bg.png",
+                "Assets/ThirdParty/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.asset",
+                "Assets/Resources/ResImages/ResUIGenshin/Attribute/UI_Icon_Fetter.png",
+                "Assets/Resources/ResImages/ResUIGenshin/Attribute/UI_Icon_CurAttack.png",
+                "Assets/Resources/ResImages/ResUIGenshin/Button/UI_ImgSign_ItemTips_Cook.png",
+                "Assets/ThirdParty/TextMesh Pro/Fonts/LiberationSans.ttf",
+                "Assets/Resources/ResImages/ResUIGenshin/Attribute/UI_Icon_Element.png"
+            ]
+        },
+        {
+            "Address": "",
+            "AssetPath": "Assets/AssetPackages/Prefabs/UIPrefabs/ChatWindow.prefab",
+            "AssetGUID": "44b73e23b4251c54e8f2504cedbc960c",
+            "AssetTags": [],
+            "MainBundleName": "assets_assetpackages_prefabs_uiprefabs.bundle",
+            "MainBundleSize": 11646052,
+            "DependBundles": [
+                "unityshaders.bundle"
+            ],
+            "DependAssets": [
+                "Assets/ThirdParty/TextMesh Pro/Shaders/TMP_SDF.shader",
+                "Assets/Resources/ResFonts/SourceHanSans-Light-Lite SDF.asset",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Input Field Icon.psd",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Font Asset Icon.psd",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Text Component Icon.psd",
+                "Assets/ThirdParty/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader",
+                "Assets/Resources/ResFonts/SourceHanSans-Light-Lite.ttf",
+                "Assets/Resources/ResImages/ResUIGenshin/BG/UI_Img_AdventureBP.png",
+                "Assets/ThirdParty/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Fallback.asset",
+                "Assets/Resources/ResImages/ResUIGenshin/Button/UI_BtnIcon_Chat.png",
+                "Assets/Resources/ResImages/ResUIGenshin/Item/UI_TagPaper.png",
+                "Assets/Resources/ResImages/ResUIGenshin/BG/UI_Img_ChapterBG.png",
+                "Assets/ThirdParty/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.asset",
+                "Assets/ThirdParty/TextMesh Pro/Fonts/LiberationSans.ttf"
+            ]
+        },
+        {
+            "Address": "",
+            "AssetPath": "Assets/AssetPackages/Prefabs/UIPrefabs/DialogWindow.prefab",
+            "AssetGUID": "a453715f56e424f4ba4f434b34fe2c2a",
+            "AssetTags": [],
+            "MainBundleName": "assets_assetpackages_prefabs_uiprefabs.bundle",
+            "MainBundleSize": 11646052,
+            "DependBundles": [
+                "unityshaders.bundle",
+                "assets_assetpackages_uis_sprites_talk.bundle"
+            ],
+            "DependAssets": [
+                "Assets/ThirdParty/TextMesh Pro/Shaders/TMP_SDF.shader",
+                "Assets/Resources/ResImages/ResUIGenshin/Dialog2DAvaterImage/UI_AvatarIcon_Kate.png",
+                "Assets/Resources/ResFonts/SourceHanSans-Light-Lite SDF.asset",
+                "Assets/AssetPackages/UIs/Sprites/Talk/UI_Icon_Sub_BackplaneFill.png",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Font Asset Icon.psd",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Text Component Icon.psd",
+                "Assets/Resources/ResImages/ResUIGenshin/BG/TalkUI1.png",
+                "Assets/Resources/ResFonts/SourceHanSans-Light-Lite.ttf"
+            ]
+        },
+        {
+            "Address": "",
+            "AssetPath": "Assets/AssetPackages/Prefabs/UIPrefabs/DynamicWindow.prefab",
+            "AssetGUID": "a1a0b365c28592a458a24829ca4c8c94",
+            "AssetTags": [],
+            "MainBundleName": "assets_assetpackages_prefabs_uiprefabs.bundle",
+            "MainBundleSize": 11646052,
+            "DependBundles": [
+                "unityshaders.bundle"
+            ],
+            "DependAssets": [
+                "Assets/ThirdParty/TextMesh Pro/Shaders/TMP_SDF.shader",
+                "Assets/Resources/ResFonts/SourceHanSans-Light-Lite SDF.asset",
+                "Assets/Art/ResAnimations/UIAnimations/MessageShowAni.anim",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Font Asset Icon.psd",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Text Component Icon.psd",
+                "Assets/Resources/ResFonts/SourceHanSans-Light-Lite.ttf"
+            ]
+        },
+        {
+            "Address": "",
+            "AssetPath": "Assets/AssetPackages/Prefabs/UIPrefabs/HotFixWindow.prefab",
+            "AssetGUID": "637a811efff4d4046a2fbdef9c62831a",
+            "AssetTags": [],
+            "MainBundleName": "assets_assetpackages_prefabs_uiprefabs.bundle",
+            "MainBundleSize": 11646052,
+            "DependBundles": [
+                "assets_assetpackages_uis_sprites_buttons.bundle",
+                "unityshaders.bundle",
+                "assets_assetpackages_uis_sprites_backgrounds.bundle"
+            ],
+            "DependAssets": [
+                "Assets/AssetPackages/UIs/Sprites/Buttons/UI_GravenInnocence_AD_Btn_03_1.png",
+                "Assets/ThirdParty/TextMesh Pro/Shaders/TMP_SDF.shader",
+                "Assets/Resources/ResFonts/SourceHanSans-Light-Lite SDF.asset",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Font Asset Icon.psd",
+                "Assets/AssetPackages/UIs/Sprites/BackGrounds/UI_Hachi_Frame.png",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Text Component Icon.psd",
+                "Assets/Resources/ResFonts/SourceHanSans-Light-Lite.ttf"
+            ]
+        },
+        {
+            "Address": "",
+            "AssetPath": "Assets/AssetPackages/Prefabs/UIPrefabs/LoadingWindow.prefab",
+            "AssetGUID": "a83a80202c8964846b364c8d0715809c",
+            "AssetTags": [],
+            "MainBundleName": "assets_assetpackages_prefabs_uiprefabs.bundle",
+            "MainBundleSize": 11646052,
+            "DependBundles": [
+                "assets_assetpackages_uis_sprites_backgrounds.bundle",
+                "assets_assetpackages_uis_sprites_bars.bundle",
+                "unityshaders.bundle"
+            ],
+            "DependAssets": [
+                "Assets/AssetPackages/UIs/Sprites/BackGrounds/UI_Bg_AkaFes.png",
+                "Assets/AssetPackages/UIs/Sprites/Bars/UI_Img_CoopBar.png",
+                "Assets/ThirdParty/TextMesh Pro/Shaders/TMP_SDF.shader",
+                "Assets/Resources/ResFonts/SourceHanSans-Light-Lite SDF.asset",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Font Asset Icon.psd",
+                "Assets/ThirdParty/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Text Component Icon.psd",
+                "Assets/ThirdParty/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Fallback.asset",
+                "Assets/Resources/ResFonts/SourceHanSans-Light-Lite.ttf",
+                "Assets/ThirdParty/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.asset",
+                "Assets/AssetPackages/UIs/Sprites/Bars/UI_RogueDiary_BG_Img_Light.png",
+                "Assets/ThirdParty/TextMesh Pro/Fonts/LiberationSans.ttf"
+            ]
+        },
+        {
+            "Address": "",
+            "AssetPath": "Assets/AssetPackages/Prefabs/UIPrefabs/LoginWindow.prefab",
+            "AssetGUID": "1adc979c456865c40af15eb745ccda82",
+            "AssetTags": [],
+            "MainBundleName": "assets_assetpackages_prefabs_uiprefabs.bundle",
+            "MainBundleSize": 11646052,
+            "DependBundles": [
+                "unityshaders.bundle",
+                "assets_assetpackages_uis_sprites_buttons.bundle",
+                "assets_assetpackages_uis_sprites_backgrounds_books.bundle",
+                "assets_assetpackages_uis_sprites_talk.bundle",
+                "assets_assetpackages_uis_sprites_frame.bundle",
+                "assets_assetpackages_uis_sprites_logo.bundle"
+            ],
+            "DependAssets": [
+                "Assets/ThirdParty/TextMesh Pro/Shaders/TMP_SDF.shader",
+                "Assets/Resources/ResFonts/SourceHanSans-Light-Lite SDF.asset",
+                "Assets/AssetPackages/UIs/Sprites/Buttons/UI_Img_AkaFesAkaFesBtn_Bg.png",
+                "Assets/AssetPackages/UIs/Sprites/BackGrounds/Books/Img_BG_Book_Bg10.png",
+                "Assets/AssetPackages/UIs/Sprites/BackGrounds/Books/Img_BG_Book_Bg1.png",
+                "Assets/AssetPackages/UIs/Sprites/Talk/UI_Icon_Sub_BackplaneFill.png",
+                "Assets/AssetPackages/UIs/Sprites/Talk/UI_TalkClickB.png",
+                "Assets/AssetPackages/UIs/Sprites/Frame/UI_FrameA.png",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Input Field Icon.psd",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Font Asset Icon.psd",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Text Component Icon.psd",
+                "Assets/AssetPackages/UIs/Sprites/Logo/FOSLogo-removebg-preview.png",
+                "Assets/Resources/ResFonts/SourceHanSans-Light-Lite.ttf",
+                "Assets/AssetPackages/UIs/Sprites/BackGrounds/Books/Img_BG_Book_Bg2.png"
+            ]
+        },
+        {
+            "Address": "",
+            "AssetPath": "Assets/AssetPackages/Prefabs/UIPrefabs/MainGameWindow.prefab",
+            "AssetGUID": "1fa317887bdda6e4684ed3d406a0fc6e",
+            "AssetTags": [],
+            "MainBundleName": "assets_assetpackages_prefabs_uiprefabs.bundle",
+            "MainBundleSize": 11646052,
+            "DependBundles": [
+                "unityshaders.bundle"
+            ],
+            "DependAssets": [
+                "Assets/Resources/ResImages/ResUIGenshin/Avater/UI_AvatarIcon_Side_Ganyu.png",
+                "Assets/Resources/ResImages/ResUIGenshin/maps/UI_MarkLocalAvatar.png",
+                "Assets/Resources/ResImages/ResUIGenshin/Attack/UI_HPBar_2_Outline.png",
+                "Assets/ThirdParty/TextMesh Pro/Shaders/TMP_SDF.shader",
+                "Assets/Resources/ResImages/ResUIGenshin/Attack/UI_HPBar_1_Outline.png",
+                "Assets/Resources/ResImages/ResUIGenshin/maps/UI_MiniMap_Area_128.png",
+                "Assets/Resources/ResImages/ResUIGenshin/Avater/UI_BtnIcon_PlayerBoy.png",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Text Component Icon.psd",
+                "Assets/Resources/ResImages/ResUIGenshin/Skill/UI_Icon_Element_Orb_Common.png",
+                "Assets/Resources/ResImages/ResUIGenshin/ElementUI/UI_Buff_Element_Fire.png",
+                "Assets/Resources/ResImages/ResUIGenshin/Item/UI_BtnIcon_DungeonFactor.png",
+                "Assets/Resources/ResImages/ResUIGenshin/Button/UI_BtnIcon_Chat.png",
+                "Assets/Resources/ResImages/ResUIGenshin/BG/UI_Img_ChapterBG.png",
+                "Assets/Resources/ResImages/ResUIGenshin/Item/UI_Item_Bg.png",
+                "Assets/Resources/ResImages/ResUIGenshin/ElementUI/UI_Buff_Element_Water.png",
+                "Assets/Resources/ResImages/ResUIGenshin/Item/UI_MailLine_3.png",
+                "Assets/Resources/ResImages/ResUIGenshin/Avater/UI_AvatarIcon_Side_Kokomi.png",
+                "Assets/Resources/ResImages/ResUIGenshin/Item/UI_BtnIcon_Quest.png",
+                "Assets/Resources/ResImages/ResUIGenshin/Avater/UI_AvatarIcon_Side_Aether.png",
+                "Assets/Resources/ResFonts/SourceHanSans-Light-Lite SDF.asset",
+                "Assets/Resources/ResImages/ResUIGenshin/Attack/UI_MarkArea.png",
+                "Assets/Resources/ResImages/ResUIGenshin/Attack/UI_HPBar_1.png",
+                "Assets/Resources/ResImages/ResUIGenshin/maps/UI_MiniMap_RipplesLight.png",
+                "Assets/Resources/ResImages/ResUIGenshin/Skill/Skill_A_Catalyst_MD.png",
+                "Assets/Resources/ResImages/ResUIGenshin/ElementUI/UI_Buff_Element_Frost.png",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Font Asset Icon.psd",
+                "Assets/Resources/ResImages/ResUIGenshin/maps/UI_MiniMap_RingForm.png",
+                "Assets/Resources/ResImages/ResUIGenshin/Avater/UI_AvatarIcon_Paimon.png",
+                "Assets/Resources/ResImages/ResUIGenshin/Attack/UI_HPBar_2.png",
+                "Assets/Resources/ResImages/ResUIGenshin/Avater/UI_AvatarIcon_Side_Yoimiya.png",
+                "Assets/Resources/ResFonts/SourceHanSans-Light-Lite.ttf",
+                "Assets/Resources/ResImages/ResUIGenshin/Skill/Skill_A_04.png",
+                "Assets/Resources/ResImages/ResUIGenshin/ElementUI/UI_Buff_Element_Wind.png",
+                "Assets/Resources/ResImages/ResUIGenshin/maps/UI_MarkSightFan.png",
+                "Assets/Resources/ResImages/ResUIGenshin/Attack/UI_Main_SkillIconBg_128.png",
+                "Assets/Resources/ResImages/ResUIGenshin/Item/UI_BtnIcon_Bag.png",
+                "Assets/Resources/ResImages/Backgrounds/IslandMap.png"
+            ]
+        },
+        {
+            "Address": "",
+            "AssetPath": "Assets/AssetPackages/Prefabs/UIPrefabs/RegisterWindow.prefab",
+            "AssetGUID": "f3f9d118f650bf14694e37c01962b3ca",
+            "AssetTags": [],
+            "MainBundleName": "assets_assetpackages_prefabs_uiprefabs.bundle",
+            "MainBundleSize": 11646052,
+            "DependBundles": [
+                "unityshaders.bundle",
+                "assets_assetpackages_uis_sprites_buttons.bundle",
+                "assets_assetpackages_uis_sprites_backgrounds_books.bundle",
+                "assets_assetpackages_uis_sprites_frame.bundle",
+                "assets_assetpackages_uis_sprites_logo.bundle"
+            ],
+            "DependAssets": [
+                "Assets/ThirdParty/TextMesh Pro/Shaders/TMP_SDF.shader",
+                "Assets/Resources/ResFonts/SourceHanSans-Light-Lite SDF.asset",
+                "Assets/AssetPackages/UIs/Sprites/Buttons/UI_Img_AkaFesAkaFesBtn_Bg.png",
+                "Assets/AssetPackages/UIs/Sprites/BackGrounds/Books/Img_BG_Book_Bg10.png",
+                "Assets/AssetPackages/UIs/Sprites/BackGrounds/Books/Img_BG_Book_Bg1.png",
+                "Assets/AssetPackages/UIs/Sprites/Frame/UI_FrameA.png",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Input Field Icon.psd",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Font Asset Icon.psd",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Text Component Icon.psd",
+                "Assets/AssetPackages/UIs/Sprites/Logo/FOSLogo-removebg-preview.png",
+                "Assets/Resources/ResFonts/SourceHanSans-Light-Lite.ttf",
+                "Assets/AssetPackages/UIs/Sprites/BackGrounds/Books/Img_BG_Book_Bg2.png"
+            ]
+        },
+        {
+            "Address": "",
+            "AssetPath": "Assets/AssetPackages/Prefabs/UIPrefabs/ShopInfoConfirmWindow.prefab",
+            "AssetGUID": "13632471f994cdb40ad3102be1b82a92",
+            "AssetTags": [],
+            "MainBundleName": "assets_assetpackages_prefabs_uiprefabs.bundle",
+            "MainBundleSize": 11646052,
+            "DependBundles": [
+                "unityshaders.bundle"
+            ],
+            "DependAssets": [
+                "Assets/Resources/ResImages/ResUIGenshin/Button/UI_Button_Gacha.png",
+                "Assets/ThirdParty/TextMesh Pro/Shaders/TMP_SDF.shader",
+                "Assets/Resources/ResFonts/SourceHanSans-Light-Lite SDF.asset",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Input Field Icon.psd",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Font Asset Icon.psd",
+                "Assets/Resources/ResImages/ResUIGenshin/BG/UI_Gacha_Tab_Uncheck.png",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Text Component Icon.psd",
+                "Assets/Resources/ResFonts/SourceHanSans-Light-Lite.ttf",
+                "Assets/Resources/ResImages/ResUIGenshin/Item/UI_TagPaper.png"
+            ]
+        },
+        {
+            "Address": "",
+            "AssetPath": "Assets/AssetPackages/Prefabs/UIPrefabs/ShopWindow.prefab",
+            "AssetGUID": "0d938fb94a6ca514aae30b1a417af827",
+            "AssetTags": [],
+            "MainBundleName": "assets_assetpackages_prefabs_uiprefabs.bundle",
+            "MainBundleSize": 11646052,
+            "DependBundles": [
+                "unityshaders.bundle"
+            ],
+            "DependAssets": [
+                "Assets/ThirdParty/TextMesh Pro/Shaders/TMP_SDF.shader",
+                "Assets/Resources/ResImages/ResUIGenshin/Coin/UI_ItemIcon_210.png",
+                "Assets/Resources/ResFonts/SourceHanSans-Light-Lite SDF.asset",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Font Asset Icon.psd",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Text Component Icon.psd",
+                "Assets/Resources/ResFonts/SourceHanSans-Light-Lite.ttf",
+                "Assets/Resources/ResImages/ResUIGenshin/Coin/UI_ItemIcon_202.png",
+                "Assets/Resources/ResImages/ResUIGenshin/Item/UI_BtnIcon_Close.png",
+                "Assets/Resources/ResImages/Backgrounds/Geometry1_BG.jpeg"
+            ]
+        },
+        {
+            "Address": "",
+            "AssetPath": "Assets/AssetPackages/Prefabs/UIPrefabs/WeaponsEnhanceWindow.prefab",
+            "AssetGUID": "5c399a2d01913a34696dcb96dcdc5cdb",
+            "AssetTags": [],
+            "MainBundleName": "assets_assetpackages_prefabs_uiprefabs.bundle",
+            "MainBundleSize": 11646052,
+            "DependBundles": [
+                "unityshaders.bundle"
+            ],
+            "DependAssets": [
+                "Assets/Resources/ResImages/ResUIGenshin/Button/UI_Icon_Add.png",
+                "Assets/Resources/ResImages/ResUIGenshin/Weapon/UI_EquipIcon_Sword_Blunt.png",
+                "Assets/Resources/ResImages/ResUIGenshin/Button/UI_Button_Gacha.png",
+                "Assets/Resources/ResImages/ResUIGenshin/Quality/UI_QualityBg_1.png",
+                "Assets/ThirdParty/TextMesh Pro/Shaders/TMP_SDF.shader",
+                "Assets/Resources/ResFonts/SourceHanSans-Light-Lite SDF.asset",
+                "Assets/Resources/ResImages/ResUIGenshin/BG/UI_GachaSettlement_Bg.png",
+                "Assets/Resources/ResImages/ResUIGenshin/Attribute/UI_IconKira.png",
+                "Assets/Resources/ResImages/ResUIGenshin/Button/UI_Img_ChapterLogo.png",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Font Asset Icon.psd",
+                "Assets/ThirdParty/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Text Component Icon.psd",
+                "Assets/Resources/ResImages/ResUIGenshin/Weapon2/UI_BagTabIcon_Weapon.png",
+                "Assets/ThirdParty/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Fallback.asset",
+                "Assets/Resources/ResFonts/SourceHanSans-Light-Lite.ttf",
+                "Assets/Resources/ResImages/Backgrounds/WholeTransParentImage.png",
+                "Assets/Resources/ResImages/ResUIGenshin/Item/UI_Img_CutlineL.png",
+                "Assets/Resources/ResImages/ResUIGenshin/Item/UI_Img_Frame12.png",
+                "Assets/Resources/ResImages/ResUIGenshin/Coin/UI_ItemIcon_202.png",
+                "Assets/Resources/ResImages/ResUIGenshin/Item/UI_BtnIcon_Close.png",
+                "Assets/Resources/ResImages/ResUIGenshin/Item/UI_Item_Bg.png",
+                "Assets/ThirdParty/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.asset",
+                "Assets/Resources/ResImages/Texture/WeaponShow.renderTexture",
+                "Assets/Resources/ResImages/ResUIGenshin/Quality/UI_Img_Bright.png",
+                "Assets/ThirdParty/TextMesh Pro/Fonts/LiberationSans.ttf",
+                "Assets/Resources/ResImages/ResUIGenshin/Button/UI_ImgSign_ItemTips_Cook.png"
+            ]
+        },
+        {
+            "Address": "",
+            "AssetPath": "Assets/AssetPackages/UIs/Avaters/Show/UI_CoopImg_Kokomi.png",
+            "AssetGUID": "29b30e921b728654086671bcf3f36f87",
+            "AssetTags": [],
+            "MainBundleName": "assets_assetpackages_uis_avaters_show.bundle",
+            "MainBundleSize": 1745923,
+            "DependBundles": [],
+            "DependAssets": []
+        },
+        {
+            "Address": "",
+            "AssetPath": "Assets/AssetPackages/UIs/Sprites/BackGrounds/Books/Img_BG_Book_Bg1.png",
+            "AssetGUID": "7f0478085672b23419dde92407013f6d",
+            "AssetTags": [],
+            "MainBundleName": "assets_assetpackages_uis_sprites_backgrounds_books.bundle",
+            "MainBundleSize": 597922,
+            "DependBundles": [],
+            "DependAssets": []
+        },
+        {
+            "Address": "",
+            "AssetPath": "Assets/AssetPackages/UIs/Sprites/BackGrounds/Books/Img_BG_Book_Bg2.png",
+            "AssetGUID": "b99dd63eaf9111a41915df56bef74838",
+            "AssetTags": [],
+            "MainBundleName": "assets_assetpackages_uis_sprites_backgrounds_books.bundle",
+            "MainBundleSize": 597922,
+            "DependBundles": [],
+            "DependAssets": []
+        },
+        {
+            "Address": "",
+            "AssetPath": "Assets/AssetPackages/UIs/Sprites/BackGrounds/Books/Img_BG_Book_Bg3.png",
+            "AssetGUID": "436f4c990f12776419618d5d016df93d",
+            "AssetTags": [],
+            "MainBundleName": "assets_assetpackages_uis_sprites_backgrounds_books.bundle",
+            "MainBundleSize": 597922,
+            "DependBundles": [],
+            "DependAssets": []
+        },
+        {
+            "Address": "",
+            "AssetPath": "Assets/AssetPackages/UIs/Sprites/BackGrounds/Books/Img_BG_Book_Bg4.png",
+            "AssetGUID": "51fbcba115ff21b4eb096e731c424fe8",
+            "AssetTags": [],
+            "MainBundleName": "assets_assetpackages_uis_sprites_backgrounds_books.bundle",
+            "MainBundleSize": 597922,
+            "DependBundles": [],
+            "DependAssets": []
+        },
+        {
+            "Address": "",
+            "AssetPath": "Assets/AssetPackages/UIs/Sprites/BackGrounds/Books/Img_BG_Book_Bg5.png",
+            "AssetGUID": "39b4a94a13d592c4d81bcf273b786af0",
+            "AssetTags": [],
+            "MainBundleName": "assets_assetpackages_uis_sprites_backgrounds_books.bundle",
+            "MainBundleSize": 597922,
+            "DependBundles": [],
+            "DependAssets": []
+        },
+        {
+            "Address": "",
+            "AssetPath": "Assets/AssetPackages/UIs/Sprites/BackGrounds/Books/Img_BG_Book_Bg6.png",
+            "AssetGUID": "b92f16dfdba28b949bc6b66cdcac2819",
+            "AssetTags": [],
+            "MainBundleName": "assets_assetpackages_uis_sprites_backgrounds_books.bundle",
+            "MainBundleSize": 597922,
+            "DependBundles": [],
+            "DependAssets": []
+        },
+        {
+            "Address": "",
+            "AssetPath": "Assets/AssetPackages/UIs/Sprites/BackGrounds/Books/Img_BG_Book_Bg7.png",
+            "AssetGUID": "5b45cf1f2dce5f544971901dbd3993ef",
+            "AssetTags": [],
+            "MainBundleName": "assets_assetpackages_uis_sprites_backgrounds_books.bundle",
+            "MainBundleSize": 597922,
+            "DependBundles": [],
+            "DependAssets": []
+        },
+        {
+            "Address": "",
+            "AssetPath": "Assets/AssetPackages/UIs/Sprites/BackGrounds/Books/Img_BG_Book_Bg8.png",
+            "AssetGUID": "a5f33124e33f1c34fab5700943dd5c02",
+            "AssetTags": [],
+            "MainBundleName": "assets_assetpackages_uis_sprites_backgrounds_books.bundle",
+            "MainBundleSize": 597922,
+            "DependBundles": [],
+            "DependAssets": []
+        },
+        {
+            "Address": "",
+            "AssetPath": "Assets/AssetPackages/UIs/Sprites/BackGrounds/Books/Img_BG_Book_Bg9.png",
+            "AssetGUID": "9d1bf9e2f42853445b30ac4fe17741e5",
+            "AssetTags": [],
+            "MainBundleName": "assets_assetpackages_uis_sprites_backgrounds_books.bundle",
+            "MainBundleSize": 597922,
+            "DependBundles": [],
+            "DependAssets": []
+        },
+        {
+            "Address": "",
+            "AssetPath": "Assets/AssetPackages/UIs/Sprites/BackGrounds/Books/Img_BG_Book_Bg10.png",
+            "AssetGUID": "a374ba1af9ee3a54997ed90f28de77e0",
+            "AssetTags": [],
+            "MainBundleName": "assets_assetpackages_uis_sprites_backgrounds_books.bundle",
+            "MainBundleSize": 597922,
+            "DependBundles": [],
+            "DependAssets": []
+        },
+        {
+            "Address": "",
+            "AssetPath": "Assets/AssetPackages/UIs/Sprites/BackGrounds/UI_Bg_AkaFes.png",
+            "AssetGUID": "e0266557de0dada48accfcb0ffdcbc92",
+            "AssetTags": [],
+            "MainBundleName": "assets_assetpackages_uis_sprites_backgrounds.bundle",
+            "MainBundleSize": 373511,
+            "DependBundles": [],
+            "DependAssets": []
+        },
+        {
+            "Address": "",
+            "AssetPath": "Assets/AssetPackages/UIs/Sprites/BackGrounds/UI_Hachi_Frame.png",
+            "AssetGUID": "423a6a4562948164d832bebf92bc285c",
+            "AssetTags": [],
+            "MainBundleName": "assets_assetpackages_uis_sprites_backgrounds.bundle",
+            "MainBundleSize": 373511,
+            "DependBundles": [],
+            "DependAssets": []
+        },
+        {
+            "Address": "",
+            "AssetPath": "Assets/AssetPackages/UIs/Sprites/BackGrounds/UI_Img_Activity_HideandSeekPaper.png",
+            "AssetGUID": "d08f654ab7228d849bab25673961c4be",
+            "AssetTags": [],
+            "MainBundleName": "assets_assetpackages_uis_sprites_backgrounds.bundle",
+            "MainBundleSize": 373511,
+            "DependBundles": [],
+            "DependAssets": []
+        },
+        {
+            "Address": "",
+            "AssetPath": "Assets/AssetPackages/UIs/Sprites/BackGrounds/UI_Img_PopupItemBG.png",
+            "AssetGUID": "e67b5b1ef6a1ee145bd093ef229f76f6",
+            "AssetTags": [],
+            "MainBundleName": "assets_assetpackages_uis_sprites_backgrounds.bundle",
+            "MainBundleSize": 373511,
+            "DependBundles": [],
+            "DependAssets": []
+        },
+        {
+            "Address": "",
+            "AssetPath": "Assets/AssetPackages/UIs/Sprites/Bars/UI_Img_CoopBar.png",
+            "AssetGUID": "4da7e35c37556984eb49ba23a327b4ae",
+            "AssetTags": [],
+            "MainBundleName": "assets_assetpackages_uis_sprites_bars.bundle",
+            "MainBundleSize": 7634,
+            "DependBundles": [],
+            "DependAssets": []
+        },
+        {
+            "Address": "",
+            "AssetPath": "Assets/AssetPackages/UIs/Sprites/Bars/UI_Img_PhotoGraphOutline.png",
+            "AssetGUID": "f09a2ad58d15e4546ae622f2e1d433f2",
+            "AssetTags": [],
+            "MainBundleName": "assets_assetpackages_uis_sprites_bars.bundle",
+            "MainBundleSize": 7634,
+            "DependBundles": [],
+            "DependAssets": []
+        },
+        {
+            "Address": "",
+            "AssetPath": "Assets/AssetPackages/UIs/Sprites/Bars/UI_RogueDiary_BG_Img_Light.png",
+            "AssetGUID": "2cda54d63498262489f78be5360c18e1",
+            "AssetTags": [],
+            "MainBundleName": "assets_assetpackages_uis_sprites_bars.bundle",
+            "MainBundleSize": 7634,
+            "DependBundles": [],
+            "DependAssets": []
+        },
+        {
+            "Address": "",
+            "AssetPath": "Assets/AssetPackages/UIs/Sprites/Buttons/UI_Button_Gacha.png",
+            "AssetGUID": "6471db62a6b48734ebc3d0cc217f7373",
+            "AssetTags": [],
+            "MainBundleName": "assets_assetpackages_uis_sprites_buttons.bundle",
+            "MainBundleSize": 35784,
+            "DependBundles": [],
+            "DependAssets": []
+        },
+        {
+            "Address": "",
+            "AssetPath": "Assets/AssetPackages/UIs/Sprites/Buttons/UI_GravenInnocence_AD_Btn_03_1.png",
+            "AssetGUID": "611e235095884794b82f5ba10fc2447d",
+            "AssetTags": [],
+            "MainBundleName": "assets_assetpackages_uis_sprites_buttons.bundle",
+            "MainBundleSize": 35784,
+            "DependBundles": [],
+            "DependAssets": []
+        },
+        {
+            "Address": "",
+            "AssetPath": "Assets/AssetPackages/UIs/Sprites/Buttons/UI_Img_AkaFesAkaFesBtn_Bg.png",
+            "AssetGUID": "1aa7b9204d2d224448ad072dcf632143",
+            "AssetTags": [],
+            "MainBundleName": "assets_assetpackages_uis_sprites_buttons.bundle",
+            "MainBundleSize": 35784,
+            "DependBundles": [],
+            "DependAssets": []
+        },
+        {
+            "Address": "",
+            "AssetPath": "Assets/AssetPackages/UIs/Sprites/Buttons/UI_Img_EffigyChallengeV3_Shop_TextBg.png",
+            "AssetGUID": "1cfbd8e3e6150c241bf49832724f2a71",
+            "AssetTags": [],
+            "MainBundleName": "assets_assetpackages_uis_sprites_buttons.bundle",
+            "MainBundleSize": 35784,
+            "DependBundles": [],
+            "DependAssets": []
+        },
+        {
+            "Address": "",
+            "AssetPath": "Assets/AssetPackages/UIs/Sprites/Buttons/UI_MusicV3SelectPage_Img_Watcher_Bg.png",
+            "AssetGUID": "a1388b077e3fc1b4fa6011e3578f66c9",
+            "AssetTags": [],
+            "MainBundleName": "assets_assetpackages_uis_sprites_buttons.bundle",
+            "MainBundleSize": 35784,
+            "DependBundles": [],
+            "DependAssets": []
+        },
+        {
+            "Address": "",
+            "AssetPath": "Assets/AssetPackages/UIs/Sprites/Frame/UI_FrameA.png",
+            "AssetGUID": "06cb941e9c9219845bb5408002461678",
+            "AssetTags": [],
+            "MainBundleName": "assets_assetpackages_uis_sprites_frame.bundle",
+            "MainBundleSize": 8507,
+            "DependBundles": [],
+            "DependAssets": []
+        },
+        {
+            "Address": "",
+            "AssetPath": "Assets/AssetPackages/UIs/Sprites/Logo/FOSLogo-removebg-preview.png",
+            "AssetGUID": "4db7c4f89439f2849a97fb30c45ead25",
+            "AssetTags": [],
+            "MainBundleName": "assets_assetpackages_uis_sprites_logo.bundle",
+            "MainBundleSize": 41323,
+            "DependBundles": [],
+            "DependAssets": []
+        },
+        {
+            "Address": "",
+            "AssetPath": "Assets/AssetPackages/UIs/Sprites/Talk/UI_Icon_Sub_BackplaneFill.png",
+            "AssetGUID": "e80b2e4dfbeb789419d5919b015906c1",
+            "AssetTags": [],
+            "MainBundleName": "assets_assetpackages_uis_sprites_talk.bundle",
+            "MainBundleSize": 12502,
+            "DependBundles": [],
+            "DependAssets": []
+        },
+        {
+            "Address": "",
+            "AssetPath": "Assets/AssetPackages/UIs/Sprites/Talk/UI_TalkClickA.png",
+            "AssetGUID": "7d4c22d8aab3e064383bff82827ddae2",
+            "AssetTags": [],
+            "MainBundleName": "assets_assetpackages_uis_sprites_talk.bundle",
+            "MainBundleSize": 12502,
+            "DependBundles": [],
+            "DependAssets": []
+        },
+        {
+            "Address": "",
+            "AssetPath": "Assets/AssetPackages/UIs/Sprites/Talk/UI_TalkClickB.png",
+            "AssetGUID": "ca64a72820a6b134e8b3519a645a635a",
+            "AssetTags": [],
+            "MainBundleName": "assets_assetpackages_uis_sprites_talk.bundle",
+            "MainBundleSize": 12502,
+            "DependBundles": [],
+            "DependAssets": []
+        },
+        {
+            "Address": "",
+            "AssetPath": "Assets/AssetPackages/UIs/Sprites/Talk/UI_TalkLine.png",
+            "AssetGUID": "dbae4c573d5835d46ab388450d96907e",
+            "AssetTags": [],
+            "MainBundleName": "assets_assetpackages_uis_sprites_talk.bundle",
+            "MainBundleSize": 12502,
+            "DependBundles": [],
+            "DependAssets": []
+        },
+        {
+            "Address": "",
+            "AssetPath": "Assets/AssetPackages/UIs/Sprites/Talk/UI_TalkLine_Left.png",
+            "AssetGUID": "6cb41c3b6c87bf442b5b52b6d5918d95",
+            "AssetTags": [],
+            "MainBundleName": "assets_assetpackages_uis_sprites_talk.bundle",
+            "MainBundleSize": 12502,
+            "DependBundles": [],
+            "DependAssets": []
+        },
+        {
+            "Address": "",
+            "AssetPath": "Assets/AssetPackages/UIs/Sprites/Talk/UI_TalkLine_Right.png",
+            "AssetGUID": "213c6b22aefcc6a41a605fadf58e42a0",
+            "AssetTags": [],
+            "MainBundleName": "assets_assetpackages_uis_sprites_talk.bundle",
+            "MainBundleSize": 12502,
+            "DependBundles": [],
+            "DependAssets": []
+        },
+        {
+            "Address": "",
+            "AssetPath": "Assets/AssetPackages/UIs/Sprites/Talk/UI_TalkShadowV1.png",
+            "AssetGUID": "bff1c33e1e5a37146a5f459eb29c1403",
+            "AssetTags": [],
+            "MainBundleName": "assets_assetpackages_uis_sprites_talk.bundle",
+            "MainBundleSize": 12502,
+            "DependBundles": [],
+            "DependAssets": []
+        }
+    ],
+    "BundleInfos": [
+        {
+            "BundleName": "assets_assetpackages_prefabs_avaterprefabs.bundle",
+            "FileName": "46b5477bc18cbe2753905d2e2f83541f.bundle",
+            "FileHash": "46b5477bc18cbe2753905d2e2f83541f",
+            "FileCRC": "541df07f",
+            "FileSize": 5501737,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": [],
+            "AllBuiltinAssets": [
+                "Assets/AssetPackages/Prefabs/AvaterPrefabs/Avatar_Girl_Bow_Yoimiya_Remote (merge).prefab",
+                "Assets/Art/ResAnimations/CharacterAnimations/Wizard Animset/FBX Files/Humanoid@IdleWizard.fbx",
+                "Assets/ResModules/Materials/Avatar/Materials/宵宫/Avatar_Girl_Bow_Yoimiya_Mat_Hair.mat",
+                "Assets/ResModules/Textures/Genshin impact/GI-Assets-main/Models/Characters/Naganohara Yoimiya/Avatar_Girl_Bow_Yoimiya_Tex_Body_Lightmap.png",
+                "Assets/ResModules/Materials/Avatar/Materials/宵宫/Avatar_Girl_Bow_Yoimiya_Mat_Face.mat",
+                "Assets/ResModules/Textures/Genshin impact/GI-Assets-main/Models/Characters/Naganohara Yoimiya/Avatar_Girl_Bow_Yoimiya_Tex_Body_Diffuse.png",
+                "Assets/ResModules/Textures/Genshin impact/GI-Assets-main/Models/Characters/Naganohara Yoimiya/Avatar_Girl_Bow_Yoimiya_Tex_Body_Shadow_Ramp.png",
+                "Assets/ResModules/Materials/Avatar/Materials/宵宫/Avatar_Girl_Bow_Yoimiya_Mat_Body.mat",
+                "Assets/ResModules/Textures/Genshin impact/GI-Assets-main/Models/Characters/Naganohara Yoimiya/Avatar_Girl_Bow_Yoimiya_Tex_Hair_Diffuse.png",
+                "Assets/ResModules/Textures/Genshin impact/GI-Assets-main/Models/Characters/Naganohara Yoimiya/Avatar_Girl_Bow_Yoimiya_Remote (merge).fbx",
+                "Assets/Art/ResAnimations/CharacterAnimations/Wizard Animset/FBX Files/Humanoid@GetHitBackLightWizard.fbx",
+                "Assets/ResModules/Textures/Genshin impact/GI-Assets-main/Models/Characters/Naganohara Yoimiya/Avatar_Girl_Bow_Yoimiya_Tex_Hair_Shadow_Ramp.png",
+                "Assets/Art/ResAnimations/CharacterAnimations/Wizard Animset/FBX Files/Humanoid@RunFastWizard.fbx",
+                "Assets/ThirdParty/MagicaCloth2/Res/Icon/icon-cloth.png",
+                "Assets/ResModules/Textures/Genshin impact/GI-Assets-main/Models/Characters/Naganohara Yoimiya/Avatar_Girl_Bow_Yoimiya_Tex_Hair_Lightmap.png",
+                "Assets/ResModules/Textures/Genshin impact/GI-Assets-main/Models/Characters/Naganohara Yoimiya/Avatar_Girl_Tex_FaceLightmap.png",
+                "Assets/ResModules/Materials/Avatar/Materials/宵宫/Avatar_Girl_Bow_Yoimiya_Mat_Dress.mat",
+                "Assets/Art/ResAnimations/CharacterAnimations/Wizard Animset/FBX Files/Humanoid@CastSpell6Wizard.fbx",
+                "Packages/com.unity.animation.rigging/Editor/Icons/RuntimeRig@128.png",
+                "Assets/ResModules/Materials/Avatar/Materials/宵宫/miHoYoDiffuse.mat",
+                "Assets/ResModules/Textures/Genshin impact/GI-Assets-main/Models/Characters/Naganohara Yoimiya/Avatar_Girl_Bow_Yoimiya_Tex_Face_Diffuse.png",
+                "Assets/ResModules/Textures/Genshin impact/GI-Assets-main/Models/Characters/Naganohara Yoimiya/Avatar_Tex_MetalMap.png",
+                "Assets/Art/ResAnimations/CharacterAnimators/YoimiyaAni.controller",
+                "Assets/ResModules/Textures/Genshin impact/GI-Assets-main/Models/Characters/Naganohara Yoimiya/Avatar_Tex_Face_Shadow.png",
+                "Assets/ResModules/Materials/Avatar/Materials/宵宫/Avatar_Default_Mat.mat"
+            ]
+        },
+        {
+            "BundleName": "assets_assetpackages_prefabs_uiprefabs.bundle",
+            "FileName": "4834007831bb6797bdc8efdf75db7d0c.bundle",
+            "FileHash": "4834007831bb6797bdc8efdf75db7d0c",
+            "FileCRC": "d9df413d",
+            "FileSize": 11646052,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": [],
+            "AllBuiltinAssets": [
+                "Assets/AssetPackages/Prefabs/UIPrefabs/AvaterInfoWindow.prefab",
+                "Assets/AssetPackages/Prefabs/UIPrefabs/ChatWindow.prefab",
+                "Assets/AssetPackages/Prefabs/UIPrefabs/DialogWindow.prefab",
+                "Assets/AssetPackages/Prefabs/UIPrefabs/DynamicWindow.prefab",
+                "Assets/AssetPackages/Prefabs/UIPrefabs/HotFixWindow.prefab",
+                "Assets/AssetPackages/Prefabs/UIPrefabs/LoadingWindow.prefab",
+                "Assets/AssetPackages/Prefabs/UIPrefabs/LoginWindow.prefab",
+                "Assets/AssetPackages/Prefabs/UIPrefabs/MainGameWindow.prefab",
+                "Assets/AssetPackages/Prefabs/UIPrefabs/RegisterWindow.prefab",
+                "Assets/AssetPackages/Prefabs/UIPrefabs/ShopInfoConfirmWindow.prefab",
+                "Assets/AssetPackages/Prefabs/UIPrefabs/ShopWindow.prefab",
+                "Assets/AssetPackages/Prefabs/UIPrefabs/WeaponsEnhanceWindow.prefab",
+                "Assets/Resources/ResImages/ResUIGenshin/ElementUI/UI_Img_Pendant_Inazuma.png",
+                "Assets/Resources/ResImages/ResUIGenshin/Attribute/UI_Icon_HP.png",
+                "Assets/Resources/ResImages/ResUIGenshin/Attribute/UI_Icon_Player.png",
+                "Assets/Resources/ResImages/ResUIGenshin/Attribute/UI_Icon_CurDefense.png",
+                "Assets/Resources/ResFonts/SourceHanSans-Light-Lite SDF.asset",
+                "Assets/Resources/ResImages/Texture/AvaterShow.renderTexture",
+                "Assets/Resources/ResImages/ResUIGenshin/BG/UI_GachaSettlement_Bg.png",
+                "Assets/Resources/ResImages/ResUIGenshin/Button/UI_Img_ChapterLogo.png",
+                "Assets/Resources/ResImages/ResUIGenshin/ElementUI/UI_Icon_Water.png",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Font Asset Icon.psd",
+                "Assets/Resources/ResImages/ResUIGenshin/Attribute/UI_Img_MPLobbyPlayerRow_Star.png",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Text Component Icon.psd",
+                "Assets/Resources/ResFonts/SourceHanSans-Light-Lite.ttf",
+                "Assets/ThirdParty/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Fallback.asset",
+                "Assets/Resources/ResImages/ResUIGenshin/Item/UI_BtnIcon_Close.png",
+                "Assets/Resources/ResImages/ResUIGenshin/Item/UI_Item_Bg.png",
+                "Assets/ThirdParty/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.asset",
+                "Assets/Resources/ResImages/ResUIGenshin/Attribute/UI_Icon_Fetter.png",
+                "Assets/Resources/ResImages/ResUIGenshin/Attribute/UI_Icon_CurAttack.png",
+                "Assets/Resources/ResImages/ResUIGenshin/Button/UI_ImgSign_ItemTips_Cook.png",
+                "Assets/ThirdParty/TextMesh Pro/Fonts/LiberationSans.ttf",
+                "Assets/Resources/ResImages/ResUIGenshin/Attribute/UI_Icon_Element.png",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Input Field Icon.psd",
+                "Assets/Resources/ResImages/ResUIGenshin/BG/UI_Img_AdventureBP.png",
+                "Assets/Resources/ResImages/ResUIGenshin/Button/UI_BtnIcon_Chat.png",
+                "Assets/Resources/ResImages/ResUIGenshin/Item/UI_TagPaper.png",
+                "Assets/Resources/ResImages/ResUIGenshin/BG/UI_Img_ChapterBG.png",
+                "Assets/Resources/ResImages/ResUIGenshin/Dialog2DAvaterImage/UI_AvatarIcon_Kate.png",
+                "Assets/Resources/ResImages/ResUIGenshin/BG/TalkUI1.png",
+                "Assets/Art/ResAnimations/UIAnimations/MessageShowAni.anim",
+                "Assets/Resources/ResImages/ResUIGenshin/Avater/UI_AvatarIcon_Side_Ganyu.png",
+                "Assets/Resources/ResImages/ResUIGenshin/maps/UI_MarkLocalAvatar.png",
+                "Assets/Resources/ResImages/ResUIGenshin/Attack/UI_HPBar_2_Outline.png",
+                "Assets/Resources/ResImages/ResUIGenshin/Attack/UI_HPBar_1_Outline.png",
+                "Assets/Resources/ResImages/ResUIGenshin/maps/UI_MiniMap_Area_128.png",
+                "Assets/Resources/ResImages/ResUIGenshin/Avater/UI_BtnIcon_PlayerBoy.png",
+                "Assets/Resources/ResImages/ResUIGenshin/Skill/UI_Icon_Element_Orb_Common.png",
+                "Assets/Resources/ResImages/ResUIGenshin/ElementUI/UI_Buff_Element_Fire.png",
+                "Assets/Resources/ResImages/ResUIGenshin/Item/UI_BtnIcon_DungeonFactor.png",
+                "Assets/Resources/ResImages/ResUIGenshin/ElementUI/UI_Buff_Element_Water.png",
+                "Assets/Resources/ResImages/ResUIGenshin/Item/UI_MailLine_3.png",
+                "Assets/Resources/ResImages/ResUIGenshin/Avater/UI_AvatarIcon_Side_Kokomi.png",
+                "Assets/Resources/ResImages/ResUIGenshin/Item/UI_BtnIcon_Quest.png",
+                "Assets/Resources/ResImages/ResUIGenshin/Avater/UI_AvatarIcon_Side_Aether.png",
+                "Assets/Resources/ResImages/ResUIGenshin/Attack/UI_MarkArea.png",
+                "Assets/Resources/ResImages/ResUIGenshin/Attack/UI_HPBar_1.png",
+                "Assets/Resources/ResImages/ResUIGenshin/maps/UI_MiniMap_RipplesLight.png",
+                "Assets/Resources/ResImages/ResUIGenshin/Skill/Skill_A_Catalyst_MD.png",
+                "Assets/Resources/ResImages/ResUIGenshin/ElementUI/UI_Buff_Element_Frost.png",
+                "Assets/Resources/ResImages/ResUIGenshin/maps/UI_MiniMap_RingForm.png",
+                "Assets/Resources/ResImages/ResUIGenshin/Avater/UI_AvatarIcon_Paimon.png",
+                "Assets/Resources/ResImages/ResUIGenshin/Attack/UI_HPBar_2.png",
+                "Assets/Resources/ResImages/ResUIGenshin/Avater/UI_AvatarIcon_Side_Yoimiya.png",
+                "Assets/Resources/ResImages/ResUIGenshin/Skill/Skill_A_04.png",
+                "Assets/Resources/ResImages/ResUIGenshin/ElementUI/UI_Buff_Element_Wind.png",
+                "Assets/Resources/ResImages/ResUIGenshin/maps/UI_MarkSightFan.png",
+                "Assets/Resources/ResImages/ResUIGenshin/Attack/UI_Main_SkillIconBg_128.png",
+                "Assets/Resources/ResImages/ResUIGenshin/Item/UI_BtnIcon_Bag.png",
+                "Assets/Resources/ResImages/Backgrounds/IslandMap.png",
+                "Assets/Resources/ResImages/ResUIGenshin/Button/UI_Button_Gacha.png",
+                "Assets/Resources/ResImages/ResUIGenshin/BG/UI_Gacha_Tab_Uncheck.png",
+                "Assets/Resources/ResImages/ResUIGenshin/Coin/UI_ItemIcon_210.png",
+                "Assets/Resources/ResImages/ResUIGenshin/Coin/UI_ItemIcon_202.png",
+                "Assets/Resources/ResImages/Backgrounds/Geometry1_BG.jpeg",
+                "Assets/Resources/ResImages/ResUIGenshin/Button/UI_Icon_Add.png",
+                "Assets/Resources/ResImages/ResUIGenshin/Weapon/UI_EquipIcon_Sword_Blunt.png",
+                "Assets/Resources/ResImages/ResUIGenshin/Quality/UI_QualityBg_1.png",
+                "Assets/Resources/ResImages/ResUIGenshin/Attribute/UI_IconKira.png",
+                "Assets/Resources/ResImages/ResUIGenshin/Weapon2/UI_BagTabIcon_Weapon.png",
+                "Assets/Resources/ResImages/Backgrounds/WholeTransParentImage.png",
+                "Assets/Resources/ResImages/ResUIGenshin/Item/UI_Img_CutlineL.png",
+                "Assets/Resources/ResImages/ResUIGenshin/Item/UI_Img_Frame12.png",
+                "Assets/Resources/ResImages/Texture/WeaponShow.renderTexture",
+                "Assets/Resources/ResImages/ResUIGenshin/Quality/UI_Img_Bright.png"
+            ]
+        },
+        {
+            "BundleName": "assets_assetpackages_uis_avaters_show.bundle",
+            "FileName": "5b5a71055291cf175cc92eedf60c9e8b.bundle",
+            "FileHash": "5b5a71055291cf175cc92eedf60c9e8b",
+            "FileCRC": "037c8693",
+            "FileSize": 1745923,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": [],
+            "AllBuiltinAssets": [
+                "Assets/AssetPackages/UIs/Avaters/Show/UI_CoopImg_Kokomi.png"
+            ]
+        },
+        {
+            "BundleName": "assets_assetpackages_uis_sprites_backgrounds_books.bundle",
+            "FileName": "0496921883b79109c6dbfc58c0306cdd.bundle",
+            "FileHash": "0496921883b79109c6dbfc58c0306cdd",
+            "FileCRC": "54c41280",
+            "FileSize": 597922,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": [
+                1
+            ],
+            "AllBuiltinAssets": [
+                "Assets/AssetPackages/UIs/Sprites/BackGrounds/Books/Img_BG_Book_Bg1.png",
+                "Assets/AssetPackages/UIs/Sprites/BackGrounds/Books/Img_BG_Book_Bg2.png",
+                "Assets/AssetPackages/UIs/Sprites/BackGrounds/Books/Img_BG_Book_Bg3.png",
+                "Assets/AssetPackages/UIs/Sprites/BackGrounds/Books/Img_BG_Book_Bg4.png",
+                "Assets/AssetPackages/UIs/Sprites/BackGrounds/Books/Img_BG_Book_Bg5.png",
+                "Assets/AssetPackages/UIs/Sprites/BackGrounds/Books/Img_BG_Book_Bg6.png",
+                "Assets/AssetPackages/UIs/Sprites/BackGrounds/Books/Img_BG_Book_Bg7.png",
+                "Assets/AssetPackages/UIs/Sprites/BackGrounds/Books/Img_BG_Book_Bg8.png",
+                "Assets/AssetPackages/UIs/Sprites/BackGrounds/Books/Img_BG_Book_Bg9.png",
+                "Assets/AssetPackages/UIs/Sprites/BackGrounds/Books/Img_BG_Book_Bg10.png"
+            ]
+        },
+        {
+            "BundleName": "assets_assetpackages_uis_sprites_backgrounds.bundle",
+            "FileName": "3e3ba95b312b5d2663f17f4b64ad54c3.bundle",
+            "FileHash": "3e3ba95b312b5d2663f17f4b64ad54c3",
+            "FileCRC": "cbffd0a0",
+            "FileSize": 373511,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": [
+                1
+            ],
+            "AllBuiltinAssets": [
+                "Assets/AssetPackages/UIs/Sprites/BackGrounds/UI_Bg_AkaFes.png",
+                "Assets/AssetPackages/UIs/Sprites/BackGrounds/UI_Hachi_Frame.png",
+                "Assets/AssetPackages/UIs/Sprites/BackGrounds/UI_Img_Activity_HideandSeekPaper.png",
+                "Assets/AssetPackages/UIs/Sprites/BackGrounds/UI_Img_PopupItemBG.png"
+            ]
+        },
+        {
+            "BundleName": "assets_assetpackages_uis_sprites_bars.bundle",
+            "FileName": "6c7667b22cb61c98480d8b920cc46978.bundle",
+            "FileHash": "6c7667b22cb61c98480d8b920cc46978",
+            "FileCRC": "f54bb5af",
+            "FileSize": 7634,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": [
+                1
+            ],
+            "AllBuiltinAssets": [
+                "Assets/AssetPackages/UIs/Sprites/Bars/UI_Img_CoopBar.png",
+                "Assets/AssetPackages/UIs/Sprites/Bars/UI_Img_PhotoGraphOutline.png",
+                "Assets/AssetPackages/UIs/Sprites/Bars/UI_RogueDiary_BG_Img_Light.png"
+            ]
+        },
+        {
+            "BundleName": "assets_assetpackages_uis_sprites_buttons.bundle",
+            "FileName": "5d5b70a4bfb65ae82b8029aa8250a9c1.bundle",
+            "FileHash": "5d5b70a4bfb65ae82b8029aa8250a9c1",
+            "FileCRC": "333acae8",
+            "FileSize": 35784,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": [
+                1
+            ],
+            "AllBuiltinAssets": [
+                "Assets/AssetPackages/UIs/Sprites/Buttons/UI_Button_Gacha.png",
+                "Assets/AssetPackages/UIs/Sprites/Buttons/UI_GravenInnocence_AD_Btn_03_1.png",
+                "Assets/AssetPackages/UIs/Sprites/Buttons/UI_Img_AkaFesAkaFesBtn_Bg.png",
+                "Assets/AssetPackages/UIs/Sprites/Buttons/UI_Img_EffigyChallengeV3_Shop_TextBg.png",
+                "Assets/AssetPackages/UIs/Sprites/Buttons/UI_MusicV3SelectPage_Img_Watcher_Bg.png"
+            ]
+        },
+        {
+            "BundleName": "assets_assetpackages_uis_sprites_frame.bundle",
+            "FileName": "1c0d7244c5bd03615f656d548635f11f.bundle",
+            "FileHash": "1c0d7244c5bd03615f656d548635f11f",
+            "FileCRC": "1638142d",
+            "FileSize": 8507,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": [
+                1
+            ],
+            "AllBuiltinAssets": [
+                "Assets/AssetPackages/UIs/Sprites/Frame/UI_FrameA.png"
+            ]
+        },
+        {
+            "BundleName": "assets_assetpackages_uis_sprites_logo.bundle",
+            "FileName": "c992afb39839fdd2edb0bd5cafb68226.bundle",
+            "FileHash": "c992afb39839fdd2edb0bd5cafb68226",
+            "FileCRC": "a899e0b4",
+            "FileSize": 41323,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": [
+                1
+            ],
+            "AllBuiltinAssets": [
+                "Assets/AssetPackages/UIs/Sprites/Logo/FOSLogo-removebg-preview.png"
+            ]
+        },
+        {
+            "BundleName": "assets_assetpackages_uis_sprites_talk.bundle",
+            "FileName": "34c2fb72aaf700b1c7c5a9b984769f8c.bundle",
+            "FileHash": "34c2fb72aaf700b1c7c5a9b984769f8c",
+            "FileCRC": "82d26510",
+            "FileSize": 12502,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": [
+                1
+            ],
+            "AllBuiltinAssets": [
+                "Assets/AssetPackages/UIs/Sprites/Talk/UI_Icon_Sub_BackplaneFill.png",
+                "Assets/AssetPackages/UIs/Sprites/Talk/UI_TalkClickA.png",
+                "Assets/AssetPackages/UIs/Sprites/Talk/UI_TalkClickB.png",
+                "Assets/AssetPackages/UIs/Sprites/Talk/UI_TalkLine.png",
+                "Assets/AssetPackages/UIs/Sprites/Talk/UI_TalkLine_Left.png",
+                "Assets/AssetPackages/UIs/Sprites/Talk/UI_TalkLine_Right.png",
+                "Assets/AssetPackages/UIs/Sprites/Talk/UI_TalkShadowV1.png"
+            ]
+        },
+        {
+            "BundleName": "unityshaders.bundle",
+            "FileName": "3a41ad922e02f5259cadc7fed2a3daa8.bundle",
+            "FileHash": "3a41ad922e02f5259cadc7fed2a3daa8",
+            "FileCRC": "68b4efd8",
+            "FileSize": 44348,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": [
+                0,
+                1
+            ],
+            "AllBuiltinAssets": [
+                "Assets/ResModules/Shaders/GenshinCelShaderURP/Shaders/GenshinCelShaderURP/V3.1/GenshinCharacterShaderZhihuVer-main/GenshinCharacterShaderZhihuVer.shader",
+                "Assets/ResModules/Shaders/GenshinCelShaderURP/Shaders/GenshinCelShaderURP/V2.2Release/GenshinCharacterShaderZhihuVer-main/GenshinCharacterShaderZhihuVer.shader",
+                "Assets/ThirdParty/TextMesh Pro/Shaders/TMP_SDF.shader",
+                "Assets/ThirdParty/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader"
+            ]
+        }
+    ],
+    "RedundancyInfos": []
+}

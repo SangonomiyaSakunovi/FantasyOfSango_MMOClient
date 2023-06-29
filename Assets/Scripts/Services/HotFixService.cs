@@ -19,6 +19,7 @@ public class HotFixService : BaseService
 
     public void PrepareHotFix()
     {
+        AudioService.Instance.PlayBGAudio(AudioConstant.LoginAudioBG, true);
         StartCoroutine(PrepareAssets());
     }
 
@@ -141,12 +142,12 @@ public class HotFixService : BaseService
         int failedTryAgain = 3;
         var downloader = package.CreateResourceDownloader(downloadingMaxNum, failedTryAgain);
 
-        //if (downloader.TotalDownloadCount == 0)
-        //{
-        //    LoginSystem.Instance.EnterLogin();
-        //    Debug.Log("没有任何数据需要下载哦~");
-        //    return;
-        //}
+        if (downloader.TotalDownloadCount == 0)
+        {
+            LoginSystem.Instance.EnterLogin();
+            Debug.Log("没有任何数据需要下载哦~");
+            return;
+        }
 
         int totalDownloadCount = downloader.TotalDownloadCount;
         long totalDownloadBytes = downloader.TotalDownloadBytes;
@@ -168,6 +169,7 @@ public class HotFixService : BaseService
         downloader.BeginDownload();
         HotFixSystem.Instance.CloseHotFixWindow();
         LoadingSystem.Instance.OpenLoadingWindow();
+        LoadingSystem.Instance.SetTips("正在下载更新中");
         yield return downloader;
         if (downloader.Status == EOperationStatus.Succeed)
         {

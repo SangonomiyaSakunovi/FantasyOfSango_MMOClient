@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3373623859
+CRC: 1605597960
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 5c69cd29713ae9ee242dc5459c9775ab
+    Hash: 46351e20a0d1b337e809e739e2f432f2
   TypeTreeHash:
     serializedVersion: 2
     Hash: 2d8df09e698f722ada1caa03d3413830
@@ -15,5 +15,8 @@ ClassTypes:
   Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers: []
 Assets:
+- Assets/AssetPackages/UIs/Sprites/BackGrounds/UI_Bg_AkaFes.png
+- Assets/AssetPackages/UIs/Sprites/BackGrounds/UI_Img_Activity_HideandSeekPaper.png
 - Assets/AssetPackages/UIs/Sprites/BackGrounds/UI_Hachi_Frame.png
+- Assets/AssetPackages/UIs/Sprites/BackGrounds/UI_Img_PopupItemBG.png
 Dependencies: []

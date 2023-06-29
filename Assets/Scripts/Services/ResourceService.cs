@@ -41,6 +41,7 @@ public class ResourceService : BaseService
     public void AsyncLoadScene(string sceneName, Action loadedActionCallBack)
     {
         LoadingSystem.Instance.OpenLoadingWindow();
+        LoadingSystem.Instance.SetTips("感谢您参加本次测试");
         AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneName);
         loadingProgressCallBack = () =>
             {

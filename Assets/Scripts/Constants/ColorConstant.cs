@@ -10,6 +10,7 @@ public class ColorConstant
     public const string PurpleColorHex = "#9370DB";
     public const string GoldColorHex = "#FFD700";
     public const string OrangeColorHex = "#FF8C00";
+    public const string BlackColorHex = "#000000";
 
     public const string VaporizeColorHex = "#FDC454";
     public const string MeltColorHex = "#FFC964";

@@ -114,6 +114,12 @@ public class BaseWindow : MonoBehaviour
             case TextColorCode.FrozenColor:
                 result = colorStart + ColorConstant.FrozenColorHex + colorEnd + text + textEnd;
                 break;
+            case TextColorCode.BlackColor:
+                result = colorStart + ColorConstant.BlackColorHex + colorEnd + text + textEnd;
+                break;
+            default:
+                result = colorStart + ColorConstant.WhiteColorHex + colorEnd + text + textEnd;
+                break;
         }
         return result;
     }

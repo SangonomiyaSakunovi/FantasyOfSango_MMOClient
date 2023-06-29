@@ -12,5 +12,6 @@ public enum TextColorCode
     OrangeColor,
     VaporizeColor,
     MeltColor,
-    FrozenColor
+    FrozenColor,
+    BlackColor
 }

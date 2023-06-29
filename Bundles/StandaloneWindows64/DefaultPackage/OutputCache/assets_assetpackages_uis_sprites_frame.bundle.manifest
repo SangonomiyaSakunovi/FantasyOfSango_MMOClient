@@ -1,0 +1,19 @@
+ManifestFileVersion: 0
+CRC: 3427681259
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 891a7554b5f6ef3d6dca5c5ef98f9997
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 2d8df09e698f722ada1caa03d3413830
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/AssetPackages/UIs/Sprites/Frame/UI_FrameA.png
+Dependencies: []

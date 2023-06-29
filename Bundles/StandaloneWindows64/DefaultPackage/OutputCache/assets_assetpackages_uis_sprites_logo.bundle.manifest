@@ -1,0 +1,19 @@
+ManifestFileVersion: 0
+CRC: 1271341753
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 39815222958977f6e35cd3a7b95594b5
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 2d8df09e698f722ada1caa03d3413830
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/AssetPackages/UIs/Sprites/Logo/FOSLogo-removebg-preview.png
+Dependencies: []

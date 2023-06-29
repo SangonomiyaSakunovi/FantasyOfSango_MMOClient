@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1716698504
+CRC: 2783790666
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 3e82a48f96f06e9166b9534da5a132d9
+    Hash: 5b1324df1502a3e0fe4c5d08d1100677
   TypeTreeHash:
     serializedVersion: 2
     Hash: 8c1b24bfdc91600c7548816f785e93cb
@@ -159,5 +159,10 @@ Assets:
 - Assets/AssetPackages/Prefabs/UIPrefabs/RegisterWindow.prefab
 Dependencies:
 - E:/FantasyOfSango/FantasyOfSango_MMOClient/Bundles/StandaloneWindows64/DefaultPackage/OutputCache/assets_assetpackages_uis_sprites_backgrounds.bundle
+- E:/FantasyOfSango/FantasyOfSango_MMOClient/Bundles/StandaloneWindows64/DefaultPackage/OutputCache/assets_assetpackages_uis_sprites_backgrounds_books.bundle
+- E:/FantasyOfSango/FantasyOfSango_MMOClient/Bundles/StandaloneWindows64/DefaultPackage/OutputCache/assets_assetpackages_uis_sprites_bars.bundle
 - E:/FantasyOfSango/FantasyOfSango_MMOClient/Bundles/StandaloneWindows64/DefaultPackage/OutputCache/assets_assetpackages_uis_sprites_buttons.bundle
+- E:/FantasyOfSango/FantasyOfSango_MMOClient/Bundles/StandaloneWindows64/DefaultPackage/OutputCache/assets_assetpackages_uis_sprites_frame.bundle
+- E:/FantasyOfSango/FantasyOfSango_MMOClient/Bundles/StandaloneWindows64/DefaultPackage/OutputCache/assets_assetpackages_uis_sprites_logo.bundle
+- E:/FantasyOfSango/FantasyOfSango_MMOClient/Bundles/StandaloneWindows64/DefaultPackage/OutputCache/assets_assetpackages_uis_sprites_talk.bundle
 - E:/FantasyOfSango/FantasyOfSango_MMOClient/Bundles/StandaloneWindows64/DefaultPackage/OutputCache/unityshaders.bundle
