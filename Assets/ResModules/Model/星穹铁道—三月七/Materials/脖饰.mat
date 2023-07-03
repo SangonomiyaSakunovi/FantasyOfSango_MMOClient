@@ -13,7 +13,10 @@ Material:
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - _AREA_LOWERBODY
+  - _METAL_SPECULAR_ON
   - _OUTLINE_ON
+  - _RIM_LIGHTING_ON
+  - _SPECULAR_ON
   - _USE_RAMP_COLOR_ON
   m_InvalidKeywords:
   - ENABLE_METAL_SPECULAR
@@ -318,7 +321,7 @@ Material:
     - _RimLightFadeout: 1
     - _RimLightMixAlbedo: 0.9
     - _RimLightThreshold: 0.05
-    - _RimLightWidth: 1
+    - _RimLightWidth: 0.5
     - _RimOffsets: 0.1
     - _RimPow: 1
     - _RimSmooth: 0.01
@@ -331,7 +334,7 @@ Material:
     - _ShadowRampLerp: 0.5
     - _ShadowRampOffset: 0.75
     - _ShadowThresholdCenter: 0
-    - _ShadowThresholdSoftness: 0.1
+    - _ShadowThresholdSoftness: 0.416
     - _Shininess: 1
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
@@ -375,6 +378,8 @@ Material:
     - _UseOutline: 1
     - _UseRadianceOcclusion: 0
     - _UseRampColor: 1
+    - _UseRimLight: 1
+    - _UseStockings: 0
     - _WorkflowMode: 1
     - _WorldLightInfluence: 0
     - _ZOffset: 0

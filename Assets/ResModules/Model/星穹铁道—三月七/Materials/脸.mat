@@ -14,7 +14,10 @@ Material:
   m_ValidKeywords:
   - _AREA_FACE
   - _EMISSION_ON
+  - _METAL_SPECULAR_ON
   - _OUTLINE_ON
+  - _RIM_LIGHTING_ON
+  - _SPECULAR_ON
   - _USE_RAMP_COLOR_ON
   m_InvalidKeywords:
   - ENABLE_BLOOM_MASK
@@ -340,7 +343,7 @@ Material:
     - _RimLightFadeout: 1
     - _RimLightMixAlbedo: 0.9
     - _RimLightThreshold: 0.05
-    - _RimLightWidth: 1
+    - _RimLightWidth: 0.5
     - _RimOffset: 0.1
     - _RimOffsets: 0.1
     - _RimPow: 1
@@ -364,7 +367,7 @@ Material:
     - _ShadowRange: 0
     - _ShadowSmooth: 0.5
     - _ShadowThresholdCenter: 0
-    - _ShadowThresholdSoftness: 0.1
+    - _ShadowThresholdSoftness: 0.416
     - _Shadow_Feather: 0
     - _Shadow_Step: 0
     - _ShadowsAdd: 1
@@ -408,6 +411,8 @@ Material:
     - _UseOutline: 1
     - _UseRadianceOcclusion: 0
     - _UseRampColor: 1
+    - _UseRimLight: 1
+    - _UseStockings: 0
     - _WorkflowMode: 1
     - _WorldLightInfluence: 0
     - _ZWrite: 1

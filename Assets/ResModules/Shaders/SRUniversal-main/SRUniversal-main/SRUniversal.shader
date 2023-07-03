@@ -46,12 +46,15 @@ Shader "Custom/SRUniversal"
         _FaceShadowTransitionSoftness("Face shadow transition softness (Default 0.05)", Range(0,1)) = 0.05
 
         [Header(Specular)]
+        [Toggle(_SPECULAR_ON)] _EnableSpecular ("Enable Specular (Default YES)", float) = 1
+        [Toggle(_METAL_SPECULAR_ON)] _EnableMetalSpecular ("Enable Metal Specular (Default YES)", float) = 1
         _SpecularExpon("Specular exponent (Default 50)",Range(0,100)) = 50
         _SpecularKsNonMrtal("Specular KS non-metal (Default 0.04)",Range(0,1)) = 0.04
         _SpecularKsMetal("Specular KS metal (Default 1)",Range(0,1)) = 1
         _SpecularBrightness("Specular brightness (Default 1)",Range(0,10)) = 10
 
         [Header(Stockings)]
+        [Toggle(_STOCKINGS_ON)] _UseStockings("Use Stockings (Default NO)",float) = 0
         _UpperBodyStockings("Upper body stockings (Default black)",2D) = "black" {}
         _LowerBodyStockings("Lower body stockings (Default black)",2D) = "black" {}
         _StockingsDarkColor("Stockings dark color (Default black)",Color) = (0,0,0)
@@ -63,6 +66,7 @@ Shader "Custom/SRUniversal"
         _StockingsTextureUsage("Stockings texture usage (Default 0.1)",Range(0,1)) = 0.1
 
         [Header(Rim Lighting)]
+        [Toggle(_RIM_LIGHTING_ON)] _UseRimLight("Use Rim light (Default YES)",float) = 1
         _RimLightWidth("Rim light width (Default 1)",Range(0, 10)) = 1
         _RimLightThreshold("Rin light threshold (Default 0.05)",Range(-1, 1)) = 0.05
         _RimLightFadeout("Rim light fadeout (Default 1)",Range(0.01, 1)) = 1
@@ -116,6 +120,10 @@ Shader "Custom/SRUniversal"
         #pragma shader_feature_local _AREA_HAIR
         #pragma shader_feature_local _AREA_UPPERBODY
         #pragma shader_feature_local _AREA_LOWERBODY
+        #pragma shader_feature_local _SPECULAR_ON
+        #pragma shader_feature_local _METAL_SPECULAR_ON
+        #pragma shader_feature_local _STOCKINGS_ON
+        #pragma shader_feature_local _RIM_LIGHTING_ON
         #pragma shader_feature_local _OUTLINE_ON
         #pragma shader_feature_local _USE_RAMP_COLOR_ON
         #pragma shader_feature_local _OUTLINE_VERTEX_COLOR_SMOOTH_NORMAL

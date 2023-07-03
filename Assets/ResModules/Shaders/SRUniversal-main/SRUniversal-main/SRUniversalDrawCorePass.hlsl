@@ -190,77 +190,95 @@ float4 frag(Varyings input, bool isFrontFace : SV_IsFrontFace): SV_TARGET
     float3 rampColor = lerp(coolRamp, warmRamp, isDay);
     mainLightColor *= baseColor * rampColor;
 
+
     float3 specularColor = 0;
-    #if _AREA_HAIR || _AREA_UPPERBODY || _AREA_LOWERBODY
-        {
-            float3 halfVectorWS = normalize(viewDirectionWS + lightDirectionWS);
-            float NoH = dot(normalWS, halfVectorWS);
-            float blinnPhong = pow(saturate(NoH), _SpecularExpon);
+    #if _SPECULAR_ON
+        #if _AREA_HAIR || _AREA_UPPERBODY || _AREA_LOWERBODY
+            {
+                float3 halfVectorWS = normalize(viewDirectionWS + lightDirectionWS);
+                float NoH = dot(normalWS, halfVectorWS);
+                float blinnPhong = pow(saturate(NoH), _SpecularExpon);
 
-            float nonMetalSpecular = step(1.04 - blinnPhong, lightMap.b) * _SpecularKsNonMetal;
-            float metalSpecular = blinnPhong * lightMap.b * _SpecularKsMetal;
+                float nonMetalSpecular = step(1.04 - blinnPhong, lightMap.b) * _SpecularKsNonMetal;
+                float metalSpecular = blinnPhong * lightMap.b * _SpecularKsMetal;
 
-            float metallic = 0;
-            #if  _AREA_UPPERBODY || _AREA_LOWERBODY
-                metallic = saturate((abs(lightMap.a - 0.52) - 0.1)/(0 - 0.1));
-            #endif
+                float metallic = 0;
+                #if _METAL_SPECULAR_ON
+                    #if  _AREA_UPPERBODY || _AREA_LOWERBODY
+                        metallic = saturate((abs(lightMap.a - 0.52) - 0.1)/(0 - 0.1));
+                    #endif
+                #else
+                    metallic = 0;
+                #endif
+                specularColor = lerp(nonMetalSpecular, metalSpecular * baseColor, metallic);
+                specularColor *= mainLight.color;
+                specularColor *= _SpecularBrightness;
+            }
+        #endif
+    #else
+        specularColor = 0;
 
-            specularColor = lerp(nonMetalSpecular, metalSpecular * baseColor, metallic);
-            specularColor *= mainLight.color;
-            specularColor *= _SpecularBrightness;
-        }
     #endif
 
     float3 stockingsEffect = 1;
-    #if _AREA_UPPERBODY || _AREA_LOWERBODY
-        {
-            float2 stockingsMapRG = 0;
-            float stockingsMapB = 0;
-            #if _AREA_UPPERBODY
-                stockingsMapRG = tex2D(_UpperBodyStockings, input.uv).rg;
-                stockingsMapB = tex2D(_UpperBodyStockings, input.uv * 20).b;
-            #elif _AREA_LOWERBODY
-                stockingsMapRG = tex2D(_LowerBodyStockings, input.uv).rg;
-                stockingsMapB = tex2D(_LowerBodyStockings, input.uv * 20).b;
-            #endif
-            float NoV = dot(normalWS, viewDirectionWS);
-            float fac = NoV;
-            fac = pow(saturate(fac), _StockingsTransitionPower);
-            fac = saturate((fac - _StockingsTransitionHardness/2)/(1 - _StockingsTransitionHardness));
-            fac = fac * (stockingsMapB * _StockingsTextureUsage + (1 - _StockingsTextureUsage));
-            fac = lerp(fac, 1, stockingsMapRG.g);
-            Gradient curve = GradientConstruct();
-            curve.colorsLength = 3;
-            curve.colors[0] = float4(_StockingsDarkColor, 0);
-            curve.colors[1] = float4(_StockingsTransitionColor, _StockingsTransitionThreshold);
-            curve.colors[2] = float4(_StockingsLightColor, 1);
-            float3 stockingsColor = SampleGradient(curve, fac);
+    #if _STOCKINGS_ON
+        #if _AREA_UPPERBODY || _AREA_LOWERBODY
+            {
+                float2 stockingsMapRG = 0;
+                float stockingsMapB = 0;
+                #if _AREA_UPPERBODY
+                    stockingsMapRG = tex2D(_UpperBodyStockings, input.uv).rg;
+                    stockingsMapB = tex2D(_UpperBodyStockings, input.uv * 20).b;
+                #elif _AREA_LOWERBODY
+                    stockingsMapRG = tex2D(_LowerBodyStockings, input.uv).rg;
+                    stockingsMapB = tex2D(_LowerBodyStockings, input.uv * 20).b;
+                #endif
+                float NoV = dot(normalWS, viewDirectionWS);
+                float fac = NoV;
+                fac = pow(saturate(fac), _StockingsTransitionPower);
+                fac = saturate((fac - _StockingsTransitionHardness/2)/(1 - _StockingsTransitionHardness));
+                fac = fac * (stockingsMapB * _StockingsTextureUsage + (1 - _StockingsTextureUsage));
+                fac = lerp(fac, 1, stockingsMapRG.g);
+                Gradient curve = GradientConstruct();
+                curve.colorsLength = 3;
+                curve.colors[0] = float4(_StockingsDarkColor, 0);
+                curve.colors[1] = float4(_StockingsTransitionColor, _StockingsTransitionThreshold);
+                curve.colors[2] = float4(_StockingsLightColor, 1);
+                float3 stockingsColor = SampleGradient(curve, fac);
 
-            stockingsEffect = lerp(1, stockingsColor, stockingsMapRG.r);
+                stockingsEffect = lerp(1, stockingsColor, stockingsMapRG.r);
 
-        }
+            }
+        #endif
+    #else
+        stockingsEffect = 1;
     #endif
 
-    float linearEyeDepth = LinearEyeDepth(input.positionCS.z, _ZBufferParams);
-    float3 normalVS = mul((float3x3)UNITY_MATRIX_V, normalWS);
-    float2 uvOffset = float2(sign(normalVS.x), 0) * _RimLightWidth / (1 + linearEyeDepth) / 100;
-    int2 loadTexPos = input.positionCS.xy + uvOffset * _ScaledScreenParams.xy;
-    loadTexPos = min(max(loadTexPos, 0), _ScaledScreenParams.xy - 1);
-    float offsetSceneDepth = LoadSceneDepth(loadTexPos);
-    float offsetLinearEyeDepth = LinearEyeDepth(offsetSceneDepth, _ZBufferParams);
-    float rimLight = saturate(offsetLinearEyeDepth - (linearEyeDepth + _RimLightThreshold)) / _RimLightFadeout;
-    float3 rimLightColor = rimLight * mainLight.color.rgb;
-    rimLightColor *= _RimLightTintColor;
-    rimLightColor *= _RimLightBrightness;
+    float3 rimLightColor;
+    #if _RIM_LIGHTING_ON
+        float linearEyeDepth = LinearEyeDepth(input.positionCS.z, _ZBufferParams);
+        float3 normalVS = mul((float3x3)UNITY_MATRIX_V, normalWS);
+        float2 uvOffset = float2(sign(normalVS.x), 0) * _RimLightWidth / (1 + linearEyeDepth) / 100;
+        int2 loadTexPos = input.positionCS.xy + uvOffset * _ScaledScreenParams.xy;
+        loadTexPos = min(max(loadTexPos, 0), _ScaledScreenParams.xy - 1);
+        float offsetSceneDepth = LoadSceneDepth(loadTexPos);
+        float offsetLinearEyeDepth = LinearEyeDepth(offsetSceneDepth, _ZBufferParams);
+        float rimLight = saturate(offsetLinearEyeDepth - (linearEyeDepth + _RimLightThreshold)) / _RimLightFadeout;
+        rimLightColor = rimLight * mainLight.color.rgb;
+        rimLightColor *= _RimLightTintColor;
+        rimLightColor *= _RimLightBrightness;
+        #else
+        rimLightColor = 0;
+    #endif
 
     float3 emissionColor = 0;
     #if _EMISSION_ON
-    {
-        emissionColor = areaMap.a;
-        emissionColor *= lerp(1, baseColor, _EmissionMixBaseColor);
-        emissionColor *= _EmissionTintColor;
-        emissionColor *= _EmissionIntensity;
-    }
+        {
+            emissionColor = areaMap.a;
+            emissionColor *= lerp(1, baseColor, _EmissionMixBaseColor);
+            emissionColor *= _EmissionTintColor;
+            emissionColor *= _EmissionIntensity;
+        }
     #endif
 
     float fakeOutlineEffect = 0;
