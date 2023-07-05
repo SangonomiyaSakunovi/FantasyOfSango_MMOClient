@@ -9,6 +9,9 @@ TagManager:
   - Enemy
   - MapRoot
   - AvaterShowTablet
+  - SangoGameRoot
+  - MainGameCamera
+  - OnlineAccountObject
   layers:
   - Default
   - TransparentFX

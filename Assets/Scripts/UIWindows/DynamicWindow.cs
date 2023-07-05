@@ -150,18 +150,18 @@ public class DynamicWindow : BaseWindow
 
     private class EnemyHpUIShows
     {
-        public GameObject hpUI = (GameObject)Instantiate(Resources.Load(EnemyHpUIConstant.NormalEnemyHpUIItemPath));
+        public GameObject hpUI = ResourceService.Instance.LoadGameObjectAssetSync(EnemyHpUIConstant.NormalEnemyHpUIItemPath);
     }
 
     private class ElementReactionNameShows
     {
-        public GameObject nameUI = (GameObject)Instantiate(Resources.Load(ElementReactionUIConstant.ElementReactionNamePath));
+        public GameObject nameUI = ResourceService.Instance.LoadGameObjectAssetSync(ElementReactionUIConstant.ElementReactionNamePath);
         public float endTime;
     }
 
     private class AttackNumShows
     {
-        public GameObject numUI = (GameObject)Instantiate(Resources.Load(AttackResultUIConstant.AttackNumPath));
+        public GameObject numUI = ResourceService.Instance.LoadGameObjectAssetSync(AttackResultUIConstant.AttackNumPath);
         public float endTime;
     }
 }

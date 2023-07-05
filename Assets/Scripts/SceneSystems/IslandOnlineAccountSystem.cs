@@ -13,9 +13,12 @@ public class IslandOnlineAccountSystem : MonoBehaviour
     private Dictionary<string, TransformOnline> onlineAccountAvaterTransformDict = null;
     private Dictionary<string, GameObject> onlineAccountPlayerCubeDict = null;
 
+    private ResourceService resourceService;
+
     private void Start()
     {
         Instance = this;
+        resourceService = ResourceService.Instance;
         onlineAccountAvaterTransformDict = new Dictionary<string, TransformOnline>();
         onlineAccountPlayerCubeDict = new Dictionary<string, GameObject>();
         CacheSystem.Instance.syncPlayerAccountRequest.DefaultRequest();
@@ -37,10 +40,10 @@ public class IslandOnlineAccountSystem : MonoBehaviour
     {
         if (!onlineAccountPlayerCubeDict.ContainsKey(onlineAccount))
         {
-            GameObject playerCube = (GameObject)Instantiate(Resources.Load(AvaterConstant.PlayerCube));
-            GameObject tempKokomi = (GameObject)Instantiate(Resources.Load(AvaterConstant.SangonomiyaKokomiPath));
-            GameObject tempYoimiya = (GameObject)Instantiate(Resources.Load(AvaterConstant.YoimiyaPath));
-            GameObject tempAyaka = (GameObject)Instantiate(Resources.Load(AvaterConstant.AyakaPath));
+            GameObject playerCube = resourceService.LoadGameObjectAssetSync(AvaterConstant.PlayerCubePath);
+            GameObject tempKokomi = resourceService.LoadGameObjectAssetSync(AvaterConstant.SangonomiyaKokomiPath);
+            GameObject tempYoimiya = resourceService.LoadGameObjectAssetSync(AvaterConstant.YoimiyaPath);
+            GameObject tempAyaka = resourceService.LoadGameObjectAssetSync(AvaterConstant.AyakaPath);
             tempKokomi.SetActive(true);
             SetChildAvater(tempKokomi, playerCube);
             SetChildAvater(tempYoimiya, playerCube);

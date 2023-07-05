@@ -22,7 +22,7 @@ public class AttackControllerAyaka : MonoBehaviour
     void Start()
     {
         playerLeftHandBone = transform.Find(AvaterConstant.AyakaLeftBone);
-        Transform weaponTrans = Instantiate(Resources.Load<Transform>(WeaponConstant.Wand01Path));
+        Transform weaponTrans = ResourceService.Instance.LoadGameObjectAssetSync(WeaponConstant.Wand01Path).transform;
         weaponTrans.parent = playerLeftHandBone;
         weaponTrans.localPosition = new Vector3(0f, 0.02f, 0.0f);
         weaponTrans.localRotation = Quaternion.Euler(0f, 0.0f, 0f);
@@ -108,7 +108,7 @@ public class AttackControllerAyaka : MonoBehaviour
 
     private class Flare
     {
-        public GameObject flare = (GameObject)Instantiate(Resources.Load(WeaponConstant.Flare01Path));
+        public GameObject flare = ResourceService.Instance.LoadGameObjectAssetSync(WeaponConstant.Flare01Path);
         public float endTime;
         public void Clean()
         {

@@ -11,7 +11,7 @@ public class LoadingWindow : BaseWindow
     public Image loadingProgressPoint;
     public TMP_Text loadingProgressText;
 
-    public float loadingProgressFGWidth;
+    private float loadingProgressFGWidth;
 
     private float loadingProgressPointYPos = -444.731f;
 

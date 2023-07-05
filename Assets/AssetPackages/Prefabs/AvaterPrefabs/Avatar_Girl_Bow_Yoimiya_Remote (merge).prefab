@@ -1062,7 +1062,6 @@ MonoBehaviour:
     connectionMode: 0
     rotationalInterpolation: 0.5
     rootRotation: 0.5
-    updateMode: 0
     animationPoseRatio: 0
     reductionSetting:
       simpleDistance: 0
@@ -1080,7 +1079,6 @@ MonoBehaviour:
       y: -1
       z: 0
     gravityFalloff: 0.8
-    stablizationTimeAfterReset: 0.1
     damping:
       value: 0.1
       useCurve: 0
@@ -1337,14 +1335,6 @@ MonoBehaviour:
       syncMode: 0
       syncPartner: {fileID: 0}
       clothMass: 0
-    wind:
-      influence: 1
-      frequency: 1
-      turbulence: 1
-      blend: 0.7
-      synchronization: 0.7
-      depthWeight: 0
-      movingWind: 0
   serializeData2:
     selectionData:
       positions:
@@ -1803,7 +1793,6 @@ MonoBehaviour:
     connectionMode: 0
     rotationalInterpolation: 0.5
     rootRotation: 0.5
-    updateMode: 0
     animationPoseRatio: 0
     reductionSetting:
       simpleDistance: 0
@@ -1821,7 +1810,6 @@ MonoBehaviour:
       y: -1
       z: 0
     gravityFalloff: 0
-    stablizationTimeAfterReset: 0.1
     damping:
       value: 0.05
       useCurve: 0
@@ -2078,14 +2066,6 @@ MonoBehaviour:
       syncMode: 0
       syncPartner: {fileID: 0}
       clothMass: 0
-    wind:
-      influence: 1
-      frequency: 1
-      turbulence: 1
-      blend: 0.7
-      synchronization: 0.7
-      depthWeight: 0
-      movingWind: 0
   serializeData2:
     selectionData:
       positions:
@@ -2173,7 +2153,6 @@ MonoBehaviour:
     connectionMode: 0
     rotationalInterpolation: 0.5
     rootRotation: 0.5
-    updateMode: 0
     animationPoseRatio: 0
     reductionSetting:
       simpleDistance: 0
@@ -2191,7 +2170,6 @@ MonoBehaviour:
       y: -1
       z: 0
     gravityFalloff: 0
-    stablizationTimeAfterReset: 0.1
     damping:
       value: 0.1
       useCurve: 0
@@ -2448,14 +2426,6 @@ MonoBehaviour:
       syncMode: 0
       syncPartner: {fileID: 0}
       clothMass: 0
-    wind:
-      influence: 1
-      frequency: 1
-      turbulence: 1
-      blend: 0.7
-      synchronization: 0.7
-      depthWeight: 0
-      movingWind: 0
   serializeData2:
     selectionData:
       positions:
@@ -3893,7 +3863,6 @@ MonoBehaviour:
     connectionMode: 3
     rotationalInterpolation: 0.5
     rootRotation: 0.5
-    updateMode: 0
     animationPoseRatio: 0
     reductionSetting:
       simpleDistance: 0
@@ -3911,7 +3880,6 @@ MonoBehaviour:
       y: -1
       z: 0
     gravityFalloff: 0
-    stablizationTimeAfterReset: 0.1
     damping:
       value: 0.1
       useCurve: 0
@@ -4168,14 +4136,6 @@ MonoBehaviour:
       syncMode: 0
       syncPartner: {fileID: 0}
       clothMass: 0
-    wind:
-      influence: 1
-      frequency: 1
-      turbulence: 1
-      blend: 0.7
-      synchronization: 0.7
-      depthWeight: 0
-      movingWind: 0
   serializeData2:
     selectionData:
       positions:
@@ -4877,7 +4837,6 @@ MonoBehaviour:
     connectionMode: 0
     rotationalInterpolation: 0.5
     rootRotation: 0.5
-    updateMode: 0
     animationPoseRatio: 0
     reductionSetting:
       simpleDistance: 0
@@ -4895,7 +4854,6 @@ MonoBehaviour:
       y: -1
       z: 0
     gravityFalloff: 1
-    stablizationTimeAfterReset: 0.1
     damping:
       value: 0.1
       useCurve: 0
@@ -5152,14 +5110,6 @@ MonoBehaviour:
       syncMode: 0
       syncPartner: {fileID: 0}
       clothMass: 0
-    wind:
-      influence: 1
-      frequency: 1
-      turbulence: 1
-      blend: 0.7
-      synchronization: 0.7
-      depthWeight: 0
-      movingWind: 0
   serializeData2:
     selectionData:
       positions:
@@ -6098,7 +6048,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4145537168580792384
 Transform:
   m_ObjectHideFlags: 0

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Xml;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using YooAsset;
 
 //Developer : SangonomiyaSakunovi
 
@@ -21,9 +22,12 @@ public class ResourceService : BaseService
 
     private Action loadingProgressCallBack = null;
 
+    private ResourcePackage resourcePackage;
+
     public override void InitService()
     {
         Instance = this;
+        resourcePackage = YooAssets.GetPackage("DefaultPackage");
         InitMissionConfig(ConfigConstant.MissionConfigPath_01);
         InitWeaponBreakConfig(ConfigConstant.WeaponBreakConfigPath_01);
         InitWeaponDetailsConfig(ConfigConstant.WeaponDetailsConfigPath_01);
@@ -36,6 +40,20 @@ public class ResourceService : BaseService
         {
             loadingProgressCallBack();
         }
+    }
+
+    public AudioClip LoadAudioClipSync(string path)
+    {
+        var asset = resourcePackage.LoadAssetSync<AudioClip>(path);
+        AudioClip audioClip = asset.AssetObject as AudioClip;
+        return audioClip;
+    }
+
+    public GameObject LoadGameObjectAssetSync(string path)
+    {
+        var asset = resourcePackage.LoadAssetSync<GameObject>(path);
+        GameObject gameObject = asset.InstantiateSync();
+        return gameObject;
     }
 
     public void AsyncLoadScene(string sceneName, Action loadedActionCallBack)
@@ -267,7 +285,7 @@ public class ResourceService : BaseService
         AudioClip audioClip = DictTool.GetDictValue<string, AudioClip>(audioPath, audioClipDict);
         if (audioClip == null)
         {
-            audioClip = Resources.Load<AudioClip>(audioPath);
+            audioClip = LoadAudioClipSync(audioPath);
             if (isCache)
             {
                 audioClipDict.Add(audioPath, audioClip);

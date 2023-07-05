@@ -17,8 +17,6 @@ public class MainGameSystem : BaseSystem
     [HideInInspector]
     public MovePlayerCubeController movePlayerCubeController = null;
 
-    private Transform[] npcTransformArray;
-
     public override void InitSystem()
     {
         base.InitSystem();
@@ -31,6 +29,12 @@ public class MainGameSystem : BaseSystem
         {
             //SetGameMode
             GameManager.Instance.SetGameMode(GameModeCode.GamePlayMode);
+            //SetCamera
+            GameObject camera = GameObject.FindGameObjectWithTag("MainGameCamera");
+            camera.AddComponent<CameraController>();
+            //SetOnlineAccountObject
+            GameObject onlineObject = GameObject.FindGameObjectWithTag("OnlineAccountObject");
+            onlineObject.AddComponent<IslandOnlineAccountSystem>();
             //Load Avater
             InitiateLocalAvater();
             movePlayerCubeController.SetAvaterObject(AvaterCode.SangonomiyaKokomi);
@@ -49,12 +53,9 @@ public class MainGameSystem : BaseSystem
             audioService.PlayBGAudio(AudioConstant.MainGameBG, true);
             //MiniMap
             SetMiniMapTransPosition(playerCube.transform);
-            //LoadPos
-            GameObject map = GameObject.FindGameObjectWithTag("MapRoot");
-            MainGameMap mainGameMap = map.GetComponent<MainGameMap>();
-            npcTransformArray = mainGameMap.NpcTransformArray;
+
             //LoadEnemy
-            InitiateEnemy();
+            //InitiateEnemy();
             //InitAvaterShowTablet
             AvaterInfoSystem.Instance.InitAvaterShowTablet();
         });
@@ -62,12 +63,12 @@ public class MainGameSystem : BaseSystem
 
     private void InitiateLocalAvater()
     {
-        playerCapsule = (GameObject)Instantiate(Resources.Load(AvaterConstant.PlayerCapsule));
-        playerCube = (GameObject)Instantiate(Resources.Load(AvaterConstant.PlayerCube));
+        playerCapsule = resourceService.LoadGameObjectAssetSync(AvaterConstant.PlayerCapsulePath);
+        playerCube = resourceService.LoadGameObjectAssetSync(AvaterConstant.PlayerCubePath);
         movePlayerCubeController = playerCube.GetComponent<MovePlayerCubeController>();
-        GameObject tempKokomi = (GameObject)Instantiate(Resources.Load(AvaterConstant.SangonomiyaKokomiPath));
-        GameObject tempYoimiya = (GameObject)Instantiate(Resources.Load(AvaterConstant.YoimiyaPath));
-        GameObject tempAyaka = (GameObject)Instantiate(Resources.Load(AvaterConstant.AyakaPath));
+        GameObject tempKokomi = resourceService.LoadGameObjectAssetSync(AvaterConstant.SangonomiyaKokomiPath);
+        GameObject tempYoimiya = resourceService.LoadGameObjectAssetSync(AvaterConstant.YoimiyaPath);
+        GameObject tempAyaka = resourceService.LoadGameObjectAssetSync(AvaterConstant.AyakaPath);
         SetChildAvater(tempKokomi, playerCube);
         SetChildAvater(tempYoimiya, playerCube);
         SetChildAvater(tempAyaka, playerCube);
@@ -80,11 +81,6 @@ public class MainGameSystem : BaseSystem
         childObject.transform.parent = parentObject.transform;
         childObject.transform.localPosition = new Vector3(0, 0, 0);
         childObject.transform.localRotation = Quaternion.Euler(0, 0, 0);
-    }
-
-    private void InitiateEnemy()
-    {
-        Instantiate(Resources.Load(EnemyConstant.HilichulPath));
     }
 
 

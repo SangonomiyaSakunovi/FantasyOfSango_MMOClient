@@ -12,6 +12,7 @@ public class SangoRoot : MonoBehaviour
 
     void Start()
     {
+        Debug.Log("运行了Start方法");
         Instance = this;
         DontDestroyOnLoad(this.gameObject);
         CleanUIWindow();
@@ -40,9 +41,7 @@ public class SangoRoot : MonoBehaviour
 
     private void StartGame()
     {
-        HotFixService.Instance.PrepareHotFix();
-        //HotFixSystem.Instance.PrepareHotFix();
-        //LoginSystem.Instance.EnterLogin();
+        LoginSystem.Instance.EnterLogin();
     }
 
     public void InitConfig()
@@ -60,8 +59,6 @@ public class SangoRoot : MonoBehaviour
         audioService.InitService();
         NetService netService = GetComponent<NetService>();
         netService.InitService();
-        HotFixService hotFixService = GetComponent<HotFixService>();
-        hotFixService.InitService();
     }
 
     private void InitManager()
@@ -98,8 +95,6 @@ public class SangoRoot : MonoBehaviour
         chatSystem.InitSystem();
         ShopInfoSystem shopInfoSystem = GetComponent<ShopInfoSystem>();
         shopInfoSystem.InitSystem();
-        HotFixSystem hotFixSystem = GetComponent<HotFixSystem>();
-        hotFixSystem.InitSystem();
     }
 
     public static void AddMessage(string message, TextColorCode textColor)

@@ -53,7 +53,6 @@ public class LoginSystem : BaseSystem
                     accountInput.text = Account;
                 }
             }
-            HotFixService.Instance.LoadTest();
         });
     }
 

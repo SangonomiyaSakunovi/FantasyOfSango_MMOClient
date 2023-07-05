@@ -9,8 +9,8 @@ public class ButtonUIConstant
 
 public class ChatUIConstant
 {
-    public const string LocalAccountChatBubblePath = "ResPrefabs/UIItemPrefabs/LocalAccountChatBubble";
-    public const string OnlineAccountChatBubblePath = "ResPrefabs/UIItemPrefabs/OnlineAccountChatBubble";
+    public const string LocalAccountChatBubblePath = "Assets/AssetPackages/Prefabs/UIItemPrefabs/LocalAccountChatBubble.prefab";
+    public const string OnlineAccountChatBubblePath = "Assets/AssetPackages/Prefabs/UIItemPrefabs/OnlineAccountChatBubble.prefab";
 }
 
 public class WeaponModelUIConstant
@@ -25,15 +25,15 @@ public class WeaponRawMaterialUIConstant
 
 public class ElementReactionUIConstant
 {
-    public const string ElementReactionNamePath = "ResPrefabs/UIItemPrefabs/ElementReactionName";
+    public const string ElementReactionNamePath = "Assets/AssetPackages/Prefabs/UIItemPrefabs/ElementReactionName.prefab";
 }
 
 public class AttackResultUIConstant
 {
-    public const string AttackNumPath = "ResPrefabs/UIItemPrefabs/AttackNum";
+    public const string AttackNumPath = "Assets/AssetPackages/Prefabs/UIItemPrefabs/AttackNum.prefab";
 }
 
 public class EnemyHpUIConstant
 {
-    public const string NormalEnemyHpUIItemPath = "ResPrefabs/UIItemPrefabs/EnemyHpUIItem";
+    public const string NormalEnemyHpUIItemPath = "Assets/AssetPackages/Prefabs/UIItemPrefabs/EnemyHpUIItem.prefab";
 }

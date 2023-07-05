@@ -155,7 +155,7 @@ Transform:
   - {fileID: 8180251283494720916}
   - {fileID: 917570848}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &420132155
 GameObject:
@@ -167,7 +167,6 @@ GameObject:
   m_Component:
   - component: {fileID: 420132157}
   - component: {fileID: 420132156}
-  - component: {fileID: 420132158}
   m_Layer: 0
   m_Name: main_sight
   m_TagString: Untagged
@@ -217,19 +216,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &420132158
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 420132155}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4333728ea1b69e0468101e0dae4ae6a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isLocalPlayer: 1
 --- !u!1 &425215656
 GameObject:
   m_ObjectHideFlags: 0
@@ -240,10 +226,9 @@ GameObject:
   m_Component:
   - component: {fileID: 425215657}
   - component: {fileID: 425215658}
-  - component: {fileID: 425215659}
   m_Layer: 0
   m_Name: MainGameCamera
-  m_TagString: Untagged
+  m_TagString: MainGameCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -303,52 +288,6 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 659876109}
---- !u!114 &425215659
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 425215656}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 886c2c9e40ad2984b9ad69ee952c9a4c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  distance: 12
-  scrollSpeed: 10
-  RotateSpeed: 2
---- !u!1 &461408135
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 461408136}
-  m_Layer: 0
-  m_Name: NPC_1_Pos
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &461408136
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 461408135}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.1122208, y: 16.675976, z: -8.070145}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2091042044}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &659876108
 GameObject:
   m_ObjectHideFlags: 3
@@ -444,53 +383,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &745806135
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 745806137}
-  - component: {fileID: 745806138}
-  m_Layer: 0
-  m_Name: MapRoot
-  m_TagString: MapRoot
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &745806137
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 745806135}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 613.8586, y: 507.69907, z: -4.6284485}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &745806138
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 745806135}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16f74c3d760409349a954ed21275ee2c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  NpcTransformArray:
-  - {fileID: 461408136}
-  - {fileID: 1381273605}
 --- !u!1 &917570847
 GameObject:
   m_ObjectHideFlags: 0
@@ -638,26 +530,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 991794397}
-  - component: {fileID: 991794396}
   m_Layer: 0
   m_Name: OnlineAccount
-  m_TagString: Untagged
+  m_TagString: OnlineAccountObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &991794396
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 991794395}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc435e77a6254cb40b25d3b28de2d380, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &991794397
 Transform:
   m_ObjectHideFlags: 0
@@ -736,6 +615,7 @@ MonoBehaviour:
   m_Dithering: 0
   m_ClearDepth: 1
   m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
   m_UseScreenCoordOverride: 0
   m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
   m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
@@ -831,37 +711,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1381273604
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1381273605}
-  m_Layer: 0
-  m_Name: NPC_2_Pos
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1381273605
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1381273604}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 19.912222, y: 18.515976, z: 9.229858}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2091042044}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1730681063
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -939,39 +788,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cdf3bcd81a795a04e9607b3b181b472b, type: 3}
---- !u!1 &2091042043
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2091042044}
-  m_Layer: 0
-  m_Name: TransformPositions
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2091042044
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2091042043}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -24.402222, y: -17.145975, z: 46.850143}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 461408136}
-  - {fileID: 1381273605}
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4667988687686875
 GameObject:
   m_ObjectHideFlags: 0
@@ -3748,6 +3564,14 @@ MonoBehaviour:
       syncMode: 0
       syncPartner: {fileID: 0}
       clothMass: 0
+    wind:
+      influence: 1
+      frequency: 1
+      turbulence: 1
+      blend: 0.7
+      synchronization: 0.7
+      depthWeight: 0
+      movingWind: 0
   serializeData2:
     selectionData:
       positions:
@@ -4682,6 +4506,14 @@ MonoBehaviour:
       syncMode: 0
       syncPartner: {fileID: 0}
       clothMass: 0
+    wind:
+      influence: 1
+      frequency: 1
+      turbulence: 1
+      blend: 0.7
+      synchronization: 0.7
+      depthWeight: 0
+      movingWind: 0
   serializeData2:
     selectionData:
       positions:
@@ -5664,6 +5496,14 @@ MonoBehaviour:
       syncMode: 0
       syncPartner: {fileID: 0}
       clothMass: 0
+    wind:
+      influence: 1
+      frequency: 1
+      turbulence: 1
+      blend: 0.7
+      synchronization: 0.7
+      depthWeight: 0
+      movingWind: 0
   serializeData2:
     selectionData:
       positions:
@@ -6044,6 +5884,14 @@ MonoBehaviour:
       syncMode: 0
       syncPartner: {fileID: 0}
       clothMass: 0
+    wind:
+      influence: 1
+      frequency: 1
+      turbulence: 1
+      blend: 0.7
+      synchronization: 0.7
+      depthWeight: 0
+      movingWind: 0
   serializeData2:
     selectionData:
       positions:
@@ -6689,6 +6537,14 @@ MonoBehaviour:
       syncMode: 0
       syncPartner: {fileID: 0}
       clothMass: 0
+    wind:
+      influence: 1
+      frequency: 1
+      turbulence: 1
+      blend: 0.7
+      synchronization: 0.7
+      depthWeight: 0
+      movingWind: 0
   serializeData2:
     selectionData:
       positions:
@@ -11606,6 +11462,14 @@ MonoBehaviour:
       syncMode: 0
       syncPartner: {fileID: 0}
       clothMass: 0
+    wind:
+      influence: 1
+      frequency: 1
+      turbulence: 1
+      blend: 0.7
+      synchronization: 0.7
+      depthWeight: 0
+      movingWind: 0
   serializeData2:
     selectionData:
       positions:
@@ -14532,6 +14396,14 @@ MonoBehaviour:
       syncMode: 0
       syncPartner: {fileID: 0}
       clothMass: 0
+    wind:
+      influence: 1
+      frequency: 1
+      turbulence: 1
+      blend: 0.7
+      synchronization: 0.7
+      depthWeight: 0
+      movingWind: 0
   serializeData2:
     selectionData:
       positions:
@@ -16683,6 +16555,14 @@ MonoBehaviour:
       syncMode: 0
       syncPartner: {fileID: 0}
       clothMass: 0
+    wind:
+      influence: 1
+      frequency: 1
+      turbulence: 1
+      blend: 0.7
+      synchronization: 0.7
+      depthWeight: 0
+      movingWind: 0
   serializeData2:
     selectionData:
       positions:
@@ -19211,6 +19091,14 @@ MonoBehaviour:
       syncMode: 0
       syncPartner: {fileID: 0}
       clothMass: 0
+    wind:
+      influence: 1
+      frequency: 1
+      turbulence: 1
+      blend: 0.7
+      synchronization: 0.7
+      depthWeight: 0
+      movingWind: 0
   serializeData2:
     selectionData:
       positions:
@@ -21804,6 +21692,7 @@ MonoBehaviour:
   m_Dithering: 1
   m_ClearDepth: 1
   m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
   m_UseScreenCoordOverride: 0
   m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
   m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
@@ -22310,6 +22199,14 @@ MonoBehaviour:
       syncMode: 0
       syncPartner: {fileID: 0}
       clothMass: 0
+    wind:
+      influence: 1
+      frequency: 1
+      turbulence: 1
+      blend: 0.7
+      synchronization: 0.7
+      depthWeight: 0
+      movingWind: 0
   serializeData2:
     selectionData:
       positions:
@@ -23405,6 +23302,14 @@ MonoBehaviour:
       syncMode: 0
       syncPartner: {fileID: 0}
       clothMass: 0
+    wind:
+      influence: 1
+      frequency: 1
+      turbulence: 1
+      blend: 0.7
+      synchronization: 0.7
+      depthWeight: 0
+      movingWind: 0
   serializeData2:
     selectionData:
       positions:
@@ -26251,6 +26156,14 @@ MonoBehaviour:
       syncMode: 0
       syncPartner: {fileID: 0}
       clothMass: 0
+    wind:
+      influence: 1
+      frequency: 1
+      turbulence: 1
+      blend: 0.7
+      synchronization: 0.7
+      depthWeight: 0
+      movingWind: 0
   serializeData2:
     selectionData:
       positions:

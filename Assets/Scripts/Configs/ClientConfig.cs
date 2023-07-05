@@ -1,15 +1,11 @@
 using UnityEngine;
-using YooAsset;
 
 //Developer: SangonomiyaSakunovi
 
 public class ClientConfig : MonoBehaviour
 {
-    //Do not call these directly!!!
-    public SangoServerModeCode sangoServerMode = SangoServerModeCode.Offline;
-    public SangoApplicationCode sangoApplication = SangoApplicationCode.FOS_MMO;
-    public EPlayMode ePlayMode = EPlayMode.EditorSimulateMode;
-    public CDNServerModeCode cndServerMode = CDNServerModeCode.Local;
+    private SangoServerModeCode sangoServerMode = SangoServerModeCode.Offline;
+    private SangoApplicationCode sangoApplication = SangoApplicationCode.FOS_MMO;
 
     public static ClientConfig Instance;
 
@@ -47,7 +43,7 @@ public class ClientConfig : MonoBehaviour
                 break;
         }
         return port;
-    }   
+    }
 
     public enum SangoServerModeCode
     {
@@ -59,42 +55,6 @@ public class ClientConfig : MonoBehaviour
     {
         FOS_MMO,
         FOS_AR
-    }
-    #endregion
-
-    #region CDNServerConfig
-    public string GetCNDServerAddress()
-    {
-        string cndAddress = "";
-        switch (cndServerMode)
-        {
-            case CDNServerModeCode.Local:
-                switch (sangoApplication)
-                {
-                    case SangoApplicationCode.FOS_MMO:
-                        cndAddress = "http://127.0.0.1/CNDServer_MMO";
-                        break;
-                    case SangoApplicationCode.FOS_AR:
-                        cndAddress = "http://127.0.0.1/CDNServer_AR";
-                        break;
-                }
-                break;
-            case CDNServerModeCode.Remote:
-                //TODO
-                break;
-        }
-        return cndAddress;
-    }
-
-    public EPlayMode GetEPlayMode()
-    {
-        return ePlayMode;
-    }
-
-    public enum CDNServerModeCode
-    {
-        Local,
-        Remote
     }
     #endregion
 }
