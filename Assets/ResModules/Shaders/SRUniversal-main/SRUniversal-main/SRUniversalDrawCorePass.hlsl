@@ -89,18 +89,24 @@ float4 frag(Varyings input, bool isFrontFace : SV_IsFrontFace): SV_TARGET
 
     float3 viewDirectionWS = normalize(input.viewDirectionWS);
 
-    float3 baseColor = tex2D(_BaseMap, input.uv);
+    float3 baseColor = 0;
+    baseColor = tex2D(_BaseMap, input.uv);
     float4 areaMap = 0;
+    float4 areaColor = 0;
     #if _AREA_FACE
         areaMap = tex2D(_FaceColorMap, input.uv);
+        areaColor = areaMap * _FaceColorMapColor;
     #elif _AREA_HAIR
         areaMap = tex2D(_HairColorMap, input.uv);
+        areaColor = areaMap * _HairColorMapColor;
     #elif _AREA_UPPERBODY
         areaMap = tex2D(_UpperBodyColorMap, input.uv);
+        areaColor = areaMap * _UpperBodyColorMapColor;
     #elif _AREA_LOWERBODY
         areaMap = tex2D(_LowerBodyColorMap, input.uv);
+        areaColor = areaMap * _LowerBodyColorMapColor;
     #endif
-    baseColor = areaMap.rgb;
+    baseColor = areaColor.rgb;
     baseColor *= lerp(_BackFaceTintColor, _FrontFaceTintColor, isFrontFace);
 
     float4 lightMap = 0;
@@ -307,7 +313,17 @@ float4 frag(Varyings input, bool isFrontFace : SV_IsFrontFace): SV_TARGET
 
     float alpha = _Alpha;
 
-    float4 color = float4(albedo, alpha);
-    return color;
+    #if _DRAW_OVERLAY_ON
+    {
+        float3 headForward = normalize(_HeadForward);
+        alpha = lerp(1, alpha, saturate(dot(headForward, viewDirectionWS)));
+    }
+    #endif
+
+    float4 FinalColor = float4(albedo, alpha);
+    clip(FinalColor.a - _AlphaClip);
+    FinalColor.rgb = MixFog(FinalColor.rgb, input.positionWSAndFogFactor.w);
+
+    return FinalColor;
 }
 

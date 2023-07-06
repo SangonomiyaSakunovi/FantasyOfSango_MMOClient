@@ -270,8 +270,8 @@ Material:
     - _EnvironmentReflections: 1
     - _FaceDarkIntensity: 1
     - _FaceShadowMapPow: 0.2
-    - _FaceShadowOffset: 0
-    - _FaceShadowTransitionSoftness: 0.05
+    - _FaceShadowOffset: -0.01
+    - _FaceShadowTransitionSoftness: 0
     - _FixDarkShadow: 1
     - _FixLightY: 0
     - _GlossMapScale: 1
@@ -288,7 +288,7 @@ Material:
     - _LightIntensityClamp: 1
     - _LightThreshold: 0.5
     - _METALNESS: 0
-    - _MainLightColorUsage: 1
+    - _MainLightColorUsage: 0.1
     - _MetalSpecularGloss: 0.5
     - _MetalSpecularIntensity: 1
     - _Metallic: 0
@@ -335,10 +335,10 @@ Material:
     - _ShaderEnum: 0
     - _ShadowArea: 0.5
     - _ShadowRampLerp: 0.5
-    - _ShadowRampOffset: 0.75
+    - _ShadowRampOffset: 0.5
     - _ShadowSmooth: 1
     - _ShadowThresholdCenter: 0
-    - _ShadowThresholdSoftness: 0.416
+    - _ShadowThresholdSoftness: 0.5
     - _Shininess: 1
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
@@ -347,7 +347,7 @@ Material:
     - _SpecularAA: 0
     - _SpecularAAThreshold: 1
     - _SpecularBrightness: 10
-    - _SpecularExpon: 0.1
+    - _SpecularExpon: 5
     - _SpecularHighlights: 1
     - _SpecularKsMetal: 1
     - _SpecularKsNonMrtal: 0.04
@@ -417,10 +417,13 @@ Material:
     - _EmissionColors: {r: 0, g: 0, b: 0, a: 0}
     - _EmissionMapChannelMask: {r: 1, g: 1, b: 1, a: 0}
     - _EmissionTintColor: {r: 1, g: 1, b: 1, a: 1}
+    - _FaceColorMapColor: {r: 0.8705506, g: 0.8705506, b: 0.8705506, a: 1}
     - _FrontFaceTintColor: {r: 1, g: 1, b: 1, a: 1}
+    - _HairColorMapColor: {r: 0.8705506, g: 0.8705506, b: 0.8705506, a: 1}
     - _HeadForward: {r: 0, g: 0, b: 1, a: 1}
     - _HeadRight: {r: 1, g: 0, b: 0, a: 1}
     - _HighColor: {r: 0.87058824, g: 0.87058824, b: 0.87058824, a: 1}
+    - _LowerBodyColorMapColor: {r: 0.8705506, g: 0.8705506, b: 0.8705506, a: 1}
     - _MainColor: {r: 1, g: 1, b: 1, a: 1}
     - _OtherRimColor: {r: 1, g: 1, b: 1, a: 1}
     - _OutlineColor: {r: 1, g: 1, b: 1, a: 1}
@@ -439,6 +442,7 @@ Material:
     - _StockingsDarkColor: {r: 1.8, g: 1.48299, b: 0.856821, a: 1}
     - _StockingsLightColor: {r: 1.8, g: 1.48299, b: 0.856821, a: 1}
     - _StockingsTransitionColor: {r: 0.36038098, g: 0.24298596, b: 0.35813096, a: 1}
+    - _UpperBodyColorMapColor: {r: 0.8705506, g: 0.8705506, b: 0.8705506, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &1156151020436532931
 MonoBehaviour:

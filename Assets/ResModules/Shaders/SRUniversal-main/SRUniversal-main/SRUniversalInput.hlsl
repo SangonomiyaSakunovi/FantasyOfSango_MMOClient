@@ -12,12 +12,16 @@ float4 _BaseMap_ST;
 
 #if _AREA_FACE
     sampler2D _FaceColorMap;
+    float4 _FaceColorMapColor;
 #elif _AREA_HAIR
     sampler2D _HairColorMap;
+    float4 _HairColorMapColor;
 #elif _AREA_UPPERBODY
     sampler2D _UpperBodyColorMap;
+    float4 _UpperBodyColorMapColor;
 #elif _AREA_LOWERBODY
     sampler2D _LowerBodyColorMap;
+    float4 _LowerBodyColorMapColor;
 #endif
 
 float3 _FrontFaceTintColor;

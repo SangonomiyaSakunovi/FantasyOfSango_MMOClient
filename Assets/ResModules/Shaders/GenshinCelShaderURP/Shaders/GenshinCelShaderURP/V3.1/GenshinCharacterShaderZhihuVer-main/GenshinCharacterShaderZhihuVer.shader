@@ -1,10 +1,10 @@
-﻿Shader "GenshinCelShaderURP/V3.1Release"
+﻿﻿Shader "GenshinCelShaderURP/V3.1Release"
 {      
     Properties
     {
         [Header(Shader Setting)]
         [Space(5)]
-        [KeywordEnum(Base,Hair,Face)] _ShaderEnum("Shader类型", int) = 0
+        [KeywordEnum(Base,Hair,Face)] _ShaderEnum("Shader类型",int) = 0
         [Toggle] _IsNight ("In Day", int) = 0
         [Space(5)]
 
@@ -114,37 +114,16 @@
         [Header(Outline Setting)]
         [Space(5)]
         [Toggle] _EnableOutline ("Enable Outline", float) = 1
-        _OutlineWidth("_OutlineWidth (World Space)", Range(0, 4)) = 1
-        _OutlineColor("_OutlineColor", Color) = (0.5, 0.5, 0.5, 1)
-        _OutlineZOffset("_OutlineZOffset (View Space)", Range(0, 1)) = 0.0001
+        _OutlineWidth("_OutlineWidth (World Space)", Range(0,4)) = 1
+        _OutlineColor("_OutlineColor", Color) = (0.5,0.5,0.5,1)
+        _OutlineZOffset("_OutlineZOffset (View Space)", Range(0,1)) = 0.0001
         [NoScaleOffset]_OutlineZOffsetMaskTex("_OutlineZOffsetMask (black is apply ZOffset)", 2D) = "black" {}
-        _OutlineZOffsetMaskRemapStart("_OutlineZOffsetMaskRemapStart", Range(0, 1)) = 0
-        _OutlineZOffsetMaskRemapEnd("_OutlineZOffsetMaskRemapEnd", Range(0, 1)) = 1
+        _OutlineZOffsetMaskRemapStart("_OutlineZOffsetMaskRemapStart", Range(0,1)) = 0
+        _OutlineZOffsetMaskRemapEnd("_OutlineZOffsetMaskRemapEnd", Range(0,1)) = 1
 
         [Header(Alpha)]
         [Toggle(ENABLE_ALPHA_CLIPPING)]_EnableAlphaClipping ("_EnableAlphaClipping", Float) = 0
         _ClipScale ("_ClipScale (Alpha Cutoff)", Range(0.0, 1.0)) = 0.5
-
-        [Header(Surface Options)]
-        [Enum(UnityEngine.Rendering.CullMode)] _Cull ("Cull (Default back)", Float) = 2
-        [Enum(UnityEngine.Rendering.BlendMode)] _SrcBlendMode ("Cull (Default back)", Float) = 1
-        [Enum(UnityEngine.Rendering.BlendMode)] _DstBlendMode ("Cull (Default back)", Float) = 0
-        [Enum(UnityEngine.Rendering.BlendOp)] _BlendOp ("Cull (Default back)", Float) = 0
-        [Enum(Off,0, On,1)] _ZWrite("ZWrite (Default On)",Float) = 1
-        _StencilRef ("Stencil reference (Default 0)",Range(0,255)) = 0
-        [Enum(UnityEngine.Rendering.CompareFunction)] _StencilComp("Stencil comparison (Default disabled)",Int) = 0
-        [Enum(UnityEngine.Rendering.StencilOp)] _StencilPassOp("Stencil pass comparison (Default keep)",Int) = 0
-        [Enum(UnityEngine.Rendering.StencilOp)] _StencilFailOp("Stencil fail comparison (Default keep)",Int) = 0
-        [Enum(UnityEngine.Rendering.StencilOp)] _StencilZFailOp("Stencil z fail comparison (Default keep)",Int) = 0
-
-        [Header(Draw Overlay)]
-        [Toggle(_DRAW_OVERLAY_ON)] _UseDrawOverlay("Use draw overlay (Default NO)",float) = 0
-        [Enum(UnityEngine.Rendering.BlendMode)] _ScrBlendModeOverlay("Overlay pass scr blend mode (Default One)",Float) = 1
-        [Enum(UnityEngine.Rendering.BlendMode)] _DstBlendModeOverlay("Overlay pass dst blend mode (Default Zero)", Float) = 0
-        [Enum(UnityEngine.Rendering.BlendOp)] _BlendOpOverlay("Overlay pass blend operation (Default Add)", Float) = 0
-        _StencilRefOverlay ("Overlay pass stencil reference (Default 0)", Range(0,255)) = 0
-        [Enum(UnityEngine.Rendering.CompareFunction)] _StencilCompOverlay("Overlay pass stencil comparison (Default disabled)",Int) = 0
-
     }
 
 
@@ -157,7 +136,6 @@
 
         #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
         #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
-
         #include "NiloInvLerpRemap.hlsl"
         #include "NiloOutlineUtil.hlsl"
         #include "NiloZOffset.hlsl"
@@ -166,7 +144,7 @@
 
         int _IsNight;
 
-        float3 _LightDirections;
+        float3 _LightDirection;
 
         TEXTURE2D(_MainTex);        SAMPLER(sampler_MainTex);
 
@@ -355,7 +333,7 @@
 
             // see GetShadowPositionHClip() in URP/Shaders/ShadowCasterPass.hlsl
             // https://github.com/Unity-Technologies/Graphics/blob/master/com.unity.render-pipelines.universal/Shaders/ShadowCasterPass.hlsl
-            float4 positionCS = TransformWorldToHClip(ApplyShadowBias(positionWS, output.normalWS, _LightDirections));
+            float4 positionCS = TransformWorldToHClip(ApplyShadowBias(positionWS, output.normalWS, _LightDirection));
 
 
             //--------------------------------------------------------------------------------------    
@@ -407,17 +385,10 @@
 
             Tags { "LightMode" = "UniversalForward" }
 
-            Cull[_Cull]
-            Stencil{
-                Ref [_StencilRef]
-                Comp [_StencilComp]
-                Pass [_StencilPassOp]
-                Fail [_StencilFailOp]
-                ZFail [_StencilZFailOp]
-            }
-            Blend [_SrcBlendMode] [_DstBlendMode]
-            BlendOp [_BlendOp]
-            ZWrite [_ZWrite]
+            Cull Back
+            ZTest LEqual
+            ZWrite On
+            Blend One Zero
 
             HLSLPROGRAM
 
@@ -731,98 +702,116 @@
 
         }
 
+        //this Pass copy from https://github.com/ColinLeung-NiloCat/UnityURPToonLitShaderExample
         Pass
         {
             Name "ShadowCaster"
-            Tags{"LightMode" = "ShadowCaster"}
-
-            ZWrite [_ZWrite]
-            ZTest LEqual
-            ColorMask 0
-            Cull[_Cull]
-
-            HLSLPROGRAM
-            #pragma exclude_renderers gles gles3 glcore
-            #pragma target 4.5
-
-            // Material keywords
-            #pragma shader_feature_local_fragment _ALPHATEST_ON
-            #pragma shader_feature_local_fragment _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
-
-            // GPU Instancing
-            #pragma multi_compile_instancing
-            #pragma multi_compile _ DOTS_INSTANCING_ON
-
-            // This is used during shadow map generation to differentiate between directional and punctual light shadows, as they use different formulas to apply Normal Bias
-            #pragma multi_compile_vertex _ _CASTING_PUNCTUAL_LIGHT_SHADOW
+            Tags { "LightMode" = "ShadowCaster" }
             
-            #pragma vertex ShadowPassVertex // 和後面的include 有關係
-            #pragma fragment ShadowPassFragment
+            //we don't care about color, we just write to depth
+            ColorMask 0
+            
+            HLSLPROGRAM
+            
+            #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
+            #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
+            
+            #pragma vertex ShadowCasterPassVertex
+            #pragma fragment ShadowCasterPassFragment
 
-            #include "Packages/com.unity.render-pipelines.universal/Shaders/LitInput.hlsl"
-            #include "Packages/com.unity.render-pipelines.universal/Shaders/ShadowCasterPass.hlsl"
+            v2f ShadowCasterPassVertex(a2v input)
+            {
+                
+                v2f output = (v2f)0;
+                
+                // VertexPositionInputs contains position in multiple spaces (world, view, homogeneous clip space)
+                // Our compiler will strip all unused references (say you don't use view space).
+                // Therefore there is more flexibility at no additional cost with this struct.
+                VertexPositionInputs vertexInput = GetVertexPositionInputs(input.positionOS);
+                
+                // Similar to VertexPositionInputs, VertexNormalInputs will contain normal, tangent and bitangent
+                // in world space. If not used it will be stripped.
+                VertexNormalInputs vertexNormalInput = GetVertexNormalInputs(input.normalOS, input.tangentOS);
+                
+                // Computes fog factor per-vertex.
+                float fogFactor = ComputeFogFactor(vertexInput.positionCS.z);
+                
+                // TRANSFORM_TEX is the same as the old shader library.
+                output.uv.xy = TRANSFORM_TEX(input.texcoord, _MainTex);
+                
+                // packing posWS.xyz & fog into a vector4
+                output.positionWSAndFogFactor = float4(vertexInput.positionWS, fogFactor);
+                output.normalWS = vertexNormalInput.normalWS;
+                
+                #ifdef _MAIN_LIGHT_SHADOWS
+                    // shadow coord for the light is computed in vertex.
+                    // After URP 7.21, URP will always resolve shadows in light space, no more screen space resolve.
+                    // In this case shadowCoord will be the vertex position in light space.
+                    output.shadowCoord = GetShadowCoord(vertexInput);
+                #endif
+                
+                // Here comes the flexibility of the input structs.
+                // We just use the homogeneous clip position from the vertex input
+                output.positionCS = vertexInput.positionCS;
+                
+                // ShadowCaster pass needs special process to clipPos, else shadow artifact will appear
+                //--------------------------------------------------------------------------------------
+                
+                //see GetShadowPositionHClip() in URP/Shaders/ShadowCasterPass.hlsl
+                float3 positionWS = vertexInput.positionWS;
+                float3 normalWS = vertexNormalInput.normalWS;
+                
+                
+                Light light = GetMainLight();
+                float4 positionCS = TransformWorldToHClip(ApplyShadowBias(positionWS, normalWS, light.direction));
+                
+                #if UNITY_REVERSED_Z
+                    positionCS.z = min(positionCS.z, positionCS.w * UNITY_NEAR_CLIP_VALUE);
+                #else
+                    positionCS.z = max(positionCS.z, positionCS.w * UNITY_NEAR_CLIP_VALUE);
+                #endif
+                output.positionCS = positionCS;
+                
+                //--------------------------------------------------------------------------------------
+                
+                return output;
+            }
+            
+            half4 ShadowCasterPassFragment(v2f input): SV_TARGET
+            {
+                return 0;
+            }
+            
             ENDHLSL
+            
         }
-
         Pass
         {
             Name "DepthOnly"
-            Tags{"LightMode" = "DepthOnly"}
+            Tags { "LightMode" = "DepthOnly" }
 
-            ZWrite [_ZWrite]
-            ColorMask 0
-            Cull[_Cull]
+            // more explict render state to avoid confusion
+            ZWrite On // the only goal of this pass is to write depth!
+            ZTest LEqual // early exit at Early-Z stage if possible            
+            ColorMask 0 // we don't care about color, we just want to write depth, ColorMask 0 will save some write bandwidth
+            Cull Back // support Cull[_Cull] requires "flip vertex normal" using VFACE in fragment shader, which is maybe beyond the scope of a simple tutorial shader
 
             HLSLPROGRAM
-            #pragma exclude_renderers gles gles3 glcore
-            #pragma target 4.5
 
-            #pragma vertex DepthOnlyVertex // 和後面的include 有關係
-            #pragma fragment DepthOnlyFragment
-
-            // Material keywords
-            #pragma shader_feature_local_fragment _ALPHATEST_ON
-            #pragma shader_feature_local_fragment _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
-
-            // GPU Instancing
-            #pragma multi_compile_instancing
-            #pragma multi_compile _ DOTS_INSTANCING_ON
-
-            #include "Packages/com.unity.render-pipelines.universal/Shaders/LitInput.hlsl"
-            #include "Packages/com.unity.render-pipelines.universal/Shaders/DepthOnlyPass.hlsl"
+            #pragma vertex OutlinePassVertex
+            #pragma fragment FragmentAlphaClip
+            
             ENDHLSL
-        }
+
+        }         
+
 
         Pass
         {
             Name "DepthNormals"
             Tags{"LightMode" = "DepthNormals"}
 
-            ZWrite [_ZWrite]
-            Cull[_Cull]
-
-            HLSLPROGRAM
-            #pragma exclude_renderers gles gles3 glcore
-            #pragma target 4.5
-
-            #pragma vertex DepthNormalsVertex // 和後面的include 有關係
-            #pragma fragment DepthNormalsFragment
-
-            // Material keywords
-            #pragma shader_feature_local _NORMALMAP 
-            #pragma shader_feature_local _PARALLAXMAP
-            #pragma shader_feature_local _ _DETAIL_MULX2 _DETAIL_SCALED
-            #pragma shader_feature_local_fragment _ALPHATEST_ON
-            #pragma shader_feature_local_fragment _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
-
-            // GPU Instancing
-            #pragma multi_compile_instancing
-            #pragma multi_compile _ DOTS_INSTANCING_ON
-
-            #include "Packages/com.unity.render-pipelines.universal/Shaders/LitInput.hlsl"
-            #include "Packages/com.unity.render-pipelines.universal/Shaders/LitDepthNormalsPass.hlsl"
-            ENDHLSL
+            //...
         }
-
     }
 }

@@ -2,16 +2,20 @@ Shader "Custom/SRUniversal"
 {
     Properties
     {
-        [KeywordEnum (None, Face, Hair, UpperBody, LowerBody)] _Area("Material area", float) =0
+        [KeywordEnum (None, Face, Hair, UpperBody, LowerBody)] _Area("Material area", float) = 0
         [HideInInspector] _HeadForward("", Vector) = (0,0,1)
         [HideInInspector] _HeadRight("", Vector) = (1,0,0)
 
         [Header (Base Color)]
         [HideinInspector] _BaseMap ("", 2D) = "white" {}
         [NoScaleOffset] _FaceColorMap ("Face color map (Default white)", 2D) = "white" {}
+        [HDR] _FaceColorMapColor("Face color map color (Default white)",Color) = (1,1,1)
         [NoScaleOffset] _HairColorMap ("Hair color map (Default white)", 2D) = "white" {}
+        [HDR] _HairColorMapColor("Hair color map color (Default white)",Color) = (1,1,1)
         [NoScaleOffset] _UpperBodyColorMap ("Upper body color map (Default white)", 2D) = "white" {}
+        [HDR] _UpperBodyColorMapColor("Upper body color map color (Default white)",Color) = (1,1,1)
         [NoScaleOffset] _LowerBodyColorMap ("Lower body color map (Default white)", 2D) = "white" {}
+        [HDR] _LowerBodyColorMapColor("Lower body color map color (Default white)",Color) = (1,1,1)
         _FrontFaceTintColor("Front face tint color (Default white)",Color) = (1,1,1)
         _BackFaceTintColor("Back face tint color (Default white)",Color) = (1,1,1)
         _Alpha("Alpha (Default 1)", Range(0,1)) = 1
@@ -252,8 +256,120 @@ Shader "Custom/SRUniversal"
             #pragma vertex vert
             #pragma fragment frag
 
+            #pragma multi_compile_fog
+
             #include "SRUniversalInput.hlsl"
             #include "SRUniversalDrawCorePass.hlsl"
+            ENDHLSL
+        }
+
+        Pass
+        {
+            Name "DrawOverlay"
+            Tags
+            {
+                "RenderPipeline" = "UniversalPipeline"
+                "RenderType" = "Opaque"
+                "LightMode" = "UniversalForward"
+            }
+            Cull[_Cull]
+            Stencil{
+                Ref [_StencilRefOverlay]
+                Comp [_StencilCompOverlay]
+            }
+            Blend [_ScrBlendModeOverlay] [_DstBlendModeOverlay]
+            BlendOp [_BlendOpOverlay]
+            ZWrite [_ZWrite]
+
+            HLSLPROGRAM
+            #pragma multi_compile _MAIN_LIGHT_SHADOWS
+            #pragma multi_compile _MAIN_LIGHT_SHADOWS_CASCADE
+            #pragma multi_compile _SHADOWS_SOFT
+
+            #pragma vertex vert
+            #pragma fragment frag
+
+            #pragma multi_compile_fog
+
+            #if _DRAW_OVERLAY_ON
+                #include "SRUniversalInput.hlsl"
+                #include "SRUniversalDrawCorePass.hlsl"
+            #else
+                struct Attributes {};
+                struct Varyings
+                {
+                    float4 positionCS : SV_POSITION;
+                };
+                Varyings vert(Attributes input)
+                {
+                    return (Varyings)0;
+                }
+                float4 frag(Varyings input) : SV_TARGET
+                {
+                    return 0;
+                }
+            #endif
+
+            ENDHLSL
+        }
+        
+        Pass
+        {
+            Name "DepthOnly"
+            Tags{"LightMode" = "DepthOnly"}
+
+            ZWrite [_ZWrite]
+            ColorMask 0
+            Cull[_Cull]
+
+            HLSLPROGRAM
+            #pragma exclude_renderers gles gles3 glcore
+            #pragma target 4.5
+
+            #pragma vertex DepthOnlyVertex // 和後面的include 有關係
+            #pragma fragment DepthOnlyFragment
+
+            // Material keywords
+            #pragma shader_feature_local_fragment _ALPHATEST_ON
+            #pragma shader_feature_local_fragment _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
+
+            // GPU Instancing
+            #pragma multi_compile_instancing
+            #pragma multi_compile _ DOTS_INSTANCING_ON
+
+            #include "Packages/com.unity.render-pipelines.universal/Shaders/LitInput.hlsl"
+            #include "Packages/com.unity.render-pipelines.universal/Shaders/DepthOnlyPass.hlsl"
+            ENDHLSL
+        }
+
+        Pass
+        {
+            Name "DepthNormals"
+            Tags{"LightMode" = "DepthNormals"}
+
+            ZWrite [_ZWrite]
+            Cull[_Cull]
+
+            HLSLPROGRAM
+            #pragma exclude_renderers gles gles3 glcore
+            #pragma target 4.5
+
+            #pragma vertex DepthNormalsVertex // 和後面的include 有關係
+            #pragma fragment DepthNormalsFragment
+
+            // Material keywords
+            #pragma shader_feature_local _NORMALMAP 
+            #pragma shader_feature_local _PARALLAXMAP
+            #pragma shader_feature_local _ _DETAIL_MULX2 _DETAIL_SCALED
+            #pragma shader_feature_local_fragment _ALPHATEST_ON
+            #pragma shader_feature_local_fragment _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
+
+            // GPU Instancing
+            #pragma multi_compile_instancing
+            #pragma multi_compile _ DOTS_INSTANCING_ON
+
+            #include "Packages/com.unity.render-pipelines.universal/Shaders/LitInput.hlsl"
+            #include "Packages/com.unity.render-pipelines.universal/Shaders/LitDepthNormalsPass.hlsl"
             ENDHLSL
         }
 

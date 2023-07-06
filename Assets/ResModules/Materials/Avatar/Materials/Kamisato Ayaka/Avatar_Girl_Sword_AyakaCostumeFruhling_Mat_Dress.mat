@@ -16,15 +16,20 @@ Material:
   - ENABLE_BLOOM_MASK
   - ENABLE_METAL_SPECULAR
   - ENABLE_RAMP_SHADOW
+  - _NORMALMAP
   - _SHADERENUM_BASE
   m_InvalidKeywords:
   - _ENABLELAMBERT_ON
   - _ENABLEOUTLINE_ON
   - _ENABLERIMS_ON
   - _ENABLESPECULAR_ON
+  - _ENABLE_ALPHA_CLIPPING
+  - _ENABLE_BLOOM_MASK
+  - _ENABLE_METAL_SPECULAR
+  - _ENABLE_RAMP_SHADOW
   - _FIXDARKSHADOW_ON
   - _ISNIGHT_ON
-  - _NORMALMAP
+  - _RIM_LIGHTING_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -118,6 +123,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _AdditionalLightIgnoreCelShade: 0.9
+    - _Alpha: 1
     - _AlphaClip: 0
     - _AlphaToMask: 0
     - _Blend: 0
@@ -203,6 +209,11 @@ Material:
     - _ReceiveShadowMappingAmount: 0.75
     - _ReceiveShadowMappingPosOffset: 0
     - _ReceiveShadows: 1
+    - _RimLightBrightness: 1
+    - _RimLightFadeout: 1
+    - _RimLightMixAlbedo: 0.9
+    - _RimLightThreshold: 0.05
+    - _RimLightWidth: 1
     - _RimOffsets: 0.1
     - _RimPow: 1
     - _RimSmooth: 0.01
@@ -234,6 +245,7 @@ Material:
     - _UseDrawOverlay: 0
     - _UseEmission: 0
     - _UseOcclusion: 0
+    - _UseRimLight: 1
     - _WorkflowMode: 1
     - _WorldLightInfluence: 0
     - _ZWrite: 1
@@ -252,6 +264,7 @@ Material:
     - _OutlineColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _RimColor: {r: 1, g: 1, b: 1, a: 1}
     - _RimColors: {r: 1, g: 1, b: 1, a: 1}
+    - _RimLightTintColor: {r: 1, g: 1, b: 1, a: 1}
     - _ShadowColor: {r: 1, g: 1, b: 1, a: 1}
     - _ShadowMapColor: {r: 1, g: 0.825, b: 0.78, a: 1}
     - _ShadowMultColor: {r: 1, g: 1, b: 1, a: 1}
