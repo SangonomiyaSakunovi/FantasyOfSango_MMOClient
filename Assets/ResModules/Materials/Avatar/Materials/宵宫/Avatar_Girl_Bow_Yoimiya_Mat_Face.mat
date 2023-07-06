@@ -34,9 +34,13 @@ Material:
   - _ENABLELAMBERT_ON
   - _ENABLEOUTLINE_ON
   - _ENABLERIMS_ON
+  - _ENABLE_FACE_SHADOW_MAP
+  - _ENABLE_METAL_SPECULAR
+  - _ENABLE_RAMP_SHADOW
   - _FIXDARKSHADOW_ON
   - _ISNIGHT_ON
   - _IsFace
+  - _RIM_LIGHTING_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -137,6 +141,8 @@ Material:
     - _AlphaToMask: 0
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
+    - _BlendOp: 0
+    - _BlendOpOverlay: 0
     - _BlinnPhongSpecularGloss: 5
     - _BlinnPhongSpecularIntensity: 1
     - _BloomFactor: 1
@@ -159,6 +165,8 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _DstBlendAlpha: 0
+    - _DstBlendMode: 0
+    - _DstBlendModeOverlay: 0
     - _Emission: 1
     - _EmissionBloomFactor: 1
     - _EnableAlphaClipping: 0
@@ -213,6 +221,11 @@ Material:
     - _ReceiveShadowMappingAmount: 0.75
     - _ReceiveShadowMappingPosOffset: 0
     - _ReceiveShadows: 1
+    - _RimLightBrightness: 1
+    - _RimLightFadeout: 1
+    - _RimLightMixAlbedo: 0.9
+    - _RimLightThreshold: 0.05
+    - _RimLightWidth: 1
     - _RimOffset: 0.1
     - _RimOffsets: 0.1
     - _RimPow: 1
@@ -221,6 +234,7 @@ Material:
     - _RimStrength: 0
     - _RimThreshold: 1
     - _RimThresholds: 1
+    - _ScrBlendModeOverlay: 1
     - _ShaderEnum: 0
     - _ShadowArea: 0.5
     - _ShadowRampLerp: 1
@@ -232,11 +246,21 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
+    - _SrcBlendMode: 1
+    - _StencilComp: 0
+    - _StencilCompOverlay: 0
+    - _StencilFailOp: 0
+    - _StencilPassOp: 0
+    - _StencilRef: 0
+    - _StencilRefOverlay: 0
+    - _StencilZFailOp: 0
     - _StepSpecularGloss: 0.5
     - _StepSpecularIntensity: 0.5
     - _Surface: 0
     - _UVSec: 0
     - _UseColor: 0
+    - _UseDrawOverlay: 0
+    - _UseRimLight: 1
     - _WorkflowMode: 1
     - _WorldLightInfluence: 0
     - _ZWrite: 1
@@ -261,6 +285,7 @@ Material:
     - _RampArea5: {r: -50, g: 3, b: -50, a: 0}
     - _RimColor: {r: 1, g: 1, b: 1, a: 1}
     - _RimColors: {r: 1, g: 1, b: 1, a: 1}
+    - _RimLightTintColor: {r: 1, g: 1, b: 1, a: 1}
     - _ShadowColor: {r: 1, g: 1, b: 1, a: 1}
     - _ShadowMultColor: {r: 1, g: 1, b: 1, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
