@@ -7,17 +7,17 @@ using UnityEngine;
 
 public class ClientPeer : IClientPeer
 {
-    protected override void OnConnect()
+    protected override void OnConnected()
     {
         Debug.Log("Connect to Server.");
     }
 
-    protected override void OnDisconnect()
+    protected override void OnDisconnected()
     {
         Debug.Log("DisConnect.");
     }
 
-    protected override void OnRecieveMessage(byte[] byteMessages)
+    protected override void OnReceivedMessage(byte[] byteMessages)
     {
         SangoNetMessage sangoNetMessage = ProtobufTool.DeProtoBytes<SangoNetMessage>(byteMessages);
         ProxyService.Instance.AddNetProxy(sangoNetMessage);

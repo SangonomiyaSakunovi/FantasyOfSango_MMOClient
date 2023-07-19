@@ -29,7 +29,7 @@ public class NetService : BaseService
     private void InitClientInstance(string ipAddress, int port)
     {
         ClientInstance = new IOCPPeer<ClientPeer>();
-        ClientInstance.InitClient(ipAddress, port);
+        ClientInstance.StartAsClient(ipAddress, port);
     }
 
     private void InitIOCPLog()
@@ -37,8 +37,6 @@ public class NetService : BaseService
         IOCPLog.LogInfoCallBack = Debug.Log;
         IOCPLog.LogWarningCallBack = Debug.LogWarning;
         IOCPLog.LogErrorCallBack = Debug.LogError;
-        IOCPLog.LogDoneCallBack = Debug.Log;
-        IOCPLog.LogProcessingCallBack = Debug.Log;
     }
 
     public void CloseClientInstance()
