@@ -12,7 +12,7 @@
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "8e178c0e372a396e1bf1687e450d85693a95baf4"
+      "hash": "8a95fd57f592ae3c45347a00da1a6db186f0dd66"
     },
     "com.tuyoogame.yooasset": {
       "version": "1.4.17",
@@ -58,13 +58,6 @@
       "dependencies": {
         "com.unity.test-framework": "1.1.31"
       },
-      "url": "https://packages.unity.cn"
-    },
-    "com.unity.collab-proxy": {
-      "version": "2.0.4",
-      "depth": 0,
-      "source": "registry",
-      "dependencies": {},
       "url": "https://packages.unity.cn"
     },
     "com.unity.collections": {
@@ -117,27 +110,6 @@
         "com.unity.testtools.codecoverage": "1.2.3"
       }
     },
-    "com.unity.feature.worldbuilding": {
-      "version": "1.0.1",
-      "depth": 0,
-      "source": "builtin",
-      "dependencies": {
-        "com.unity.probuilder": "5.0.7",
-        "com.unity.polybrush": "1.1.4",
-        "com.unity.formats.fbx": "4.2.1",
-        "com.unity.terrain-tools": "5.0.1"
-      }
-    },
-    "com.unity.film-internal-utilities": {
-      "version": "0.17.0-preview",
-      "depth": 1,
-      "source": "registry",
-      "dependencies": {
-        "com.unity.modules.uielements": "1.0.0",
-        "com.unity.timeline": "1.2.18"
-      },
-      "url": "https://packages.unity.cn"
-    },
     "com.unity.formats.fbx": {
       "version": "4.2.1",
       "depth": 1,
@@ -173,6 +145,15 @@
       "dependencies": {},
       "url": "https://packages.unity.cn"
     },
+    "com.unity.inputsystem": {
+      "version": "1.5.1",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.modules.uielements": "1.0.0"
+      },
+      "url": "https://packages.unity.cn"
+    },
     "com.unity.jobs": {
       "version": "0.70.0-preview.7",
       "depth": 0,
@@ -189,33 +170,6 @@
       "dependencies": {},
       "url": "https://packages.unity.cn"
     },
-    "com.unity.memoryprofiler": {
-      "version": "1.0.0",
-      "depth": 0,
-      "source": "registry",
-      "dependencies": {
-        "com.unity.editorcoroutines": "1.0.0"
-      },
-      "url": "https://packages.unity.cn"
-    },
-    "com.unity.meshsync": {
-      "version": "0.17.2-preview",
-      "depth": 0,
-      "source": "registry",
-      "dependencies": {
-        "com.unity.film-internal-utilities": "0.17.0-preview",
-        "com.unity.editorcoroutines": "1.0.0",
-        "com.unity.modules.audio": "1.0.0",
-        "com.unity.modules.animation": "1.0.0",
-        "com.unity.modules.cloth": "1.0.0",
-        "com.unity.modules.director": "1.0.0",
-        "com.unity.modules.particlesystem": "1.0.0",
-        "com.unity.modules.screencapture": "1.0.0",
-        "com.unity.sharp-zip-lib": "1.3.2-preview",
-        "com.unity.timeline": "1.2.18"
-      },
-      "url": "https://packages.unity.cn"
-    },
     "com.unity.nuget.mono-cecil": {
       "version": "1.11.4",
       "depth": 2,
@@ -228,35 +182,6 @@
       "depth": 1,
       "source": "registry",
       "dependencies": {},
-      "url": "https://packages.unity.cn"
-    },
-    "com.unity.polybrush": {
-      "version": "1.1.4",
-      "depth": 1,
-      "source": "registry",
-      "dependencies": {
-        "com.unity.settings-manager": "2.0.1"
-      },
-      "url": "https://packages.unity.cn"
-    },
-    "com.unity.probuilder": {
-      "version": "5.0.7",
-      "depth": 1,
-      "source": "registry",
-      "dependencies": {
-        "com.unity.settings-manager": "1.0.3",
-        "com.unity.modules.physics": "1.0.0",
-        "com.unity.modules.imgui": "1.0.0"
-      },
-      "url": "https://packages.unity.cn"
-    },
-    "com.unity.recorder": {
-      "version": "4.0.1",
-      "depth": 0,
-      "source": "registry",
-      "dependencies": {
-        "com.unity.timeline": "1.0.0"
-      },
       "url": "https://packages.unity.cn"
     },
     "com.unity.render-pipelines.core": {
@@ -311,13 +236,6 @@
         "com.unity.searcher": "4.9.2"
       }
     },
-    "com.unity.sharp-zip-lib": {
-      "version": "1.3.2-preview",
-      "depth": 1,
-      "source": "registry",
-      "dependencies": {},
-      "url": "https://packages.unity.cn"
-    },
     "com.unity.sysroot": {
       "version": "2.0.6",
       "depth": 1,
@@ -335,8 +253,8 @@
       "url": "https://packages.unity.cn"
     },
     "com.unity.terrain-tools": {
-      "version": "5.0.1",
-      "depth": 1,
+      "version": "5.0.3",
+      "depth": 0,
       "source": "registry",
       "dependencies": {
         "com.unity.modules.terrain": "1.0.0",
@@ -525,13 +443,13 @@
     },
     "com.unity.modules.terrain": {
       "version": "1.0.0",
-      "depth": 0,
+      "depth": 1,
       "source": "builtin",
       "dependencies": {}
     },
     "com.unity.modules.terrainphysics": {
       "version": "1.0.0",
-      "depth": 0,
+      "depth": 1,
       "source": "builtin",
       "dependencies": {
         "com.unity.modules.physics": "1.0.0",
