@@ -39,8 +39,7 @@ CSharp60Support/compilation.log
 /Release
 .idea/
 Logs
-Assets/StreamingAssets/
-Assets/StreamingAssets.meta
+
 .DS_Store
 Server/.DS_Store
 /Server/.vscode/
